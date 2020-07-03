@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_main"
+        android:title="메인"/>
+    <item
+        android:id="@+id/menu_map"
+        android:title="지도"/>
+    <item
+        android:id="@+id/menu_interest"
+        android:title="관심"/>
+    <item
+        android:id="@+id/menu_mypage"
+        android:title="내 정보"/>
+</menu>
