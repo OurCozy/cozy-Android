@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <item
         android:id="@+id/menu_main"
-        android:title="메인"/>
+        android:title="메인"
+        android:icon="@drawable/ic_tab_main_selected" />
     <item
         android:id="@+id/menu_map"
-        android:title="지도"/>
+        android:title="지도"
+        android:icon="@drawable/ic_tab_map"/>
     <item
         android:id="@+id/menu_interest"
-        android:title="관심"/>
+        android:title="관심"
+        android:icon="@drawable/ic_tab_bookmark"/>
     <item
         android:id="@+id/menu_mypage"
-        android:title="내 정보"/>
+        android:title="내 정보"
+        android:icon="@drawable/ic_tab_mypage"/>
 </menu>

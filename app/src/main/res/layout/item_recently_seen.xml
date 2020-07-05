@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingRight="20dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <FrameLayout
+        android:id="@+id/framelayout"
+        android:layout_width="88dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+        <ImageView
+            android:id="@+id/iv_background_shape"
+            android:src="@drawable/round_corner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/iv_img"
+            android:src="@drawable/ic_launcher_background"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </FrameLayout>
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="퇴근길 책 한잔"
+        android:textSize="12sp"
+        android:textColor="#707070"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toStartOf="@+id/framelayout"
+        app:layout_constraintTop_toBottomOf="@+id/framelayout"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
