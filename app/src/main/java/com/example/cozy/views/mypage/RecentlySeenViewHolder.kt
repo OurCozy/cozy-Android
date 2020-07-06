@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.example.cozy.R
 
 class RecentlySeenViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    val iv_img = itemView.findViewById<ImageView>(R.id.iv_img)
+    val iv_img = itemView.findViewById<ImageView>(R.id.rounded_iv_img)
     val tv_title = itemView.findViewById<TextView>(R.id.tv_title)
 
     fun bind(data: RecentlySeenData) {

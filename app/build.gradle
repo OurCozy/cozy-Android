@@ -52,4 +52,6 @@ dependencies {
     implementation 'com.android.support:design:28.0.0'
     //cardView 라이브러리
     implementation "androidx.cardview:cardview:1.0.0"
+    //모서리 둥근 imageView 라이브러리 : https://github.com/vinc3m1/RoundedImageView
+    implementation 'com.makeramen:roundedimageview:2.3.0'
 }

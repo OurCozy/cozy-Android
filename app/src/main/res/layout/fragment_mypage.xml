@@ -20,7 +20,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="23dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="51dp"
                 android:text="마이페이지"
                 android:textColor="@color/textColor"
                 android:textSize="24sp"
@@ -32,7 +32,7 @@
                 android:id="@+id/iv_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="7.6dp"
+                android:layout_marginRight="7dp"
                 android:src="@drawable/ic_search"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_title"
                 app:layout_constraintRight_toRightOf="parent"
@@ -42,7 +42,7 @@
                 android:id="@+id/iv_line"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="28dp"
                 android:background="@color/gray"
                 app:layout_constraintStart_toStartOf="@+id/tv_title"
                 app:layout_constraintTop_toBottomOf="@id/tv_title" />
@@ -51,7 +51,7 @@
                 android:id="@+id/iv_circle_border"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="26dp"
+                android:layout_marginTop="27dp"
                 android:src="@drawable/circle_border"
                 app:layout_constraintStart_toStartOf="@+id/tv_title"
                 app:layout_constraintTop_toBottomOf="@+id/iv_line" />
@@ -60,8 +60,8 @@
                 android:id="@+id/iv_profile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16.5dp"
-                android:layout_marginTop="15.5dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
                 android:src="@drawable/pedestrian_emoji"
                 app:layout_constraintLeft_toLeftOf="@+id/iv_circle_border"
                 app:layout_constraintTop_toTopOf="@+id/iv_circle_border" />
@@ -70,8 +70,8 @@
                 android:id="@+id/tv_user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="11.1dp"
-                android:layout_marginTop="10.3dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
                 android:text="꼬딱지"
                 android:textColor="@color/textColor"
                 android:textSize="17sp"
@@ -83,7 +83,7 @@
                 android:id="@+id/tv_user_emil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="2dp"
                 android:text="ggoddakgee@cozy.com"
                 android:textColor="#a3a3a3"
                 android:textSize="11sp"
@@ -94,7 +94,7 @@
                 android:id="@+id/iv_settings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="14.4dp"
+                android:layout_marginTop="15dp"
                 android:src="@drawable/ic_setting"
                 app:layout_constraintEnd_toEndOf="@+id/iv_search"
                 app:layout_constraintTop_toTopOf="@+id/iv_circle_border" />
@@ -103,7 +103,7 @@
                 android:id="@+id/view_review"
                 android:layout_width="358dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="26.3dp"
+                android:layout_marginTop="26dp"
                 android:orientation="horizontal"
                 android:paddingVertical="12dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -141,7 +141,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="23dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="12dp"
                 android:text="최근 본 책방"
                 android:textColor="@color/textColor"
                 android:textSize="19sp"
@@ -153,7 +153,7 @@
                 android:id="@+id/rv_recently_seen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="18dp"
                 android:paddingTop="15dp"
                 android:paddingBottom="20dp"
                 android:orientation="horizontal"
@@ -163,22 +163,45 @@
                 tools:listitem="@layout/item_recently_seen" />
 
             <TextView
+                android:id="@+id/tv_no_recently_seen_background"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#f6f6f6"
+                android:layout_marginTop="18dp"
+                android:paddingVertical="55dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_recently_seen"/>
+            <TextView
+                android:id="@+id/tv_no_recently_seen_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="최근 본 책방이 없어요!"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#707070"
+                android:layout_marginTop="18dp"
+                android:paddingVertical="55dp"
+                app:layout_constraintStart_toStartOf="@id/guideline_start"
+                app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+                app:layout_constraintTop_toBottomOf="@id/tv_recently_seen"/>
+
+            <TextView
                 android:id="@+id/tv_notice_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="45.4dp"
+                android:layout_marginTop="181dp"
                 android:text="Notice"
                 android:textColor="@color/textColor"
                 android:textSize="19sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@id/rv_recently_seen"
-                app:layout_constraintTop_toBottomOf="@id/rv_recently_seen" />
+                app:layout_constraintStart_toStartOf="@id/tv_recently_seen"
+                app:layout_constraintTop_toBottomOf="@id/tv_recently_seen" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/view_notice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="26.3dp"
+                android:layout_marginTop="12dp"
                 android:orientation="horizontal"
                 android:paddingVertical="12dp"
                 app:layout_constraintStart_toStartOf="@id/tv_notice_title"
@@ -266,7 +289,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_begin="23dp"/>
+                app:layout_constraintGuide_end="388dp" />
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline_end"
                 android:layout_width="wrap_content"

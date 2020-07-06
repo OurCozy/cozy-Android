@@ -1,9 +1,12 @@
 package com.example.cozy.views.mypage
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import com.example.cozy.R
 import kotlinx.android.synthetic.main.fragment_mypage.*
@@ -41,6 +44,14 @@ class MypageFragment : Fragment() {
                     title = "지구불시착"
                 )
             )
+        }
+        Log.d("test2", data.size.toString())
+        if(data.size != 0) {
+            tv_no_recently_seen_background.visibility = GONE
+            tv_no_recently_seen_text.visibility = GONE
+        } else {
+            tv_no_recently_seen_background.visibility = VISIBLE
+            tv_no_recently_seen_text.visibility = VISIBLE
         }
         adapter.data = data
         adapter.notifyDataSetChanged()
