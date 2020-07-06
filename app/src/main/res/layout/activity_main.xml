@@ -23,8 +23,9 @@
         app:menu="@menu/menu"
         android:background="@color/white"
         app:itemIconTint="@color/bottom_selector"
+        app:itemIconSize="50dp"
         app:itemTextColor="@color/bottom_selector"
-        app:labelVisibilityMode="labeled"
+        app:labelVisibilityMode="unlabeled"
         app:layout_constraintStart_toStartOf="@+id/viewPager"
         app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
