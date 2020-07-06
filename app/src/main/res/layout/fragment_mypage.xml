@@ -158,9 +158,17 @@
                 android:paddingBottom="20dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintStart_toStartOf="@id/tv_recently_seen"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_recently_seen"
                 tools:listitem="@layout/item_recently_seen" />
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="0dp"
+                android:background="@drawable/gradiation"
+                app:layout_constraintTop_toTopOf="@id/rv_recently_seen"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/rv_recently_seen"/>
 
             <TextView
                 android:id="@+id/tv_no_recently_seen_background"

@@ -44,8 +44,20 @@ class MypageFragment : Fragment() {
                     title = "지구불시착"
                 )
             )
+            add(
+                RecentlySeenData(
+                    img = "https://images.unsplash.com/photo-1593895349007-8e6700308b3d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80",
+                    title = "퇴근길 책 한잔"
+                )
+            )
+            add(
+                RecentlySeenData(
+                    img = "https://images.unsplash.com/photo-1593366299134-3ef7cd2abbb8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
+                    title = "지구불시착"
+                )
+            )
         }
-        Log.d("test2", data.size.toString())
+
         if(data.size != 0) {
             tv_no_recently_seen_background.visibility = GONE
             tv_no_recently_seen_text.visibility = GONE
