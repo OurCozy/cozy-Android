@@ -46,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         getAppKeyHash()
 
     }
+    // 키해시 얻는 함수
     private fun getAppKeyHash() {
         try {
             val info = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES)
