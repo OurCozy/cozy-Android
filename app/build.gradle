@@ -24,6 +24,15 @@ android {
         }
     }
 
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'x86', 'x86_64', 'armeabi-v7a', 'armeabi'
+            universalApk false
+        }
+    }
+
 }
 
 dependencies {
@@ -56,4 +65,7 @@ dependencies {
     implementation 'com.makeramen:roundedimageview:2.3.0'
     //Glide 적용 가능한 모서리 둥근 imageView 라이브러리 : https://github.com/rishabh876/RoundedImageView?utm_source=android-arsenal.com&utm_medium=referral&utm_campaign=7549
     implementation 'com.rishabhharit.roundedimageview:RoundedImageView:0.8.4'
+    //카카오 API
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation files('libs/libDaumMapAndroid.jar')
 }

@@ -1,17 +1,26 @@
 package com.example.cozy.views.map
 
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import android.widget.ImageView
+import androidx.fragment.app.Fragment
 import com.example.cozy.R
 import kotlinx.android.synthetic.main.fragment_map_detail.*
+import net.daum.mf.map.api.MapPOIItem
+import net.daum.mf.map.api.MapPoint
+import net.daum.mf.map.api.MapView
+
 
 class MapDetailFragment : Fragment() {
     lateinit var adapter: ReviewAdapter
     var data = mutableListOf<ReviewData>()
+    var packageName = "net.daum.android.map"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,6 +32,35 @@ class MapDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // 카카오 지도 API 사용 (AVD로 시행할 때는 주석처리하기)
+        val mapView = MapView(activity)
+        val mapViewContainer = view_map as ViewGroup
+        mapViewContainer.addView(mapView)
+        // 서점 위치 위도&경도로 표시
+        val MARKER_POINT = MapPoint.mapPointWithGeoCoord(37.5602333, 126.9225536)
+        mapView.setMapCenterPoint(MARKER_POINT, true)
+        // 지도 레벨 변경
+        mapView.setZoomLevel(3, true)
+        // 지도 위에 마커 표시
+        val marker = MapPOIItem()
+        marker.itemName = "Default Marker"
+        marker.tag = 0
+        marker.mapPoint = MARKER_POINT
+        marker.markerType = MapPOIItem.MarkerType.BluePin // 기본으로 제공하는 BluePin 마커 모양.
+        marker.selectedMarkerType = MapPOIItem.MarkerType.RedPin // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
+        mapView.addPOIItem(marker)
+
+        //카카오맵 실행 또는 구글플레이로 앱 검색
+        view.findViewById<ImageView>(R.id.iv_find_road).setOnClickListener {
+            if(isInstalledApp(packageName)) {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("kakaomap://look?p=37.5602333,126.9225536"))
+                startActivity(intent)
+            } else {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$packageName"))
+                startActivity(intent)
+            }
+        }
         adapter = ReviewAdapter(view.context)
         rv_comments.adapter = adapter
         loadData()
@@ -73,5 +111,11 @@ class MapDetailFragment : Fragment() {
         }
         adapter.data = data
         adapter.notifyDataSetChanged()
+    }
+
+    // 실행할 앱이 설치되어 있는지 확인
+    fun isInstalledApp(packageName : String): Boolean {
+        val intent = context!!.packageManager.getLaunchIntentForPackage(packageName)
+        return intent != null
     }
 }

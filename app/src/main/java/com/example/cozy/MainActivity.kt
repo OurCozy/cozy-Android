@@ -1,9 +1,15 @@
 package com.example.cozy
 
+import android.content.Context
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Base64
+import android.util.Log
 import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_main.*
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,5 +43,22 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+        getAppKeyHash()
+
+    }
+    private fun getAppKeyHash() {
+        try {
+            val info = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES)
+            for (signature in info.signatures) {
+                val md: MessageDigest = MessageDigest.getInstance("SHA")
+                md.update(signature.toByteArray())
+                val something = String(Base64.encode(md.digest(), 0))
+                Log.d("test3", something)
+            }
+        } catch (e: Exception) {
+            // TODO Auto-generated catch block
+            Log.d("test3", e.toString())
+        }
+
     }
 }
