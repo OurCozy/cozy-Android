@@ -24,7 +24,9 @@
         android:text="코지마안마의자"
         android:textColor="@color/textColor"
         android:textSize="17sp"
-        android:textStyle="bold"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:textFontWeight="900"
         app:layout_constraintStart_toEndOf="@+id/iv_profile"
         app:layout_constraintTop_toTopOf="@+id/iv_profile" />
 
@@ -78,8 +80,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="2020년 7월 3일 20:00작성"
-        android:textColor="#707070"
+        android:textColor="@color/tagcolor"
         android:textSize="10sp"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:textFontWeight="500"
         android:layout_marginLeft="10dp"
         app:layout_constraintStart_toEndOf="@id/iv_5th_star"
         app:layout_constraintTop_toTopOf="@id/iv_5th_star" />
@@ -91,6 +96,9 @@
         android:text="안도북스는 제가 자주 가는 서점입니다. 안도북스의 분위기를 좋아하고, 책방 속의 작은 소품들과 따뜻한 조명이 퇴근후의 저를 위로하는 것 같아서 자주 방문하는 곳이에요. 퇴근하고 바로 달려가기 조금 빠듯한 시간이지만 자주 찾는 책방입니다. "
         android:textSize="12sp"
         android:textColor="@color/textColor"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:textFontWeight="700"
         android:layout_marginTop="13dp"
         app:layout_constraintTop_toBottomOf="@+id/iv_profile"
         app:layout_constraintStart_toStartOf="@+id/iv_profile"/>

@@ -6,7 +6,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cozy.R
 
-class RecommendListVH(itemView: View, val itemClick: (RecommendListData) -> Unit) : RecyclerView.ViewHolder(itemView) {
+class RecommendListVH(itemView: View, val itemClick: (RecommendListData, View) -> Unit) : RecyclerView.ViewHolder(itemView) {
 
     var image : ImageView = itemView.findViewById(R.id.rec_img)
     var text1 : TextView = itemView.findViewById(R.id.rec_text1)
@@ -21,6 +21,6 @@ class RecommendListVH(itemView: View, val itemClick: (RecommendListData) -> Unit
         name.text = myData.recommend_name
         address.text = myData.recommend_address
 
-        itemView.setOnClickListener{itemClick(myData)}
+        itemView.setOnClickListener{itemClick(myData, itemView)}
     }
 }
