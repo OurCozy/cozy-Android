@@ -6,25 +6,469 @@
     android:layout_height="match_parent"
     tools:context=".views.main.RecommendDetailActivity">
 
-    <ImageView
-        android:id="@+id/rec_img"
-        android:layout_width="match_parent"
-        android:layout_height="388dp"
-        android:src="@drawable/img_content_photo"
-        app:srcCompat="@drawable/ic_launcher_background"
-        android:scaleType="centerCrop"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:transitionName="represent"
-        tools:ignore="VectorDrawableCompat" />
-
-    <ImageView
-        android:id="@+id/rec_gradation"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scaleType="fitXY"
-        android:src="@drawable/img_main_content_gradation"
-        app:layout_constraintBottom_toBottomOf="@+id/rec_img"
-        app:layout_constraintStart_toStartOf="@+id/rec_img" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_main_img"
+                android:layout_width="match_parent"
+                android:layout_height="388dp"
+                android:src="@drawable/img_content_photo"
+                app:srcCompat="@drawable/ic_launcher_background"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:transitionName="represent"
+                tools:ignore="VectorDrawableCompat" />
+
+            <ImageView
+                android:id="@+id/rec_gradation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_main_content_gradation"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_main_img"
+                app:layout_constraintStart_toStartOf="@+id/iv_main_img" />
+
+            <TextView
+                android:id="@+id/rec_text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="250dp"
+                android:layout_marginLeft="22dp"
+                android:textColor="@color/white"
+                android:textSize="21sp"
+                android:fontFamily="@font/notosans_fontfamily"
+                android:textFontWeight="900"
+                android:includeFontPadding="false"
+                app:layout_constraintStart_toStartOf="@+id/iv_main_img"
+                app:layout_constraintTop_toTopOf="@+id/iv_main_img"
+                tools:text="해방촌에 숨겨진" />
+
+            <TextView
+                android:id="@+id/rec_text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22dp"
+                android:textColor="@color/white"
+                android:textSize="21sp"
+                android:fontFamily="@font/notosans_fontfamily"
+                android:textFontWeight="900"
+                android:includeFontPadding="false"
+                app:layout_constraintStart_toStartOf="@+id/iv_main_img"
+                app:layout_constraintTop_toBottomOf="@+id/rec_text1"
+                tools:text="나만 알고 싶은 독립서점" />
+
+            <ImageView
+                android:id="@+id/icon_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_content_address"
+                android:layout_marginLeft="22dp"
+                android:layout_marginTop="19dp"
+                app:layout_constraintTop_toBottomOf="@+id/rec_text2"
+                app:layout_constraintStart_toStartOf="@+id/iv_main_img" />
+
+            <TextView
+                android:id="@+id/rec_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@color/white"
+                tools:text="스토리지북앤필름"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/notosans_fontfamily"
+                android:textFontWeight="500"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="17.5dp"
+                app:layout_constraintTop_toBottomOf="@+id/rec_text2"
+                app:layout_constraintStart_toEndOf="@+id/icon_address"
+                />
+
+            <TextView
+                android:id="@+id/rec_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:fontFamily="@font/notosans_fontfamily"
+                android:textFontWeight="300"
+                android:textSize="9sp"
+                android:includeFontPadding="false"
+                android:layout_marginLeft="37dp"
+                android:layout_marginTop="1dp"
+                app:layout_constraintStart_toStartOf="@+id/iv_main_img"
+                app:layout_constraintTop_toBottomOf="@+id/rec_name"
+                tools:text="서울 용산구 신흥로 115-1" />
+
+            <TextView
+                android:id="@+id/tv_bookstore_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:layout_marginTop="40dp"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/notosans_fontfamily"
+                android:textFontWeight="900"
+                android:text="스토리지북앤필름"
+                android:textColor="@color/textColor"
+                android:textSize="22sp"
+                app:layout_constraintStart_toStartOf="@+id/iv_main_img"
+                app:layout_constraintTop_toBottomOf="@+id/iv_main_img" />
+
+            <TextView
+                android:id="@+id/tv_1st_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/img_category_area"
+                android:gravity="center"
+                android:text="감성책방"
+                android:textColor="#707070"
+                android:textSize="10sp"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/notosans_fontfamily"
+                android:textFontWeight="500"
+                app:layout_constraintEnd_toStartOf="@+id/tv_2nd_category"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="@+id/tv_bookstore_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_bookstore_title" />
+
+            <TextView
+                android:id="@+id/tv_2nd_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:background="@drawable/img_category_area"
+                android:gravity="center"
+                android:text="해방촌"
+                android:textColor="#707070"
+                android:textSize="10sp"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/notosans_fontfamily"
+                android:textFontWeight="500"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_1st_category"
+                app:layout_constraintEnd_toStartOf="@+id/tv_3rd_category"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tv_1st_category"
+                app:layout_constraintTop_toTopOf="@+id/tv_1st_category" />
+
+            <TextView
+                android:id="@+id/tv_3rd_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:background="@drawable/img_category_area"
+                android:gravity="center"
+                android:text="독립출판"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/notosans_fontfamily"
+                android:textFontWeight="500"
+                android:textColor="#707070"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_2nd_category"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tv_2nd_category"
+                app:layout_constraintTop_toTopOf="@+id/tv_2nd_category" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_bookmark"
+                android:layout_marginRight="4dp"
+                app:layout_constraintTop_toTopOf="@id/tv_1st_category"
+                app:layout_constraintBottom_toBottomOf="@id/tv_1st_category"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <ImageView
+                android:id="@+id/iv_find_road"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="14dp"
+                android:src="@drawable/ic_find_road"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_address_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/iv_address_icon" />
+
+            <ImageView
+                android:id="@+id/iv_address_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:src="@drawable/img_address"
+                app:layout_constraintStart_toStartOf="@+id/tv_1st_category"
+                app:layout_constraintTop_toBottomOf="@+id/tv_1st_category" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/notosans_fontfamily"
+                android:textFontWeight="500"
+                android:text="서울 용산구 신흥로 115-1"
+                android:textColor="@color/textColor"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_address_icon"
+                app:layout_constraintStart_toEndOf="@id/iv_address_icon"
+                app:layout_constraintTop_toTopOf="@+id/iv_address_icon" />
+
+            <ImageView
+                android:id="@+id/iv_time_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/img_time"
+                app:layout_constraintStart_toStartOf="@+id/iv_address_icon"
+                app:layout_constraintTop_toBottomOf="@+id/iv_address_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/notosans_fontfamily"
+                android:textFontWeight="500"
+                android:text="매월 첫째 수요일 13:00 ~ 24:00 \n매일 13:00 ~ 19:00 \n시간 변동 가능"
+                android:textColor="@color/textColor"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@id/iv_time_icon"
+                app:layout_constraintTop_toTopOf="@+id/iv_time_icon" />
+
+            <ImageView
+                android:id="@+id/iv_call_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="51dp"
+                android:src="@drawable/img_call"
+                app:layout_constraintStart_toStartOf="@+id/iv_time_icon"
+                app:layout_constraintTop_toBottomOf="@+id/iv_time_icon" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="9dp"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/notosans_fontfamily"
+                android:textFontWeight="500"
+                android:text="070-5103-9975"
+                android:textColor="@color/textColor"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@id/iv_call_icon"
+                app:layout_constraintTop_toTopOf="@+id/iv_call_icon" />
+
+            <ImageView
+                android:id="@+id/iv_etc_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:src="@drawable/img_etc"
+                app:layout_constraintStart_toStartOf="@+id/iv_call_icon"
+                app:layout_constraintTop_toBottomOf="@+id/iv_call_icon" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/notosans_fontfamily"
+                android:textFontWeight="500"
+                android:text="공간대여, 워크샵, 온라인 서점"
+                android:textColor="@color/textColor"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@id/iv_etc_icon"
+                app:layout_constraintTop_toTopOf="@+id/iv_etc_icon" />
+
+            <ImageView
+                android:id="@+id/iv_homepage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:src="@drawable/ic_homepage"
+                android:padding="12dp"
+                app:layout_constraintEnd_toStartOf="@+id/iv_facebook"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_etc_icon" />
+
+            <ImageView
+                android:id="@+id/iv_facebook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_facebook"
+                android:padding="12dp"
+                android:layout_marginHorizontal="30dp"
+                app:layout_constraintEnd_toStartOf="@+id/iv_instagram"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/iv_homepage"
+                app:layout_constraintTop_toTopOf="@+id/iv_homepage" />
+
+            <ImageView
+                android:id="@+id/iv_instagram"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_instagram"
+                android:padding="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/iv_facebook"
+                app:layout_constraintTop_toTopOf="@+id/iv_facebook" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/start_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="23dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/end_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="23dp" />
+
+            <View
+                android:id="@+id/divide_line"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="23dp"
+                android:background="@color/gray"
+                app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+                app:layout_constraintStart_toStartOf="@+id/start_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/iv_homepage" />
+
+            <ImageView
+                android:id="@+id/iv_detail_img_1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="50dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_124"
+                app:layout_constraintDimensionRatio="360:265"
+                app:layout_constraintStart_toStartOf="@+id/iv_main_img"
+                app:layout_constraintTop_toBottomOf="@+id/divide_line" />
+
+            <ImageView
+                android:id="@+id/iv_detail_img_2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="27dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_124"
+                app:layout_constraintDimensionRatio="360:265"
+                app:layout_constraintStart_toStartOf="@+id/iv_detail_img_1"
+                app:layout_constraintTop_toBottomOf="@+id/iv_detail_img_1" />
+
+            <TextView
+                android:id="@+id/tv_detail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/notosans_fontfamily"
+                android:textFontWeight="700"
+                android:text="스토리지북앤필름 너무 좋은 독립서점이에요. 해방촌의 분위기를 좋아하는데 이 책방이 한 몫하는것 같아요. 골목길에 있지만 일부러 찾아오는 책방입니다! 대형서점에 없는 책들도 많고 가게 자체도"
+                android:textColor="@color/textColor"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+                app:layout_constraintStart_toStartOf="@+id/start_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/iv_detail_img_2" />
+
+            <View
+                android:id="@+id/divide_line2"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="52dp"
+                android:background="@color/gray"
+                app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+                app:layout_constraintStart_toStartOf="@+id/start_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/tv_detail" />
+
+            <TextView
+                android:id="@+id/tv_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="23dp"
+                android:text="Location"
+                android:textColor="@color/textColor"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/start_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/divide_line2" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/view_map"
+                android:layout_width="wrap_content"
+                android:layout_height="236dp"
+                android:layout_marginTop="29dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_location" />
+
+            <View
+                android:id="@+id/divide_line3"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="49dp"
+                android:background="@color/gray"
+                app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+                app:layout_constraintStart_toStartOf="@+id/start_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/view_map" />
+
+            <TextView
+                android:id="@+id/tv_comments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Comments"
+                android:textColor="@color/textColor"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginTop="23dp"
+                app:layout_constraintStart_toStartOf="@id/start_guideline"
+                app:layout_constraintTop_toBottomOf="@id/divide_line3" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:layout_marginRight="14dp"
+                android:background="@drawable/ic_comments_post"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_comments"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_comments" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_comments"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="vertical"
+                android:overScrollMode="never"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+                app:layout_constraintStart_toStartOf="@+id/start_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/tv_comments"
+                tools:listitem="@layout/item_map_comment" />
+
+            <Button
+                android:id="@+id/btn_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_more"
+                app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+                app:layout_constraintStart_toStartOf="@id/start_guideline"
+                app:layout_constraintTop_toBottomOf="@id/rv_comments" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

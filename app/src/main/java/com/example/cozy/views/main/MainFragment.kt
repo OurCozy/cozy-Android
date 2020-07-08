@@ -39,7 +39,7 @@ class MainFragment : Fragment() {
             }
         recommendAdapter.apply{
             addItem(RecommendListData(R.drawable.img_content_photo, "다양한 독립서적과", "그림, 커피 한 잔까지?", "지구불시착", "서울특별시 노원구 화랑로 464"))
-            addItem(RecommendListData(R.drawable.img_contents, "다양한 독립서적과", "그림, 커피 한 잔까지?", "지구불시착", "서울특별시 노원구 화랑로 464"))
+            addItem(RecommendListData(R.drawable.img_contents, "해방촌에 숨겨진", "나만 알고 싶은 독립서점", "스토리지북앤필름", "서울특별시 용산구 신흥로 115"))
             addItem(RecommendListData(R.drawable.img_content_photo, "다양한 독립서적과", "그림, 커피 한 잔까지?", "지구불시착", "서울특별시 노원구 화랑로 464"))
             addItem(RecommendListData(R.drawable.img_contents, "다양한 독립서적과", "그림, 커피 한 잔까지?", "지구불시착", "서울특별시 노원구 화랑로 464"))
             addItem(RecommendListData(R.drawable.img_content_photo, "다양한 독립서적과", "그림, 커피 한 잔까지?", "지구불시착", "서울특별시 노원구 화랑로 464"))
