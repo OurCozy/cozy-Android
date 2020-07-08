@@ -29,6 +29,7 @@
 
 <h2 id="지도">지도 화면</h2>
 <p align="center">
+	  <img src="/img/map_constraintLayout.PNG" width="300"/>
 	  <img src="/img/map_image.PNG" width="300"/>
 	  <img src="/img/map_popup.PNG" width="300"/><br>
 </p>
