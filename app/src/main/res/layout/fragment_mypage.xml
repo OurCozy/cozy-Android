@@ -91,40 +91,55 @@
                 app:layout_constraintEnd_toEndOf="@+id/iv_search"
                 app:layout_constraintTop_toTopOf="@+id/rounded_iv_profile" />
 
-            <TextView
-                android:id="@+id/tv_review"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/view_review"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="내가 쓴 후기"
-                android:textColor="@color/textColor"
-                android:textSize="19sp"
-                android:textStyle="bold"
-                android:layout_marginTop="37dp"
-                app:layout_constraintEnd_toStartOf="@+id/iv_review_arrow"
-                app:layout_constraintStart_toStartOf="@+id/rounded_iv_profile"
-                app:layout_constraintTop_toBottomOf="@+id/rounded_iv_profile" />
+                android:layout_marginTop="26dp"
+                android:orientation="horizontal"
+                android:paddingVertical="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rounded_iv_profile">
 
-            <ImageView
-                android:id="@+id/iv_review_arrow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="1dp"
-                android:src="@drawable/ic_right_arrow_small"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_review"
-                app:layout_constraintStart_toEndOf="@+id/tv_review"
-                app:layout_constraintTop_toTopOf="@+id/tv_review" />
+                <TextView
+                    android:id="@+id/tv_review"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="23dp"
+                    android:text="내가 쓴 후기"
+                    android:textColor="@color/textColor"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_review_arrow"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_review_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="1dp"
+                    android:src="@drawable/ic_right_arrow_small"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_review"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_review"
+                    app:layout_constraintStart_toEndOf="@+id/tv_review"
+                    app:layout_constraintTop_toTopOf="@+id/tv_review" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/tv_recently_seen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginLeft="23dp"
+                android:layout_marginTop="12dp"
                 android:text="최근 본 책방"
                 android:textColor="@color/textColor"
                 android:textSize="19sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/rounded_iv_profile"
-                app:layout_constraintTop_toBottomOf="@+id/tv_review" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_review" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_recently_seen"
@@ -154,8 +169,7 @@
                 android:layout_height="wrap_content"
                 android:background="#f6f6f6"
                 android:layout_marginTop="18dp"
-                android:paddingTop="54dp"
-                android:paddingBottom="61dp"
+                android:paddingVertical="55dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_recently_seen"/>
             <TextView
@@ -184,57 +198,92 @@
                 app:layout_constraintStart_toStartOf="@id/tv_recently_seen"
                 app:layout_constraintTop_toBottomOf="@id/tv_recently_seen" />
 
-
-            <TextView
-                android:id="@+id/tv_notice"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/view_notice"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="공지사항"
-                android:textColor="@color/textColor"
-                android:textSize="13sp"
-                android:layout_marginLeft="9dp"
-                android:layout_marginTop="24dp"
-                app:layout_constraintTop_toBottomOf="@+id/tv_notice_title"
-                app:layout_constraintStart_toStartOf="@+id/tv_notice_title"/>
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                android:paddingVertical="12dp"
+                app:layout_constraintStart_toStartOf="@id/tv_notice_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_notice_title">
 
-            <ImageView
-                android:id="@+id/iv_notice_arrow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_right_arrow_xsmall"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_notice"
-                app:layout_constraintEnd_toEndOf="@id/guideline_end"
-                app:layout_constraintTop_toTopOf="@+id/tv_notice" />
+                <TextView
+                    android:id="@+id/tv_notice"
+                    android:layout_width="178dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="23dp"
+                    android:text="공지사항"
+                    android:textColor="@color/textColor"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_notice_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_right_arrow_xsmall"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_notice"
+                    app:layout_constraintEnd_toEndOf="@id/guideline_end_notice"
+                    app:layout_constraintTop_toTopOf="@+id/tv_notice" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_end_notice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="23dp"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <View
-                android:id="@+id/hor_line"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:background="@color/gray"
-                android:layout_marginTop="14dp"
-                app:layout_constraintTop_toBottomOf="@id/tv_notice"
+                app:layout_constraintTop_toBottomOf="@id/view_notice"
                 app:layout_constraintEnd_toEndOf="@+id/guideline_end"
                 app:layout_constraintStart_toStartOf="@id/guideline_start" />
 
-            <TextView
-                android:id="@+id/tv_event"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/view_event"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="이벤트"
-                android:textColor="@color/textColor"
-                android:textSize="13sp"
-                android:layout_marginTop="12dp"
-                app:layout_constraintTop_toBottomOf="@+id/hor_line"
-                app:layout_constraintStart_toStartOf="@+id/tv_notice"/>
+                android:orientation="horizontal"
+                android:paddingVertical="12dp"
+                app:layout_constraintStart_toStartOf="@id/view_notice"
+                app:layout_constraintTop_toBottomOf="@+id/view_notice">
 
-            <ImageView
-                android:id="@+id/iv_event_arrow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_right_arrow_xsmall"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_event"
-                app:layout_constraintEnd_toEndOf="@id/guideline_end"
-                app:layout_constraintTop_toTopOf="@+id/tv_event" />
+                <TextView
+                    android:id="@+id/tv_event"
+                    android:layout_width="178dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="23dp"
+                    android:text="이벤트"
+                    android:textColor="@color/textColor"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_event_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_right_arrow_xsmall"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_event"
+                    app:layout_constraintEnd_toEndOf="@id/guideline_end_event"
+                    app:layout_constraintTop_toTopOf="@+id/tv_event" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_end_event"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="23dp"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline_start"
