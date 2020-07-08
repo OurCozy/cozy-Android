@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cozy.R
 import kotlinx.android.synthetic.main.fragment_map.view.*
 
-class MapAdapter (private val context: Context) : RecyclerView.Adapter<MapViewHolder>() {
+class MapAdapter (private val context: Context, val itemClick: (MapData) -> Unit) : RecyclerView.Adapter<MapViewHolder>() {
 
     var datas = mutableListOf<MapData>()
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -28,7 +28,7 @@ class MapAdapter (private val context: Context) : RecyclerView.Adapter<MapViewHo
             }
         }
 */
-        return MapViewHolder(view)
+        return MapViewHolder(view, itemClick)
 
     }
 

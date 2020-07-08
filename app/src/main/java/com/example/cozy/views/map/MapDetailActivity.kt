@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.example.cozy.R
@@ -15,7 +16,7 @@ import net.daum.mf.map.api.MapView
 class MapDetailActivity : AppCompatActivity() {
     lateinit var adapter: ReviewAdapter
     var data = mutableListOf<ReviewData>()
-    //var packageName2 : String = "net.daum.android.map"
+    var kakaoPackageName : String = "net.daum.android.map"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,17 +36,17 @@ class MapDetailActivity : AppCompatActivity() {
         marker.itemName = "Default Marker"
         marker.tag = 0
         marker.mapPoint = MARKER_POINT
-        marker.markerType = MapPOIItem.MarkerType.BluePin // 기본으로 제공하는 BluePin 마커 모양.
-        marker.selectedMarkerType = MapPOIItem.MarkerType.RedPin // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
+        marker.markerType = MapPOIItem.MarkerType.BluePin // 기본으로 제공하는 BluePin 마커 모양
+        marker.selectedMarkerType = MapPOIItem.MarkerType.RedPin // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양
         mapView.addPOIItem(marker)
 
         //카카오맵 실행 또는 구글플레이로 앱 검색
         findViewById<ImageView>(R.id.iv_find_road).setOnClickListener {
-            if(isInstalledApp(packageName)) {
+            if(isInstalledApp(kakaoPackageName)) {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse("kakaomap://look?p=37.5602333,126.9225536"))
                 startActivity(intent)
             } else {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$packageName"))
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$kakaoPackageName"))
                 startActivity(intent)
             }
         }

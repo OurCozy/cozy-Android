@@ -60,7 +60,7 @@
 
 <p align="center">
     <img src="/img/map_detail.gif" width="300"/><br><br>
-    <img src="/img/map_detail_blueprint.png" width="300"/><br>
+    <img src="/img/map_detail_blueprint.PNG" width="300"/><br>
 </p>
 
 <br>
