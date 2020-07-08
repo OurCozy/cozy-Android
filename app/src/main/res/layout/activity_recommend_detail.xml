@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.main.RecommendDetailActivity">
+
+    <ImageView
+        android:id="@+id/rec_img"
+        android:layout_width="match_parent"
+        android:layout_height="388dp"
+        android:src="@drawable/img_content_photo"
+        app:srcCompat="@drawable/ic_launcher_background"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:transitionName="represent"
+        tools:ignore="VectorDrawableCompat" />
+
+    <ImageView
+        android:id="@+id/rec_gradation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/img_main_content_gradation"
+        app:layout_constraintBottom_toBottomOf="@+id/rec_img"
+        app:layout_constraintStart_toStartOf="@+id/rec_img" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

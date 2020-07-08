@@ -6,11 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cozy.R
 
-class RecommendListAdapter(private val context : Context) : RecyclerView.Adapter<RecommendListVH>() {
+class RecommendListAdapter(private val context : Context, val itemClick: (RecommendListData) -> Unit) : RecyclerView.Adapter<RecommendListVH>() {
     var datas = mutableListOf<RecommendListData>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecommendListVH {
         val view = LayoutInflater.from(context).inflate(R.layout.item_recommend,parent,false)
-        return RecommendListVH(view)
+        return RecommendListVH(view, itemClick)
     }
 
     override fun getItemCount(): Int {

@@ -34,17 +34,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="35dp"
-                android:textColor="#373737"
-                android:textSize="25sp"
-                android:text="다돌코님," />
+                android:fontFamily="@font/notosans_fontfamily"
+                android:includeFontPadding="false"
+                android:text="다돌코님,"
+                android:textColor="@color/recommend"
+                android:textFontWeight="900"
+                android:textSize="25sp" />
 
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#373737"
-                android:textSize="25sp"
-                android:text="숨은 서점찾기 어떠세요?" />
+                android:fontFamily="@font/notosans_fontfamily"
+                android:lineSpacingExtra="0sp"
+                android:text="숨은 서점찾기 어떠세요?"
+                android:includeFontPadding="false"
+                android:textColor="@color/recommend"
+                android:textFontWeight="900"
+                android:textSize="25sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recommend_item"
@@ -55,6 +62,7 @@
                 android:paddingBottom="44dp"
                 android:orientation="vertical"
                 android:layout_marginTop="26dp"
+                android:transitionName="represent"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/item_recommend">
             </androidx.recyclerview.widget.RecyclerView>
