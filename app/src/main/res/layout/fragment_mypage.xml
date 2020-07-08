@@ -52,12 +52,20 @@
                 android:id="@+id/rounded_iv_profile"
                 android:layout_width="77dp"
                 android:layout_height="77dp"
-                android:src="@drawable/pedestrian_emoji"
+                android:src="@color/white"
                 app:civ_border_color="@color/gray"
                 app:civ_border_width="1dp"
                 android:layout_marginTop="27dp"
                 app:layout_constraintStart_toStartOf="@+id/tv_title"
                 app:layout_constraintTop_toBottomOf="@+id/iv_line" />
+
+            <ImageView
+                android:layout_width="77dp"
+                android:layout_height="77dp"
+                android:padding="15dp"
+                android:src="@drawable/pedestrian_emoji"
+                app:layout_constraintTop_toTopOf="@+id/rounded_iv_profile"
+                app:layout_constraintStart_toStartOf="@id/rounded_iv_profile"/>
 
             <TextView
                 android:id="@+id/tv_user_name"

@@ -1,12 +1,15 @@
 package com.example.cozy.views.map
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.example.cozy.R
 import kotlinx.android.synthetic.main.fragment_map.*
+import kotlinx.android.synthetic.main.fragment_map.view.*
 
 class MapFragment : Fragment() {
 
@@ -18,7 +21,9 @@ class MapFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_map, container, false)
+        val view = inflater.inflate(R.layout.fragment_map, container, false)
+        initMapList(view)
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -30,16 +35,15 @@ class MapFragment : Fragment() {
         tab.setupWithViewPager(home_viewpager)
         */
 
-        mapAdapter =
-            MapAdapter(view.context)
-        bookstore.adapter = mapAdapter
-
-        loadMapDatas()
         bookstore.addItemDecoration(MapItemDecoration()) //itemDecoration 여백주기
-
     }
 
-    private fun loadMapDatas() {
+    fun initMapList(view : View) {
+        var mapAdapter = MapAdapter(view.context) { MapData ->
+            var intent = Intent(activity, MapDetailActivity::class.java)
+            startActivity(intent)
+        }
+
         datas.apply {
             add(
                 MapData(
@@ -60,8 +64,8 @@ class MapFragment : Fragment() {
             )
         }
 
+        view.bookstore.adapter = mapAdapter
         mapAdapter.datas = datas
         mapAdapter.notifyDataSetChanged()
-
     }
 }
