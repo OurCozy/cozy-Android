@@ -4,17 +4,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:paddingBottom="6dp"
-    android:elevation="10dp"
-    android:paddingRight="6dp"
-    android:paddingLeft="6dp"
+    android:layout_height="250dp"
+    android:padding="5dp"
+    android:background="@drawable/shodow"
     >
 
     <com.rishabhharit.roundedimageview.RoundedImageView
         android:id="@+id/rv_interest_image"
         android:layout_width="match_parent"
-        android:layout_height="230dp"
+        android:layout_height="match_parent"
         android:scaleType="fitXY"
         app:cornerRadius="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -29,11 +27,9 @@
         android:id="@+id/white_board"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="158dp"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="@+id/rv_interest_image"
         app:layout_constraintStart_toStartOf="@+id/rv_interest_image"
-        app:layout_constraintTop_toTopOf="@id/rv_interest_image"
         app:layout_constraintBottom_toBottomOf="@id/rv_interest_image"
         app:srcCompat="@drawable/image2216">
 
@@ -47,6 +43,7 @@
         android:layout_marginLeft="17dp"
         android:text="퇴근 길 책 한 잔"
         android:textSize="17sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/white_board"
         app:layout_constraintTop_toTopOf="@+id/white_board" />
 

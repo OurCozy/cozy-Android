@@ -44,6 +44,7 @@
         android:layout_marginLeft="17dp"
         android:text="퇴근 길 책 한 잔"
         android:textSize="17sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/white_board"
         app:layout_constraintTop_toTopOf="@+id/white_board" />
 
