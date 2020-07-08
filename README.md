@@ -54,7 +54,7 @@
 </p>
 - 사용자가 지역별로 책방을 찾을 수 있는 화면이다. default값인 마포구를 클릭했을 때 아래에서 위로 지역을 클릭할 수 있는 팝업창이 뜬다. 다른 지역을 클릭하게 되면 그에 따른 책방들이 RecyclerView로 보여진다. MapItemDecoration 에서 리사이클러뷰 아래에 getItemOffsets 함수를 사용해서 여백을 주었다.<br>
 - 화면 레이아웃은 ConstraintLayout을 사용했다. 각 뷰 사이에 제약을 주면서 유기적으로 뷰가 움직일 수 있도록 만들었다. 양쪽에 guideline을 주어 여백을 따로 두지 않아도 되도록 만들었다.<br>
-					  
+[목차로 돌아가기](#Contents)<br>					  
 
 ### 지도 상세 화면
 
@@ -92,6 +92,7 @@
 </p>
 - 각 책방에 있는 해시태그를 클릭해서 관심 등록한 책방이 보인다. 최신순으로 책방이 나타나며 관심이 있는 책방이 없을 경우 이 왼쪽과 같은 뷰가 뜬다. 이때 fragment_interest_none.xml가 호출될 수 있도록 코드를 작성한다. 지도뷰와 마찬가지로 관심있는 책방을 RecyclerView로 보여진다. MapItemDecoration 에서 리사이클러뷰 아래에 getItemOffsets 함수를 사용해서 여백을 주었다.<br>
 - 화면 레이아웃은 ConstraintLayout을 사용했다. 각 뷰 사이에 제약을 주면서 유기적으로 뷰가 움직일 수 있도록 만들었다. 양쪽에 guideline을 주어 여백을 따로 두지 않아도 되도록 만들었다.<br>
+[목차로 돌아가기](#Contents)<br>
 
 <h2 id="내정보">내 정보 화면</h2>
 <p align="center">
