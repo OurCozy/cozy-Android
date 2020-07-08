@@ -47,24 +47,16 @@
                 app:layout_constraintStart_toStartOf="@+id/tv_title"
                 app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
-            <ImageView
-                android:id="@+id/iv_circle_border"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/rounded_iv_profile"
+                android:layout_width="77dp"
+                android:layout_height="77dp"
+                android:src="@drawable/pedestrian_emoji"
+                app:civ_border_color="@color/gray"
+                app:civ_border_width="1dp"
                 android:layout_marginTop="27dp"
-                android:src="@drawable/circle_border"
                 app:layout_constraintStart_toStartOf="@+id/tv_title"
                 app:layout_constraintTop_toBottomOf="@+id/iv_line" />
-
-            <ImageView
-                android:id="@+id/iv_profile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:src="@drawable/pedestrian_emoji"
-                app:layout_constraintLeft_toLeftOf="@+id/iv_circle_border"
-                app:layout_constraintTop_toTopOf="@+id/iv_circle_border" />
 
             <TextView
                 android:id="@+id/tv_user_name"
@@ -76,8 +68,8 @@
                 android:textColor="@color/textColor"
                 android:textSize="17sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/iv_circle_border"
-                app:layout_constraintTop_toTopOf="@+id/iv_circle_border" />
+                app:layout_constraintStart_toEndOf="@+id/rounded_iv_profile"
+                app:layout_constraintTop_toTopOf="@+id/rounded_iv_profile" />
 
             <TextView
                 android:id="@+id/tv_user_email"
@@ -97,57 +89,42 @@
                 android:layout_marginTop="15dp"
                 android:src="@drawable/ic_setting"
                 app:layout_constraintEnd_toEndOf="@+id/iv_search"
-                app:layout_constraintTop_toTopOf="@+id/iv_circle_border" />
+                app:layout_constraintTop_toTopOf="@+id/rounded_iv_profile" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/view_review"
-                android:layout_width="358dp"
+            <TextView
+                android:id="@+id/tv_review"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="26dp"
-                android:orientation="horizontal"
-                android:paddingVertical="12dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/iv_circle_border">
+                android:text="내가 쓴 후기"
+                android:textColor="@color/textColor"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                android:layout_marginTop="37dp"
+                app:layout_constraintEnd_toStartOf="@+id/iv_review_arrow"
+                app:layout_constraintStart_toStartOf="@+id/rounded_iv_profile"
+                app:layout_constraintTop_toBottomOf="@+id/rounded_iv_profile" />
 
-                <TextView
-                    android:id="@+id/tv_review"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="23dp"
-                    android:text="내가 쓴 후기"
-                    android:textColor="@color/textColor"
-                    android:textSize="19sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/iv_review_arrow"
-                    app:layout_constraintHorizontal_chainStyle="packed"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/iv_review_arrow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="1dp"
-                    android:src="@drawable/ic_right_arrow_small"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_review"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_review"
-                    app:layout_constraintStart_toEndOf="@+id/tv_review"
-                    app:layout_constraintTop_toTopOf="@+id/tv_review" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/iv_review_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:src="@drawable/ic_right_arrow_small"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_review"
+                app:layout_constraintStart_toEndOf="@+id/tv_review"
+                app:layout_constraintTop_toTopOf="@+id/tv_review" />
 
             <TextView
                 android:id="@+id/tv_recently_seen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="23dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="25dp"
                 android:text="최근 본 책방"
                 android:textColor="@color/textColor"
                 android:textSize="19sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view_review" />
+                app:layout_constraintStart_toStartOf="@+id/rounded_iv_profile"
+                app:layout_constraintTop_toBottomOf="@+id/tv_review" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_recently_seen"
@@ -177,7 +154,8 @@
                 android:layout_height="wrap_content"
                 android:background="#f6f6f6"
                 android:layout_marginTop="18dp"
-                android:paddingVertical="55dp"
+                android:paddingTop="54dp"
+                android:paddingBottom="61dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_recently_seen"/>
             <TextView
@@ -206,92 +184,57 @@
                 app:layout_constraintStart_toStartOf="@id/tv_recently_seen"
                 app:layout_constraintTop_toBottomOf="@id/tv_recently_seen" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/view_notice"
-                android:layout_width="match_parent"
+
+            <TextView
+                android:id="@+id/tv_notice"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:orientation="horizontal"
-                android:paddingVertical="12dp"
-                app:layout_constraintStart_toStartOf="@id/tv_notice_title"
-                app:layout_constraintTop_toBottomOf="@+id/tv_notice_title">
+                android:text="공지사항"
+                android:textColor="@color/textColor"
+                android:textSize="13sp"
+                android:layout_marginLeft="9dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_notice_title"
+                app:layout_constraintStart_toStartOf="@+id/tv_notice_title"/>
 
-                <TextView
-                    android:id="@+id/tv_notice"
-                    android:layout_width="178dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="23dp"
-                    android:text="공지사항"
-                    android:textColor="@color/textColor"
-                    android:textSize="13sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/iv_notice_arrow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_right_arrow_xsmall"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_notice"
-                    app:layout_constraintEnd_toEndOf="@id/guideline_end_notice"
-                    app:layout_constraintTop_toTopOf="@+id/tv_notice" />
-
-                <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/guideline_end_notice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_end="23dp"/>
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/iv_notice_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_right_arrow_xsmall"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_notice"
+                app:layout_constraintEnd_toEndOf="@id/guideline_end"
+                app:layout_constraintTop_toTopOf="@+id/tv_notice" />
 
             <View
+                android:id="@+id/hor_line"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:background="@color/gray"
-                app:layout_constraintTop_toBottomOf="@id/view_notice"
+                android:layout_marginTop="14dp"
+                app:layout_constraintTop_toBottomOf="@id/tv_notice"
                 app:layout_constraintEnd_toEndOf="@+id/guideline_end"
                 app:layout_constraintStart_toStartOf="@id/guideline_start" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/view_event"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tv_event"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingVertical="12dp"
-                app:layout_constraintStart_toStartOf="@id/view_notice"
-                app:layout_constraintTop_toBottomOf="@+id/view_notice">
+                android:text="이벤트"
+                android:textColor="@color/textColor"
+                android:textSize="13sp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@+id/hor_line"
+                app:layout_constraintStart_toStartOf="@+id/tv_notice"/>
 
-                <TextView
-                    android:id="@+id/tv_event"
-                    android:layout_width="178dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="23dp"
-                    android:text="이벤트"
-                    android:textColor="@color/textColor"
-                    android:textSize="13sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/iv_event_arrow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_right_arrow_xsmall"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_event"
-                    app:layout_constraintEnd_toEndOf="@id/guideline_end_event"
-                    app:layout_constraintTop_toTopOf="@+id/tv_event" />
-
-                <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/guideline_end_event"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_end="23dp"/>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/iv_event_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_right_arrow_xsmall"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_event"
+                app:layout_constraintEnd_toEndOf="@id/guideline_end"
+                app:layout_constraintTop_toTopOf="@+id/tv_event" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline_start"
