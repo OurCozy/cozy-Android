@@ -1,8 +1,9 @@
 <p align="center">
 	<img src="/img/cozy_logo.png" width="200"/><br>
-	<b>COZY</b><br>
+    <p style="font-size:40px; font-weight:bold">COZY</p>
 	바쁜 도심 속 휴식처, 독립서점
 </p>
+<br><br>
 
 # Contents
 * 뷰
@@ -50,9 +51,13 @@
 	}
 ```
 
+<br>
+
 <p align="center">
-	<img src="/img/mypage_blueprint.png" width="300"/><br>
+	<img src="/img/mypage_blueprint.PNG" width="300"/><br>
 </p>
+
+<br>
 
 화면의 레이아웃은 ConstraintLayout을 사용했다. 각 뷰들이 서로 유기적으로 연결되도록 제약을 주었다. 왼쪽으로 정렬된 뷰들은 각각 바로 위에 있는 뷰를 layout_constraintStart_toStartOf로 지정해줌으로써 별도로 marginLeft를 하지 않아도 정렬되도록했다. 화면 상단과 하단에 있는 가로줄의 width는 각각 match_parent와 0dp를 해주었고 하단 가로줄은 왼쪽과 오른쪽에 각각 23dp만큼 margin을 준 guideline을 만들어 제약을 주었다.
 
@@ -95,6 +100,7 @@
         <meta-data android:name="com.kakao.sdk.AppKey" android:value="/*네이티브 앱 키*/"/>
     </application>
 ```
+<br>
 
 그 다음 아래와 같이 지도를 띄우기 위한 ViewGroup에 MapView를 연결한다. 카카오에서 제공하는 기능을 사용해 원하는 위도와 경도를 입력해 해당 위치의 지도를 보여줬고 마커를 표시해주었다.
 
@@ -139,8 +145,8 @@ class MapDetailFragment : Fragment() {
 
 <p id="kakaomap" align="center">
 	<img src="/img/open_map_no_app.gif" width="300"/><br>
-	카카오맵이 설치되어 있지 않을 때<br><br>
-	<img src="/img/open_map.gif" width="300"/><br>
+	카카오맵이 설치되어 있지 않을 때<br><br><br>
+	<img src="/img/open_map.gif" width="300"/><br><br>
 	카카오맵이 설치되어 있을 때
 </p>
 
