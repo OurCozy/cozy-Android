@@ -19,13 +19,14 @@
         app:riv_corner_radius="10dp"
         tools:ignore="VectorDrawableCompat" />
 
-    <ImageView
+    <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/rec_gradation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleType="fitXY"
         android:src="@drawable/img_main_content_gradation"
         app:layout_constraintBottom_toBottomOf="@+id/rec_img"
+        app:riv_corner_radius="10dp"
         app:layout_constraintStart_toStartOf="@+id/rec_img" />
 
     <TextView

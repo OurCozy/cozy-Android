@@ -24,8 +24,27 @@
 
 # 뷰
 <h2 id="메인">메인 화면</h2>
+<p align="center">
+	<img src="/img/recommend.jpg" width="300"/>
+</p>
 
-### 메인 상세 화면
+앱을 실행하고 로그인 했을 때 처음 나오는 메인 화면으로 독립서점을 총 8개를 추천해 주는 화면이다. 처음 가입했을 때는 임의로 뽑아놓은 8개의 독립서점이 뜬다. 사용자가 관심있는 책방에는 북마크를 할 수 있는데 나중에 이 추천뷰에는 사용자들이 북마크를 많이 한 순서대로 뜨게 된다.
+
+<p align="center">
+	<img src="/img/recommend_blueprint.JPG" width="300"/>
+</p>
+
+화면의 레이아웃은 전체 스크롤이 필요하여 NestedScrollView를 사용하였다. 전체 horizontal padding을 24dp로 주었다. width는 match_parent, height은 wrap_content를 사용하였고, NestedScrollView의 자식뷰는 일렬로 쭉 정렬되기 때문에 LinearLayout을 orientation을 vertical로 하여 사용하였다. 부모뷰에 horizontal padding을 줬기 때문에 width는 match_parent, height은 wrap_content를 사용하였다. 첫번째로는 logo와 serch아이콘이 들어가야하기 때문에 ConstraintLayout으로 chain을 spread_inside를 걸어줘서 사용하고 그 밑으로는 차례차례 TextView, RecyclerView를 넣었다. TextView는 width, height 둘 다 wrap_content를 주었고, RecyclerView는 width는 match_parent, height은 wrap_content를 사용하였다.
+
+[xml 보러가기](https://github.com/OurCozy/cozy-Android/blob/dev/app/src/main/res/layout/fragment_main.xml)
+
+<p align="center">
+	<img src="/img/recommend_item_blueprint.JPG" width="300"/>
+</p>
+
+메인 화면 Recyclerview의 itemview로 ConstraintLayout을 사용하였다. width는 match_parent, height은 값을  390dp로 고정하였다.
+
+[xml 보러가기](https://github.com/OurCozy/cozy-Android/blob/dev/app/src/main/res/layout/item_recommend.xml)
 
 <h2 id="지도">지도 화면</h2>
 <p align="center">
