@@ -1,6 +1,6 @@
 <p align="center">
 	<img src="/img/cozy_logo.png" width="200"/><br>
-    <p style="font-size:40px; font-weight:bold">COZY</p>
+    <b style="font-size:40px;">COZY</b><br>
 	바쁜 도심 속 휴식처, 독립서점
 </p>
 <br><br>
