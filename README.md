@@ -1,5 +1,7 @@
 <p align="center">
     <h1>COZY_Android</h1>
+</p>
+<p align="center">
 	<img src="/img/cozy_logo.png" width="200"/><br>
 	바쁜 도심 속 휴식처, 공간과 경험을 파는 세상의 모든 독립서점
 </p>
