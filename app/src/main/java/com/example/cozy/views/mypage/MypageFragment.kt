@@ -34,26 +34,26 @@ class MypageFragment : Fragment() {
         data.apply {
             add(
                 RecentlySeenData(
-                    img = "https://images.unsplash.com/photo-1593895349007-8e6700308b3d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80",
+                    img = "https://images.unsplash.com/photo-1561851561-04ee3d324423?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
                     title = "퇴근길 책 한잔"
                 )
             )
             add(
                 RecentlySeenData(
-                    img = "https://images.unsplash.com/photo-1593366299134-3ef7cd2abbb8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
+                    img = "https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80",
                     title = "지구불시착"
                 )
             )
             add(
                 RecentlySeenData(
-                    img = "https://images.unsplash.com/photo-1593895349007-8e6700308b3d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80",
-                    title = "퇴근길 책 한잔"
+                    img = "https://images.unsplash.com/photo-1585066437544-6ca9b0e5bf1f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
+                    title = "안도서점"
                 )
             )
             add(
                 RecentlySeenData(
-                    img = "https://images.unsplash.com/photo-1593366299134-3ef7cd2abbb8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
-                    title = "지구불시착"
+                    img = "https://images.unsplash.com/photo-1571808161129-330529860c34?ixlib=rb-1.2.1&auto=format&fit=crop&w=969&q=80",
+                    title = "스토리지북앤필름"
                 )
             )
         }

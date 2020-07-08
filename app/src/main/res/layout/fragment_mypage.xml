@@ -47,24 +47,16 @@
                 app:layout_constraintStart_toStartOf="@+id/tv_title"
                 app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
-            <ImageView
-                android:id="@+id/iv_circle_border"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/rounded_iv_profile"
+                android:layout_width="77dp"
+                android:layout_height="77dp"
+                android:src="@drawable/pedestrian_emoji"
+                app:civ_border_color="@color/gray"
+                app:civ_border_width="1dp"
                 android:layout_marginTop="27dp"
-                android:src="@drawable/circle_border"
                 app:layout_constraintStart_toStartOf="@+id/tv_title"
                 app:layout_constraintTop_toBottomOf="@+id/iv_line" />
-
-            <ImageView
-                android:id="@+id/iv_profile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:src="@drawable/pedestrian_emoji"
-                app:layout_constraintLeft_toLeftOf="@+id/iv_circle_border"
-                app:layout_constraintTop_toTopOf="@+id/iv_circle_border" />
 
             <TextView
                 android:id="@+id/tv_user_name"
@@ -76,11 +68,11 @@
                 android:textColor="@color/textColor"
                 android:textSize="17sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/iv_circle_border"
-                app:layout_constraintTop_toTopOf="@+id/iv_circle_border" />
+                app:layout_constraintStart_toEndOf="@+id/rounded_iv_profile"
+                app:layout_constraintTop_toTopOf="@+id/rounded_iv_profile" />
 
             <TextView
-                android:id="@+id/tv_user_emil"
+                android:id="@+id/tv_user_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -97,17 +89,17 @@
                 android:layout_marginTop="15dp"
                 android:src="@drawable/ic_setting"
                 app:layout_constraintEnd_toEndOf="@+id/iv_search"
-                app:layout_constraintTop_toTopOf="@+id/iv_circle_border" />
+                app:layout_constraintTop_toTopOf="@+id/rounded_iv_profile" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/view_review"
-                android:layout_width="358dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="26dp"
                 android:orientation="horizontal"
                 android:paddingVertical="12dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/iv_circle_border">
+                app:layout_constraintTop_toBottomOf="@+id/rounded_iv_profile">
 
                 <TextView
                     android:id="@+id/tv_review"
@@ -157,6 +149,7 @@
                 android:paddingTop="15dp"
                 android:paddingBottom="20dp"
                 android:orientation="horizontal"
+                android:overScrollMode="never"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_recently_seen"
