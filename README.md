@@ -1,7 +1,7 @@
 <h1 align="center">COZY_Android</h1>
 <p align="center">
 	<img src="/img/cozy_logo.png" width="200"/><br>
-	바쁜 도심 속 휴식처, 공간과 경험을 파는 세상의 모든 독립서점
+	바쁜 도심 속 휴식처,<br>공간과 경험을 파는 세상의 모든 독립서점
 </p>
 <br><br>
 
@@ -11,16 +11,18 @@
 	* [지도](#지도)
 	* [관심](#관심)
 	* [내정보](#내정보)
-* [프로젝트 구조](#구조)
-* [라이브러리](#라이브러리)
+* 프로젝트 구조
+* 라이브러리
 * 기본 기능
-	* [BottomNavigationView](#BottomNavigationView)
-	* [RecyclerView](#RecyclerView)
+	* BottomNavigationView
+	* RecyclerView
 * 주요 기능
-	* [애니메이션](#애니메이션)
+	* 애니메이션
 	* [카카오맵 API](#카카오맵)
 * 확장함수
 * 소스파일
+
+<br>
 
 # 뷰
 <h2 id="메인">메인 화면</h2>
@@ -37,6 +39,7 @@
 화면의 레이아웃은 전체 스크롤이 필요하여 NestedScrollView를 사용하였다. 전체 horizontal padding을 24dp로 주었다. width는 match_parent, height은 wrap_content를 사용하였고, NestedScrollView의 자식뷰는 일렬로 쭉 정렬되기 때문에 LinearLayout을 orientation을 vertical로 하여 사용하였다. 부모뷰에 horizontal padding을 줬기 때문에 width는 match_parent, height은 wrap_content를 사용하였다. 첫번째로는 logo와 serch아이콘이 들어가야하기 때문에 ConstraintLayout으로 chain을 spread_inside를 걸어줘서 사용하고 그 밑으로는 차례차례 TextView, RecyclerView를 넣었다. TextView는 width, height 둘 다 wrap_content를 주었고, RecyclerView는 width는 match_parent, height은 wrap_content를 사용하였다.
 
 [xml 보러가기](https://github.com/OurCozy/cozy-Android/blob/dev/app/src/main/res/layout/fragment_main.xml)
+
 [목차로 돌아가기](#Contents)<br>
 
 <p align="center">
@@ -46,18 +49,23 @@
 메인 화면 Recyclerview의 itemview로 ConstraintLayout을 사용하였다. width는 match_parent, height은 값을  390dp로 고정하였다.
 
 [xml 보러가기](https://github.com/OurCozy/cozy-Android/blob/dev/app/src/main/res/layout/item_recommend.xml)
-[목차로 돌아가기](#Contents)<br>
+
+[목차로 돌아가기](#Contents)<br><br>
 
 <h2 id="지도">지도 화면</h2>
 <p align="center">
-	  <img src="/img/map_constraintLayout.PNG" width="300"/>
-	  <img src="/img/map_image.PNG" width="300"/>
-	  <img src="/img/map_popup.PNG" width="300"/><br>
+	<img src="/img/map_constraintLayout.PNG" width="300"/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<img src="/img/map_image.PNG" width="300"/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<img src="/img/map_popup.PNG" width="260"/><br>
 </p>
 - 사용자가 지역별로 책방을 찾을 수 있는 화면이다. default값인 마포구를 클릭했을 때 아래에서 위로 지역을 클릭할 수 있는 팝업창이 뜬다. 다른 지역을 클릭하게 되면 그에 따른 책방들이 RecyclerView로 보여진다. MapItemDecoration 에서 리사이클러뷰 아래에 getItemOffsets 함수를 사용해서 여백을 주었다.<br>
 - 화면 레이아웃은 ConstraintLayout을 사용했다. 각 뷰 사이에 제약을 주면서 유기적으로 뷰가 움직일 수 있도록 만들었다. 양쪽에 guideline을 주어 여백을 따로 두지 않아도 되도록 만들었다.<br>
 
-[목차로 돌아가기](#Contents)<br>					  
+[xml 보러가기](https://github.com/OurCozy/cozy-Android/blob/dev/app/src/main/res/layout/fragment_map.xml)
+
+[목차로 돌아가기](#Contents)<br><br>					  
 
 ### 지도 상세 화면
 
@@ -86,17 +94,20 @@
 
 [xml 보러가기](https://github.com/OurCozy/cozy-Android/blob/dev/app/src/main/res/layout/fragment_map_detail.xml)
 
-[목차로 돌아가기](#Contents)<br>
+[목차로 돌아가기](#Contents)<br><br>
 
 <h2 id="관심">관심 화면</h2>
 <p align="center">
 	<img src="/img/interest_none.PNG" width="300"/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<img src="/img/interest.PNG" width="300"/>
 </p>
 - 각 책방에 있는 해시태그를 클릭해서 관심 등록한 책방이 보인다. 최신순으로 책방이 나타나며 관심이 있는 책방이 없을 경우 이 왼쪽과 같은 뷰가 뜬다. 이때 fragment_interest_none.xml가 호출될 수 있도록 코드를 작성한다. 지도뷰와 마찬가지로 관심있는 책방을 RecyclerView로 보여진다. MapItemDecoration 에서 리사이클러뷰 아래에 getItemOffsets 함수를 사용해서 여백을 주었다.<br>
 - 화면 레이아웃은 ConstraintLayout을 사용했다. 각 뷰 사이에 제약을 주면서 유기적으로 뷰가 움직일 수 있도록 만들었다. 양쪽에 guideline을 주어 여백을 따로 두지 않아도 되도록 만들었다.<br>
 
-[목차로 돌아가기](#Contents)<br>
+[xml 보러가기](https://github.com/OurCozy/cozy-Android/blob/dev/app/src/main/res/layout/fragment_interest.xml)
+
+[목차로 돌아가기](#Contents)<br><br>
 
 <h2 id="내정보">내 정보 화면</h2>
 <p align="center">
@@ -129,7 +140,7 @@
 
 [xml 보러가기](https://github.com/OurCozy/cozy-Android/blob/dev/app/src/main/res/layout/fragment_mypage.xml)
 
-[목차로 돌아가기](#Contents)<br>
+[목차로 돌아가기](#Contents)<br><br>
 
 <h1 id="구조">프로젝트 구조</h1>
 
@@ -157,7 +168,7 @@
 책방을 클릭했을 때 나오는 자세한 소개 뷰에서 카카오 API를 이용해 지도를 띄웠다. API를 사용하기 위해 [카카오 개발자 사이트](https://developers.kakao.com)에서 앱을 등록한 후, 필요한 라이브러리 파일을 추가하고 manifest에 아래와 같이 인터넷과 위치정보 접근을 허용시키고 발급받은 앱 키를 적어준다.
 
 ```xml
-	<uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application>
@@ -210,7 +221,7 @@
 마지막으로 길찾기 버튼을 클릭했을 때 카카오맵이 실행되도록 구현했다. packageManager.getLaunchIntentForPackage()로 해당 앱이 이미 설치되었는지 확인 후, 설치되어 있다면 앱을 연 다음 서점이 있는 곳을 보여주도록했고 앱이 설치되어있지 않다면 구글플레이에서 앱을 다운받을 수 있는 링크로 이동하도록했다.
 
 ``` kotlin
-override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map_detail)
 
