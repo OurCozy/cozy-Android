@@ -9,4 +9,5 @@
     <color name="textColor">#282828</color>
     <color name="gray">#d1d1d1</color>
     <color name="recommend">#373737</color>
+    <color name="tagcolor">#707070</color>
 </resources>

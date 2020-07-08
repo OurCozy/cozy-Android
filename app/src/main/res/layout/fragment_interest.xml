@@ -47,7 +47,9 @@
             android:layout_marginTop="28dp"
             android:text="꼬딱지님의 콕!"
             android:textSize="25sp"
-            android:fontFamily="@font/notosans_cjkkr_bold"
+            android:fontFamily="@font/notosans_fontfamily"
+            android:textFontWeight="900"
+            android:textColor="@color/textColor"
             android:includeFontPadding="false"
             app:layout_constraintStart_toStartOf="@id/guideline"
             app:layout_constraintTop_toTopOf="@id/linearLayout_interest" />

@@ -1,21 +1,17 @@
 package com.example.cozy.views.main
 
-import android.app.Activity
-import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
-import android.transition.TransitionInflater
+import androidx.core.util.Pair
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import com.example.cozy.MainActivity
 import com.example.cozy.R
 import kotlinx.android.synthetic.main.fragment_main.view.*
-import kotlinx.android.synthetic.main.item_recommend.*
+import kotlinx.android.synthetic.main.item_recommend.view.*
 
 class MainFragment : Fragment() {
 
@@ -32,9 +28,17 @@ class MainFragment : Fragment() {
 
     private fun initRecommend(v : View){
         var recommendAdapter =
-            RecommendListAdapter(v.context){RecommendListData ->
-                var intent = Intent(getActivity(),RecommendDetailActivity::class.java)
-                var option : ActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity as MainActivity,v,"represent")
+            RecommendListAdapter(v.context){RecommendListData,View ->
+                var intent = Intent(activity as MainActivity,RecommendDetailActivity::class.java)
+                // shared element transition
+                val imageViewPair1 = Pair.create<View, String>(View.rec_img, "share_img1")
+                val imageViewPair2 = Pair.create<View, String>(View.rec_gradation, "share_img2")
+                val textViewPair1 = Pair.create<View, String>(View.rec_text1, "share_text1")
+                val textViewPair2 = Pair.create<View, String>(View.rec_text2, "share_text2")
+                val imageViewPair3 = Pair.create<View, String>(View.icon_address, "share_icon")
+                val textViewPair3 = Pair.create<View, String>(View.rec_name, "share_text3")
+                val textViewPair4 = Pair.create<View, String>(View.rec_address, "share_text4")
+                var option : ActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity as MainActivity, imageViewPair1, imageViewPair2, textViewPair1, textViewPair2, imageViewPair3, textViewPair3, textViewPair4 )
                 startActivity(intent,option.toBundle())
             }
         recommendAdapter.apply{

@@ -41,8 +41,10 @@
         android:layout_marginTop="28dp"
         android:text="꼬딱지님의 콕!"
         android:textSize="25sp"
-        android:fontFamily="@font/notosans_cjkkr_bold"
         android:includeFontPadding="false"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:textFontWeight="900"
+        android:textColor="@color/textColor"
         app:layout_constraintStart_toStartOf="@id/guideline"
         app:layout_constraintTop_toTopOf="@id/linearLayout_interest" />
 
@@ -86,8 +88,10 @@
         android:layout_height="wrap_content"
         android:text="꼬딱지님만의\n책방을 콕! 해볼까요?"
         android:textSize="25sp"
-        android:fontFamily="@font/notosans_cjkkr_bold"
         android:includeFontPadding="false"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:textFontWeight="900"
+        android:textColor="@color/tagcolor"
         app:layout_constraintTop_toTopOf="@id/background"
         app:layout_constraintLeft_toLeftOf="@id/background"
         android:layout_marginTop="37dp"
