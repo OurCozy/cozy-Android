@@ -50,7 +50,7 @@
                 android:includeFontPadding="false"
                 app:layout_constraintStart_toStartOf="@+id/iv_main_img"
                 app:layout_constraintTop_toTopOf="@+id/iv_main_img"
-                tools:text="해방촌에 숨겨진" />
+                android:text="해방촌에 숨겨진" />
 
             <TextView
                 android:id="@+id/rec_text2"
@@ -64,7 +64,7 @@
                 android:includeFontPadding="false"
                 app:layout_constraintStart_toStartOf="@+id/iv_main_img"
                 app:layout_constraintTop_toBottomOf="@+id/rec_text1"
-                tools:text="나만 알고 싶은 독립서점" />
+                android:text="나만 알고 싶은 독립서점" />
 
             <ImageView
                 android:id="@+id/icon_address"
@@ -82,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
                 android:textColor="@color/white"
-                tools:text="스토리지북앤필름"
+                android:text="스토리지북앤필름"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosans_fontfamily"
                 android:textFontWeight="500"
@@ -105,7 +105,7 @@
                 android:layout_marginTop="1dp"
                 app:layout_constraintStart_toStartOf="@+id/iv_main_img"
                 app:layout_constraintTop_toBottomOf="@+id/rec_name"
-                tools:text="서울 용산구 신흥로 115-1" />
+                android:text="서울 용산구 신흥로 115-1" />
 
             <TextView
                 android:id="@+id/tv_bookstore_title"
@@ -370,6 +370,17 @@
                 app:layout_constraintStart_toStartOf="@+id/iv_detail_img_1"
                 app:layout_constraintTop_toBottomOf="@+id/iv_detail_img_1" />
 
+            <ImageView
+                android:id="@+id/iv_detail_img_3"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="27dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_124"
+                app:layout_constraintDimensionRatio="360:265"
+                app:layout_constraintStart_toStartOf="@+id/iv_detail_img_2"
+                app:layout_constraintTop_toBottomOf="@+id/iv_detail_img_2" />
+
             <TextView
                 android:id="@+id/tv_detail"
                 android:layout_width="0dp"
@@ -383,7 +394,7 @@
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/end_guideline"
                 app:layout_constraintStart_toStartOf="@+id/start_guideline"
-                app:layout_constraintTop_toBottomOf="@+id/iv_detail_img_2" />
+                app:layout_constraintTop_toBottomOf="@+id/iv_detail_img_3" />
 
             <View
                 android:id="@+id/divide_line2"
