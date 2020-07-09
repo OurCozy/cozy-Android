@@ -110,9 +110,10 @@
                 app:layout_constraintTop_toTopOf="@+id/tv_2nd_category" />
 
             <ImageView
+                android:id="@+id/iv_bookmark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="4dp"
+                android:layout_marginRight="28dp"
                 android:src="@drawable/ic_bookmark"
                 app:layout_constraintBottom_toBottomOf="@id/tv_1st_category"
                 app:layout_constraintEnd_toEndOf="parent"
