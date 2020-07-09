@@ -56,10 +56,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginRight="27dp"
         app:layout_constraintEnd_toEndOf="@id/white_board"
         app:layout_constraintTop_toTopOf="@id/white_board"
-        app:srcCompat="@drawable/ic_bookmark_selected">
+        app:layout_constraintBottom_toBottomOf="@id/white_board"
+        app:srcCompat="@drawable/ic_small_bookmark_selected">
 
     </ImageView>
 
