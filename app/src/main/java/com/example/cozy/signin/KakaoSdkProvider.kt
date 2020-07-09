@@ -17,7 +17,7 @@ class KakaoSdkProvider : Application() {
     }
 
     fun getGlobalApplicationContext(): KakaoSdkProvider {
-        checkNotNull(instance) { "this application does not inherit com.kakao.GlobalApplication" }
+        checkNotNull(instance) { "this application does not inherit com.kakao.KakaoSdkProvider" }
         return instance!!
     }
 
