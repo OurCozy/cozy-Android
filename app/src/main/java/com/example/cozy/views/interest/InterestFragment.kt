@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.cozy.BottomItemDecoration
 import com.example.cozy.R
 import kotlinx.android.synthetic.main.fragment_interest.*
 
@@ -34,7 +35,7 @@ class InterestFragment : Fragment() {
         bookstore_interest.adapter = interestAdapter
 
         loadMapDatas()
-        bookstore_interest.addItemDecoration(InterestItemDecoration()) //itemDecoration 여백주기
+        bookstore_interest.addItemDecoration(BottomItemDecoration(this.context!!, 15)) //itemDecoration 여백주기
 
     }
 

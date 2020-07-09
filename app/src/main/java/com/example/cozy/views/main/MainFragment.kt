@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
+import com.example.cozy.BottomItemDecoration
 import com.example.cozy.MainActivity
 import com.example.cozy.R
 import kotlinx.android.synthetic.main.fragment_main.view.*
@@ -53,7 +54,7 @@ class MainFragment : Fragment() {
         }
 
         v.recommend_item.adapter = recommendAdapter
-        v.recommend_item.addItemDecoration(RecommendItemDecoration(this.context!!, 100))
+        v.recommend_item.addItemDecoration(BottomItemDecoration(this.context!!, 35))
         recommendAdapter.notifyDataSetChanged()
     }
 

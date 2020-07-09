@@ -23,7 +23,7 @@ class MapDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_map_detail)
 
         // 카카오 지도 API 사용 (AVD로 시행할 때는 25~51 주석처리하기)
-        val mapView = MapView(this)
+        /*val mapView = MapView(this)
         val mapViewContainer = view_map as ViewGroup
         mapViewContainer.addView(mapView)
         // 서점 위치 위도&경도로 표시
@@ -49,7 +49,7 @@ class MapDetailActivity : AppCompatActivity() {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$kakaoPackageName"))
                 startActivity(intent)
             }
-        }
+        }*/
         adapter = ReviewAdapter(this)
         rv_comments.adapter = adapter
         loadData()

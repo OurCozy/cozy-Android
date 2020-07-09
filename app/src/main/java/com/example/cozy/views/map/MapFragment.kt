@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cozy.BottomItemDecoration
 import com.example.cozy.R
 import kotlinx.android.synthetic.main.fragment_map.*
 import kotlinx.android.synthetic.main.fragment_map.view.*
@@ -35,7 +36,7 @@ class MapFragment : Fragment() {
         tab.setupWithViewPager(home_viewpager)
         */
 
-        bookstore.addItemDecoration(MapItemDecoration()) //itemDecoration 여백주기
+        bookstore.addItemDecoration(BottomItemDecoration(this.context!!, 15)) //itemDecoration 여백주기
     }
 
     fun initMapList(view : View) {
