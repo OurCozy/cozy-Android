@@ -6,14 +6,17 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
+        android:name=".signin.KakaoSdkProvider"
         android:allowBackup="true"
         android:icon="@mipmap/ic_logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".views.main.RecommendDetailActivity"></activity>
-        <activity android:name=".views.map.MapDetailActivity"></activity>
+        <activity android:name=".signin.SigninActivity">
+        </activity>
+        <activity android:name=".views.main.RecommendDetailActivity" />
+        <activity android:name=".views.map.MapDetailActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +27,7 @@
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
-            android:value="6c79d2e138c75f9666611dd1d82534c6" />
+            android:value="@string/native_app_key" />
     </application>
 
 </manifest>
