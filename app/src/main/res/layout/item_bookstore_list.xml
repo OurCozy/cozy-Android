@@ -7,8 +7,7 @@
     android:layout_width="wrap_content"
     android:layout_height="250dp"
     android:padding="5dp"
-    android:background="@drawable/shodow"
-    >
+    android:background="@drawable/shodow">
 
     <com.rishabhharit.roundedimageview.RoundedImageView
         android:id="@+id/rv_image"

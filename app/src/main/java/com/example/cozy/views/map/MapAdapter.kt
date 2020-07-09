@@ -1,23 +1,19 @@
 package com.example.cozy.views.map
 
 import android.content.Context
-import android.graphics.Outline
 import android.os.Build
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.view.ViewOutlineProvider
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cozy.R
-import kotlinx.android.synthetic.main.fragment_map.view.*
 
 class MapAdapter (private val context: Context, val itemClick: (MapData) -> Unit) : RecyclerView.Adapter<MapViewHolder>() {
 
     var datas = mutableListOf<MapData>()
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MapViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.item_map, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.item_bookstore_list, parent, false)
 
             /*
         view.bookstore.outlineProvider = @RequiresApi(Build.VERSION_CODES.LOLLIPOP)

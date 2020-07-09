@@ -13,7 +13,7 @@ class InterestAdapter (private val context: Context) : RecyclerView.Adapter<Inte
     var datas = mutableListOf<InterestData>()
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InterestViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.item_interest, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.item_bookstore_list, parent, false)
 
         /*
     view.bookstore.outlineProvider = @RequiresApi(Build.VERSION_CODES.LOLLIPOP)

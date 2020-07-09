@@ -132,7 +132,7 @@
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text2"
-        tools:listitem="@layout/item_map">
+        tools:listitem="@layout/item_bookstore_list">
 
     </androidx.recyclerview.widget.RecyclerView>
 
