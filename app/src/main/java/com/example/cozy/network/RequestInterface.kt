@@ -1,5 +1,6 @@
 package com.example.cozy.network
 
+import com.example.cozy.network.responseData.ResponseInterest
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -25,15 +26,15 @@ interface RequestInterface {
     @Headers("Content-Type:application/json")
     @GET("/main/map/{sectionIdx}")
     fun requestMap(@Path("sectionIdx") sectionIdx : Int) : Call<ResponseMap>
-
+*/
     //관심 책방 조회 : https://github.com/OurCozy/cozy-server/wiki/2_3.-%EA%B4%80%EC%8B%AC%EC%B1%85%EB%B0%A9-%EC%A1%B0%ED%9A%8C
     @Headers(
         "Content-Type:application/json",
-        "token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjozLCJuaWNrbmFtZSI6ImdhaW4zIiwiaWF0IjoxNTk0MjIxMTMyLCJleHAiOjE1OTQyMjQ3MzIsImlzcyI6Im91ci1zb3B0In0.yLzK9J69s4lWv7AGh22m0h7Ie-t_oH6IwnMyAc-ws_4"
+        "token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjozLCJuaWNrbmFtZSI6ImdhaW4zIiwiaWF0IjoxNTk0MzcwMTk5LCJleHAiOjE1OTQzNzM3OTksImlzcyI6Im91ci1zb3B0In0.hB3D7azQe2oaRGlDPknwiRlxE8lsKN2XBz8rrqL_XjE"
     )
     @GET("/main/interest")
     fun requestInterest() : Call<ResponseInterest>
-
+/*
     //북마크 업데이트 : https://github.com/OurCozy/cozy-server/wiki/2_3.-%EB%B6%81%EB%A7%88%ED%81%AC-%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8
     @PUT("/main/interest/{bookstoreIdx}")
     fun requestBookmarkUpdate(@Path("bookstoreIdx") bookstoreIdx : Int) : Call<ResponseBookmarkUpdate>

@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cozy.R
+import com.example.cozy.network.responseData.BookstoreInfo
 
-class InterestAdapter (private val context: Context) : RecyclerView.Adapter<InterestViewHolder>() {
+class InterestAdapter (private val context: Context, val data : List<BookstoreInfo>) : RecyclerView.Adapter<InterestViewHolder>() {
 
-    var datas = mutableListOf<InterestData>()
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InterestViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_bookstore_list, parent, false)
@@ -29,10 +29,10 @@ class InterestAdapter (private val context: Context) : RecyclerView.Adapter<Inte
     }
 
     override fun getItemCount(): Int {
-        return datas.size
+        return data.size
     }
 
     override fun onBindViewHolder(holder: InterestViewHolder, position: Int) {
-        holder.bind(datas[position])
+        holder.bind(data[position])
     }
 }

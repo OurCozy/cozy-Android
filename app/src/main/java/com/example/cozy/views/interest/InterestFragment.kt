@@ -7,9 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.cozy.BottomItemDecoration
 import com.example.cozy.R
+import com.example.cozy.network.RequestToServer
+import com.example.cozy.network.customEnqueue
+import com.example.cozy.network.responseData.ResponseInterest
 import kotlinx.android.synthetic.main.fragment_interest.*
+import retrofit2.Call
+import retrofit2.Response
 
 class InterestFragment : Fragment() {
+    val service = RequestToServer.service
 
     lateinit var interestAdapter: InterestAdapter
     val datas = mutableListOf<InterestData>()
@@ -17,8 +23,10 @@ class InterestFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val view = inflater.inflate(R.layout.fragment_interest, container, false)
+        loadMapDatas(view)
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_interest, container, false)
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -30,39 +38,19 @@ class InterestFragment : Fragment() {
         tab.setupWithViewPager(home_viewpager)
         */
 
-        interestAdapter =
-            InterestAdapter(view.context)
-        bookstore_interest.adapter = interestAdapter
-
-        loadMapDatas()
         bookstore_interest.addItemDecoration(BottomItemDecoration(this.context!!, 15)) //itemDecoration 여백주기
-
     }
 
-    private fun loadMapDatas() {
-        datas.apply {
-            add(
-                InterestData(
-                    rv_interest_title = "제목"
-                )
-            )
-
-            add(
-                InterestData(
-                    rv_interest_title = "제목"
-                )
-            )
-
-            add(
-                InterestData(
-                    rv_interest_title = "제목"
-                )
-            )
-        }
-
-        interestAdapter.datas = datas
-        interestAdapter.notifyDataSetChanged()
-
+    private fun loadMapDatas(v: View) {
+        service.requestInterest().customEnqueue(
+            onError = {},
+            onSuccess = {
+                if(it.success) {
+                    interestAdapter = InterestAdapter(v.context, it.data)
+                    bookstore_interest.adapter = interestAdapter
+                }
+            }
+        )
     }
 
 }
