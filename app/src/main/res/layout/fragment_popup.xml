@@ -1,24 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/popup_viewPager"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:overScrollMode="never"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         >
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
         <com.google.android.material.tabs.TabItem
             android:text="서울"
             android:layout_width="wrap_content"
@@ -32,6 +25,13 @@
         </com.google.android.material.tabs.TabItem>
     </com.google.android.material.tabs.TabLayout>
 
-    </androidx.viewpager.widget.ViewPager>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/popup_viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"
+        app:layout_constraintStart_toStartOf="@id/tab_layout"
+        app:layout_constraintTop_toBottomOf="@id/tab_layout"></androidx.viewpager.widget.ViewPager>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

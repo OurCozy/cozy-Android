@@ -8,6 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cozy.R
+import android.app.DialogFragment;
+import com.example.cozy.views.map.popup.PopupFragment
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_map.*
 import kotlinx.android.synthetic.main.fragment_map.view.*
 
@@ -28,15 +32,19 @@ class MapFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        /*
-        viewPager.adapter= CustomPagerAdapter(childFragmentManager)
-        home_viewpager.offscreenPageLimit=2
-        tab.setupWithViewPager(home_viewpager)
-        */
-
         bookstore.addItemDecoration(MapItemDecoration()) //itemDecoration 여백주기
+
+
+        location.setOnClickListener{
+            val bottomsheet = PopupFragment()
+            getFragmentManager()?.let { it1 -> bottomsheet.show(it1, bottomsheet.tag) }
+            /*activity?.let {
+                val intent = Intent(context, MapActivity::class.java)
+                startActivity(intent)
+            }*/
+        }
     }
+
 
     fun initMapList(view : View) {
         var mapAdapter = MapAdapter(view.context) { MapData ->
