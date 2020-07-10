@@ -30,7 +30,7 @@ interface RequestInterface {
     //관심 책방 조회 : https://github.com/OurCozy/cozy-server/wiki/2_3.-%EA%B4%80%EC%8B%AC%EC%B1%85%EB%B0%A9-%EC%A1%B0%ED%9A%8C
     @Headers(
         "Content-Type:application/json",
-        "token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjozLCJuaWNrbmFtZSI6ImdhaW4zIiwiaWF0IjoxNTk0MzgwMDA2LCJleHAiOjE1OTQzODM2MDYsImlzcyI6Im91ci1zb3B0In0.cF8KNGQRl9vewo85kNvyfbkMlNTgxIiiCnbYUXnOrvE"
+        "token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjozLCJuaWNrbmFtZSI6ImdhaW4zIiwiaWF0IjoxNTk0Mzg2MTQzLCJleHAiOjE1OTQzODk3NDMsImlzcyI6Im91ci1zb3B0In0.b45La2fRfUcYmF9bvkJsr2bdKzL9597U0-DtDUq8TME"
     )
     @GET("/main/interest")
     fun requestInterest() : Call<ResponseInterest>

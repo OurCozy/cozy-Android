@@ -1,24 +1,22 @@
 package com.example.cozy.views.interest
 
-import android.content.Intent
+import android.util.Log
 import android.view.View
-import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cozy.R
 import com.example.cozy.network.responseData.BookstoreInfo
-import com.example.cozy.views.map.MapDetailActivity
 
 
-class InterestViewHolder(itemView: View, val onClick: (BookstoreInfo) -> Unit) : RecyclerView.ViewHolder(itemView){
+class InterestViewHolder(itemView: View, val onClick: (BookstoreInfo) -> Unit) : RecyclerView.ViewHolder(itemView) {
     val rv_interest_title = itemView.findViewById<TextView>(R.id.rv_title)
     val hashTag1 = itemView.findViewById<TextView>(R.id.hashtag_map_tv1)
     val hashTag2 = itemView.findViewById<TextView>(R.id.hashtag_map_tv2)
     val hashTag3 = itemView.findViewById<TextView>(R.id.hashtag_map_tv3)
     val image = itemView.findViewById<ImageView>(R.id.rv_image)
+    val bookmark = itemView.findViewById<ImageView>(R.id.rv_hashtag)
 
     fun bind(data: BookstoreInfo){
         rv_interest_title.text = data.bookstoreName
@@ -29,6 +27,14 @@ class InterestViewHolder(itemView: View, val onClick: (BookstoreInfo) -> Unit) :
 
         itemView.setOnClickListener {
             onClick(data)
+        }
+
+        //북마크 버튼 클릭
+        bookmark.setOnClickListener {
+            //북마크 해제 이미지로 변경
+            bookmark.setImageResource(R.drawable.ic_small_bookmark)
+            //아이템 사라지기
+            itemView.visibility = View.GONE
         }
     }
 }
