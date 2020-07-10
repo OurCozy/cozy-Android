@@ -23,17 +23,41 @@ class SigninActivity : Activity() {
 
     private var callback: SessionCallback = SessionCallback()
 
+    val session = object : ISessionCallback {
+        override fun onSessionOpenFailed(exception: KakaoException?) {
+            Log.e("Log", "Session Call back :: onSessionOpenFailed: ${exception?.message}")
+        }
+
+        override fun onSessionOpened() {
+            UserManagement.getInstance().me(object : MeV2ResponseCallback() {
+
+                override fun onFailure(errorResult: ErrorResult?) {
+                    Log.i("Log", "Session Call back :: on failed ${errorResult?.errorMessage}")
+                }
+
+                override fun onSessionClosed(errorResult: ErrorResult?) {
+                    Log.i("Log", "Session Call back :: onSessionClosed ${errorResult?.errorMessage}")
+
+                }
+
+                override fun onSuccess(result: MeV2Response?) {
+                    Log.i("Log", "아이디 : ${result!!.id}")
+                    openActivity()
+                }
+            })
+        }
+
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signin)
 
-        Session.getCurrentSession().addCallback(callback)
-        requestMe()
+        Session.getCurrentSession().addCallback(session)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Session.getCurrentSession().removeCallback(callback)
+        Session.getCurrentSession().removeCallback(session)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -42,8 +66,6 @@ class SigninActivity : Activity() {
             return
         }
         super.onActivityResult(requestCode, resultCode, data)
-
-        requestMe()
     }
 
     fun openActivity() {
@@ -52,25 +74,7 @@ class SigninActivity : Activity() {
         finish()
     }
 
-    fun requestMe() {
-        UserManagement.getInstance().me(object : MeV2ResponseCallback() {
-
-            override fun onFailure(errorResult: ErrorResult?) {
-                Log.i("Log", "Session Call back :: on failed ${errorResult?.errorMessage}")
-            }
-
-            override fun onSessionClosed(errorResult: ErrorResult?) {
-                Log.i("Log", "Session Call back :: onSessionClosed ${errorResult?.errorMessage}")
-
-            }
-
-            override fun onSuccess(result: MeV2Response?) {
-                Log.i("Log", "아이디2 : ${result!!.id}")
-                openActivity()
-            }
-        })
-    }
-    class SessionCallback : ISessionCallback {
+    class SessionCallback : ISessionCallback, Activity() {
         override fun onSessionOpenFailed(exception: KakaoException?) {
             Log.e("Log", "Session Call back :: onSessionOpenFailed: ${exception?.message}")
         }
