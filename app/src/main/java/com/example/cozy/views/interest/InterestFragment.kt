@@ -1,15 +1,20 @@
 package com.example.cozy.views.interest
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import com.example.cozy.BottomItemDecoration
 import com.example.cozy.R
 import com.example.cozy.network.RequestToServer
 import com.example.cozy.network.customEnqueue
+import com.example.cozy.network.responseData.BookstoreInfo
 import com.example.cozy.network.responseData.ResponseInterest
+import com.example.cozy.views.map.MapAdapter
+import com.example.cozy.views.map.MapDetailActivity
 import kotlinx.android.synthetic.main.fragment_interest.*
 import retrofit2.Call
 import retrofit2.Response
@@ -46,11 +51,13 @@ class InterestFragment : Fragment() {
             onError = {},
             onSuccess = {
                 if(it.success) {
-                    interestAdapter = InterestAdapter(v.context, it.data)
+                    interestAdapter = InterestAdapter(v.context, it.data) { BookstoreInfo ->
+                        val intent = Intent(activity, MapDetailActivity::class.java)
+                        startActivity(intent)
+                    }
                     bookstore_interest.adapter = interestAdapter
                 }
             }
         )
     }
-
 }

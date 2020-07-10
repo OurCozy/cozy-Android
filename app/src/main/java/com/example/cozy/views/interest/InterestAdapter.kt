@@ -4,12 +4,13 @@ import android.content.Context
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.AdapterView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cozy.R
 import com.example.cozy.network.responseData.BookstoreInfo
 
-class InterestAdapter (private val context: Context, val data : List<BookstoreInfo>) : RecyclerView.Adapter<InterestViewHolder>() {
+class InterestAdapter (private val context: Context, val data : List<BookstoreInfo>, val onClick : (BookstoreInfo) -> Unit) : RecyclerView.Adapter<InterestViewHolder>() {
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InterestViewHolder {
@@ -24,7 +25,7 @@ class InterestAdapter (private val context: Context, val data : List<BookstoreIn
         }
     }
 */
-        return InterestViewHolder(view)
+        return InterestViewHolder(view, onClick)
 
     }
 
