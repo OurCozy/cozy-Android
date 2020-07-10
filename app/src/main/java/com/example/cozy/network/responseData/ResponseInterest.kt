@@ -11,5 +11,7 @@ data class BookstoreInfo(
     val bookstoreIdx : Int,
     val bookstoreName : String,
     val profile : String,
-    val hashtag : String
+    val hashtag1 : String,
+    val hashtag2 : String,
+    val hashtag3 : String
 )

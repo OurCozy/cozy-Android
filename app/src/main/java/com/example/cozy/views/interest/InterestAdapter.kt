@@ -1,16 +1,23 @@
 package com.example.cozy.views.interest
 
 import android.content.Context
+import android.content.Intent
 import android.os.Build
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cozy.R
+import com.example.cozy.network.RequestToServer
+import com.example.cozy.network.customEnqueue
 import com.example.cozy.network.responseData.BookstoreInfo
+import com.example.cozy.views.map.MapDetailActivity
+import kotlinx.android.synthetic.main.fragment_interest.*
 
-class InterestAdapter (private val context: Context, val data : List<BookstoreInfo>, val onClick : (BookstoreInfo) -> Unit) : RecyclerView.Adapter<InterestViewHolder>() {
+class InterestAdapter (private val context: Context, val data : MutableList<BookstoreInfo>, val onClick : (BookstoreInfo) -> Unit) : RecyclerView.Adapter<InterestViewHolder>() {
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InterestViewHolder {
@@ -35,5 +42,20 @@ class InterestAdapter (private val context: Context, val data : List<BookstoreIn
 
     override fun onBindViewHolder(holder: InterestViewHolder, position: Int) {
         holder.bind(data[position])
+
+        holder.bookmark.setOnClickListener {
+            RequestToServer.service.requestBookmarkUpdate(data[position].bookstoreIdx).customEnqueue(
+                onError = {Log.d("RESPONSE", "error")},
+                onSuccess = {
+                    if(it.success) {
+                        Log.d("RESPONSE", it.message)
+                        data.removeAt(position)
+                        notifyItemRemoved(position)
+                        notifyItemRangeChanged(position, data.size)
+                    }
+                    else Log.d("RESPONSE", it.message)
+                }
+            )
+        }
     }
 }

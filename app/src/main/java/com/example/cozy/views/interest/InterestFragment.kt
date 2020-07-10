@@ -16,14 +16,14 @@ import com.example.cozy.network.responseData.ResponseInterest
 import com.example.cozy.views.map.MapAdapter
 import com.example.cozy.views.map.MapDetailActivity
 import kotlinx.android.synthetic.main.fragment_interest.*
+import kotlinx.android.synthetic.main.item_bookstore_list.*
 import retrofit2.Call
 import retrofit2.Response
 
 class InterestFragment : Fragment() {
     val service = RequestToServer.service
-
     lateinit var interestAdapter: InterestAdapter
-    val datas = mutableListOf<InterestData>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -51,7 +51,7 @@ class InterestFragment : Fragment() {
             onError = {},
             onSuccess = {
                 if(it.success) {
-                    interestAdapter = InterestAdapter(v.context, it.data) { BookstoreInfo ->
+                    interestAdapter = InterestAdapter(v.context, it.data.toMutableList()) { BookstoreInfo ->
                         val intent = Intent(activity, MapDetailActivity::class.java)
                         startActivity(intent)
                     }
