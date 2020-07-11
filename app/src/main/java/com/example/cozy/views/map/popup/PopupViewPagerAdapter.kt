@@ -5,13 +5,26 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 
 
-class ViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class PopupViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
     override fun getItem(position: Int): Fragment {
         return when(position) {
             0 -> SeoulFragment()
             else -> GgFragment()
         }
+
     }
 
+
     override fun getCount(): Int = 2
+
+    override fun getPageTitle(position: Int): CharSequence? {
+        return when (position){
+            0->"서울"
+            else->{
+                return "경기"
+            }
+        }
+    }
+
+
 }
