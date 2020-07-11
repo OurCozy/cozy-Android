@@ -4,23 +4,25 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.cozy.R
+import kotlin.properties.Delegates
 
 class RecommendListVH(itemView: View, val itemClick: (RecommendListData, View) -> Unit) : RecyclerView.ViewHolder(itemView) {
 
-    var image : ImageView = itemView.findViewById(R.id.rec_img)
+    var bookstoreIdx by Delegates.notNull<Int>()
+    var profile : ImageView = itemView.findViewById(R.id.rec_img)
     var text1 : TextView = itemView.findViewById(R.id.rec_text1)
     var text2 : TextView = itemView.findViewById(R.id.rec_text2)
     var name : TextView = itemView.findViewById(R.id.rec_name)
     var address : TextView = itemView.findViewById(R.id.rec_address)
-
     fun bind(myData: RecommendListData){
-        image.setImageResource(myData.recommend_img)
-        text1.text = myData.recommend_text1
-        text2.text = myData.recommend_text2
-        name.text = myData.recommend_name
-        address.text = myData.recommend_address
-
+        bookstoreIdx = myData.bookstoreIdx
+        Glide.with(itemView).load(myData.profile).into(profile)
+        text1.text = myData.shortIntro
+        text2.text = myData.shortIntro2
+        name.text = myData.bookstoreName
+        address.text = myData.location
         itemView.setOnClickListener{itemClick(myData, itemView)}
     }
 }

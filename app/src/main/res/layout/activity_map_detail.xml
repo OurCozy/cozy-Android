@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="14dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".views.map.MapDetailActivity">
 
@@ -11,6 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:overScrollMode="never"
+        android:clipToPadding="false"
+        android:paddingBottom="14dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -24,7 +25,7 @@
                 android:layout_height="0dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/img_124"
-                app:layout_constraintDimensionRatio="360:241"
+                app:layout_constraintDimensionRatio="3:2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -389,6 +390,8 @@
                 android:layout_marginTop="30dp"
                 android:orientation="vertical"
                 android:overScrollMode="never"
+                android:clipToPadding="false"
+                android:paddingBottom="31dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="@+id/end_guideline"
                 app:layout_constraintStart_toStartOf="@+id/start_guideline"

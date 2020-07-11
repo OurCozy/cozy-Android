@@ -1,9 +1,10 @@
 package com.example.cozy.views.main
 
 class RecommendListData (
-    val recommend_img : Int,
-    val recommend_text1 : String,
-    val recommend_text2 : String,
-    val recommend_name : String,
-    val recommend_address : String
+    val bookstoreIdx : Int,
+    val profile : String,
+    val shortIntro : String,
+    val shortIntro2 : String,
+    val bookstoreName : String,
+    val location : String
 )

@@ -1,5 +1,7 @@
 package com.example.cozy.network
 
+import com.example.cozy.network.responseData.ResponseBookstoreDetail
+import com.example.cozy.network.responseData.ResponseRecommendList
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -10,15 +12,24 @@ interface RequestInterface {
     fun requestSignup() : Call<ResponseSignup>
 
     //로그인
-
+*/
     //책방 8개 추천 : https://github.com/OurCozy/cozy-server/wiki/2_1.-%EC%B1%85%EB%B0%A9-8%EA%B0%9C-%EC%B6%94%EC%B2%9C
+    @Headers(
+        "Content-Type:application/json",
+        "token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4Ijo5LCJpYXQiOjE1OTQ0NzkzODUsImV4cCI6My42MzYzNjM2MzYzNjM3OTU0ZSsyMiwiaXNzIjoib3VyLXNvcHQifQ.DwCawwGE2Lh0PmEIgqG3ngRWgxSNMbSykT6tAvIV3F8"
+    )
     @GET("/main/recommendation")
-    fun requestRecommendation() : Call<ResponseRecommendation>
+    fun requestRecommendation() : Call<ResponseRecommendList>
 
     //책방 자세히 : https://github.com/OurCozy/cozy-server/wiki/2_1.-%EC%B1%85%EB%B0%A9-%EC%9E%90%EC%84%B8%ED%9E%88
+    @Headers(
+        "Content-Type:application/json",
+        "token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4Ijo5LCJpYXQiOjE1OTQ0NzkzODUsImV4cCI6My42MzYzNjM2MzYzNjM3OTU0ZSsyMiwiaXNzIjoib3VyLXNvcHQifQ.DwCawwGE2Lh0PmEIgqG3ngRWgxSNMbSykT6tAvIV3F8"
+    )
     @GET("/main/detail/{bookstoreIdx}")
-    fun requestBookstroe(@Path("bookstoreIdx") bookstoreIdx: Int) : Call<ResponseBookstore>
+    fun requestBookstore(@Path("bookstoreIdx") bookstoreIdx: Int) : Call<ResponseBookstoreDetail>
 
+    /*
     //후기 작성
 
     //지역별 조회 : https://github.com/OurCozy/cozy-server/wiki/2_2.-%EC%A7%80%EC%97%AD%EB%B3%84-%EC%A1%B0%ED%9A%8C

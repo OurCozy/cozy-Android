@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="14dp"
     tools:context=".views.main.RecommendDetailActivity">
 
     <androidx.core.widget.NestedScrollView
@@ -12,6 +11,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:clipToPadding="false"
+        android:paddingBottom="14dp"
         android:overScrollMode="never">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,9 +21,10 @@
 
 
             <ImageView
-                android:id="@+id/iv_main_img"
+                android:id="@+id/rec_main_img"
                 android:layout_width="match_parent"
-                android:layout_height="388dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="1:1.08"
                 android:src="@drawable/img_contents"
                 app:srcCompat="@drawable/ic_launcher_background"
                 android:scaleType="centerCrop"
@@ -38,67 +40,66 @@
                 android:scaleType="fitXY"
                 android:transitionName="share_img2"
                 android:src="@drawable/img_main_content_gradation"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_main_img"
-                app:layout_constraintStart_toStartOf="@+id/iv_main_img" />
+                app:layout_constraintBottom_toBottomOf="@+id/rec_main_img"
+                app:layout_constraintStart_toStartOf="@+id/rec_main_img" />
 
             <TextView
-                android:id="@+id/rec_text1"
+                android:id="@+id/rec_intro1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="250dp"
                 android:layout_marginLeft="22dp"
-                android:textColor="@color/white"
-                android:textSize="21sp"
                 android:fontFamily="@font/notosans_fontfamily"
-                android:textFontWeight="900"
                 android:includeFontPadding="false"
+                android:text="해방촌에 숨겨진"
+                android:textColor="@color/white"
+                android:textFontWeight="900"
+                android:textSize="21sp"
                 android:transitionName="share_text1"
-                app:layout_constraintStart_toStartOf="@+id/iv_main_img"
-                app:layout_constraintTop_toTopOf="@+id/iv_main_img"
-                android:text="해방촌에 숨겨진" />
+                app:layout_constraintBottom_toTopOf="@+id/rec_intro2"
+                app:layout_constraintStart_toStartOf="@+id/rec_main_img" />
 
             <TextView
-                android:id="@+id/rec_text2"
+                android:id="@+id/rec_intro2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="22dp"
-                android:textColor="@color/white"
-                android:textSize="21sp"
+                android:layout_marginBottom="14dp"
                 android:fontFamily="@font/notosans_fontfamily"
-                android:textFontWeight="900"
                 android:includeFontPadding="false"
+                android:text="나만 알고 싶은 독립서점"
+                android:textColor="@color/white"
+                android:textFontWeight="900"
+                android:textSize="21sp"
                 android:transitionName="share_text2"
-                app:layout_constraintStart_toStartOf="@+id/iv_main_img"
-                app:layout_constraintTop_toBottomOf="@+id/rec_text1"
-                android:text="나만 알고 싶은 독립서점" />
+                app:layout_constraintBottom_toTopOf="@+id/rec_name"
+                app:layout_constraintStart_toStartOf="@+id/rec_main_img" />
 
             <ImageView
-                android:id="@+id/icon_address"
+                android:id="@+id/rec_icon_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="22dp"
+                android:layout_marginBottom="2dp"
                 android:src="@drawable/ic_content_address"
                 android:transitionName="share_icon"
-                android:layout_marginLeft="22dp"
-                android:layout_marginTop="19dp"
-                app:layout_constraintTop_toBottomOf="@+id/rec_text2"
-                app:layout_constraintStart_toStartOf="@+id/iv_main_img" />
+                app:layout_constraintBottom_toTopOf="@+id/rec_address"
+                app:layout_constraintStart_toStartOf="@+id/rec_main_img" />
 
             <TextView
                 android:id="@+id/rec_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:textColor="@color/white"
-                android:text="스토리지북앤필름"
-                android:includeFontPadding="false"
-                android:transitionName="share_text3"
-                android:fontFamily="@font/notosans_fontfamily"
-                android:textFontWeight="500"
                 android:layout_marginLeft="4dp"
-                android:layout_marginTop="17.5dp"
-                app:layout_constraintTop_toBottomOf="@+id/rec_text2"
-                app:layout_constraintStart_toEndOf="@+id/icon_address"
-                />
+                android:layout_marginBottom="1dp"
+                android:fontFamily="@font/notosans_fontfamily"
+                android:includeFontPadding="false"
+                android:text="스토리지북앤필름"
+                android:textColor="@color/white"
+                android:textFontWeight="500"
+                android:textSize="12sp"
+                android:transitionName="share_text3"
+                app:layout_constraintBottom_toTopOf="@+id/rec_address"
+                app:layout_constraintStart_toEndOf="@+id/rec_icon_address" />
 
             <TextView
                 android:id="@+id/rec_address"
@@ -111,10 +112,10 @@
                 android:includeFontPadding="false"
                 android:transitionName="share_text4"
                 android:layout_marginLeft="37dp"
-                android:layout_marginTop="1dp"
-                app:layout_constraintStart_toStartOf="@+id/iv_main_img"
-                app:layout_constraintTop_toBottomOf="@+id/rec_name"
-                android:text="서울 용산구 신흥로 115-1" />
+                android:layout_marginBottom="24dp"
+                app:layout_constraintStart_toStartOf="@+id/rec_main_img"
+                app:layout_constraintBottom_toBottomOf="@+id/rec_main_img"
+                android:text="서울특별시 용산구 신흥로 115" />
 
             <TextView
                 android:id="@+id/tv_bookstore_title"
@@ -125,11 +126,12 @@
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosans_fontfamily"
                 android:textFontWeight="900"
+                android:letterSpacing="0.01"
                 android:text="스토리지북앤필름"
                 android:textColor="@color/textColor"
                 android:textSize="22sp"
-                app:layout_constraintStart_toStartOf="@+id/iv_main_img"
-                app:layout_constraintTop_toBottomOf="@+id/iv_main_img" />
+                app:layout_constraintStart_toStartOf="@+id/rec_main_img"
+                app:layout_constraintTop_toBottomOf="@+id/rec_main_img" />
 
             <TextView
                 android:id="@+id/tv_1st_category"
@@ -216,6 +218,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_1st_category" />
 
             <TextView
+                android:id="@+id/tv_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -239,17 +242,46 @@
                 app:layout_constraintTop_toBottomOf="@+id/iv_address_icon" />
 
             <TextView
+                android:id="@+id/time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosans_fontfamily"
                 android:textFontWeight="500"
-                android:text="매월 첫째 수요일 13:00 ~ 24:00 \n매일 13:00 ~ 19:00 \n시간 변동 가능"
+                android:text="매월 첫째 수요일 13:00 ~ 24:00"
                 android:textColor="@color/textColor"
                 android:textSize="12sp"
                 app:layout_constraintStart_toEndOf="@id/iv_time_icon"
                 app:layout_constraintTop_toTopOf="@+id/iv_time_icon" />
+
+            <TextView
+                android:id="@+id/dayoff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/notosans_fontfamily"
+                android:includeFontPadding="false"
+                android:text="매월 첫째 수요일 13:00 ~ 24:00"
+                android:textColor="@color/textColor"
+                android:textFontWeight="500"
+                android:layout_marginTop="2dp"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/time"
+                app:layout_constraintTop_toBottomOf="@+id/time" />
+
+            <TextView
+                android:id="@+id/changeable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/notosans_fontfamily"
+                android:textFontWeight="500"
+                android:text="매월 첫째 수요일 13:00 ~ 24:00"
+                android:textColor="@color/textColor"
+                android:textSize="12sp"
+                android:layout_marginTop="2dp"
+                app:layout_constraintStart_toStartOf="@+id/dayoff"
+                app:layout_constraintTop_toBottomOf="@+id/dayoff" />
 
             <ImageView
                 android:id="@+id/iv_call_icon"
@@ -261,7 +293,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/iv_time_icon" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/tel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="9dp"
@@ -284,7 +316,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/iv_call_icon" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/activity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -405,6 +437,21 @@
                 app:layout_constraintStart_toStartOf="@+id/start_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/iv_detail_img_3" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="7sp"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/notosans_fontfamily"
+                android:textFontWeight="500"
+                android:textColor="#a3a3a3"
+                android:lineSpacingExtra="3sp"
+                android:layout_marginTop="4dp"
+                android:text="©퍼니플랜(Funnyplan) 동네서점지도 www.bookshopmap.com"
+                app:layout_constraintTop_toBottomOf="@+id/tv_detail"
+                app:layout_constraintStart_toStartOf="@+id/tv_detail"
+                />
+
             <View
                 android:id="@+id/divide_line2"
                 android:layout_width="0dp"
@@ -421,6 +468,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="23dp"
                 android:text="Location"
+                android:letterSpacing="0.01"
                 android:textColor="@color/textColor"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -474,6 +522,8 @@
                 android:layout_marginTop="30dp"
                 android:orientation="vertical"
                 android:overScrollMode="never"
+                android:clipToPadding="false"
+                android:paddingBottom="31dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="@+id/end_guideline"
                 app:layout_constraintStart_toStartOf="@+id/start_guideline"
