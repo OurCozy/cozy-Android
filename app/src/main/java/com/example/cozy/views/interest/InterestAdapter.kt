@@ -44,7 +44,13 @@ class InterestAdapter (private val context: Context, val data : MutableList<Book
         holder.bind(data[position])
 
         holder.bookmark.setOnClickListener {
-            RequestToServer.service.requestBookmarkUpdate(data[position].bookstoreIdx).customEnqueue(
+            val sharedPref = context.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
+            val token = sharedPref.getString("token", "token")
+            val header = mutableMapOf<String, String?>()
+            header["Content-Type"] = "application/json"
+            header["token"] = token
+
+            RequestToServer.service.requestBookmarkUpdate(data[position].bookstoreIdx, header).customEnqueue(
                 onError = {Log.d("RESPONSE", "error")},
                 onSuccess = {
                     if(it.success) {

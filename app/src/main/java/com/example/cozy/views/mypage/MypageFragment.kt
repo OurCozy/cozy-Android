@@ -1,5 +1,6 @@
 package com.example.cozy.views.mypage
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -31,7 +32,14 @@ class MypageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        service.requestUserInfo().customEnqueue(
+        val sharedPref = context!!.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
+        val token = sharedPref.getString("token", "token")
+
+        val header = mutableMapOf<String, String?>()
+        header["Content-Type"] = "application/json"
+        header["token"] = token
+
+        service.requestUserInfo(header).customEnqueue(
             onError = { Log.d("response", "error")},
             onSuccess = {
                 if(it.success) {

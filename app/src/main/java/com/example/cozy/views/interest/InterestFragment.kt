@@ -1,5 +1,6 @@
 package com.example.cozy.views.interest
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -23,11 +24,17 @@ import retrofit2.Response
 class InterestFragment : Fragment() {
     val service = RequestToServer.service
     lateinit var interestAdapter: InterestAdapter
+    val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxLCJpYXQiOjE1OTQ0NTMyNjcsImV4cCI6MTU5NDQ1Njg2NywiaXNzIjoib3VyLXNvcHQifQ.swc0Wm-eIfN8bQIEFSWx44Gt20C-kmeqQu8GM4M0GvI"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        var sharedPref = activity!!.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
+        var editor = sharedPref.edit()
+        editor.putString("token", token)
+        editor.apply()
+
         val view = inflater.inflate(R.layout.fragment_interest, container, false)
         loadMapDatas(view)
         // Inflate the layout for this fragment
@@ -47,7 +54,10 @@ class InterestFragment : Fragment() {
     }
 
     private fun loadMapDatas(v: View) {
-        service.requestInterest().customEnqueue(
+        val header = mutableMapOf<String, String>()
+        header["Content-Type"] = "application/json"
+        header["token"] = token
+        service.requestInterest(header).customEnqueue(
             onError = {},
             onSuccess = {
                 if(it.success) {
