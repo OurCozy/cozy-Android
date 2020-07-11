@@ -33,6 +33,8 @@ class RecommendDetailActivity : AppCompatActivity() {
     var bookIdx by Delegates.notNull<Int>()
     var latitude by Delegates.notNull<Double>()
     var longitude by Delegates.notNull<Double>()
+    val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4Ijo5LCJpYXQiOjE1OTQ0ODMwMjgsImV4cCI6My42MzYzNjM2MzYzNjM3OTU0ZSsyMiwiaXNzIjoib3VyLXNvcHQifQ.9TaQ-8Ck1kl15yxRzy2tF4Y20Ev5siFlsv9lKZxtVYQ"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recommend_detail)
@@ -40,7 +42,10 @@ class RecommendDetailActivity : AppCompatActivity() {
         if (intent.hasExtra("bookIdx")) {
             bookIdx = intent.getIntExtra("bookIdx",0)
         }
-        requestTosever.service.requestBookstore(bookIdx).customEnqueue(
+        val header = mutableMapOf<String, String>()
+        header["Content-Type"] = "application/json"
+        header["token"] = token
+        requestTosever.service.requestBookstore(bookIdx,header).customEnqueue(
             onError = {Toast.makeText(this,"올바르지 않은 요청입니다.",Toast.LENGTH_SHORT)},
             onSuccess = {
                 detailData = it.data.elementAt(0)

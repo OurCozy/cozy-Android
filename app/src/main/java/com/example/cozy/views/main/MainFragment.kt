@@ -20,6 +20,7 @@ import kotlinx.android.synthetic.main.item_recommend.view.*
 class MainFragment : Fragment() {
     val requestTosever = RequestToServer
     val recommendData = mutableListOf<RecommendListData>()
+    val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4Ijo5LCJpYXQiOjE1OTQ0ODMwMjgsImV4cCI6My42MzYzNjM2MzYzNjM3OTU0ZSsyMiwiaXNzIjoib3VyLXNvcHQifQ.9TaQ-8Ck1kl15yxRzy2tF4Y20Ev5siFlsv9lKZxtVYQ"
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,7 +50,10 @@ class MainFragment : Fragment() {
                 startActivity(intent,option.toBundle())
             }
         v.recommend_item.adapter = recommendAdapter
-        requestTosever.service.requestRecommendation().customEnqueue(
+        val header = mutableMapOf<String, String>()
+        header["Content-Type"] = "application/json"
+        header["token"] = token
+        requestTosever.service.requestRecommendation(header).customEnqueue(
             onError = {Toast.makeText(context!!,"올바르지 않은 요청입니다.",Toast.LENGTH_SHORT)},
             onSuccess = {
                 recommendData.clear()

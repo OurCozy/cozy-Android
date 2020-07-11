@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.cozy">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,16 +14,16 @@
         android:roundIcon="@mipmap/ic_logo_round"
         android:largeHeap="true"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
         <activity android:name=".views.search.SearchActivity"></activity>
         <activity android:name=".signin.SigninActivity"></activity>
         <activity android:name=".views.main.RecommendDetailActivity" />
         <activity android:name=".views.map.MapDetailActivity" />
-        android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
-        <activity android:name=".views.main.RecommendDetailActivity"></activity>
-        <activity android:name=".views.map.MapDetailActivity"></activity>
-        <activity android:name=".views.map.popup.PopupActivity"></activity>
+        <activity android:name=".views.main.RecommendDetailActivity"
+            tools:ignore="DuplicateActivity"></activity>
+        <activity android:name=".views.map.MapDetailActivity"
+            tools:ignore="DuplicateActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,7 +35,6 @@
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/native_app_key" />
-            android:value="6c79d2e138c75f9666611dd1d82534c6" />
         <uses-library android:name="org.apache.http.legacy" android:required="false"/>
     </application>
 

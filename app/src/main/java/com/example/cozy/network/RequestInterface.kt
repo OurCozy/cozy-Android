@@ -18,20 +18,12 @@ interface RequestInterface {
     //로그인
 */
     //책방 8개 추천 : https://github.com/OurCozy/cozy-server/wiki/2_1.-%EC%B1%85%EB%B0%A9-8%EA%B0%9C-%EC%B6%94%EC%B2%9C
-    @Headers(
-        "Content-Type:application/json",
-        "token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4Ijo5LCJpYXQiOjE1OTQ0NzkzODUsImV4cCI6My42MzYzNjM2MzYzNjM3OTU0ZSsyMiwiaXNzIjoib3VyLXNvcHQifQ.DwCawwGE2Lh0PmEIgqG3ngRWgxSNMbSykT6tAvIV3F8"
-    )
     @GET("/main/recommendation")
-    fun requestRecommendation() : Call<ResponseRecommendList>
+    fun requestRecommendation(@HeaderMap headers: Map<String, String?>) : Call<ResponseRecommendList>
 
     //책방 자세히 : https://github.com/OurCozy/cozy-server/wiki/2_1.-%EC%B1%85%EB%B0%A9-%EC%9E%90%EC%84%B8%ED%9E%88
-    @Headers(
-        "Content-Type:application/json",
-        "token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4Ijo5LCJpYXQiOjE1OTQ0NzkzODUsImV4cCI6My42MzYzNjM2MzYzNjM3OTU0ZSsyMiwiaXNzIjoib3VyLXNvcHQifQ.DwCawwGE2Lh0PmEIgqG3ngRWgxSNMbSykT6tAvIV3F8"
-    )
     @GET("/main/detail/{bookstoreIdx}")
-    fun requestBookstore(@Path("bookstoreIdx") bookstoreIdx: Int) : Call<ResponseBookstoreDetail>
+    fun requestBookstore(@Path("bookstoreIdx") bookstoreIdx: Int, @HeaderMap headers: Map<String, String?>) : Call<ResponseBookstoreDetail>
 
     /*
     //후기 작성
