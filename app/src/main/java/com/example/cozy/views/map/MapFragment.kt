@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import com.example.cozy.BottomItemDecoration
 import com.example.cozy.R
 import android.app.DialogFragment;
@@ -33,8 +32,6 @@ class MapFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        bookstore.addItemDecoration(MapItemDecoration()) //itemDecoration 여백주기
-
 
         location.setOnClickListener{
             val bottomsheet = PopupFragment()
@@ -44,12 +41,6 @@ class MapFragment : Fragment() {
                 startActivity(intent)
             }*/
         }
-
-        /*
-        viewPager.adapter= CustomPagerAdapter(childFragmentManager)
-        home_viewpager.offscreenPageLimit=2
-        tab.setupWithViewPager(home_viewpager)
-        */
 
         bookstore.addItemDecoration(BottomItemDecoration(this.context!!, 15)) //itemDecoration 여백주기
     }

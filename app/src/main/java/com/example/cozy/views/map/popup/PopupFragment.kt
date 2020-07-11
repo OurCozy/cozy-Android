@@ -37,13 +37,11 @@ class PopupFragment : BottomSheetDialogFragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        orange_btn.setOnClickListener {
-           val transaction = getFragmentManager()?.beginTransaction()
-            //transaction.replace(R.id.popup_viewPager, MapFragment.getInstance())
-            //Toast.makeText(this, "sksk", Toast.LENGTH_SHORT).show()
-
-
-        }
+//        orange_btn.setOnClickListener {
+//           val transaction = getFragmentManager()?.beginTransaction()
+//            //transaction.replace(R.id.popup_viewPager, MapFragment.getInstance())
+//            //Toast.makeText(this, "sksk", Toast.LENGTH_SHORT).show()
+//        }
 
     }
 
