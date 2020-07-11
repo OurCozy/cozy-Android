@@ -70,4 +70,5 @@ dependencies {
     implementation files('libs/libDaumMapAndroid.jar')
     //bottom sheet 라이브러리
     implementation 'com.google.android.material:material:1.2.0-alpha02'
+
 }

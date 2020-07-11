@@ -10,5 +10,11 @@
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowActivityTransitions">true</item>
     </style>
+    <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
+    <item name="android:fontFamily">@font/notosans_cjkkr_bold</item>
+    <item name="android:textSize">19sp</item>
+    <item name="android:includeFontPadding">false</item>
+
+</style>
 
 </resources>

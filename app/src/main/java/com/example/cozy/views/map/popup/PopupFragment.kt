@@ -18,6 +18,7 @@ class PopupFragment : BottomSheetDialogFragment(){
 
         tab_layout.setupWithViewPager(popup_viewPager)
 
+
     }
 
     override fun onCreateView(

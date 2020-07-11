@@ -11,7 +11,20 @@ class PopupViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHA
             0 -> SeoulFragment()
             else -> GgFragment()
         }
+
     }
 
+
     override fun getCount(): Int = 2
+
+    override fun getPageTitle(position: Int): CharSequence? {
+        return when (position){
+            0->"서울"
+            else->{
+                return "경기"
+            }
+        }
+    }
+
+
 }
