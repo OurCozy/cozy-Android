@@ -24,7 +24,7 @@ import retrofit2.Response
 class InterestFragment : Fragment() {
     val service = RequestToServer.service
     lateinit var interestAdapter: InterestAdapter
-    val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxLCJpYXQiOjE1OTQ0NTMyNjcsImV4cCI6MTU5NDQ1Njg2NywiaXNzIjoib3VyLXNvcHQifQ.swc0Wm-eIfN8bQIEFSWx44Gt20C-kmeqQu8GM4M0GvI"
+    val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxLCJpYXQiOjE1OTQ0NzMxMTMsImV4cCI6MTU5NDQ3NjcxMywiaXNzIjoib3VyLXNvcHQifQ.JuJ2CiBFEfJMCBoug8UwXIL2bEiOCcb6ckqGpQoGVsc"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

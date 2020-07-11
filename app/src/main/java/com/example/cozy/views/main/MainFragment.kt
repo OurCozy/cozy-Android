@@ -24,6 +24,7 @@ class MainFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_main, container, false)
         initRecommend(view)
 
+
         return view
     }
 

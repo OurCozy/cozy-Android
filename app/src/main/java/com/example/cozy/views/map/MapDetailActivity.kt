@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.example.cozy.R
+import com.example.cozy.views.search.SearchActivity
 import kotlinx.android.synthetic.main.fragment_map_detail.*
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
@@ -50,6 +51,12 @@ class MapDetailActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }*/
+        
+        findViewById<ImageView>(R.id.iv_close).setOnClickListener {
+            val intent = Intent(this, SearchActivity::class.java)
+            startActivity(intent)
+        }
+
         adapter = ReviewAdapter(this)
         rv_comments.adapter = adapter
         loadData()
