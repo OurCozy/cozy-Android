@@ -61,14 +61,6 @@
                 app:layout_constraintStart_toStartOf="@+id/tv_title"
                 app:layout_constraintTop_toBottomOf="@+id/iv_line" />
 
-            <ImageView
-                android:layout_width="77dp"
-                android:layout_height="77dp"
-                android:padding="15dp"
-                android:src="@drawable/pedestrian_emoji"
-                app:layout_constraintTop_toTopOf="@+id/rounded_iv_profile"
-                app:layout_constraintStart_toStartOf="@id/rounded_iv_profile"/>
-
             <TextView
                 android:id="@+id/tv_user_name"
                 android:layout_width="wrap_content"

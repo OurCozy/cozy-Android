@@ -1,5 +1,9 @@
 package com.example.cozy.network
 
+import android.content.SharedPreferences
+import com.example.cozy.network.responseData.ResponseBookmarkUpdate
+import com.example.cozy.network.responseData.ResponseInterest
+import com.example.cozy.network.responseData.ResponseUserProfile
 import com.example.cozy.network.responseData.ResponseBookstoreDetail
 import com.example.cozy.network.responseData.ResponseRecommendList
 import retrofit2.Call
@@ -36,22 +40,26 @@ interface RequestInterface {
     @Headers("Content-Type:application/json")
     @GET("/main/map/{sectionIdx}")
     fun requestMap(@Path("sectionIdx") sectionIdx : Int) : Call<ResponseMap>
-
+*/
     //관심 책방 조회 : https://github.com/OurCozy/cozy-server/wiki/2_3.-%EA%B4%80%EC%8B%AC%EC%B1%85%EB%B0%A9-%EC%A1%B0%ED%9A%8C
-    @Headers(
-        "Content-Type:application/json",
-        "token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjozLCJuaWNrbmFtZSI6ImdhaW4zIiwiaWF0IjoxNTk0MjIxMTMyLCJleHAiOjE1OTQyMjQ3MzIsImlzcyI6Im91ci1zb3B0In0.yLzK9J69s4lWv7AGh22m0h7Ie-t_oH6IwnMyAc-ws_4"
-    )
     @GET("/main/interest")
-    fun requestInterest() : Call<ResponseInterest>
+    fun requestInterest(@HeaderMap headers: Map<String, String?>) : Call<ResponseInterest>
 
     //북마크 업데이트 : https://github.com/OurCozy/cozy-server/wiki/2_3.-%EB%B6%81%EB%A7%88%ED%81%AC-%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8
     @PUT("/main/interest/{bookstoreIdx}")
-    fun requestBookmarkUpdate(@Path("bookstoreIdx") bookstoreIdx : Int) : Call<ResponseBookmarkUpdate>
-*/
-    //내 정보 조회
+    fun requestBookmarkUpdate(@Path("bookstoreIdx") bookstoreIdx : Int, @HeaderMap headers: Map<String, String?>) : Call<ResponseBookmarkUpdate>
 
-    //프로필 업데이트
+    //내 정보 조회
+    @GET("/main/mypage")
+    fun requestUserInfo(@HeaderMap headers: Map<String, String?>) : Call<ResponseUserProfile>
+
+    //프로필 업데이트 : https://github.com/OurCozy/cozy-server/wiki/2_4.-%ED%94%84%EB%A1%9C%ED%95%84-%EC%82%AC%EC%A7%84-%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8
+    /*@Headers(
+        "Content-Type:multipart/form-data",
+        "token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjozLCJpYXQiOjE1OTQ0MjQ1MDUsImV4cCI6MTU5NDQyODEwNSwiaXNzIjoib3VyLXNvcHQifQ.KTbARvJZAxXvXEUdkAIKiBJs6Wxbc5P7N7fEtXPqjvg"
+    )
+    @POST("/user/profile")
+    fun requestUserProfile() : Call<ResponseUserProfile>*/
 
     //내가 쓴 후기 조회
 

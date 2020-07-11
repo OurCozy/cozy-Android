@@ -329,11 +329,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/view_map" />
 
             <TextView
-                android:id="@+id/tv_comments"
+                android:id="@+id/tv_review"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="23dp"
-                android:text="Comments"
+                android:text="Review"
                 android:textColor="@color/textColor"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -346,9 +346,9 @@
                 android:layout_height="46dp"
                 android:layout_marginRight="14dp"
                 android:background="@drawable/ic_comments_post"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_comments"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_review"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tv_comments" />
+                app:layout_constraintTop_toTopOf="@+id/tv_review" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_comments"
@@ -360,7 +360,7 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="@+id/end_guideline"
                 app:layout_constraintStart_toStartOf="@+id/start_guideline"
-                app:layout_constraintTop_toBottomOf="@+id/tv_comments"
+                app:layout_constraintTop_toBottomOf="@+id/tv_review"
                 tools:listitem="@layout/item_map_comment" />
 
             <Button

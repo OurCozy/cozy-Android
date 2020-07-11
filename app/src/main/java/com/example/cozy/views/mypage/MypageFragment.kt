@@ -1,5 +1,6 @@
 package com.example.cozy.views.mypage
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,12 +9,17 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.example.cozy.R
+import com.example.cozy.network.RequestToServer
+import com.example.cozy.network.customEnqueue
 import kotlinx.android.synthetic.main.fragment_mypage.*
 
 class MypageFragment : Fragment() {
     lateinit var adapter: RecentlySeenAdapter
     var data = mutableListOf<RecentlySeenData>()
+    val service = RequestToServer.service
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,6 +31,26 @@ class MypageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val sharedPref = context!!.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
+        val token = sharedPref.getString("token", "token")
+
+        val header = mutableMapOf<String, String?>()
+        header["Content-Type"] = "application/json"
+        header["token"] = token
+
+        service.requestUserInfo(header).customEnqueue(
+            onError = { Log.d("response", "error")},
+            onSuccess = {
+                if(it.success) {
+                    Log.d("response", it.message)
+                    view.findViewById<TextView>(R.id.tv_user_name).text = it.data[0].nickname
+                    tv_user_email.text = it.data[0].email
+                    Glide.with(view).load(it.data[0].profile).into(rounded_iv_profile)
+                }
+            }
+        )
+
         adapter = RecentlySeenAdapter(view.context)
         rv_recently_seen.adapter = adapter
         loadData()
