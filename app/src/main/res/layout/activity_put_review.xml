@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.review.PutStarActivity">
+    tools:context=".views.review.PutReviewActivity">
 
     <ImageView
         android:id="@+id/iv_close"
@@ -20,7 +20,7 @@
         android:id="@+id/tv_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="다음"
+        android:text="게시"
         android:fontFamily="@font/notosans_cjkkr_medium"
         android:textSize="16sp"
         android:textColor="@color/gray"
@@ -92,7 +92,26 @@
         app:layout_constraintTop_toTopOf="@+id/star_4"
         app:layout_constraintBottom_toBottomOf="@+id/star_4"/>
 
+    <EditText
+        android:id="@+id/ed_review"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="start|top"
+        android:background="@color/white"
+        android:layout_marginTop="30dp"
+        android:hint="내용을 입력하세요"
+        android:inputType="textMultiLine"
+        app:layout_constraintTop_toBottomOf="@+id/star_1"
+        app:layout_constraintStart_toStartOf="@+id/star_1"
+        app:layout_constraintEnd_toEndOf="@+id/end_guideline"/>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/end_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="24dp"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

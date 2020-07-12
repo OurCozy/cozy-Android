@@ -17,7 +17,17 @@ import com.example.cozy.network.customEnqueue
 import com.example.cozy.network.responseData.BookstoreDetailData
 import com.example.cozy.views.map.ReviewAdapter
 import com.example.cozy.views.map.ReviewData
+import com.example.cozy.views.review.PutReviewActivity
+import kotlinx.android.synthetic.main.activity_map_detail.*
 import kotlinx.android.synthetic.main.activity_recommend_detail.*
+import kotlinx.android.synthetic.main.activity_recommend_detail.btn_write_review
+import kotlinx.android.synthetic.main.activity_recommend_detail.iv_detail_img_1
+import kotlinx.android.synthetic.main.activity_recommend_detail.iv_detail_img_2
+import kotlinx.android.synthetic.main.activity_recommend_detail.tv_1st_category
+import kotlinx.android.synthetic.main.activity_recommend_detail.tv_2nd_category
+import kotlinx.android.synthetic.main.activity_recommend_detail.tv_3rd_category
+import kotlinx.android.synthetic.main.activity_recommend_detail.tv_bookstore_title
+import kotlinx.android.synthetic.main.activity_recommend_detail.tv_detail
 import kotlinx.android.synthetic.main.fragment_map_detail.rv_comments
 import kotlinx.android.synthetic.main.fragment_map_detail.view_map
 import net.daum.mf.map.api.MapPOIItem
@@ -153,6 +163,10 @@ class RecommendDetailActivity : AppCompatActivity() {
                     }
                 )
             }
+        }
+
+        btn_write_review.setOnClickListener {
+            startActivity(Intent(this, PutReviewActivity::class.java))
         }
 
         adapter = ReviewAdapter(this)

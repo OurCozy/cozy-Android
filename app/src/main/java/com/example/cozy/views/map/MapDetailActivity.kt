@@ -6,22 +6,15 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import com.example.cozy.BottomItemDecoration
 import com.example.cozy.R
 import com.example.cozy.network.RequestToServer
 import com.example.cozy.network.customEnqueue
-import com.example.cozy.views.review.PutStarActivity
-import com.example.cozy.views.search.SearchActivity
+import com.example.cozy.views.review.PutReviewActivity
 import kotlinx.android.synthetic.main.activity_map_detail.*
-import kotlinx.android.synthetic.main.fragment_map_detail.*
 import kotlinx.android.synthetic.main.fragment_map_detail.rv_comments
-import kotlinx.android.synthetic.main.fragment_map_detail.view_map
-import net.daum.mf.map.api.MapPOIItem
-import net.daum.mf.map.api.MapPoint
-import net.daum.mf.map.api.MapView
 
 class MapDetailActivity : AppCompatActivity() {
     lateinit var adapter: ReviewAdapter
@@ -37,22 +30,22 @@ class MapDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_map_detail)
 
         // 카카오 지도 API 사용 (AVD로 실행할 때는 36~51 주석처리하기)
-        val mapView = MapView(this)
-        val mapViewContainer = view_map as ViewGroup
-        mapViewContainer.addView(mapView)
-        // 서점 위치 위도&경도로 표시
-        val MARKER_POINT = MapPoint.mapPointWithGeoCoord(37.5602333, 126.9225536)
-        mapView.setMapCenterPoint(MARKER_POINT, true)
-        // 지도 레벨 변경
-        mapView.setZoomLevel(3, true)
-        // 지도 위에 마커 표시
-        val marker = MapPOIItem()
-        marker.itemName = "Default Marker"
-        marker.tag = 0
-        marker.mapPoint = MARKER_POINT
-        marker.markerType = MapPOIItem.MarkerType.BluePin // 기본으로 제공하는 BluePin 마커 모양
-        marker.selectedMarkerType = MapPOIItem.MarkerType.RedPin // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양
-        mapView.addPOIItem(marker)
+//        val mapView = MapView(this)
+//        val mapViewContainer = view_map as ViewGroup
+//        mapViewContainer.addView(mapView)
+//        // 서점 위치 위도&경도로 표시
+//        val MARKER_POINT = MapPoint.mapPointWithGeoCoord(37.5602333, 126.9225536)
+//        mapView.setMapCenterPoint(MARKER_POINT, true)
+//        // 지도 레벨 변경
+//        mapView.setZoomLevel(3, true)
+//        // 지도 위에 마커 표시
+//        val marker = MapPOIItem()
+//        marker.itemName = "Default Marker"
+//        marker.tag = 0
+//        marker.mapPoint = MARKER_POINT
+//        marker.markerType = MapPOIItem.MarkerType.BluePin // 기본으로 제공하는 BluePin 마커 모양
+//        marker.selectedMarkerType = MapPOIItem.MarkerType.RedPin // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양
+//        mapView.addPOIItem(marker)
 
         //카카오맵 실행 또는 구글플레이로 앱 검색
         findViewById<ImageView>(R.id.iv_find_road).setOnClickListener {
@@ -119,7 +112,7 @@ class MapDetailActivity : AppCompatActivity() {
         }
 
         btn_write_review.setOnClickListener {
-            startActivity(Intent(this, PutStarActivity::class.java))
+            startActivity(Intent(this, PutReviewActivity::class.java))
         }
 
         adapter = ReviewAdapter(this)
