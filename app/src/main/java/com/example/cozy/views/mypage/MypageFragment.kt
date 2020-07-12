@@ -1,6 +1,7 @@
 package com.example.cozy.views.mypage
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,11 +10,13 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.example.cozy.R
 import com.example.cozy.network.RequestToServer
 import com.example.cozy.network.customEnqueue
+import com.example.cozy.views.search.SearchActivity
 import kotlinx.android.synthetic.main.fragment_mypage.*
 
 class MypageFragment : Fragment() {
@@ -39,6 +42,7 @@ class MypageFragment : Fragment() {
         header["Content-Type"] = "application/json"
         header["token"] = token
 
+        //사용자 정보 불러오기
         service.requestUserInfo(header).customEnqueue(
             onError = { Log.d("response", "error")},
             onSuccess = {
@@ -50,6 +54,12 @@ class MypageFragment : Fragment() {
                 }
             }
         )
+
+        //검색창 열기
+        activity!!.findViewById<ImageView>(R.id.iv_search).setOnClickListener {
+            val intent = Intent(activity, SearchActivity::class.java)
+            startActivity(intent)
+        }
 
         adapter = RecentlySeenAdapter(view.context)
         rv_recently_seen.adapter = adapter

@@ -1,5 +1,6 @@
 package com.example.cozy.views.main
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.core.util.Pair
@@ -14,13 +15,16 @@ import com.example.cozy.MainActivity
 import com.example.cozy.R
 import com.example.cozy.network.RequestToServer
 import com.example.cozy.network.customEnqueue
+import com.example.cozy.views.search.SearchActivity
+import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.fragment_main.view.*
 import kotlinx.android.synthetic.main.item_recommend.view.*
 
 class MainFragment : Fragment() {
     val requestTosever = RequestToServer
     val recommendData = mutableListOf<RecommendListData>()
-    val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4Ijo5LCJpYXQiOjE1OTQ0ODMwMjgsImV4cCI6My42MzYzNjM2MzYzNjM3OTU0ZSsyMiwiaXNzIjoib3VyLXNvcHQifQ.9TaQ-8Ck1kl15yxRzy2tF4Y20Ev5siFlsv9lKZxtVYQ"
+    val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxLCJpYXQiOjE1OTQ1MTE0MTYsImV4cCI6My42MzYzNjM2MzYzNjM3OTU0ZSsyMiwiaXNzIjoib3VyLXNvcHQifQ.J14SMsMVvOcxZwpZ9RvVdx9np7lvFVwRBRAlEQcyu5U"
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,8 +33,20 @@ class MainFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_main, container, false)
         initRecommend(view)
 
+        var sharedPref = activity!!.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
+        var editor = sharedPref.edit()
+        editor.putString("token", token)
+        editor.apply()
 
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        search.setOnClickListener {
+            startActivity(Intent(activity, SearchActivity::class.java))
+        }
     }
 
     private fun initRecommend(v : View){

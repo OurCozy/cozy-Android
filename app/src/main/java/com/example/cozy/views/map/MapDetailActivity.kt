@@ -1,46 +1,51 @@
 package com.example.cozy.views.map
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import com.example.cozy.BottomItemDecoration
 import com.example.cozy.R
-import com.example.cozy.views.search.SearchActivity
-import kotlinx.android.synthetic.main.fragment_map_detail.*
-import net.daum.mf.map.api.MapPOIItem
-import net.daum.mf.map.api.MapPoint
-import net.daum.mf.map.api.MapView
+import com.example.cozy.network.RequestToServer
+import com.example.cozy.network.customEnqueue
+import com.example.cozy.views.review.PutReviewActivity
+import kotlinx.android.synthetic.main.activity_map_detail.*
+import kotlinx.android.synthetic.main.fragment_map_detail.rv_comments
 
 class MapDetailActivity : AppCompatActivity() {
     lateinit var adapter: ReviewAdapter
     var data = mutableListOf<ReviewData>()
     var kakaoPackageName : String = "net.daum.android.map"
+    val service = RequestToServer.service
+
+    //관심책방 여부 저장 변수 TODO:서버에서 가져온 정보 여기에 저장
+    var isChecked : Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map_detail)
 
-        // 카카오 지도 API 사용 (AVD로 시행할 때는 25~51 주석처리하기)
-        /*val mapView = MapView(this)
-        val mapViewContainer = view_map as ViewGroup
-        mapViewContainer.addView(mapView)
-        // 서점 위치 위도&경도로 표시
-        val MARKER_POINT = MapPoint.mapPointWithGeoCoord(37.5602333, 126.9225536)
-        mapView.setMapCenterPoint(MARKER_POINT, true)
-        // 지도 레벨 변경
-        mapView.setZoomLevel(3, true)
-        // 지도 위에 마커 표시
-        val marker = MapPOIItem()
-        marker.itemName = "Default Marker"
-        marker.tag = 0
-        marker.mapPoint = MARKER_POINT
-        marker.markerType = MapPOIItem.MarkerType.BluePin // 기본으로 제공하는 BluePin 마커 모양
-        marker.selectedMarkerType = MapPOIItem.MarkerType.RedPin // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양
-        mapView.addPOIItem(marker)
+        // 카카오 지도 API 사용 (AVD로 실행할 때는 36~51 주석처리하기)
+//        val mapView = MapView(this)
+//        val mapViewContainer = view_map as ViewGroup
+//        mapViewContainer.addView(mapView)
+//        // 서점 위치 위도&경도로 표시
+//        val MARKER_POINT = MapPoint.mapPointWithGeoCoord(37.5602333, 126.9225536)
+//        mapView.setMapCenterPoint(MARKER_POINT, true)
+//        // 지도 레벨 변경
+//        mapView.setZoomLevel(3, true)
+//        // 지도 위에 마커 표시
+//        val marker = MapPOIItem()
+//        marker.itemName = "Default Marker"
+//        marker.tag = 0
+//        marker.mapPoint = MARKER_POINT
+//        marker.markerType = MapPOIItem.MarkerType.BluePin // 기본으로 제공하는 BluePin 마커 모양
+//        marker.selectedMarkerType = MapPOIItem.MarkerType.RedPin // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양
+//        mapView.addPOIItem(marker)
 
         //카카오맵 실행 또는 구글플레이로 앱 검색
         findViewById<ImageView>(R.id.iv_find_road).setOnClickListener {
@@ -51,11 +56,63 @@ class MapDetailActivity : AppCompatActivity() {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$kakaoPackageName"))
                 startActivity(intent)
             }
-        }*/
-        
+        }
+
+        // 창 닫기
         findViewById<ImageView>(R.id.iv_close).setOnClickListener {
-            val intent = Intent(this, SearchActivity::class.java)
-            startActivity(intent)
+            finish()
+        }
+
+        val bookmarkImg = findViewById<ImageView>(R.id.iv_bookmark)
+        if(isChecked)
+            bookmarkImg.setImageResource(R.drawable.ic_bookmark_selected)
+        else bookmarkImg.setImageResource(R.drawable.ic_bookmark)
+
+        // 관심책방 on/off
+        bookmarkImg.setOnClickListener {
+            val sharedPref = getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
+            val header = mutableMapOf<String, String?>()
+            header["Content-Type"] = "application/json"
+            header["token"] = sharedPref.getString("token", "token")
+
+            //관심책방이면 체크해제
+            if(isChecked) {
+                //서버에 해당 정보 전달
+                //TODO: 서버에서 받은 bookstoreIdx 전달
+                service.requestBookmarkUpdate(1, header).customEnqueue(
+                    onError = { Log.d("response", "error")},
+                    onSuccess = {
+                        if(it.success) {
+                            //색칠 안된 북마크로 이미지 변경
+                            bookmarkImg.setImageResource(R.drawable.ic_bookmark)
+                            isChecked = false
+                        } else {
+                            Log.d("response", it.message)
+                            Toast.makeText(this, "관심책방 해제에 실패했습니다.", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                )
+            } else {
+                //서버에 해당 정보 전달
+                //TODO: 서버에서 받은 bookstoreIdx 전달
+                service.requestBookmarkUpdate(1, header).customEnqueue(
+                    onError = { Log.d("response", "error")},
+                    onSuccess = {
+                        if(it.success) {
+                            //색칠된 북마크로 이미지 변경
+                            bookmarkImg.setImageResource(R.drawable.ic_bookmark_selected)
+                            isChecked = true
+                        } else {
+                            Log.d("response", it.message)
+                            Toast.makeText(this, "관심책방 등록에 실패했습니다.", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                )
+            }
+        }
+
+        btn_write_review.setOnClickListener {
+            startActivity(Intent(this, PutReviewActivity::class.java))
         }
 
         adapter = ReviewAdapter(this)
