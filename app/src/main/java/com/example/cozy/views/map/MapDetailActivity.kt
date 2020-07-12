@@ -13,8 +13,12 @@ import com.example.cozy.BottomItemDecoration
 import com.example.cozy.R
 import com.example.cozy.network.RequestToServer
 import com.example.cozy.network.customEnqueue
+import com.example.cozy.views.review.PutStarActivity
 import com.example.cozy.views.search.SearchActivity
+import kotlinx.android.synthetic.main.activity_map_detail.*
 import kotlinx.android.synthetic.main.fragment_map_detail.*
+import kotlinx.android.synthetic.main.fragment_map_detail.rv_comments
+import kotlinx.android.synthetic.main.fragment_map_detail.view_map
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
@@ -112,6 +116,10 @@ class MapDetailActivity : AppCompatActivity() {
                     }
                 )
             }
+        }
+
+        btn_write_review.setOnClickListener {
+            startActivity(Intent(this, PutStarActivity::class.java))
         }
 
         adapter = ReviewAdapter(this)

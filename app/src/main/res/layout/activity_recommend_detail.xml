@@ -507,7 +507,7 @@
                 app:layout_constraintTop_toBottomOf="@id/divide_line3" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btn_write_review"
                 android:layout_width="46dp"
                 android:layout_height="46dp"
                 android:layout_marginRight="14dp"
