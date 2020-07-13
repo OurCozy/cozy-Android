@@ -1,105 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:descendantFocusability="blocksDescendants"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:overScrollMode="never"
-    tools:context=".views.interest.InterestFragment">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:descendantFocusability="blocksDescendants"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
+        android:overScrollMode="never"
+        tools:context=".views.interest.InterestFragment">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="24dp" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_end="24dp" />
-
-
-        <LinearLayout
-            android:id="@+id/linearLayout_interest"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="24dp"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
+            android:layout_height="match_parent">
 
-        </LinearLayout>
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="24dp" />
 
-        <TextView
-            android:id="@+id/iv_cock"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:text="꼬딱지님의 콕!"
-            android:textSize="25sp"
-            android:fontFamily="@font/notosans_cjkkr_bold"
-            android:textFontWeight="900"
-            android:textColor="@color/textColor"
-            android:includeFontPadding="false"
-            app:layout_constraintStart_toStartOf="@id/guideline"
-            app:layout_constraintTop_toTopOf="@id/linearLayout_interest" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="24dp" />
 
 
-        <Button
-            android:id="@+id/btn_search"
-            android:layout_width="46dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="172dp"
-            android:layout_marginRight="7dp"
-            android:background="@drawable/ic_search"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_cock"
-            app:layout_constraintEnd_toEndOf="@+id/linearLayout_interest"
-            app:layout_constraintLeft_toRightOf="@+id/iv_cock"
-            app:layout_constraintTop_toTopOf="@+id/iv_cock" />
+            <LinearLayout
+                android:id="@+id/linearLayout_interest"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="24dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0">
 
-        <View
-            android:id="@+id/line_interest"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            app:layout_constraintTop_toBottomOf="@+id/iv_cock"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="27dp"
-            android:background="#d1d1d1"
-            />
+            </LinearLayout>
 
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/bookstore_interest"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:clipToPadding="false"
-            android:orientation="vertical"
-            android:layout_marginRight="23dp"
-            android:layout_marginLeft="23dp"
-            android:overScrollMode="never"
-            android:paddingBottom="27dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/line_interest"
-            tools:listitem="@layout/item_bookstore_list">
-
-        </androidx.recyclerview.widget.RecyclerView>
+            <TextView
+                android:id="@+id/iv_cock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:text="꼬딱지님의 콕!"
+                android:textSize="25sp"
+                android:fontFamily="@font/notosans_cjkkr_bold"
+                android:textFontWeight="900"
+                android:textColor="@color/textColor"
+                android:includeFontPadding="false"
+                app:layout_constraintStart_toStartOf="@id/guideline"
+                app:layout_constraintTop_toTopOf="@id/linearLayout_interest" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/btn_search"
+                android:layout_width="46dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="172dp"
+                android:layout_marginRight="7dp"
+                android:background="@drawable/ic_search"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_cock"
+                app:layout_constraintEnd_toEndOf="@+id/linearLayout_interest"
+                app:layout_constraintLeft_toRightOf="@+id/iv_cock"
+                app:layout_constraintTop_toTopOf="@+id/iv_cock" />
+
+            <View
+                android:id="@+id/line_interest"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                app:layout_constraintTop_toBottomOf="@+id/iv_cock"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="27dp"
+                android:background="#d1d1d1" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/bookstore_interest"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:clipToPadding="false"
+                        android:orientation="vertical"
+                        android:layout_marginRight="23dp"
+                        android:layout_marginLeft="23dp"
+                        android:overScrollMode="never"
+                        android:paddingBottom="27dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/line_interest"
+                        tools:listitem="@layout/item_bookstore_list">
+
+                    </androidx.recyclerview.widget.RecyclerView>
 
 
-</androidx.core.widget.NestedScrollView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <View
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#f8f9fa"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@id/line_interest"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:ignore="NotSibling" />
+
+    <TextView
+        android:id="@+id/tv_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="꼬딱지님만의\n책방을 콕! 해볼까요?"
+        android:textSize="25sp"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/notosans_cjkkr_bold"
+        android:textColor="@color/tagcolor"
+        app:layout_constraintTop_toTopOf="@id/background"
+        app:layout_constraintLeft_toLeftOf="@id/background"
+        android:layout_marginTop="37dp"
+        android:layout_marginLeft="42dp"></TextView>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+

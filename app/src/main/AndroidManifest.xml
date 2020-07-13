@@ -11,19 +11,22 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_logo_round"
         android:largeHeap="true"
+        android:roundIcon="@mipmap/ic_logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".views.search.SearchActivity"></activity>
-        <activity android:name=".signin.SigninActivity"></activity>
+        <activity android:name=".views.review.PutReviewActivity" />
+        <activity android:name=".views.search.SearchActivity" />
+        <activity android:name=".signin.SigninActivity" />
         <activity android:name=".views.main.RecommendDetailActivity" />
         <activity android:name=".views.map.MapDetailActivity" />
-        <activity android:name=".views.main.RecommendDetailActivity"
-            tools:ignore="DuplicateActivity"></activity>
-        <activity android:name=".views.map.MapDetailActivity"
-            tools:ignore="DuplicateActivity"></activity>
+        <activity
+            android:name=".views.main.RecommendDetailActivity"
+            tools:ignore="DuplicateActivity" />
+        <activity
+            android:name=".views.map.MapDetailActivity"
+            tools:ignore="DuplicateActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,7 +38,10 @@
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/native_app_key" />
-        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
     </application>
 
 </manifest>

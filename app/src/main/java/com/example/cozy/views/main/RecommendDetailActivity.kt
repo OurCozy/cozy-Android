@@ -1,11 +1,13 @@
 package com.example.cozy.views.main
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
@@ -17,9 +19,8 @@ import com.example.cozy.network.customEnqueue
 import com.example.cozy.network.responseData.BookstoreDetailData
 import com.example.cozy.views.map.ReviewAdapter
 import com.example.cozy.views.map.ReviewData
+import com.example.cozy.views.review.PutReviewActivity
 import kotlinx.android.synthetic.main.activity_recommend_detail.*
-import kotlinx.android.synthetic.main.fragment_map_detail.rv_comments
-import kotlinx.android.synthetic.main.fragment_map_detail.view_map
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
@@ -37,8 +38,9 @@ class RecommendDetailActivity : AppCompatActivity() {
     var kakaoPackageName : String = "net.daum.android.map"
 
     //관심책방 여부 저장 변수 TODO:서버에서 가져온 정보 여기에 저장
-    var isChecked : Boolean = true
+    var isChecked : Int = 0
 
+    @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recommend_detail)
@@ -47,10 +49,10 @@ class RecommendDetailActivity : AppCompatActivity() {
             bookIdx = intent.getIntExtra("bookIdx",0)
         }
 
-        val sharedPref = getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
-        val header = mutableMapOf<String, String?>()
+        val sharedPref = this.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
+        val header = mutableMapOf<String, String>()
         header["Content-Type"] = "application/json"
-        header["token"] = sharedPref.getString("token", "token")
+        header["token"] = sharedPref.getString("token","token").toString()
 
         //서점 정보 불러오고
         //서점 위치 지도로 보여주기
@@ -71,19 +73,49 @@ class RecommendDetailActivity : AppCompatActivity() {
                 tv_3rd_category.text = detailData.hashtag3
                 tv_address.text = detailData.location
                 time.text = detailData.time
-                dayoff.text = detailData.dayoff
-                changeable.text = detailData.changeable
-                tel.text = detailData.tel
-                activity.text = detailData.activity
+                if (detailData.dayoff == "NULL"){
+                    dayoff.visibility = View.GONE
+                }
+                else {
+                    dayoff.text = detailData.dayoff
+                }
+                if (detailData.changeable == "NULL"){
+                    changeable.visibility = View.GONE
+                }
+                else {
+                    changeable.text = detailData.changeable
+                }
+                if (detailData.tel == "NULL"){
+                    tel.text = "없음"
+                }
+                else {
+                    tel.text = detailData.tel
+                }
+                if (detailData.activity == "NULL"){
+                    activity.text = "없음"
+                }
+                else {
+                    activity.text = detailData.activity
+                }
+                if (detailData.homepage == "NULL"){
+                    rec_homepage.setImageResource(R.drawable.ic_homepage_non)
+                }
+                if (detailData.facebook == "NULL"){
+                    rec_facebook.setImageResource(R.drawable.ic_facebook_non)
+                }
+                if (detailData.instagram == "NULL"){
+                    rec_instagram.setImageResource(R.drawable.ic_insta_non)
+                }
                 Glide.with(this).load(detailData.image1).into(iv_detail_img_1)
                 Glide.with(this).load(detailData.image2).into(iv_detail_img_2)
                 Glide.with(this).load(detailData.image3).into(iv_detail_img_3)
                 tv_detail.text = detailData.description
+                isChecked = detailData.checked
                 Log.d("data: ", detailData.profile)
 
                 // 카카오 지도 API 사용 (AVD로 실행할 때는 78~94 주석처리하기)
                 val mapView = MapView(this)
-                val mapViewContainer = view_map as ViewGroup
+                val mapViewContainer = rec_view_map as ViewGroup
                 mapViewContainer.addView(mapView)
                 // 서점 위치 위도&경도로 표시
                 val MARKER_POINT = MapPoint.mapPointWithGeoCoord(latitude, longitude)
@@ -113,14 +145,14 @@ class RecommendDetailActivity : AppCompatActivity() {
         }
 
         val bookmarkImg = findViewById<ImageView>(R.id.iv_bookmark)
-        if(isChecked)
-            bookmarkImg.setImageResource(R.drawable.ic_bookmark_selected)
-        else bookmarkImg.setImageResource(R.drawable.ic_bookmark)
+        if(isChecked == 0)
+            bookmarkImg.setImageResource(R.drawable.ic_bookmark)
+        else bookmarkImg.setImageResource(R.drawable.ic_bookmark_selected)
 
         // 관심책방 on/off
         bookmarkImg.setOnClickListener {
             //관심책방이면 체크해제
-            if(isChecked) {
+            if(isChecked != 0) {
                 //서버에 해당 정보 전달
                 service.requestBookmarkUpdate(bookIdx, header).customEnqueue(
                     onFail = { Toast.makeText(this, "관심책방 해제에 실패했습니다.", Toast.LENGTH_SHORT).show()},
@@ -129,7 +161,7 @@ class RecommendDetailActivity : AppCompatActivity() {
                         if(it.success) {
                             //색칠 안된 북마크로 이미지 변경
                             bookmarkImg.setImageResource(R.drawable.ic_bookmark)
-                            isChecked = false
+                            isChecked = 0
                         } else {
                             Log.d("response", it.message)
                             Toast.makeText(this, "관심책방 해제에 실패했습니다.", Toast.LENGTH_SHORT).show()
@@ -145,7 +177,7 @@ class RecommendDetailActivity : AppCompatActivity() {
                         if(it.success) {
                             //색칠된 북마크로 이미지 변경
                             bookmarkImg.setImageResource(R.drawable.ic_bookmark_selected)
-                            isChecked = true
+                            isChecked = 1
                         } else {
                             Log.d("response", it.message)
                             Toast.makeText(this, "관심책방 등록에 실패했습니다.", Toast.LENGTH_SHORT).show()
@@ -155,8 +187,12 @@ class RecommendDetailActivity : AppCompatActivity() {
             }
         }
 
+        btn_write_review.setOnClickListener {
+            startActivity(Intent(this, PutReviewActivity::class.java))
+        }
+
         adapter = ReviewAdapter(this)
-        rv_comments.adapter = adapter
+        rec_comments.adapter = adapter
         loadData()
     }
 
@@ -184,7 +220,7 @@ class RecommendDetailActivity : AppCompatActivity() {
             )
         }
         adapter.data = data
-        rv_comments.addItemDecoration(BottomItemDecoration(this, 35))
+        rec_comments.addItemDecoration(BottomItemDecoration(this, 35))
         adapter.notifyDataSetChanged()
     }
 

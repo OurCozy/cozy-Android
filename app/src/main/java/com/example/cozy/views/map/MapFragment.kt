@@ -61,6 +61,7 @@ class MapFragment : Fragment() {
                     store_count.text = detailData.count.toString()
                     mapAdapter = MapAdapter(view.context, it.data.toMutableList()) { MapData ->
                         val intent = Intent(activity, MapDetailActivity::class.java)
+                        intent.putExtra("bookIdx",MapData.bookstoreIdx)
                         startActivity(intent)
                     }
                     bookstore.adapter = mapAdapter
