@@ -7,5 +7,7 @@ data class MapData(
     val bookstoreName : String,
     val hashtag1 : String,
     val hashtag2 : String,
-    val hashtag3 : String
+    val hashtag3 : String,
+    val count: Int,
+    val checked: Int
 )

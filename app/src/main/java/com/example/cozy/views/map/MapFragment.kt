@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import com.example.cozy.BottomItemDecoration
 import com.example.cozy.R
@@ -20,7 +21,8 @@ import kotlinx.android.synthetic.main.fragment_map.*
 class MapFragment : Fragment() {
     val service = RequestToServer.service
     lateinit var mapAdapter: MapAdapter
-
+    //var data = mutableListOf<MapData>()
+    lateinit var detailData : MapData
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,6 +57,8 @@ class MapFragment : Fragment() {
             onError = {Toast.makeText(context!!,"올바르지 않은 요청입니다.",Toast.LENGTH_SHORT)},
             onSuccess = {
                 if(it.success) {
+                    detailData = it.data.elementAt(0)
+                    store_count.text = detailData.count.toString()
                     mapAdapter = MapAdapter(view.context, it.data.toMutableList()) { MapData ->
                         val intent = Intent(activity, MapDetailActivity::class.java)
                         startActivity(intent)

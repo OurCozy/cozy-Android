@@ -16,6 +16,7 @@ class MapViewHolder(itemView: View, val onClick : (MapData) -> Unit) : RecyclerV
     val image = itemView.findViewById<ImageView>(R.id.rv_image)
     val bookmark = itemView.findViewById<ImageView>(R.id.rv_hashtag)
 
+
     fun bind(data: MapData) {
         rv_interest_title.text = data.bookstoreName
         hashTag1.text = data.hashtag1
@@ -24,7 +25,9 @@ class MapViewHolder(itemView: View, val onClick : (MapData) -> Unit) : RecyclerV
         Glide.with(itemView)
             .load("https://images.unsplash.com/photo-1561851561-04ee3d324423?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80")
             .into(image)
-
+       /* Glide.with(itemView)
+            .load()
+            .into(bookmark)*/
         itemView.setOnClickListener {
             onClick(data)
 
