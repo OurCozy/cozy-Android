@@ -103,11 +103,11 @@
 
 
     <TextView
-        android:id="@+id/text2"
+        android:id="@+id/write_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:text="마포구의 독립서점 27곳"
+        android:text="마포구"
         android:fontFamily="@font/notosans_cjkkr_bold"
         android:textFontWeight="900"
         android:textColor="@color/textColor"
@@ -116,6 +116,51 @@
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@id/line_map">
     </TextView>
+
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="의 독립서점 "
+        android:fontFamily="@font/notosans_cjkkr_bold"
+        android:textFontWeight="900"
+        android:textColor="@color/textColor"
+        android:textSize="20sp"
+        android:includeFontPadding="false"
+        app:layout_constraintStart_toEndOf="@+id/write_location"
+        app:layout_constraintTop_toBottomOf="@id/line_map">
+    </TextView>
+
+    <TextView
+        android:id="@+id/store_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="27"
+        android:fontFamily="@font/notosans_cjkkr_bold"
+        android:textFontWeight="900"
+        android:textColor="@color/textColor"
+        android:textSize="20sp"
+        android:includeFontPadding="false"
+        app:layout_constraintStart_toEndOf="@+id/text2"
+        app:layout_constraintTop_toBottomOf="@id/line_map">
+    </TextView>
+
+    <TextView
+        android:id="@+id/text3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/notosans_cjkkr_bold"
+        android:includeFontPadding="false"
+        android:text="곳"
+        android:textColor="@color/textColor"
+        android:textFontWeight="900"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/store_count"
+        app:layout_constraintTop_toBottomOf="@id/line_map"></TextView>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/bookstore"
