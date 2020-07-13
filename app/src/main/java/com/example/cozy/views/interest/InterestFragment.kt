@@ -69,7 +69,10 @@ class InterestFragment : Fragment() {
                         startActivity(intent)
                     }
                     bookstore_interest.adapter = interestAdapter
-                }
+                    background.visibility = View.GONE
+                    tv_question.visibility = View.GONE
+                } else
+                    bookstore_interest.visibility = View.GONE
             }
         )
     }
