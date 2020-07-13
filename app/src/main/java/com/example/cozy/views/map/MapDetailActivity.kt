@@ -64,9 +64,9 @@ class MapDetailActivity : AppCompatActivity() {
         }
 
         val bookmarkImg = findViewById<ImageView>(R.id.iv_bookmark)
-        if(isChecked)
-            bookmarkImg.setImageResource(R.drawable.ic_bookmark_selected)
-        else bookmarkImg.setImageResource(R.drawable.ic_bookmark)
+//        if(isChecked)
+//            bookmarkImg.setImageResource(R.drawable.ic_bookmark_selected)
+//        else bookmarkImg.setImageResource(R.drawable.ic_bookmark)
 
         // 관심책방 on/off
         bookmarkImg.setOnClickListener {
@@ -84,7 +84,7 @@ class MapDetailActivity : AppCompatActivity() {
                     onSuccess = {
                         if(it.success) {
                             //색칠 안된 북마크로 이미지 변경
-                            bookmarkImg.setImageResource(R.drawable.ic_bookmark)
+                            bookmarkImg.isSelected = false
                             isChecked = false
                         } else {
                             Log.d("response", it.message)
@@ -100,7 +100,7 @@ class MapDetailActivity : AppCompatActivity() {
                     onSuccess = {
                         if(it.success) {
                             //색칠된 북마크로 이미지 변경
-                            bookmarkImg.setImageResource(R.drawable.ic_bookmark_selected)
+                            bookmarkImg.isSelected = true
                             isChecked = true
                         } else {
                             Log.d("response", it.message)
