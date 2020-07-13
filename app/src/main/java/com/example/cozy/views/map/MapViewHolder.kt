@@ -21,9 +21,12 @@ class MapViewHolder(itemView: View, val onClick : (MapData) -> Unit) : RecyclerV
         hashTag1.text = data.hashtag1
         hashTag2.text = data.hashtag2
         hashTag3.text = data.hashtag3
-        Glide.with(itemView)
-            .load("https://images.unsplash.com/photo-1561851561-04ee3d324423?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80")
-            .into(image)
+        if (data.profile == "NULL") {
+            Glide.with(itemView).load(data.image1).into(image)
+        }
+        else{
+            Glide.with(itemView).load(data.profile).into(image)
+        }
 
         itemView.setOnClickListener {
             onClick(data)
