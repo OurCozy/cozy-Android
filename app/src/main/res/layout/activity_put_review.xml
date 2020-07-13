@@ -6,112 +6,152 @@
     android:layout_height="match_parent"
     tools:context=".views.review.PutReviewActivity">
 
-    <ImageView
-        android:id="@+id/iv_close"
-        android:layout_width="wrap_content"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_x_dark"
-        android:layout_marginLeft="13dp"
-        android:layout_marginTop="42dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent">
 
-    <TextView
-        android:id="@+id/tv_next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="게시"
-        android:fontFamily="@font/notosans_cjkkr_medium"
-        android:textSize="16sp"
-        android:textColor="@color/gray"
-        android:layout_marginRight="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/iv_close"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_close"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="40dp">
 
-    <TextView
-        android:id="@+id/tv_question"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="이 책방은 어떠셨나요?"
-        android:textColor="@color/textColor"
-        android:textSize="21sp"
-        android:fontFamily="@font/notosans_cjkkr_bold"
-        android:layout_marginLeft="37dp"
-        android:layout_marginTop="31dp"
-        app:layout_constraintTop_toBottomOf="@+id/iv_close"
-        app:layout_constraintStart_toStartOf="parent"/>
+            <ImageView
+                android:id="@+id/iv_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_x_dark"
+                android:layout_marginLeft="13dp"
+                android:layout_marginTop="42dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
 
-    <ImageView
-        android:id="@+id/star_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_star"
-        android:layout_marginTop="37dp"
-        android:layout_marginLeft="3dp"
-        app:layout_constraintStart_toStartOf="@+id/tv_question"
-        app:layout_constraintTop_toBottomOf="@+id/tv_question" />
+            <TextView
+                android:id="@+id/tv_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="게시"
+                android:fontFamily="@font/notosans_cjkkr_medium"
+                android:textSize="16sp"
+                android:textColor="@color/gray"
+                android:layout_marginRight="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/iv_close"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_close"/>
 
-    <ImageView
-        android:id="@+id/star_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_star"
-        android:layout_marginLeft="9dp"
-        app:layout_constraintStart_toEndOf="@+id/star_1"
-        app:layout_constraintTop_toTopOf="@+id/star_1"
-        app:layout_constraintBottom_toBottomOf="@+id/star_1"/>
+            <TextView
+                android:id="@+id/tv_question"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이 책방은 어떠셨나요?"
+                android:textColor="@color/textColor"
+                android:textSize="21sp"
+                android:fontFamily="@font/notosans_cjkkr_bold"
+                android:layout_marginLeft="37dp"
+                android:layout_marginTop="31dp"
+                app:layout_constraintTop_toBottomOf="@+id/iv_close"
+                app:layout_constraintStart_toStartOf="parent"/>
 
-    <ImageView
-        android:id="@+id/star_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_star"
-        android:layout_marginLeft="9dp"
-        app:layout_constraintStart_toEndOf="@+id/star_2"
-        app:layout_constraintTop_toTopOf="@+id/star_2"
-        app:layout_constraintBottom_toBottomOf="@+id/star_2"/>
+            <ImageView
+                android:id="@+id/star_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_star"
+                android:layout_marginTop="37dp"
+                android:layout_marginLeft="3dp"
+                app:layout_constraintStart_toStartOf="@+id/tv_question"
+                app:layout_constraintTop_toBottomOf="@+id/tv_question" />
 
-    <ImageView
-        android:id="@+id/star_4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_star"
-        android:layout_marginLeft="9dp"
-        app:layout_constraintStart_toEndOf="@+id/star_3"
-        app:layout_constraintTop_toTopOf="@+id/star_3"
-        app:layout_constraintBottom_toBottomOf="@+id/star_3"/>
+            <ImageView
+                android:id="@+id/star_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_star"
+                android:layout_marginLeft="9dp"
+                app:layout_constraintStart_toEndOf="@+id/star_1"
+                app:layout_constraintTop_toTopOf="@+id/star_1"
+                app:layout_constraintBottom_toBottomOf="@+id/star_1"/>
 
-    <ImageView
-        android:id="@+id/star_5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_star"
-        android:layout_marginLeft="9dp"
-        app:layout_constraintStart_toEndOf="@+id/star_4"
-        app:layout_constraintTop_toTopOf="@+id/star_4"
-        app:layout_constraintBottom_toBottomOf="@+id/star_4"/>
+            <ImageView
+                android:id="@+id/star_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_star"
+                android:layout_marginLeft="9dp"
+                app:layout_constraintStart_toEndOf="@+id/star_2"
+                app:layout_constraintTop_toTopOf="@+id/star_2"
+                app:layout_constraintBottom_toBottomOf="@+id/star_2"/>
 
-    <EditText
-        android:id="@+id/ed_review"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:gravity="start|top"
-        android:background="@color/white"
-        android:layout_marginTop="30dp"
-        android:hint="내용을 입력하세요"
-        android:inputType="textMultiLine"
-        app:layout_constraintTop_toBottomOf="@+id/star_1"
-        app:layout_constraintStart_toStartOf="@+id/star_1"
-        app:layout_constraintEnd_toEndOf="@+id/end_guideline"/>
+            <ImageView
+                android:id="@+id/star_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_star"
+                android:layout_marginLeft="9dp"
+                app:layout_constraintStart_toEndOf="@+id/star_3"
+                app:layout_constraintTop_toTopOf="@+id/star_3"
+                app:layout_constraintBottom_toBottomOf="@+id/star_3"/>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/end_guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="24dp"/>
+            <ImageView
+                android:id="@+id/star_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_star"
+                android:layout_marginLeft="9dp"
+                app:layout_constraintStart_toEndOf="@+id/star_4"
+                app:layout_constraintTop_toTopOf="@+id/star_4"
+                app:layout_constraintBottom_toBottomOf="@+id/star_4"/>
 
+            <EditText
+                android:id="@+id/et_review"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="start|top"
+                android:background="@color/white"
+                android:layout_marginTop="30dp"
+                android:hint="내용을 입력하세요"
+                android:textColorHint="@color/gray"
+                android:textColor="@color/textColor"
+                android:textSize="16sp"
+                android:inputType="textMultiLine"
+                app:layout_constraintTop_toBottomOf="@+id/star_1"
+                app:layout_constraintStart_toStartOf="@+id/star_1"
+                app:layout_constraintEnd_toEndOf="@+id/end_guideline"/>
+
+            <Button
+                android:id="@+id/btn_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/et_review"
+                app:layout_constraintStart_toStartOf="@+id/et_review"/>
+
+            <com.rishabhharit.roundedimageview.RoundedImageView
+                android:id="@+id/upload_image"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/img_124"
+                android:scaleType="centerCrop"
+                app:roundedCorners="all"
+                app:cornerRadius="10dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintDimensionRatio="314:202"
+                app:layout_constraintTop_toBottomOf="@+id/btn_img"
+                app:layout_constraintStart_toStartOf="@+id/et_review"
+                app:layout_constraintEnd_toEndOf="@+id/end_guideline"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/end_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="37dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

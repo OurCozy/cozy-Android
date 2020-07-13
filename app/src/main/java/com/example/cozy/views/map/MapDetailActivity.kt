@@ -110,10 +110,10 @@ class MapDetailActivity : AppCompatActivity() {
                 finish()
             }
 
-            val bookmarkImg = findViewById<ImageView>(R.id.iv_bookmark)
-            if (isChecked)
-                bookmarkImg.setImageResource(R.drawable.ic_bookmark_selected)
-            else bookmarkImg.setImageResource(R.drawable.ic_bookmark)
+        val bookmarkImg = findViewById<ImageView>(R.id.iv_bookmark)
+//        if(isChecked)
+//            bookmarkImg.setImageResource(R.drawable.ic_bookmark_selected)
+//        else bookmarkImg.setImageResource(R.drawable.ic_bookmark)
 
             // 관심책방 on/off
             bookmarkImg.setOnClickListener {
@@ -122,41 +122,41 @@ class MapDetailActivity : AppCompatActivity() {
                 header["Content-Type"] = "application/json"
                 header["token"] = sharedPref.getString("token", "token")
 
-                //관심책방이면 체크해제
-                if (isChecked) {
-                    //서버에 해당 정보 전달
-                    //TODO: 서버에서 받은 bookstoreIdx 전달
-                    service.requestBookmarkUpdate(1, header).customEnqueue(
-                        onError = { Log.d("response", "error") },
-                        onSuccess = {
-                            if (it.success) {
-                                //색칠 안된 북마크로 이미지 변경
-                                bookmarkImg.setImageResource(R.drawable.ic_bookmark)
-                                isChecked = false
-                            } else {
-                                Log.d("response", it.message)
-                                Toast.makeText(this, "관심책방 해제에 실패했습니다.", Toast.LENGTH_SHORT).show()
-                            }
+            //관심책방이면 체크해제
+            if(isChecked) {
+                //서버에 해당 정보 전달
+                //TODO: 서버에서 받은 bookstoreIdx 전달
+                service.requestBookmarkUpdate(1, header).customEnqueue(
+                    onError = { Log.d("response", "error")},
+                    onSuccess = {
+                        if(it.success) {
+                            //색칠 안된 북마크로 이미지 변경
+                            bookmarkImg.isSelected = false
+                            isChecked = false
+                        } else {
+                            Log.d("response", it.message)
+                            Toast.makeText(this, "관심책방 해제에 실패했습니다.", Toast.LENGTH_SHORT).show()
                         }
-                    )
-                } else {
-                    //서버에 해당 정보 전달
-                    //TODO: 서버에서 받은 bookstoreIdx 전달
-                    service.requestBookmarkUpdate(1, header).customEnqueue(
-                        onError = { Log.d("response", "error") },
-                        onSuccess = {
-                            if (it.success) {
-                                //색칠된 북마크로 이미지 변경
-                                bookmarkImg.setImageResource(R.drawable.ic_bookmark_selected)
-                                isChecked = true
-                            } else {
-                                Log.d("response", it.message)
-                                Toast.makeText(this, "관심책방 등록에 실패했습니다.", Toast.LENGTH_SHORT).show()
-                            }
+                    }
+                )
+            } else {
+                //서버에 해당 정보 전달
+                //TODO: 서버에서 받은 bookstoreIdx 전달
+                service.requestBookmarkUpdate(1, header).customEnqueue(
+                    onError = { Log.d("response", "error")},
+                    onSuccess = {
+                        if(it.success) {
+                            //색칠된 북마크로 이미지 변경
+                            bookmarkImg.isSelected = true
+                            isChecked = true
+                        } else {
+                            Log.d("response", it.message)
+                            Toast.makeText(this, "관심책방 등록에 실패했습니다.", Toast.LENGTH_SHORT).show()
                         }
-                    )
-                }
+                    }
+                )
             }
+        }
 
             btn_write_review.setOnClickListener {
                 startActivity(Intent(this, PutReviewActivity::class.java))

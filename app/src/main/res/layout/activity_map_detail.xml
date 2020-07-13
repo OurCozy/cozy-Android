@@ -110,12 +110,13 @@
                 app:layout_constraintStart_toEndOf="@+id/map_2nd_category"
                 app:layout_constraintTop_toTopOf="@+id/map_2nd_category" />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/iv_bookmark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="28dp"
-                android:src="@drawable/ic_bookmark"
+                android:background="#00FFFFFF"
+                android:src="@drawable/bookmark_selector"
                 app:layout_constraintBottom_toBottomOf="@id/map_1st_category"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/map_1st_category" />
