@@ -6,6 +6,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
@@ -40,6 +41,10 @@ class MapDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_map_detail)
 
         if (intent.hasExtra("bookIdx")) {
+            bookIdx = intent.getIntExtra("bookIdx",0)
+        }
+
+        if (intent.hasExtra("bookIdx")) {
             bookIdx = intent.getIntExtra("bookIdx", 0)
         }
 
@@ -54,7 +59,12 @@ class MapDetailActivity : AppCompatActivity() {
             onError = { Toast.makeText(this, "올바르지 않은 요청입니다.", Toast.LENGTH_SHORT) },
             onSuccess = {
                 detailData = it.data.elementAt(0)
-                Glide.with(this).load(detailData.profile).into(map_main_img)
+                if (detailData.profile == "NULL") {
+                    Glide.with(this).load(detailData.image1).into(map_main_img)
+                }
+                else{
+                    Glide.with(this).load(detailData.profile).into(map_main_img)
+                }
                 map_bookstore_title.text = detailData.bookstoreName
                 latitude = detailData.latitude
                 longitude = detailData.longitude
@@ -63,10 +73,39 @@ class MapDetailActivity : AppCompatActivity() {
                 map_3rd_category.text = detailData.hashtag3
                 map_address.text = detailData.location
                 map_time.text = detailData.time
-                map_dayoff.text = detailData.dayoff
-                map_changeable.text = detailData.changeable
-                map_tel.text = detailData.tel
-                map_activity.text = detailData.activity
+                if (detailData.dayoff == "NULL"){
+                    map_dayoff.visibility = View.GONE
+                }
+                else {
+                    map_dayoff.text = detailData.dayoff
+                }
+                if (detailData.changeable == "NULL"){
+                    map_changeable.visibility = View.GONE
+                }
+                else {
+                    map_changeable.text = detailData.changeable
+                }
+                if (detailData.tel == "NULL"){
+                    map_tel.text = "없음"
+                }
+                else {
+                    map_tel.text = detailData.tel
+                }
+                if (detailData.activity == "NULL"){
+                    map_activity.text = "없음"
+                }
+                else {
+                    map_activity.text = detailData.activity
+                }
+                if (detailData.homepage == "NULL"){
+                    iv_homepage.setImageResource(R.drawable.ic_homepage_non)
+                }
+                if (detailData.facebook == "NULL"){
+                    iv_facebook.setImageResource(R.drawable.ic_facebook_non)
+                }
+                if (detailData.instagram == "NULL"){
+                    iv_instagram.setImageResource(R.drawable.ic_insta_non)
+                }
                 Glide.with(this).load(detailData.image1).into(map_detail_img_1)
                 Glide.with(this).load(detailData.image2).into(map_detail_img_2)
                 map_detail.text = detailData.description

@@ -80,13 +80,13 @@ class RecommendDetailActivity : AppCompatActivity() {
                     dayoff.text = detailData.dayoff
                 }
                 if (detailData.changeable == "NULL"){
-                    dayoff.visibility = View.GONE
+                    changeable.visibility = View.GONE
                 }
                 else {
                     changeable.text = detailData.changeable
                 }
                 if (detailData.tel == "NULL"){
-                    dayoff.visibility = View.GONE
+                    tel.text = "없음"
                 }
                 else {
                     tel.text = detailData.tel
