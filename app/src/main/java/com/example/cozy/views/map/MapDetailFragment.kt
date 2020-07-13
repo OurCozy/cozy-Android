@@ -38,7 +38,7 @@ class MapDetailFragment : Fragment() {
         val mapViewContainer = view_map as ViewGroup
         mapViewContainer.addView(mapView)
         // 서점 위치 위도&경도로 표시
-        val MARKER_POINT = MapPoint.mapPointWithGeoCoord(37.5602333, 126.9225536)
+        val MARKER_POINT = MapPoint.mapPointWithGeoCoord(37.560233, 126.9225536)
         mapView.setMapCenterPoint(MARKER_POINT, true)
         // 지도 레벨 변경
         mapView.setZoomLevel(3, true)

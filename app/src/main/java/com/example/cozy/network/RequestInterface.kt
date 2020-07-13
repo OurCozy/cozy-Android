@@ -1,11 +1,6 @@
 package com.example.cozy.network
 
-import android.content.SharedPreferences
-import com.example.cozy.network.responseData.ResponseBookmarkUpdate
-import com.example.cozy.network.responseData.ResponseInterest
-import com.example.cozy.network.responseData.ResponseUserProfile
-import com.example.cozy.network.responseData.ResponseBookstoreDetail
-import com.example.cozy.network.responseData.ResponseRecommendList
+import com.example.cozy.network.responseData.*
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -25,14 +20,13 @@ interface RequestInterface {
     @GET("/main/detail/{bookstoreIdx}")
     fun requestBookstore(@Path("bookstoreIdx") bookstoreIdx: Int, @HeaderMap headers: Map<String, String?>) : Call<ResponseBookstoreDetail>
 
-    /*
+
     //후기 작성
 
     //지역별 조회 : https://github.com/OurCozy/cozy-server/wiki/2_2.-%EC%A7%80%EC%97%AD%EB%B3%84-%EC%A1%B0%ED%9A%8C
-    @Headers("Content-Type:application/json")
     @GET("/main/map/{sectionIdx}")
-    fun requestMap(@Path("sectionIdx") sectionIdx : Int) : Call<ResponseMap>
-*/
+    fun requestMap(@Path("sectionIdx") sectionIdx: Int, @HeaderMap headers: Map<String, String?>) : Call<ResponseMap>
+
     //관심 책방 조회 : https://github.com/OurCozy/cozy-server/wiki/2_3.-%EA%B4%80%EC%8B%AC%EC%B1%85%EB%B0%A9-%EC%A1%B0%ED%9A%8C
     @GET("/main/interest")
     fun requestInterest(@HeaderMap headers: Map<String, String?>) : Call<ResponseInterest>
