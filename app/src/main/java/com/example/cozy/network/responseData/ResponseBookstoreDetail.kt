@@ -18,7 +18,6 @@ data class BookstoreDetailData(
     val instagram: String,
     val facebook: String,
     val homepage: String,
-    val blog: String,
     val time: String,
     val dayoff: String,
     val changeable: String,
@@ -33,5 +32,6 @@ data class BookstoreDetailData(
     val hashtag3: String,
     val image1: String,
     val image2: String,
-    val image3: String
+    val image3: String,
+    val checked: Int
 )

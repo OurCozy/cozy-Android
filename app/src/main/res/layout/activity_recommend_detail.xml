@@ -50,7 +50,6 @@
                 android:layout_marginLeft="22dp"
                 android:fontFamily="@font/notosans_cjkkr_bold"
                 android:includeFontPadding="false"
-                android:text="해방촌에 숨겨진"
                 android:textColor="@color/white"
                 android:textFontWeight="900"
                 android:textSize="21sp"
@@ -66,7 +65,6 @@
                 android:layout_marginBottom="14dp"
                 android:fontFamily="@font/notosans_cjkkr_bold"
                 android:includeFontPadding="false"
-                android:text="나만 알고 싶은 독립서점"
                 android:textColor="@color/white"
                 android:textFontWeight="900"
                 android:textSize="21sp"
@@ -93,7 +91,6 @@
                 android:layout_marginBottom="1dp"
                 android:fontFamily="@font/notosans_cjkkr_regular"
                 android:includeFontPadding="false"
-                android:text="스토리지북앤필름"
                 android:textColor="@color/white"
                 android:textFontWeight="500"
                 android:textSize="12sp"
@@ -114,8 +111,7 @@
                 android:layout_marginLeft="37dp"
                 android:layout_marginBottom="24dp"
                 app:layout_constraintStart_toStartOf="@+id/rec_main_img"
-                app:layout_constraintBottom_toBottomOf="@+id/rec_main_img"
-                android:text="서울특별시 용산구 신흥로 115" />
+                app:layout_constraintBottom_toBottomOf="@+id/rec_main_img" />
 
             <TextView
                 android:id="@+id/tv_bookstore_title"
@@ -127,7 +123,6 @@
                 android:fontFamily="@font/notosans_cjkkr_bold"
                 android:textFontWeight="900"
                 android:letterSpacing="0.01"
-                android:text="스토리지북앤필름"
                 android:textColor="@color/textColor"
                 android:textSize="22sp"
                 app:layout_constraintStart_toStartOf="@+id/rec_main_img"
@@ -140,7 +135,6 @@
                 android:layout_marginTop="14dp"
                 android:background="@drawable/img_category_area"
                 android:gravity="center"
-                android:text="감성책방"
                 android:textColor="@color/tagcolor"
                 android:textSize="10sp"
                 android:includeFontPadding="false"
@@ -159,7 +153,6 @@
                 android:layout_marginLeft="12dp"
                 android:background="@drawable/img_category_area"
                 android:gravity="center"
-                android:text="해방촌"
                 android:textColor="@color/tagcolor"
                 android:textSize="10sp"
                 android:includeFontPadding="false"
@@ -178,7 +171,6 @@
                 android:layout_marginLeft="12dp"
                 android:background="@drawable/img_category_area"
                 android:gravity="center"
-                android:text="독립출판"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosans_cjkkr_regular"
                 android:textFontWeight="500"
@@ -226,7 +218,6 @@
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosans_cjkkr_regular"
                 android:textFontWeight="500"
-                android:text="서울 용산구 신흥로 115-1"
                 android:textColor="@color/textColor"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_address_icon"
@@ -250,7 +241,6 @@
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosans_cjkkr_regular"
                 android:textFontWeight="500"
-                android:text="매월 첫째 수요일 13:00 ~ 24:00"
                 android:textColor="@color/textColor"
                 android:textSize="12sp"
                 app:layout_constraintStart_toEndOf="@id/iv_time_icon"
@@ -262,7 +252,6 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/notosans_cjkkr_regular"
                 android:includeFontPadding="false"
-                android:text="매월 첫째 수요일 13:00 ~ 24:00"
                 android:textColor="@color/textColor"
                 android:textFontWeight="500"
                 android:layout_marginTop="2dp"
@@ -277,7 +266,6 @@
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosans_cjkkr_regular"
                 android:textFontWeight="500"
-                android:text="매월 첫째 수요일 13:00 ~ 24:00"
                 android:textColor="@color/textColor"
                 android:textSize="12sp"
                 android:layout_marginTop="2dp"
@@ -288,10 +276,10 @@
                 android:id="@+id/iv_call_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="51dp"
+                android:layout_marginTop="8dp"
                 android:src="@drawable/img_call"
                 app:layout_constraintStart_toStartOf="@+id/iv_time_icon"
-                app:layout_constraintTop_toBottomOf="@+id/iv_time_icon" />
+                app:layout_constraintTop_toBottomOf="@+id/changeable" />
 
             <TextView
                 android:id="@+id/tel"
@@ -324,47 +312,46 @@
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosans_cjkkr_regular"
                 android:textFontWeight="500"
-                android:text="공간대여, 워크샵, 온라인 서점"
                 android:textColor="@color/textColor"
                 android:textSize="12sp"
                 app:layout_constraintStart_toEndOf="@id/iv_etc_icon"
                 app:layout_constraintTop_toTopOf="@+id/iv_etc_icon" />
 
             <ImageView
-                android:id="@+id/iv_homepage"
+                android:id="@+id/rec_homepage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
                 android:src="@drawable/ic_homepage"
                 android:padding="12dp"
-                app:layout_constraintEnd_toStartOf="@+id/iv_facebook"
+                app:layout_constraintEnd_toStartOf="@+id/rec_facebook"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/iv_etc_icon" />
 
             <ImageView
-                android:id="@+id/iv_facebook"
+                android:id="@+id/rec_facebook"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_facebook"
                 android:padding="12dp"
                 android:layout_marginHorizontal="30dp"
-                app:layout_constraintEnd_toStartOf="@+id/iv_instagram"
+                app:layout_constraintEnd_toStartOf="@+id/rec_instagram"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/iv_homepage"
-                app:layout_constraintTop_toTopOf="@+id/iv_homepage" />
+                app:layout_constraintStart_toEndOf="@+id/rec_homepage"
+                app:layout_constraintTop_toTopOf="@+id/rec_homepage" />
 
             <ImageView
-                android:id="@+id/iv_instagram"
+                android:id="@+id/rec_instagram"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_instagram"
                 android:padding="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/iv_facebook"
-                app:layout_constraintTop_toTopOf="@+id/iv_facebook" />
+                app:layout_constraintStart_toEndOf="@+id/rec_facebook"
+                app:layout_constraintTop_toTopOf="@+id/rec_facebook" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/start_guideline"
@@ -388,7 +375,7 @@
                 android:background="@color/gray"
                 app:layout_constraintEnd_toEndOf="@+id/end_guideline"
                 app:layout_constraintStart_toStartOf="@+id/start_guideline"
-                app:layout_constraintTop_toBottomOf="@+id/iv_homepage" />
+                app:layout_constraintTop_toBottomOf="@+id/rec_homepage" />
 
             <ImageView
                 android:id="@+id/iv_detail_img_1"
@@ -398,7 +385,7 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/img_124"
                 app:layout_constraintDimensionRatio="360:265"
-                app:layout_constraintStart_toStartOf="@+id/iv_main_img"
+                app:layout_constraintStart_toStartOf="@+id/rec_main_img"
                 app:layout_constraintTop_toBottomOf="@+id/divide_line" />
 
             <ImageView
@@ -431,7 +418,6 @@
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosans_cjkkr_medium"
                 android:textFontWeight="700"
-                android:text="스토리지북앤필름 너무 좋은 독립서점이에요. 해방촌의 분위기를 좋아하는데 이 책방이 한 몫하는것 같아요. 골목길에 있지만 일부러 찾아오는 책방입니다! 대형서점에 없는 책들도 많고 가게 자체도"
                 android:textColor="@color/textColor"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/end_guideline"
@@ -477,7 +463,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/divide_line2" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/view_map"
+                android:id="@+id/rec_view_map"
                 android:layout_width="wrap_content"
                 android:layout_height="236dp"
                 android:layout_marginTop="29dp"
@@ -492,7 +478,7 @@
                 android:background="@color/gray"
                 app:layout_constraintEnd_toEndOf="@+id/end_guideline"
                 app:layout_constraintStart_toStartOf="@+id/start_guideline"
-                app:layout_constraintTop_toBottomOf="@+id/view_map" />
+                app:layout_constraintTop_toBottomOf="@+id/rec_view_map" />
 
             <TextView
                 android:id="@+id/tv_review"
@@ -517,7 +503,7 @@
                 app:layout_constraintTop_toTopOf="@+id/tv_review" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_comments"
+                android:id="@+id/rec_comments"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -544,7 +530,7 @@
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="@+id/end_guideline"
                 app:layout_constraintStart_toStartOf="@id/start_guideline"
-                app:layout_constraintTop_toBottomOf="@id/rv_comments" />
+                app:layout_constraintTop_toBottomOf="@id/rec_comments" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
