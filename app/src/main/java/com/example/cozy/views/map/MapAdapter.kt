@@ -7,10 +7,13 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cozy.R
+import com.example.cozy.network.responseData.BookstoreInfo
 
-class MapAdapter (private val context: Context, val itemClick: (MapData) -> Unit) : RecyclerView.Adapter<MapViewHolder>() {
+class MapAdapter(
+    private val context: Context,
+    val datas : MutableList<MapData>, val onClick : (MapData) -> Unit
+) : RecyclerView.Adapter<MapViewHolder>() {
 
-    var datas = mutableListOf<MapData>()
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MapViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_bookstore_list, parent, false)
@@ -24,7 +27,7 @@ class MapAdapter (private val context: Context, val itemClick: (MapData) -> Unit
             }
         }
 */
-        return MapViewHolder(view, itemClick)
+        return MapViewHolder(view, onClick)
 
     }
 

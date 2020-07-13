@@ -41,11 +41,6 @@ class InterestFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        /*
-        viewPager.adapter= CustomPagerAdapter(childFragmentManager)
-        home_viewpager.offscreenPageLimit=2
-        tab.setupWithViewPager(home_viewpager)
-        */
 
         //검색창 열기
         btn_search.setOnClickListener {
