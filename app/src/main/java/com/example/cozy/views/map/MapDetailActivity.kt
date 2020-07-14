@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import com.bumptech.glide.Glide
@@ -17,10 +16,9 @@ import com.example.cozy.network.RequestToServer
 import com.example.cozy.network.customEnqueue
 import com.example.cozy.network.responseData.BookstoreDetailData
 import com.example.cozy.views.review.PutReviewActivity
+import com.example.cozy.views.review.ReviewAdapter
+import com.example.cozy.views.review.ReviewData
 import kotlinx.android.synthetic.main.activity_map_detail.*
-import net.daum.mf.map.api.MapPOIItem
-import net.daum.mf.map.api.MapPoint
-import net.daum.mf.map.api.MapView
 import kotlin.properties.Delegates
 
 class MapDetailActivity : AppCompatActivity() {

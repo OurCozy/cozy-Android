@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.item_recommend.view.*
 class MainFragment : Fragment() {
     val requestTosever = RequestToServer
     val recommendData = mutableListOf<RecommendListData>()
-    val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxLCJpYXQiOjE1OTQ2MjYxNjYsImV4cCI6My42MzYzNjM2MzYzNjM3OTU0ZSsyMiwiaXNzIjoib3VyLXNvcHQifQ.ywT9Lj2bUGxg6X-V0RuzHgJsMcvnkpdETkMLA1WWZHE"
+    val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxLCJpYXQiOjE1OTQ3MDg1ODIsImV4cCI6My42MzYzNjM2MzYzNjM3OTU0ZSsyMiwiaXNzIjoib3VyLXNvcHQifQ.UQ8hKSGmuaADxjyNIPyYzyNkSSH-8uuijj7j5Iujfcg"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

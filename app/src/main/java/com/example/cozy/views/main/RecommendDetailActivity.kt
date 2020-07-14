@@ -17,8 +17,8 @@ import com.example.cozy.R
 import com.example.cozy.network.RequestToServer
 import com.example.cozy.network.customEnqueue
 import com.example.cozy.network.responseData.BookstoreDetailData
-import com.example.cozy.views.map.ReviewAdapter
-import com.example.cozy.views.map.ReviewData
+import com.example.cozy.views.review.ReviewAdapter
+import com.example.cozy.views.review.ReviewData
 import com.example.cozy.views.review.PutReviewActivity
 import kotlinx.android.synthetic.main.activity_recommend_detail.*
 import net.daum.mf.map.api.MapPOIItem

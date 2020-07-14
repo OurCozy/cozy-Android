@@ -1,4 +1,4 @@
-package com.example.cozy.views.map
+package com.example.cozy.views.review
 
 data class ReviewData (
     val userImg : String,

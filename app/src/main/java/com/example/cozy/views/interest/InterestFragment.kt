@@ -65,6 +65,8 @@ class InterestFragment : Fragment() {
                     tv_question.visibility = View.GONE
                 } else
                     bookstore_interest.visibility = View.GONE
+                    background.visibility = View.VISIBLE
+                    tv_question.visibility = View.VISIBLE
             }
         )
     }

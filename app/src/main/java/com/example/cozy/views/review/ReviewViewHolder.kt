@@ -1,4 +1,4 @@
-package com.example.cozy.views.map
+package com.example.cozy.views.review
 
 import android.view.View
 import android.widget.ImageView
@@ -20,6 +20,7 @@ class ReviewViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
     val writtenDate = itemView.findViewById<TextView>(R.id.tv_written_date)
     val review = itemView.findViewById<TextView>(R.id.tv_review)
     val addedImage = itemView.findViewById<ImageView>(R.id.iv_image)
+    val moreBtn = itemView.findViewById<ImageView>(R.id.iv_more)
 
     fun bind(data: ReviewData) {
         Glide.with(itemView).load(data.userImg).into(userImg)
