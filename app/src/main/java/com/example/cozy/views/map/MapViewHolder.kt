@@ -14,7 +14,7 @@ class MapViewHolder(itemView: View, val onClick : (MapData) -> Unit) : RecyclerV
     val hashTag2 = itemView.findViewById<TextView>(R.id.hashtag_map_tv2)
     val hashTag3 = itemView.findViewById<TextView>(R.id.hashtag_map_tv3)
     val image = itemView.findViewById<ImageView>(R.id.rv_image)
-    val bookmark = itemView.findViewById<ImageView>(R.id.rv_hashtag)
+    val bookmark = itemView.findViewById<ImageView>(R.id.rv_bookmark)
 
     fun bind(data: MapData) {
         rv_interest_title.text = data.bookstoreName
@@ -27,7 +27,7 @@ class MapViewHolder(itemView: View, val onClick : (MapData) -> Unit) : RecyclerV
         else{
             Glide.with(itemView).load(data.profile).into(image)
         }
-
+        bookmark.isSelected = data.checked != 0
         itemView.setOnClickListener {
             onClick(data)
         }

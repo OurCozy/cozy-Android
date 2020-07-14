@@ -1,6 +1,5 @@
 package com.example.cozy.views.map.popup
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +8,6 @@ import androidx.fragment.app.Fragment
 import com.example.cozy.R
 import com.example.cozy.network.RequestToServer
 import com.example.cozy.views.map.MapAdapter
-import com.example.cozy.views.map.MapFragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_seoul.*
 
@@ -17,7 +15,6 @@ import kotlinx.android.synthetic.main.fragment_seoul.*
 class SeoulFragment(private val sectionIdx : (Int) -> Unit) : Fragment(){
 
     val service = RequestToServer.service
-    lateinit var mapAdapter: MapAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

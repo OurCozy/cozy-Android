@@ -15,7 +15,7 @@ class InterestViewHolder(itemView: View, val onClick: (MapData) -> Unit) : Recyc
     val hashTag2 = itemView.findViewById<TextView>(R.id.hashtag_map_tv2)
     val hashTag3 = itemView.findViewById<TextView>(R.id.hashtag_map_tv3)
     val image = itemView.findViewById<ImageView>(R.id.rv_image)
-    val bookmark = itemView.findViewById<ImageView>(R.id.rv_hashtag)
+    val bookmark = itemView.findViewById<ImageView>(R.id.rv_bookmark)
 
     fun bind(data: MapData){
         rv_interest_title.text = data.bookstoreName

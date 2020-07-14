@@ -34,7 +34,7 @@ class MapDetailActivity : AppCompatActivity() {
     var kakaoPackageName : String = "net.daum.android.map"
 
     //관심책방 여부 저장 변수 TODO:서버에서 가져온 정보 여기에 저장
-    var isChecked : Boolean = false
+    var isChecked : Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -106,6 +106,13 @@ class MapDetailActivity : AppCompatActivity() {
                 if (detailData.instagram == "NULL"){
                     iv_instagram.setImageResource(R.drawable.ic_insta_non)
                 }
+                isChecked = detailData.checked
+                if(isChecked == 0) {
+                    iv_bookmark.isSelected = false
+                }
+                else {
+                    iv_bookmark.isSelected = true
+                }
                 Glide.with(this).load(detailData.image1).into(map_detail_img_1)
                 Glide.with(this).load(detailData.image2).into(map_detail_img_2)
                 map_detail.text = detailData.description
@@ -151,9 +158,6 @@ class MapDetailActivity : AppCompatActivity() {
             }
 
         val bookmarkImg = findViewById<ImageView>(R.id.iv_bookmark)
-//        if(isChecked)
-//            bookmarkImg.setImageResource(R.drawable.ic_bookmark_selected)
-//        else bookmarkImg.setImageResource(R.drawable.ic_bookmark)
 
             // 관심책방 on/off
             bookmarkImg.setOnClickListener {
@@ -163,7 +167,7 @@ class MapDetailActivity : AppCompatActivity() {
                 header["token"] = sharedPref.getString("token", "token")
 
                 //관심책방이면 체크해제
-                if(isChecked) {
+                if(isChecked == 0) {
                     //서버에 해당 정보 전달
                     //TODO: 서버에서 받은 bookstoreIdx 전달
                     service.requestBookmarkUpdate(1, header).customEnqueue(
@@ -174,7 +178,7 @@ class MapDetailActivity : AppCompatActivity() {
                                 //색칠 안된 북마크로 이미지 변경
                                 //bookmarkImg.setImageResource(R.drawable.ic_bookmark)
                                 bookmarkImg.isSelected = false
-                                isChecked = false
+                                isChecked = 0
                             } else {
                                 Log.d("response", it.message)
                                 Toast.makeText(this, "관심책방 해제에 실패했습니다.", Toast.LENGTH_SHORT).show()
@@ -192,7 +196,7 @@ class MapDetailActivity : AppCompatActivity() {
                                 //색칠된 북마크로 이미지 변경
                                 //bookmarkImg.setImageResource(R.drawable.ic_bookmark_selected)
                                 bookmarkImg.isSelected = true
-                                isChecked = true
+                                isChecked = 1
                             } else {
                                 Log.d("response", it.message)
                                 Toast.makeText(this, "관심책방 등록에 실패했습니다.", Toast.LENGTH_SHORT).show()
