@@ -111,8 +111,8 @@
 
     <View
         android:id="@+id/view"
-        android:layout_width="1dp"
-        android:layout_height="20dp"
+        android:layout_width="0.7dp"
+        android:layout_height="18dp"
         android:layout_marginTop="200dp"
         android:background="#707070"
         android:foregroundGravity="center"

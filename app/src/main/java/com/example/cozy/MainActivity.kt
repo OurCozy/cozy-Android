@@ -66,6 +66,14 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        val pref = getSharedPreferences("pref", Context.MODE_PRIVATE)
+        val ed = pref.edit()
+        ed.remove("location")
+        ed.commit()
+    }
+
 
 }
 
