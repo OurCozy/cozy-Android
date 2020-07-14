@@ -16,13 +16,14 @@ import com.example.cozy.network.RequestToServer
 import com.example.cozy.network.RequestToServer.service
 import com.example.cozy.network.customEnqueue
 import com.example.cozy.views.map.popup.PopupFragment
+import com.example.cozy.views.map.popup.SeoulFragment
 import kotlinx.android.synthetic.main.fragment_map.*
 
 class MapFragment : Fragment() {
     val service = RequestToServer.service
     lateinit var mapAdapter: MapAdapter
-    //var data = mutableListOf<MapData>()
     lateinit var detailData : MapData
+    lateinit var thisView: View
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,30 +31,31 @@ class MapFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_map, container, false)
-        initMapList(view)
+        thisView = view
+        initMapList(view,1)
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val sectionIdx = { num : Int ->
+            initMapList(view,num)
+        }
 
         location.setOnClickListener{
-            val bottomsheet = PopupFragment()
+            val bottomsheet = PopupFragment(sectionIdx)
             getFragmentManager()?.let { it1 -> bottomsheet.show(it1, bottomsheet.tag) }
         }
 
         bookstore.addItemDecoration(BottomItemDecoration(this.context!!, 15)) //itemDecoration 여백주기
     }
 
-    fun initMapList(view : View) {
+    fun initMapList(view : View, num : Int) {
         val sharedPref = activity!!.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
         val header = mutableMapOf<String, String?>()
-        val pref = activity!!.getSharedPreferences("sectionIdx", Context.MODE_PRIVATE)
-        val sectionIdx = pref.getInt("sedctionIdx", 2)
-        Log.d("test", ""+sectionIdx)
         header["Content-Type"] = "application/json"
         header["token"] = sharedPref.getString("token", "token")
-        service.requestMap(sectionIdx, header).customEnqueue(
+        service.requestMap(num, header).customEnqueue(
             onError = {Toast.makeText(context!!,"올바르지 않은 요청입니다.",Toast.LENGTH_SHORT)},
             onSuccess = {
                 if(it.success) {

@@ -13,12 +13,14 @@ import kotlinx.android.synthetic.main.fragment_gg.*
 import kotlinx.android.synthetic.main.fragment_popup.*
 import kotlinx.android.synthetic.main.fragment_seoul.*
 
-class PopupFragment : BottomSheetDialogFragment(){
+class PopupFragment(private val sectionIdx : (Int) -> Unit) : BottomSheetDialogFragment(){
+
+    val popup = this
 
     override fun onStart() {
         super.onStart()
 
-        popup_viewPager.adapter = PopupViewPagerAdapter(childFragmentManager)
+        popup_viewPager.adapter = PopupViewPagerAdapter(childFragmentManager,sectionIdx)
         popup_viewPager.offscreenPageLimit = 2
 
         tab_layout.setupWithViewPager(popup_viewPager)
@@ -31,21 +33,5 @@ class PopupFragment : BottomSheetDialogFragment(){
         savedInstanceState: Bundle?
     ): View?{
         return inflater.inflate(R.layout.fragment_popup, container, false)
-
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-//        orange_btn.setOnClickListener {
-//           val transaction = getFragmentManager()?.beginTransaction()
-//            //transaction.replace(R.id.popup_viewPager, MapFragment.getInstance())
-//            //Toast.makeText(this, "sksk", Toast.LENGTH_SHORT).show()
-//        }
-
-    }
-
-
-
-
 }

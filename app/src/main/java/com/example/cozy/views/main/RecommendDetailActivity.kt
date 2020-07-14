@@ -100,11 +100,29 @@ class RecommendDetailActivity : AppCompatActivity() {
                 if (detailData.homepage == "NULL"){
                     rec_homepage.setImageResource(R.drawable.ic_homepage_non)
                 }
+                else {
+                    rec_homepage.setOnClickListener{
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(detailData.homepage))
+                        startActivity(intent)
+                    }
+                }
                 if (detailData.facebook == "NULL"){
                     rec_facebook.setImageResource(R.drawable.ic_facebook_non)
                 }
+                else {
+                    rec_facebook.setOnClickListener{
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(detailData.facebook))
+                        startActivity(intent)
+                    }
+                }
                 if (detailData.instagram == "NULL"){
                     rec_instagram.setImageResource(R.drawable.ic_insta_non)
+                }
+                else {
+                    rec_instagram.setOnClickListener{
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(detailData.instagram))
+                        startActivity(intent)
+                    }
                 }
                 Glide.with(this).load(detailData.image1).into(iv_detail_img_1)
                 Glide.with(this).load(detailData.image2).into(iv_detail_img_2)
