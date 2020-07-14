@@ -23,6 +23,7 @@ import kotlinx.android.synthetic.main.item_recommend.view.*
 class MainFragment : Fragment() {
     val requestTosever = RequestToServer
     val recommendData = mutableListOf<RecommendListData>()
+    val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxLCJpYXQiOjE1OTQ2MjYxNjYsImV4cCI6My42MzYzNjM2MzYzNjM3OTU0ZSsyMiwiaXNzIjoib3VyLXNvcHQifQ.ywT9Lj2bUGxg6X-V0RuzHgJsMcvnkpdETkMLA1WWZHE"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,7 +66,12 @@ class MainFragment : Fragment() {
                 startActivity(intent,option.toBundle())
             }
         v.recommend_item.adapter = recommendAdapter
+
         val sharedPref = activity!!.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
+        val edit = sharedPref.edit()
+        edit.putString("token", token)
+        edit.apply()
+
         val header = mutableMapOf<String, String>()
         header["Content-Type"] = "application/json"
         header["token"] = sharedPref.getString("token","token").toString()

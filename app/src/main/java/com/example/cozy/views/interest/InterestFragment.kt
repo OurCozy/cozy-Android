@@ -18,22 +18,25 @@ import kotlinx.android.synthetic.main.fragment_interest.*
 class InterestFragment : Fragment() {
     val service = RequestToServer.service
     lateinit var interestAdapter: InterestAdapter
+    lateinit var fragView : View
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        val view = inflater.inflate(R.layout.fragment_interest, container, false)
-        loadMapDatas(view)
-
+        fragView = inflater.inflate(R.layout.fragment_interest, container, false)
         // Inflate the layout for this fragment
-        return view
+        return fragView
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadMapDatas(fragView)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         //검색창 열기
         btn_search.setOnClickListener {

@@ -50,18 +50,18 @@
         app:layout_constraintStart_toStartOf="@+id/white_board"
         app:layout_constraintTop_toTopOf="@+id/white_board" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/rv_hashtag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="27dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginRight="14dp"
+        android:background="#00FFFFFF"
+        android:src="@drawable/small_bookmark_selector"
         app:layout_constraintEnd_toEndOf="@id/white_board"
-        app:layout_constraintTop_toTopOf="@id/white_board"
-        app:layout_constraintBottom_toBottomOf="@id/white_board"
-        app:srcCompat="@drawable/ic_small_bookmark_selected">
+        app:layout_constraintTop_toTopOf="@id/white_board">
 
-    </ImageView>
+    </ImageButton>
 
 
     <ImageView

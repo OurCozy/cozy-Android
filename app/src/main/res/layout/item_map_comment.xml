@@ -88,6 +88,15 @@
         app:layout_constraintStart_toEndOf="@id/iv_5th_star"
         app:layout_constraintTop_toTopOf="@id/iv_5th_star" />
 
+    <ImageView
+        android:id="@+id/iv_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_more_black"
+        app:layout_constraintTop_toTopOf="@+id/iv_profile"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <TextView
         android:id="@+id/tv_review"
         android:layout_width="wrap_content"
