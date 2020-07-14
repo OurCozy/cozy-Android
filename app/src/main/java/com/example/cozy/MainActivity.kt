@@ -13,6 +13,7 @@ import java.security.NoSuchAlgorithmException
 
 class MainActivity : AppCompatActivity() {
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -46,6 +47,8 @@ class MainActivity : AppCompatActivity() {
         getAppKeyHash()
 
     }
+
+
     // 키해시 얻는 함수
     private fun getAppKeyHash() {
         try {
@@ -62,4 +65,8 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+
 }
+
+

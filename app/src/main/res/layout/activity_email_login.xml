@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/img_arrow_dark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="27dp"
+        android:src="@drawable/ic_left_arrow_dark"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/finish_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="26dp"
+        android:font="@font/notosans_fontfamily"
+        android:includeFontPadding="false"
+        android:text="완료"
+        android:textColor="#d1d1d1"
+        android:textFontWeight="700"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_arrow_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/img_arrow_dark" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="31dp"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:includeFontPadding="false"
+        android:text="이메일 로그인"
+        android:textColor="@color/black"
+        android:textFontWeight="900"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_arrow_dark" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginRight="23dp"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:hint="cozy1234@cozy.com"
+        android:includeFontPadding="false"
+        android:inputType="textEmailAddress"
+        android:textColorHint="#d1d1d1"
+        android:textFontWeight="700"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="37dp"
+        android:layout_marginRight="23dp"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:hint="비밀번호(영문,숫자,특수문자 포함)"
+        android:includeFontPadding="false"
+        android:inputType="textEmailAddress"
+        android:textColorHint="#d1d1d1"
+        android:textFontWeight="700"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:includeFontPadding="false"
+        android:text="*이메일 형식, 혹은 비밀번호를 확인하세요."
+        android:textColor="@color/mainColor"
+        android:textFontWeight="500"
+        android:textSize="12sp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="@+id/password"
+        app:layout_constraintTop_toBottomOf="@+id/password" />
+
+    <TextView
+        android:id="@+id/id_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:includeFontPadding="false"
+        android:text="아이디 찾기"
+        android:textColor="#707070"
+        android:textFontWeight="500"
+        android:textSize="11sp"
+        android:layout_marginLeft="110dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintStart_toStartOf="@+id/password"
+        app:layout_constraintTop_toTopOf="@+id/view" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="1dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="200dp"
+        android:background="#707070"
+        android:foregroundGravity="center"
+        app:layout_constraintStart_toEndOf="@+id/id_search"
+        app:layout_constraintEnd_toStartOf="@id/pw_search"
+        app:layout_constraintTop_toBottomOf="@+id/password" />
+
+    <TextView
+        android:id="@+id/pw_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:includeFontPadding="false"
+        android:text="비밀번호 찾기"
+        android:textColor="#707070"
+        android:textFontWeight="500"
+        android:textSize="11sp"
+        android:layout_marginRight="100dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="@+id/password"
+        app:layout_constraintTop_toTopOf="@+id/view" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -41,7 +41,8 @@ class SeoulFragment : Fragment(){
             //val view = onInflate(R.layout.fragment_popup, )
             editor.putInt("mapo", 1)
             editor.commit()
-            fragmentManager!!.beginTransaction().remove(PopupFragment()).commit()
+            //onBackPressed()
+            //getFragmentManager()!!.popBackStack();
 
         }
 
