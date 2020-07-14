@@ -129,6 +129,12 @@ class RecommendDetailActivity : AppCompatActivity() {
                 Glide.with(this).load(detailData.image3).into(iv_detail_img_3)
                 tv_detail.text = detailData.description
                 isChecked = detailData.checked
+                if(isChecked == 0) {
+                    iv_bookmark.isSelected = false
+                }
+                else {
+                    iv_bookmark.isSelected = true
+                }
                 Log.d("data: ", detailData.profile)
 
                 // 카카오 지도 API 사용 (AVD로 실행할 때는 78~94 주석처리하기)
@@ -163,9 +169,6 @@ class RecommendDetailActivity : AppCompatActivity() {
         }
 
         val bookmarkImg = findViewById<ImageView>(R.id.iv_bookmark)
-        if(isChecked == 0)
-            bookmarkImg.setImageResource(R.drawable.ic_bookmark)
-        else bookmarkImg.setImageResource(R.drawable.ic_bookmark_selected)
 
         // 관심책방 on/off
         bookmarkImg.setOnClickListener {

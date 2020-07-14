@@ -1,18 +1,15 @@
 package com.example.cozy.views.interest
 
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cozy.R
-import com.example.cozy.network.RequestToServer
-import com.example.cozy.network.customEnqueue
-import com.example.cozy.network.responseData.BookstoreInfo
+import com.example.cozy.views.map.MapData
 
 
-class InterestViewHolder(itemView: View, val onClick: (BookstoreInfo) -> Unit) : RecyclerView.ViewHolder(itemView) {
+class InterestViewHolder(itemView: View, val onClick: (MapData) -> Unit) : RecyclerView.ViewHolder(itemView) {
     val rv_interest_title = itemView.findViewById<TextView>(R.id.rv_title)
     val hashTag1 = itemView.findViewById<TextView>(R.id.hashtag_map_tv1)
     val hashTag2 = itemView.findViewById<TextView>(R.id.hashtag_map_tv2)
@@ -20,34 +17,19 @@ class InterestViewHolder(itemView: View, val onClick: (BookstoreInfo) -> Unit) :
     val image = itemView.findViewById<ImageView>(R.id.rv_image)
     val bookmark = itemView.findViewById<ImageView>(R.id.rv_hashtag)
 
-    fun bind(data: BookstoreInfo){
+    fun bind(data: MapData){
         rv_interest_title.text = data.bookstoreName
         hashTag1.text = data.hashtag1
         hashTag2.text = data.hashtag2
         hashTag3.text = data.hashtag3
-        Glide.with(itemView).load("https://images.unsplash.com/photo-1561851561-04ee3d324423?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80").into(image)
-
+        if (data.profile == "NULL") {
+            Glide.with(itemView).load(data.image1).into(image)
+        }
+        else{
+            Glide.with(itemView).load(data.profile).into(image)
+        }
         itemView.setOnClickListener {
             onClick(data)
         }
-//
-//        //북마크 버튼 클릭
-//        bookmark.setOnClickListener {
-//            RequestToServer.service.requestBookmarkUpdate(data.bookstoreIdx).customEnqueue(
-//                onError = {Log.d("RESPONSE", "error")},
-//                onSuccess = {
-//                    if(it.success) {
-//                        Log.d("RESPONSE", "SUCCESS")
-//                    }
-//                    Log.d("RESPONSE", it.message)
-//                }
-//            )
-//
-//            //북마크 해제 이미지로 변경
-//            bookmark.setImageResource(R.drawable.ic_small_bookmark)
-//            //아이템 사라지기
-//            itemView.visibility = View.GONE
-//
-//        }
     }
 }

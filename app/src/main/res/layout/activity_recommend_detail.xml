@@ -193,16 +193,6 @@
                 app:layout_constraintEnd_toEndOf="parent"/>
 
             <ImageView
-                android:id="@+id/iv_find_road"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="14dp"
-                android:src="@drawable/ic_find_road"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_address_icon"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/iv_address_icon" />
-
-            <ImageView
                 android:id="@+id/iv_address_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -290,7 +280,6 @@
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosans_cjkkr_regular"
                 android:textFontWeight="500"
-                android:text="070-5103-9975"
                 android:textColor="@color/textColor"
                 android:textSize="12sp"
                 app:layout_constraintStart_toEndOf="@id/iv_call_icon"
@@ -462,6 +451,16 @@
                 android:fontFamily="@font/notosans_cjkkr_bold"
                 app:layout_constraintStart_toStartOf="@+id/start_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/divide_line2" />
+
+            <ImageView
+                android:id="@+id/iv_find_road"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="14dp"
+                android:src="@drawable/ic_find_road"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_location"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_location" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/rec_view_map"

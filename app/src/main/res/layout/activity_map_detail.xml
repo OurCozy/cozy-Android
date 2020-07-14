@@ -117,16 +117,6 @@
                 app:layout_constraintTop_toTopOf="@id/map_1st_category" />
 
             <ImageView
-                android:id="@+id/iv_find_road"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="14dp"
-                android:src="@drawable/ic_find_road"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_address_icon"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/iv_address_icon" />
-
-            <ImageView
                 android:id="@+id/iv_address_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -374,6 +364,16 @@
                 android:textFontWeight="900"
                 app:layout_constraintStart_toStartOf="@+id/start_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/divide_line2" />
+
+            <ImageView
+                android:id="@+id/iv_find_road"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="14dp"
+                android:src="@drawable/ic_find_road"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_location"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_location" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/view_map"

@@ -30,6 +30,11 @@ class MainFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_main, container, false)
+
+        var sharedPref = activity!!.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
+        var editor = sharedPref.edit()
+        editor.putString("token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4Ijo5LCJpYXQiOjE1OTQ3MDQzMTMsImV4cCI6My42MzYzNjM2MzYzNjM3OTU0ZSsyMiwiaXNzIjoib3VyLXNvcHQifQ.i2V_DKWGavb1yvJnYoh_4p7I9YBidJpdNB1Y__pxSc8")
+        editor.apply()
         initRecommend(view)
 
         return view

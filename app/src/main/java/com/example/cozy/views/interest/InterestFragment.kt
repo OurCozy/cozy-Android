@@ -7,20 +7,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import com.example.cozy.BottomItemDecoration
 import com.example.cozy.R
 import com.example.cozy.network.RequestToServer
 import com.example.cozy.network.customEnqueue
-import com.example.cozy.network.responseData.BookstoreInfo
-import com.example.cozy.network.responseData.ResponseInterest
-import com.example.cozy.views.map.MapAdapter
 import com.example.cozy.views.map.MapDetailActivity
 import com.example.cozy.views.search.SearchActivity
 import kotlinx.android.synthetic.main.fragment_interest.*
-import kotlinx.android.synthetic.main.item_bookstore_list.*
-import retrofit2.Call
-import retrofit2.Response
 
 class InterestFragment : Fragment() {
     val service = RequestToServer.service
@@ -61,6 +54,7 @@ class InterestFragment : Fragment() {
                 if(it.success) {
                     interestAdapter = InterestAdapter(v.context, it.data.toMutableList()) { BookstoreInfo ->
                         val intent = Intent(activity, MapDetailActivity::class.java)
+                        intent.putExtra("bookIdx",BookstoreInfo.bookstoreIdx)
                         startActivity(intent)
                     }
                     bookstore_interest.adapter = interestAdapter

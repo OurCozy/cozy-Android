@@ -23,7 +23,6 @@ class MapFragment : Fragment() {
     val service = RequestToServer.service
     lateinit var mapAdapter: MapAdapter
     lateinit var detailData : MapData
-    lateinit var thisView: View
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,15 +30,14 @@ class MapFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_map, container, false)
-        thisView = view
-        initMapList(view,1)
+        showMapList(view,1)
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val sectionIdx = { num : Int ->
-            initMapList(view,num)
+            showMapList(view,num)
         }
 
         location.setOnClickListener{
@@ -50,7 +48,7 @@ class MapFragment : Fragment() {
         bookstore.addItemDecoration(BottomItemDecoration(this.context!!, 15)) //itemDecoration 여백주기
     }
 
-    fun initMapList(view : View, num : Int) {
+    fun showMapList(view : View, num : Int) {
         val sharedPref = activity!!.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
         val header = mutableMapOf<String, String?>()
         header["Content-Type"] = "application/json"
@@ -59,6 +57,7 @@ class MapFragment : Fragment() {
             onError = {Toast.makeText(context!!,"올바르지 않은 요청입니다.",Toast.LENGTH_SHORT)},
             onSuccess = {
                 if(it.success) {
+                    setSection(num)
                     detailData = it.data.elementAt(0)
                     store_count.text = detailData.count.toString()
                     mapAdapter = MapAdapter(view.context, it.data.toMutableList()) { MapData ->
@@ -70,5 +69,16 @@ class MapFragment : Fragment() {
                 }
             }
         )
+    }
+
+    fun setSection(sectionIdx : Int){
+        when(sectionIdx){
+            1 -> {location.text = "마포구"; write_location.text = "마포구"}
+            2 -> {location.text = "용산구"; write_location.text = "용산구"}
+            3 -> {location.text = "관악구/영등포구"; write_location.text = "관악구/영등포구"}
+            4 -> {location.text = "광진구/동대문구"; write_location.text = "광진구/동대문구"}
+            5 -> {location.text = "강남구/서초구"; write_location.text = "강남구/서초구"}
+            6 -> {location.text = "서대문구/종로구"; write_location.text = "서대문구/종로구"}
+        }
     }
 }

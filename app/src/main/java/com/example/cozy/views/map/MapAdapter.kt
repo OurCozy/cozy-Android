@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cozy.R
-import com.example.cozy.network.responseData.BookstoreInfo
 
 class MapAdapter(
     private val context: Context,
@@ -18,15 +17,6 @@ class MapAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MapViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_bookstore_list, parent, false)
 
-            /*
-        view.bookstore.outlineProvider = @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-        object : ViewOutlineProvider(){
-            @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-            override fun getOutline(view: View?, outline: Outline?) {
-                outline?.setRoundRect(20, -50, view!!.width, (view.height).toInt(), 50f)
-            }
-        }
-*/
         return MapViewHolder(view, onClick)
 
     }
