@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.cozy.R
+import kotlinx.android.synthetic.main.fragment_gg.*
 
 class GgFragment : Fragment(){
 
@@ -15,5 +16,16 @@ class GgFragment : Fragment(){
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_gg, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        orange_btn.setOnClickListener{
+            //onBackPressed()
+            fragmentManager!!.beginTransaction().remove(this).commit()
+            //getFragmentManager()!!.popBackStack();
+
+        }
     }
 }

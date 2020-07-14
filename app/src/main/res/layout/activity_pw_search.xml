@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/img_arrow_dark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="27dp"
+        android:src="@drawable/ic_left_arrow_dark"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/finish_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="26dp"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:includeFontPadding="false"
+        android:text="완료"
+        android:textColor="#d1d1d1"
+        android:textFontWeight="700"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_arrow_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/img_arrow_dark" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="31dp"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:includeFontPadding="false"
+        android:text="비밀번호 찾기"
+        android:textColor="@color/black"
+        android:textFontWeight="900"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_arrow_dark" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="39dp"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:includeFontPadding="false"
+        android:text="비밀번호를 재설정하려는 계정(이메일)을\n입력해주세요."
+        android:textColor="@color/black"
+        android:textFontWeight="700"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/textView3"
+        app:layout_constraintTop_toBottomOf="@id/textView3" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="23dp"
+        android:layout_marginRight="23dp"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:hint="cozy1234@cozy.com"
+        android:includeFontPadding="false"
+        android:inputType="textEmailAddress"
+        android:textColorHint="#d1d1d1"
+        android:textFontWeight="700"
+        android:textSize="16sp"
+        android:layout_marginTop="46dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
