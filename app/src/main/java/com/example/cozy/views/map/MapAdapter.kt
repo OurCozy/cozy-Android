@@ -2,16 +2,19 @@ package com.example.cozy.views.map
 
 import android.content.Context
 import android.os.Build
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cozy.R
+import com.example.cozy.network.RequestToServer
+import com.example.cozy.network.customEnqueue
 import com.example.cozy.network.responseData.BookstoreInfo
 
 class MapAdapter(
     private val context: Context,
-    val datas : MutableList<MapData>, val onClick : (MapData) -> Unit
+    val data : MutableList<MapData>, val onClick : (MapData) -> Unit
 ) : RecyclerView.Adapter<MapViewHolder>() {
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -32,10 +35,31 @@ class MapAdapter(
     }
 
     override fun getItemCount(): Int {
-        return datas.size
+        return data.size
     }
 
     override fun onBindViewHolder(holder: MapViewHolder, position: Int) {
-        holder.bind(datas[position])
+        holder.bind(data[position])
+
+        holder.bookmark.setOnClickListener {
+            holder.bookmark.isSelected = !holder.bookmark.isSelected
+
+            val sharedPref = context.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
+            val token = sharedPref.getString("token", "token")
+            val header = mutableMapOf<String, String?>()
+            header["Content-Type"] = "application/json"
+            header["token"] = token
+
+            RequestToServer.service.requestBookmarkUpdate(data[position].bookstoreIdx, header).customEnqueue(
+                onError = { Log.d("RESPONSE", "error")},
+                onSuccess = {
+                    if(it.success) {
+                        Log.d("RESPONSE", it.message)
+                    }
+                    else Log.d("RESPONSE", it.message)
+                }
+            )
+        }
+
     }
 }

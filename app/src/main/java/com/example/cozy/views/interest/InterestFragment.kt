@@ -7,40 +7,36 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import com.example.cozy.BottomItemDecoration
 import com.example.cozy.R
 import com.example.cozy.network.RequestToServer
 import com.example.cozy.network.customEnqueue
-import com.example.cozy.network.responseData.BookstoreInfo
-import com.example.cozy.network.responseData.ResponseInterest
-import com.example.cozy.views.map.MapAdapter
 import com.example.cozy.views.map.MapDetailActivity
 import com.example.cozy.views.search.SearchActivity
 import kotlinx.android.synthetic.main.fragment_interest.*
-import kotlinx.android.synthetic.main.item_bookstore_list.*
-import retrofit2.Call
-import retrofit2.Response
 
 class InterestFragment : Fragment() {
     val service = RequestToServer.service
     lateinit var interestAdapter: InterestAdapter
+    lateinit var fragView : View
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        val view = inflater.inflate(R.layout.fragment_interest, container, false)
-        loadMapDatas(view)
-
+        fragView = inflater.inflate(R.layout.fragment_interest, container, false)
         // Inflate the layout for this fragment
-        return view
+        return fragView
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadMapDatas(fragView)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         //검색창 열기
         btn_search.setOnClickListener {

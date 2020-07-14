@@ -34,7 +34,7 @@ class MapDetailActivity : AppCompatActivity() {
     var kakaoPackageName : String = "net.daum.android.map"
 
     //관심책방 여부 저장 변수 TODO:서버에서 가져온 정보 여기에 저장
-    var isChecked : Boolean = true
+    var isChecked : Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -111,24 +111,24 @@ class MapDetailActivity : AppCompatActivity() {
                 map_detail.text = detailData.description
                 Log.d("data: ", detailData.profile)
 
-                // 카카오 지도 API 사용 (AVD로 실행할 때는 78~94 주석처리하기)
-                val mapView = MapView(this)
-                val mapViewContainer = view_map as ViewGroup
-                mapViewContainer.addView(mapView)
-                // 서점 위치 위도&경도로 표시
-                val MARKER_POINT = MapPoint.mapPointWithGeoCoord(latitude, longitude)
-                mapView.setMapCenterPoint(MARKER_POINT, true)
-                // 지도 레벨 변경
-                mapView.setZoomLevel(3, true)
-                // 지도 위에 마커 표시
-                val marker = MapPOIItem()
-                marker.itemName = "Default Marker"
-                marker.tag = 0
-                marker.mapPoint = MARKER_POINT
-                marker.markerType = MapPOIItem.MarkerType.BluePin // 기본으로 제공하는 BluePin 마커 모양.
-                marker.selectedMarkerType =
-                    MapPOIItem.MarkerType.RedPin // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
-                mapView.addPOIItem(marker)
+//                // 카카오 지도 API 사용 (AVD로 실행할 때는 78~94 주석처리하기)
+//                val mapView = MapView(this)
+//                val mapViewContainer = view_map as ViewGroup
+//                mapViewContainer.addView(mapView)
+//                // 서점 위치 위도&경도로 표시
+//                val MARKER_POINT = MapPoint.mapPointWithGeoCoord(latitude, longitude)
+//                mapView.setMapCenterPoint(MARKER_POINT, true)
+//                // 지도 레벨 변경
+//                mapView.setZoomLevel(3, true)
+//                // 지도 위에 마커 표시
+//                val marker = MapPOIItem()
+//                marker.itemName = "Default Marker"
+//                marker.tag = 0
+//                marker.mapPoint = MARKER_POINT
+//                marker.markerType = MapPOIItem.MarkerType.BluePin // 기본으로 제공하는 BluePin 마커 모양.
+//                marker.selectedMarkerType =
+//                    MapPOIItem.MarkerType.RedPin // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
+//                mapView.addPOIItem(marker)
             }
         )
 
@@ -143,6 +143,7 @@ class MapDetailActivity : AppCompatActivity() {
                     Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$kakaoPackageName"))
                 startActivity(intent)
             }
+        }
 
             // 창 닫기
             findViewById<ImageView>(R.id.iv_close).setOnClickListener {
@@ -161,41 +162,45 @@ class MapDetailActivity : AppCompatActivity() {
                 header["Content-Type"] = "application/json"
                 header["token"] = sharedPref.getString("token", "token")
 
-            //관심책방이면 체크해제
-            if(isChecked) {
-                //서버에 해당 정보 전달
-                //TODO: 서버에서 받은 bookstoreIdx 전달
-                service.requestBookmarkUpdate(1, header).customEnqueue(
-                    onError = { Log.d("response", "error")},
-                    onSuccess = {
-                        if(it.success) {
-                            //색칠 안된 북마크로 이미지 변경
-                            bookmarkImg.isSelected = false
-                            isChecked = false
-                        } else {
-                            Log.d("response", it.message)
-                            Toast.makeText(this, "관심책방 해제에 실패했습니다.", Toast.LENGTH_SHORT).show()
+                //관심책방이면 체크해제
+                if(isChecked) {
+                    //서버에 해당 정보 전달
+                    //TODO: 서버에서 받은 bookstoreIdx 전달
+                    service.requestBookmarkUpdate(1, header).customEnqueue(
+                        onError = { Log.d("response", "error")},
+                        onSuccess = {
+                            if(it.success) {
+                                Log.d("response", it.message)
+                                //색칠 안된 북마크로 이미지 변경
+                                //bookmarkImg.setImageResource(R.drawable.ic_bookmark)
+                                bookmarkImg.isSelected = false
+                                isChecked = false
+                            } else {
+                                Log.d("response", it.message)
+                                Toast.makeText(this, "관심책방 해제에 실패했습니다.", Toast.LENGTH_SHORT).show()
+                            }
                         }
-                    }
-                )
-            } else {
-                //서버에 해당 정보 전달
-                //TODO: 서버에서 받은 bookstoreIdx 전달
-                service.requestBookmarkUpdate(1, header).customEnqueue(
-                    onError = { Log.d("response", "error")},
-                    onSuccess = {
-                        if(it.success) {
-                            //색칠된 북마크로 이미지 변경
-                            bookmarkImg.isSelected = true
-                            isChecked = true
-                        } else {
-                            Log.d("response", it.message)
-                            Toast.makeText(this, "관심책방 등록에 실패했습니다.", Toast.LENGTH_SHORT).show()
+                    )
+                } else {
+                    //서버에 해당 정보 전달
+                    //TODO: 서버에서 받은 bookstoreIdx 전달
+                    service.requestBookmarkUpdate(1, header).customEnqueue(
+                        onError = { Log.d("response", "error")},
+                        onSuccess = {
+                            if(it.success) {
+                                Log.d("response", it.message)
+                                //색칠된 북마크로 이미지 변경
+                                //bookmarkImg.setImageResource(R.drawable.ic_bookmark_selected)
+                                bookmarkImg.isSelected = true
+                                isChecked = true
+                            } else {
+                                Log.d("response", it.message)
+                                Toast.makeText(this, "관심책방 등록에 실패했습니다.", Toast.LENGTH_SHORT).show()
+                            }
                         }
-                    }
-                )
+                    )
+                }
             }
-        }
 
             btn_write_review.setOnClickListener {
                 startActivity(Intent(this, PutReviewActivity::class.java))
@@ -205,7 +210,6 @@ class MapDetailActivity : AppCompatActivity() {
             rv_comments.adapter = adapter
             loadData()
         }
-    }
 
     fun loadData() {
         data.apply{

@@ -43,6 +43,8 @@ class InterestAdapter (private val context: Context, val data : MutableList<Book
     override fun onBindViewHolder(holder: InterestViewHolder, position: Int) {
         holder.bind(data[position])
 
+        holder.bookmark.setImageResource(R.drawable.ic_small_bookmark_selected)
+        
         holder.bookmark.setOnClickListener {
             val sharedPref = context.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
             val token = sharedPref.getString("token", "token")

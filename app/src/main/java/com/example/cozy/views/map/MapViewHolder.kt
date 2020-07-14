@@ -30,7 +30,6 @@ class MapViewHolder(itemView: View, val onClick : (MapData) -> Unit) : RecyclerV
 
         itemView.setOnClickListener {
             onClick(data)
-
         }
     }
 }
