@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cozy.R
 import com.example.cozy.network.RequestToServer
 import com.example.cozy.network.customEnqueue
-import com.example.cozy.network.responseData.BookstoreInfo
 
 class MapAdapter(
     private val context: Context,
