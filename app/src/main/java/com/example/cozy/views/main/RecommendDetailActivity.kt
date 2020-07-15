@@ -129,12 +129,7 @@ class RecommendDetailActivity : AppCompatActivity() {
                 Glide.with(this).load(detailData.image3).into(iv_detail_img_3)
                 tv_detail.text = detailData.description
                 isChecked = detailData.checked
-                if(isChecked == 0) {
-                    iv_bookmark.isSelected = false
-                }
-                else {
-                    iv_bookmark.isSelected = true
-                }
+                iv_bookmark.isSelected = isChecked != 0
                 Log.d("data: ", detailData.profile)
 
                 // 카카오 지도 API 사용 (AVD로 실행할 때는 78~94 주석처리하기)

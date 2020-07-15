@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import com.bumptech.glide.Glide
@@ -107,12 +106,7 @@ class MapDetailActivity : AppCompatActivity() {
                     iv_instagram.setImageResource(R.drawable.ic_insta_non)
                 }
                 isChecked = detailData.checked
-                if(isChecked == 0) {
-                    iv_bookmark.isSelected = false
-                }
-                else {
-                    iv_bookmark.isSelected = true
-                }
+                iv_bookmark.isSelected = isChecked != 0
                 Glide.with(this).load(detailData.image1).into(map_detail_img_1)
                 Glide.with(this).load(detailData.image2).into(map_detail_img_2)
                 map_detail.text = detailData.description

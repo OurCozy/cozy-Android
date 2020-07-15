@@ -5,13 +5,15 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface RequestInterface {
-/*
+
     //회원가입 : https://github.com/OurCozy/cozy-server/wiki/1_1.-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85
     @POST("/user/signup")
-    fun requestSignup() : Call<ResponseSignup>
+    fun requestSignup(@Body body : RequestSignup) : Call<ResponseSignup>
 
-    //로그인
-*/
+    //로그인   : https://github.com/OurCozy/cozy-server/wiki/1_2.-%EB%A1%9C%EA%B7%B8%EC%9D%B8
+    @POST("/user/signin")
+    fun requestSignin(@Body body: RequestLogin) : Call<ResponseSignin>
+
     //책방 8개 추천 : https://github.com/OurCozy/cozy-server/wiki/2_1.-%EC%B1%85%EB%B0%A9-8%EA%B0%9C-%EC%B6%94%EC%B2%9C
     @GET("/main/recommendation")
     fun requestRecommendation(@HeaderMap headers: Map<String, String?>) : Call<ResponseRecommendList>
