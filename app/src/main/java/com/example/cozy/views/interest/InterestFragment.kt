@@ -15,6 +15,7 @@ import com.example.cozy.network.customEnqueue
 import com.example.cozy.views.map.MapDetailActivity
 import com.example.cozy.views.search.SearchActivity
 import kotlinx.android.synthetic.main.fragment_interest.*
+import kotlinx.android.synthetic.main.fragment_interest.view.*
 
 class InterestFragment : Fragment() {
     val service = RequestToServer.service
@@ -48,8 +49,10 @@ class InterestFragment : Fragment() {
     }
 
     private fun loadMapDatas(v: View) {
-        val sharedPref = activity!!.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
         val header = mutableMapOf<String, String?>()
+        val sharedPref = activity!!.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
+        v.nickname_cock.text = sharedPref.getString("nickname", "cozy") + "님의 콕!"
+        v.tv_question.text = sharedPref.getString("nickname", "cozy") + "님 만의"
         header["Content-Type"] = "application/json"
         header["token"] = sharedPref.getString("token", "token")
         service.requestInterest(header).customEnqueue(
@@ -67,6 +70,7 @@ class InterestFragment : Fragment() {
                     background.visibility = View.GONE
                     tv_question.visibility = View.GONE
                 } else {
+                    cock.visibility = View.GONE
                     bookstore_interest.visibility = View.GONE
                     background.visibility = View.VISIBLE
                     tv_question.visibility = View.VISIBLE

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -34,14 +35,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="71dp"></androidx.constraintlayout.widget.Guideline>
+        app:layout_constraintGuide_begin="24dp"></androidx.constraintlayout.widget.Guideline>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="71dp">
+        app:layout_constraintGuide_end="24dp">
 
     </androidx.constraintlayout.widget.Guideline>
 
@@ -78,55 +79,38 @@
         app:layout_constraintStart_toEndOf="@+id/btn_facebook_login"
         app:layout_constraintTop_toTopOf="@+id/btn_facebook_login" />
 
-    <ImageView
+    <TextView
         android:id="@+id/email_login"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/img_orange_login_start"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_facebook_login"
-        android:layout_marginTop="25dp"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="37dp"
+        android:background="@drawable/round"
         android:font="@font/notosans_fontfamily"
+        android:gravity="center"
         android:includeFontPadding="false"
         android:text="이메일로 로그인하기"
-        android:gravity="center"
         android:textColor="@color/black"
         android:textFontWeight="700"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@id/email_login"
-        app:layout_constraintEnd_toEndOf="@id/email_login"
-        app:layout_constraintStart_toStartOf="@id/email_login"
-        app:layout_constraintTop_toTopOf="@id/email_login" />
-
-    <ImageView
-        android:id="@+id/signup"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/img_orange_login_start"
-        app:layout_constraintStart_toStartOf="@+id/email_login"
-        app:layout_constraintEnd_toEndOf="@+id/email_login"
-        app:layout_constraintTop_toBottomOf="@id/email_login"
-        android:layout_marginTop="14dp"/>
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/btn_facebook_login" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="회원가입"
-       android:textSize="14sp"
-        android:gravity="center"
+        android:id="@+id/signup"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:background="@drawable/round"
         android:font="@font/notosans_fontfamily"
+        android:gravity="center"
         android:includeFontPadding="false"
-        android:textFontWeight="700"
+        android:text="회원가입"
         android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="@id/signup"
-        app:layout_constraintEnd_toEndOf="@id/signup"
-        app:layout_constraintTop_toTopOf="@id/signup"
-        app:layout_constraintBottom_toBottomOf="@id/signup"/>
+        android:layout_marginTop="14dp"
+        android:textFontWeight="700"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/email_login" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

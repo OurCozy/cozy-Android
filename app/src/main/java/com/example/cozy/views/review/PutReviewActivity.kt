@@ -40,16 +40,16 @@ class PutReviewActivity : AppCompatActivity() {
 
         findViewById<EditText>(R.id.et_review).addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                if(s!!.length == 0) {
-                    tv_next.setTextColor(resources.getColor(R.color.gray))
-                    isTextFilled = false
-                } else isTextFilled = true
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) { }
 
             //별점 입력했고 글 쓰는 중일 때 '게시' 메인컬러로 변경
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if(s!!.length == 0) {
+                    tv_next.setTextColor(resources.getColor(R.color.gray))
+                    isTextFilled = false
+                } else isTextFilled = true
                 if(isStarFilled && isImgFilled)
                     tv_next.setTextColor(resources.getColor(R.color.mainColor))
             }

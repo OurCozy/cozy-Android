@@ -43,13 +43,12 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/name"
+                android:id="@+id/nickname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="35dp"
-                android:fontFamily="@font/notosans_cjkkr_bold"
+                android:fontFamily="@font/notosans_fontfamily"
                 android:includeFontPadding="false"
-                android:text="다돌코님,"
                 android:textColor="@color/recommend"
                 android:textFontWeight="900"
                 android:textSize="25sp" />
@@ -58,7 +57,7 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/notosans_cjkkr_bold"
+                android:fontFamily="@font/notosans_fontfamily"
                 android:lineSpacingExtra="0sp"
                 android:text="숨은 서점찾기 어떠세요?"
                 android:includeFontPadding="false"

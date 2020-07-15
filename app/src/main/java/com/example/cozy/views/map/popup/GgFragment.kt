@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.cozy.R
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_gg.*
 
 class GgFragment : Fragment(){
@@ -22,10 +23,8 @@ class GgFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
 
         orange_btn.setOnClickListener{
-            //onBackPressed()
-            fragmentManager!!.beginTransaction().remove(this).commit()
-            //getFragmentManager()!!.popBackStack();
-
+            val popF = this.parentFragment as BottomSheetDialogFragment
+            popF.dismiss()
         }
     }
 }
