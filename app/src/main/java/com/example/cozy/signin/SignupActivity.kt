@@ -10,12 +10,15 @@ import com.example.cozy.network.RequestToServer
 import com.example.cozy.network.customEnqueue
 import com.example.cozy.textChangedListener
 import kotlinx.android.synthetic.main.activity_signup.*
+import kotlinx.android.synthetic.main.activity_startpage.*
+import java.util.regex.Pattern
 
 class SignupActivity : AppCompatActivity() {
 
     val requestTosever = RequestToServer
     var isnickname = false
     var isemail = false
+    var password = false
     var passwordcheck = false
 
 
@@ -43,6 +46,20 @@ class SignupActivity : AppCompatActivity() {
                 isemail = true
                 signup_finish()
             }
+        }
+
+        signup_pw.textChangedListener {
+            if(!Pattern.matches("^(?=.*\\d)(?=.*[~`!@#$%\\^&*()-])(?=.*[a-zA-Z]).{10,20}$", signup_pw.text.toString())){
+                pw_msg.text = "*영문, 숫자, 특수문자 포함 10~20자 입력해주세요."
+                password = false
+                signup_finish()
+            }
+            else{
+                pw_msg.text=""
+                password = true
+                signup_finish()
+            }
+
         }
 
         signup_pw_checked.textChangedListener {
@@ -89,6 +106,6 @@ class SignupActivity : AppCompatActivity() {
     }
 
     fun signup_finish(){
-        finish_signup_button.isEnabled = isnickname&&isemail&&passwordcheck
+        finish_signup_button.isEnabled = isnickname&&isemail&&password&&passwordcheck
     }
 }

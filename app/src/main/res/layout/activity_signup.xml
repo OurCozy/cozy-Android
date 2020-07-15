@@ -91,6 +91,7 @@
         android:textAlignment="center"
         android:textColor="@color/mainColor"
         android:layout_marginBottom="12dp"
+        android:layout_marginRight="5dp"
         app:layout_constraintBottom_toBottomOf="@+id/signup_email"
         app:layout_constraintEnd_toEndOf="@+id/signup_email"
         app:layout_constraintTop_toTopOf="@+id/signup_email" />
