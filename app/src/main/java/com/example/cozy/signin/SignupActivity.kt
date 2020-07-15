@@ -82,6 +82,10 @@ class SignupActivity : AppCompatActivity() {
             )
         }
 
+        //뒤로가기
+        img_arrow_dark_signup.setOnClickListener {
+            finish()
+        }
     }
 
     fun signup_finish(){

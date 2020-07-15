@@ -75,6 +75,11 @@ class EmailLoginActivity() : AppCompatActivity() {
                 )
             }
         }
+
+        //뒤로가기
+        img_arrow_dark.setOnClickListener {
+            finish()
+        }
     }
 
     fun login_finish(){

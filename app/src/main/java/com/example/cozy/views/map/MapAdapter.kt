@@ -31,15 +31,6 @@ class MapAdapter(
     override fun onBindViewHolder(holder: MapViewHolder, position: Int) {
         holder.bind(data[position])
 
-        if(data[position].checked == 1) {
-            holder.bookmark.isSelected = true
-            Log.d("test", "북마크 체크됨 " + position + " " + data[position].checked + " " + holder.bookmark.isSelected)
-        }
-        else {
-            holder.bookmark.isSelected = false
-            Log.d("test", "북마크 체크 해제됨 " + position + " " + data[position].checked + " " + holder.bookmark.isSelected)
-        }
-
         holder.bookmark.setOnClickListener {
             val sharedPref = context.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
             val token = sharedPref.getString("token", "token")

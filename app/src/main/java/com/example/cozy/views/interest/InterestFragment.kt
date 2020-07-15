@@ -15,7 +15,9 @@ import com.example.cozy.network.customEnqueue
 import com.example.cozy.views.map.MapDetailActivity
 import com.example.cozy.views.search.SearchActivity
 import kotlinx.android.synthetic.main.fragment_interest.*
+import kotlinx.android.synthetic.main.fragment_interest.background
 import kotlinx.android.synthetic.main.fragment_interest.view.*
+import kotlinx.android.synthetic.main.fragment_interest_none.*
 
 class InterestFragment : Fragment() {
     val service = RequestToServer.service
@@ -51,7 +53,7 @@ class InterestFragment : Fragment() {
     private fun loadMapDatas(v: View) {
         val header = mutableMapOf<String, String?>()
         val sharedPref = activity!!.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
-        v.nickname_cock.text = sharedPref.getString("nickname", "cozy") + "님의 콕!"
+        //v.nickname_cock.text = sharedPref.getString("nickname", "cozy") + "님의 콕!"
         v.tv_question.text = sharedPref.getString("nickname", "cozy") + "님 만의"
         header["Content-Type"] = "application/json"
         header["token"] = sharedPref.getString("token", "token")
@@ -59,7 +61,7 @@ class InterestFragment : Fragment() {
             onError = {Log.d("test", "error")},
             onSuccess = {
                 if(it.success) {
-                    iv_cock.text = it.data[0].nickname + "님의 콕!"
+                    nickname_cock.text = it.data[0].nickname + "님의 콕!"
                     Log.d("test", "success")
                     interestAdapter = InterestAdapter(v.context, it.data.toMutableList()) { BookstoreInfo ->
                         val intent = Intent(activity, MapDetailActivity::class.java)

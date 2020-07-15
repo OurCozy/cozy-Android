@@ -36,7 +36,9 @@
         <activity
             android:name=".views.map.MapDetailActivity"
             tools:ignore="DuplicateActivity" />
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity">
+
+        </activity>
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/native_app_key" />

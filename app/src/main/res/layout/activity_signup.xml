@@ -85,9 +85,12 @@
     <Button
         android:id="@+id/btn_overlap"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:src="@drawable/img_overlap"
+        android:layout_height="0dp"
+        android:background="@drawable/round"
+        android:text="중복확인"
+        android:textAlignment="center"
+        android:textColor="@color/mainColor"
+        android:layout_marginBottom="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/signup_email"
         app:layout_constraintEnd_toEndOf="@+id/signup_email"
         app:layout_constraintTop_toTopOf="@+id/signup_email" />
