@@ -61,5 +61,7 @@ interface RequestInterface {
 
     //최근 본 책방 조회
 
-    //키워드 검색
+    //키워드 검색 : https://github.com/OurCozy/cozy-server/wiki/3_1.-%EA%B2%80%EC%83%89-%ED%8E%98%EC%9D%B4%EC%A7%80
+    @GET("/main/search/{keyword}")
+    fun requestSearch(@Path(value="keyword", encoded = true) keyword : String, @HeaderMap headers : Map<String, String?>) : Call<ResponseMap>
 }

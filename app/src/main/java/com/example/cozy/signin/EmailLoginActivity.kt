@@ -68,7 +68,7 @@ class EmailLoginActivity() : AppCompatActivity() {
                             editor.putString("token", it.data.accessToken)
                             editor.apply()
                             editor.commit()
-                            Log.d("token", sharedPref.getString("token", "token"))
+                            Log.d("tokenVal", sharedPref.getString("token", "token"))
                             val intent = Intent(this, MainActivity::class.java)
                             startActivity(intent)
                             finish()

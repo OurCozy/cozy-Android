@@ -17,14 +17,11 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".signin.SearchPwdActivity"></activity>
+        <activity android:name=".views.search.SearchResultActivity"/>
         <activity android:name=".signin.SignupActivity" />
         <activity android:name=".signin.EmailLoginActivity" />
         <activity android:name=".signin.StartActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".views.review.PutReviewActivity" />
         <activity android:name=".views.search.SearchActivity" />
@@ -37,7 +34,13 @@
         <activity
             android:name=".views.map.MapDetailActivity"
             tools:ignore="DuplicateActivity" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
