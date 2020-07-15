@@ -99,11 +99,29 @@ class MapDetailActivity : AppCompatActivity() {
                 if (detailData.homepage == "NULL"){
                     iv_homepage.setImageResource(R.drawable.ic_homepage_non)
                 }
+                else{
+                    iv_homepage.setOnClickListener {
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(detailData.homepage))
+                        startActivity(intent)
+                    }
+                }
                 if (detailData.facebook == "NULL"){
                     iv_facebook.setImageResource(R.drawable.ic_facebook_non)
                 }
+                else{
+                    iv_facebook.setOnClickListener{
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(detailData.facebook))
+                        startActivity(intent)
+                    }
+                }
                 if (detailData.instagram == "NULL"){
                     iv_instagram.setImageResource(R.drawable.ic_insta_non)
+                }
+                else{
+                    iv_instagram.setOnClickListener {
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(detailData.instagram))
+                        startActivity(intent)
+                    }
                 }
                 isChecked = detailData.checked
                 iv_bookmark.isSelected = isChecked != 0

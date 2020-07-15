@@ -1,5 +1,6 @@
 package com.example.cozy
 
+import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Base64
