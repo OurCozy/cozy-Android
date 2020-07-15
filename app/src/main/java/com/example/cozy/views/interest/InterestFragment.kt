@@ -3,6 +3,7 @@ package com.example.cozy.views.interest
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -52,9 +53,11 @@ class InterestFragment : Fragment() {
         header["Content-Type"] = "application/json"
         header["token"] = sharedPref.getString("token", "token")
         service.requestInterest(header).customEnqueue(
-            onError = {},
+            onError = {Log.d("test", "error")},
             onSuccess = {
                 if(it.success) {
+                    iv_cock.text = it.data[0].nickname + "님의 콕!"
+                    Log.d("test", "success")
                     interestAdapter = InterestAdapter(v.context, it.data.toMutableList()) { BookstoreInfo ->
                         val intent = Intent(activity, MapDetailActivity::class.java)
                         intent.putExtra("bookIdx",BookstoreInfo.bookstoreIdx)
@@ -63,10 +66,12 @@ class InterestFragment : Fragment() {
                     bookstore_interest.adapter = interestAdapter
                     background.visibility = View.GONE
                     tv_question.visibility = View.GONE
-                } else
+                } else {
                     bookstore_interest.visibility = View.GONE
                     background.visibility = View.VISIBLE
                     tv_question.visibility = View.VISIBLE
+                    Log.d("test", "else")
+                }
             }
         )
     }

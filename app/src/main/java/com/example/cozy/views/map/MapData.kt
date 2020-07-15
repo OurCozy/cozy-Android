@@ -10,5 +10,6 @@ data class MapData(
     val hashtag2 : String,
     val hashtag3 : String,
     val count: Int,
+    val nickname: String,
     val checked: Int
 )

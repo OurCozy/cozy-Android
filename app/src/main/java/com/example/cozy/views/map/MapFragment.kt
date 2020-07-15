@@ -18,26 +18,30 @@ import com.example.cozy.network.customEnqueue
 import com.example.cozy.views.map.popup.PopupFragment
 import com.example.cozy.views.map.popup.SeoulFragment
 import kotlinx.android.synthetic.main.fragment_map.*
+import kotlin.properties.Delegates
 
 class MapFragment : Fragment() {
     val service = RequestToServer.service
     lateinit var mapAdapter: MapAdapter
     lateinit var detailData : MapData
+    lateinit var fragView: View
+    var sectionIdx = 1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_map, container, false)
-        showMapList(view,1)
-        return view
+        fragView = inflater.inflate(R.layout.fragment_map, container, false)
+        showMapList(fragView, sectionIdx)
+        return fragView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val sectionIdx = { num : Int ->
             showMapList(view,num)
+            sectionIdx = num
         }
 
         location.setOnClickListener{
@@ -46,6 +50,12 @@ class MapFragment : Fragment() {
         }
 
         bookstore.addItemDecoration(BottomItemDecoration(this.context!!, 15)) //itemDecoration 여백주기
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        showMapList(fragView, sectionIdx)
     }
 
     fun showMapList(view : View, num : Int) {
@@ -60,6 +70,7 @@ class MapFragment : Fragment() {
                     setSection(num)
                     detailData = it.data.elementAt(0)
                     store_count.text = detailData.count.toString()
+
                     mapAdapter = MapAdapter(view.context, it.data.toMutableList()) { MapData ->
                         val intent = Intent(activity, MapDetailActivity::class.java)
                         intent.putExtra("bookIdx",MapData.bookstoreIdx)

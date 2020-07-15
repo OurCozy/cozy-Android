@@ -22,12 +22,8 @@ class InterestViewHolder(itemView: View, val onClick: (MapData) -> Unit) : Recyc
         hashTag1.text = data.hashtag1
         hashTag2.text = data.hashtag2
         hashTag3.text = data.hashtag3
-        if (data.profile == "NULL") {
-            Glide.with(itemView).load(data.image1).into(image)
-        }
-        else{
-            Glide.with(itemView).load(data.profile).into(image)
-        }
+        Glide.with(itemView).load(data.image1).into(image)
+
         itemView.setOnClickListener {
             onClick(data)
         }

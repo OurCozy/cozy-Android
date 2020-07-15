@@ -31,9 +31,16 @@ class MapAdapter(
     override fun onBindViewHolder(holder: MapViewHolder, position: Int) {
         holder.bind(data[position])
 
-        holder.bookmark.setOnClickListener {
-            holder.bookmark.isSelected = !holder.bookmark.isSelected
+        if(data[position].checked == 1) {
+            holder.bookmark.isSelected = true
+            Log.d("test", "북마크 체크됨 " + position + " " + data[position].checked + " " + holder.bookmark.isSelected)
+        }
+        else {
+            holder.bookmark.isSelected = false
+            Log.d("test", "북마크 체크 해제됨 " + position + " " + data[position].checked + " " + holder.bookmark.isSelected)
+        }
 
+        holder.bookmark.setOnClickListener {
             val sharedPref = context.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
             val token = sharedPref.getString("token", "token")
             val header = mutableMapOf<String, String?>()
@@ -44,6 +51,7 @@ class MapAdapter(
                 onError = { Log.d("RESPONSE", "error")},
                 onSuccess = {
                     if(it.success) {
+                        holder.bookmark.isSelected = !holder.bookmark.isSelected
                         Log.d("RESPONSE", it.message)
                     }
                     else Log.d("RESPONSE", it.message)
