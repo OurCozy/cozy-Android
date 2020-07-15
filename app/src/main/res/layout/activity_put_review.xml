@@ -59,7 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_star"
-                android:layout_marginTop="37dp"
+                android:layout_marginTop="28dp"
                 android:layout_marginLeft="3dp"
                 app:layout_constraintStart_toStartOf="@+id/tv_question"
                 app:layout_constraintTop_toBottomOf="@+id/tv_question" />
@@ -111,7 +111,7 @@
                 android:ems="10"
                 android:gravity="start|top"
                 android:background="@color/white"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="42dp"
                 android:hint="내용을 입력하세요"
                 android:textColorHint="@color/gray"
                 android:textColor="@color/textColor"
@@ -126,6 +126,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@+id/et_review"
                 app:layout_constraintStart_toStartOf="@+id/et_review"/>
 
@@ -133,13 +134,13 @@
                 android:id="@+id/upload_image"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:src="@drawable/img_124"
+                android:src="@drawable/img_picture"
                 android:scaleType="centerCrop"
                 app:roundedCorners="all"
                 app:cornerRadius="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="32dp"
                 app:layout_constraintDimensionRatio="314:202"
-                app:layout_constraintTop_toBottomOf="@+id/btn_img"
+                app:layout_constraintTop_toBottomOf="@+id/et_review"
                 app:layout_constraintStart_toStartOf="@+id/et_review"
                 app:layout_constraintEnd_toEndOf="@+id/end_guideline"/>
 

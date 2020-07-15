@@ -4,12 +4,8 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
 import com.example.cozy.MainActivity
 import com.example.cozy.R
-import com.kakao.auth.AuthType
 import com.kakao.auth.ISessionCallback
 import com.kakao.auth.Session
 import com.kakao.network.ErrorResult
@@ -17,7 +13,7 @@ import com.kakao.usermgmt.UserManagement
 import com.kakao.usermgmt.callback.MeV2ResponseCallback
 import com.kakao.usermgmt.response.MeV2Response
 import com.kakao.util.exception.KakaoException
-import kotlinx.android.synthetic.main.activity_signin.*
+import kotlinx.android.synthetic.main.activity_signin_kakao.*
 
 class SigninActivity : Activity() {
 
@@ -50,9 +46,11 @@ class SigninActivity : Activity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_signin)
+        setContentView(R.layout.activity_signin_kakao)
 
         Session.getCurrentSession().addCallback(session)
+
+        iv_close.setOnClickListener { finish() }
     }
 
     override fun onDestroy() {

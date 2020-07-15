@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.example.cozy.MainActivity
 import com.example.cozy.R
@@ -67,6 +68,7 @@ class EmailLoginActivity() : AppCompatActivity() {
                             editor.putString("token", it.data.accessToken)
                             editor.apply()
                             editor.commit()
+                            Log.d("token", sharedPref.getString("token", "token"))
                             val intent = Intent(this, MainActivity::class.java)
                             startActivity(intent)
                             finish()

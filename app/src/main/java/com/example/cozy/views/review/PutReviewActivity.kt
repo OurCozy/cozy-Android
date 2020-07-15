@@ -56,7 +56,7 @@ class PutReviewActivity : AppCompatActivity() {
         })
 
         //이미지 업로드
-        btn_img.setOnClickListener {
+        upload_image.setOnClickListener {
             startActivityForResult(Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI), IMAGE_FROM_GALLERY)
         }
 
