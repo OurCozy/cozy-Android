@@ -61,8 +61,7 @@ class InterestFragment : Fragment() {
             onError = {Log.d("test", "error")},
             onSuccess = {
                 if(it.success) {
-                    Log.d("test", "success")
-                    interestAdapter = InterestAdapter(v.context, it.data.toMutableList()) { BookstoreInfo ->
+                    interestAdapter = InterestAdapter(v.context, it.data.toMutableList(), { onEmpty() }) { BookstoreInfo ->
                         val intent = Intent(activity, MapDetailActivity::class.java)
                         intent.putExtra("bookIdx",BookstoreInfo.bookstoreIdx)
                         startActivity(intent)
@@ -70,14 +69,15 @@ class InterestFragment : Fragment() {
                     bookstore_interest.adapter = interestAdapter
                     background.visibility = View.GONE
                     tv_question.visibility = View.GONE
-                } else {
                     cock.visibility = View.GONE
-                    bookstore_interest.visibility = View.GONE
-                    background.visibility = View.VISIBLE
-                    tv_question.visibility = View.VISIBLE
-                    Log.d("test", "else")
-                }
+                } else onEmpty()
             }
         )
+    }
+
+    fun onEmpty() {
+        cock.visibility = View.VISIBLE
+        background.visibility = View.VISIBLE
+        tv_question.visibility = View.VISIBLE
     }
 }
