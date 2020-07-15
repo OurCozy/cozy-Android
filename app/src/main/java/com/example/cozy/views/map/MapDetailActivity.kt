@@ -15,6 +15,7 @@ import com.example.cozy.R
 import com.example.cozy.network.RequestToServer
 import com.example.cozy.network.customEnqueue
 import com.example.cozy.network.responseData.BookstoreDetailData
+import com.example.cozy.tokenHeader
 import com.example.cozy.views.review.PutReviewActivity
 import com.example.cozy.views.review.ReviewAdapter
 import com.example.cozy.views.review.ReviewData
@@ -172,16 +173,18 @@ class MapDetailActivity : AppCompatActivity() {
 
             // 관심책방 on/off
             bookmarkImg.setOnClickListener {
+                /*
                 val sharedPref = getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
                 val header = mutableMapOf<String, String?>()
                 header["Content-Type"] = "application/json"
-                header["token"] = sharedPref.getString("token", "token")
+                header["token"] = sharedPref.getString("token", "token")*/
+
 
                 //관심책방이면 체크해제
                 if(isChecked == 0) {
                     //서버에 해당 정보 전달
                     //TODO: 서버에서 받은 bookstoreIdx 전달
-                    service.requestBookmarkUpdate(1, header).customEnqueue(
+                    service.requestBookmarkUpdate(1, tokenHeader(this)).customEnqueue(
                         onError = { Log.d("response", "error")},
                         onSuccess = {
                             if(it.success) {

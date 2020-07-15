@@ -17,6 +17,7 @@ import com.example.cozy.R
 import com.example.cozy.network.RequestToServer
 import com.example.cozy.network.customEnqueue
 import com.example.cozy.network.responseData.BookstoreDetailData
+import com.example.cozy.tokenHeader
 import com.example.cozy.views.review.ReviewAdapter
 import com.example.cozy.views.review.ReviewData
 import com.example.cozy.views.review.PutReviewActivity
@@ -49,14 +50,15 @@ class RecommendDetailActivity : AppCompatActivity() {
             bookIdx = intent.getIntExtra("bookIdx",0)
         }
 
+        /*
         val sharedPref = this.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
         val header = mutableMapOf<String, String>()
         header["Content-Type"] = "application/json"
-        header["token"] = sharedPref.getString("token","token").toString()
+        header["token"] = sharedPref.getString("token","token").toString()*/
 
         //서점 정보 불러오고
         //서점 위치 지도로 보여주기
-        service.requestBookstore(bookIdx,header).customEnqueue(
+        service.requestBookstore(bookIdx, tokenHeader(this)).customEnqueue(
             onError = {Toast.makeText(this,"올바르지 않은 요청입니다.",Toast.LENGTH_SHORT)},
             onSuccess = {
                 detailData = it.data.elementAt(0)
@@ -170,7 +172,7 @@ class RecommendDetailActivity : AppCompatActivity() {
             //관심책방이면 체크해제
             if(isChecked != 0) {
                 //서버에 해당 정보 전달
-                service.requestBookmarkUpdate(bookIdx, header).customEnqueue(
+                service.requestBookmarkUpdate(bookIdx, tokenHeader(this)).customEnqueue(
                     onFail = { Toast.makeText(this, "관심책방 해제에 실패했습니다.", Toast.LENGTH_SHORT).show()},
                     onError = { Toast.makeText(this, "관심책방 해제에 실패했습니다.", Toast.LENGTH_SHORT).show()},
                     onSuccess = {
@@ -186,7 +188,7 @@ class RecommendDetailActivity : AppCompatActivity() {
                 )
             } else {
                 //서버에 해당 정보 전달
-                service.requestBookmarkUpdate(bookIdx, header).customEnqueue(
+                service.requestBookmarkUpdate(bookIdx, tokenHeader(this)).customEnqueue(
                     onFail = { Toast.makeText(this, "관심책방 등록에 실패했습니다.", Toast.LENGTH_SHORT).show()},
                     onError = { Toast.makeText(this, "관심책방 등록에 실패했습니다.", Toast.LENGTH_SHORT).show()},
                     onSuccess = {
