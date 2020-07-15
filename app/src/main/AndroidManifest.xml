@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".signin.SignupActivity"></activity>
+        <activity android:name=".signin.SearchPwdActivity"></activity>
+        <activity android:name=".signin.SignupActivity" />
         <activity android:name=".signin.EmailLoginActivity" />
         <activity android:name=".signin.StartActivity">
             <intent-filter>
@@ -36,9 +37,8 @@
         <activity
             android:name=".views.map.MapDetailActivity"
             tools:ignore="DuplicateActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"></activity>
 
-        </activity>
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/native_app_key" />

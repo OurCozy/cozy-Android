@@ -80,6 +80,10 @@ class EmailLoginActivity() : AppCompatActivity() {
         img_arrow_dark.setOnClickListener {
             finish()
         }
+
+        pw_search.setOnClickListener {
+            startActivity(Intent(this, SearchPwdActivity::class.java))
+        }
     }
 
     fun login_finish(){
