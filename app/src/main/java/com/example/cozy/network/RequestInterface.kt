@@ -1,5 +1,8 @@
 package com.example.cozy.network
 
+import com.example.cozy.network.requestData.RequestFindPW
+import com.example.cozy.network.requestData.RequestLogin
+import com.example.cozy.network.requestData.RequestSignup
 import com.example.cozy.network.responseData.*
 import retrofit2.Call
 import retrofit2.http.*
@@ -13,6 +16,11 @@ interface RequestInterface {
     //로그인   : https://github.com/OurCozy/cozy-server/wiki/1_2.-%EB%A1%9C%EA%B7%B8%EC%9D%B8
     @POST("/user/signin")
     fun requestSignin(@Body body: RequestLogin) : Call<ResponseSignin>
+
+    //비밀번호 찾기 : https://github.com/OurCozy/cozy-server/wiki/1_3.-%EB%B9%84%EB%B0%80%EB%B2%88%ED%98%B8-%EC%B0%BE%EA%B8%B0
+    @Headers("Content-Type:application/json")
+    @POST("/user/findpw")
+    fun requestFindPW(@Body body: RequestFindPW) : Call<ResponseFindPW>
 
     //책방 8개 추천 : https://github.com/OurCozy/cozy-server/wiki/2_1.-%EC%B1%85%EB%B0%A9-8%EA%B0%9C-%EC%B6%94%EC%B2%9C
     @GET("/main/recommendation")

@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.example.cozy.R
-import com.example.cozy.network.RequestSignup
+import com.example.cozy.network.requestData.RequestSignup
 import com.example.cozy.network.RequestToServer
 import com.example.cozy.network.customEnqueue
 import com.example.cozy.textChangedListener
