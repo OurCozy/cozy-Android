@@ -1,6 +1,7 @@
 package com.example.cozy.views.review
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -13,6 +14,7 @@ import com.example.cozy.network.RequestToServer.service
 import com.example.cozy.network.customEnqueue
 import com.example.cozy.network.responseData.AllReviewData
 import com.example.cozy.tokenHeader
+import com.example.cozy.views.map.MapDetailActivity
 import kotlinx.android.synthetic.main.activity_review.*
 import kotlinx.android.synthetic.main.item_map_comment.*
 import kotlin.properties.Delegates
@@ -34,6 +36,10 @@ class ReviewActivity : AppCompatActivity(){
         }
 
         showReview()
+
+        /*tv_backicon.setOnClickListener {
+            startActivity(Intent(this, MapDetailActivity::class.java))
+        }*/
 
     }
 
