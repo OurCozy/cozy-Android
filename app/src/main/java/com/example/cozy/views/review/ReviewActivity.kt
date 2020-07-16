@@ -1,5 +1,6 @@
 package com.example.cozy.views.review
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -21,18 +22,18 @@ import kotlin.properties.Delegates
 
 class ReviewActivity : AppCompatActivity(){
 
-    var bookstoreIdx by Delegates.notNull<Int>()
+    var bookIdx by Delegates.notNull<Int>()
     val requestToserver = RequestToServer
     lateinit var reviewAdapter: ReviewAdapter
     var data = mutableListOf<AllReviewData>()
 
-
+    @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_review)
 
-        if (intent.hasExtra("bookstoreIdx")) {
-            bookstoreIdx = intent.getIntExtra("bookstoreIdx",0)
+        if (intent.hasExtra("bookIdx")) {
+            bookIdx = intent.getIntExtra("bookIdx",0)
         }
 
         showReview()
