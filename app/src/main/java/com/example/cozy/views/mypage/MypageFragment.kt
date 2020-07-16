@@ -7,8 +7,6 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
@@ -16,7 +14,6 @@ import com.bumptech.glide.Glide
 import com.example.cozy.R
 import com.example.cozy.network.RequestToServer
 import com.example.cozy.network.customEnqueue
-import com.example.cozy.views.map.MapData
 import com.example.cozy.views.search.SearchActivity
 import kotlinx.android.synthetic.main.fragment_mypage.*
 
@@ -71,27 +68,17 @@ class MypageFragment : Fragment() {
     }
 
     fun loadData() {
-        val sharedPref = activity!!.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
+        val sharedPref = context!!.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
+        val token = sharedPref.getString("token", "token")
+
         val header = mutableMapOf<String, String?>()
         header["Content-Type"] = "application/json"
-        header["token"] = sharedPref.getString("token", "token")
+        header["token"] = token
 
-        RequestToServer.service.requestRecent(header).customEnqueue(
-            onError = {Log.d("test", "error")},
+        service.requestRecent(header).customEnqueue(
+            onError = {},
             onSuccess = {
-                Log.d("test", "" + it.message)
-//                if(it.success) {
-//                    adapter = RecentlySeenAdapter(view!!.context, it.data.toMutableList())
-//                    rv_recently_seen.adapter = adapter
-//
-//                    tv_no_recently_seen_background.visibility = GONE
-//                    tv_no_recently_seen_text.visibility = GONE
-//
-//                    adapter.notifyDataSetChanged()
-//                } else {
-//                    tv_no_recently_seen_background.visibility = VISIBLE
-//                    tv_no_recently_seen_text.visibility = VISIBLE
-//                }
+                Log.d("response", "status: " + it.status + ", message: " + it.message)
             }
         )
     }

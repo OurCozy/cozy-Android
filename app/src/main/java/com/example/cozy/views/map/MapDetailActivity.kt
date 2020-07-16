@@ -141,23 +141,23 @@ class MapDetailActivity : AppCompatActivity() {
                     Glide.with(this).load(detailData.image2).into(map_detail_img_2)
                     map_detail.text = detailData.description
 
-                    // 카카오 지도 API 사용 (AVD로 실행할 때는 78~94 주석처리하기)
-                    val mapView = net.daum.mf.map.api.MapView(this)
-                    val mapViewContainer = view_map as ViewGroup
-                    mapViewContainer.addView(mapView)
-                    // 서점 위치 위도&경도로 표시
-                    val MARKER_POINT = MapPoint.mapPointWithGeoCoord(latitude, longitude)
-                    mapView.setMapCenterPoint(MARKER_POINT, true)
-                    // 지도 레벨 변경
-                    mapView.setZoomLevel(3, true)
-                    // 지도 위에 마커 표시
-                    val marker = MapPOIItem()
-                    marker.itemName = "Default Marker"
-                    marker.tag = 0
-                    marker.mapPoint = MARKER_POINT
-                    marker.markerType = MapPOIItem.MarkerType.BluePin // 기본으로 제공하는 BluePin 마커 모양.
-                    marker.selectedMarkerType = MapPOIItem.MarkerType.RedPin // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
-                    mapView.addPOIItem(marker)
+//                    // 카카오 지도 API 사용 (AVD로 실행할 때는 78~94 주석처리하기)
+//                    val mapView = net.daum.mf.map.api.MapView(this)
+//                    val mapViewContainer = view_map as ViewGroup
+//                    mapViewContainer.addView(mapView)
+//                    // 서점 위치 위도&경도로 표시
+//                    val MARKER_POINT = MapPoint.mapPointWithGeoCoord(latitude, longitude)
+//                    mapView.setMapCenterPoint(MARKER_POINT, true)
+//                    // 지도 레벨 변경
+//                    mapView.setZoomLevel(3, true)
+//                    // 지도 위에 마커 표시
+//                    val marker = MapPOIItem()
+//                    marker.itemName = "Default Marker"
+//                    marker.tag = 0
+//                    marker.mapPoint = MARKER_POINT
+//                    marker.markerType = MapPOIItem.MarkerType.BluePin // 기본으로 제공하는 BluePin 마커 모양.
+//                    marker.selectedMarkerType = MapPOIItem.MarkerType.RedPin // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
+//                    mapView.addPOIItem(marker)
                 } else Log.d("test", "error")
             }
         )
