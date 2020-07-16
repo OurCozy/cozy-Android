@@ -47,10 +47,21 @@ class SearchActivity : AppCompatActivity() {
             if(et_search_bar.text.toString().isNullOrBlank())
                 Toast.makeText(this, "검색어를 입력하세요!", Toast.LENGTH_LONG).show()
             else {
-                val intent = Intent(this, SearchResultActivity::class.java)
-                intent.putExtra("DATA", et_search_bar.text.toString())
-                startActivity(intent)
+                searchKeyword(et_search_bar.text.toString())
             }
         }
+
+        tag1.setOnClickListener { searchKeyword(tag1.text.toString()) }
+        tag2.setOnClickListener { searchKeyword(tag2.text.toString()) }
+        tag3.setOnClickListener { searchKeyword(tag3.text.toString()) }
+        tag4.setOnClickListener { searchKeyword(tag4.text.toString()) }
+        tag5.setOnClickListener { searchKeyword(tag5.text.toString()) }
+        tag6.setOnClickListener { searchKeyword(tag6.text.toString()) }
+    }
+
+    fun searchKeyword(text : String) {
+        val intent = Intent(this, SearchResultActivity::class.java)
+        intent.putExtra("DATA", text)
+        startActivity(intent)
     }
 }
