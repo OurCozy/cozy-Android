@@ -52,79 +52,80 @@ class MapDetailActivity : AppCompatActivity() {
         service.requestBookstore(bookIdx, header).customEnqueue(
             onError = { Toast.makeText(this, "올바르지 않은 요청입니다.", Toast.LENGTH_SHORT) },
             onSuccess = {
-                detailData = it.data.elementAt(0)
-                if (detailData.profile == "NULL") {
-                    Glide.with(this).load(detailData.image1).into(map_main_img)
-                }
-                else{
-                    Glide.with(this).load(detailData.profile).into(map_main_img)
-                }
-                map_bookstore_title.text = detailData.bookstoreName
-                latitude = detailData.latitude
-                longitude = detailData.longitude
-                map_1st_category.text = detailData.hashtag1
-                map_2nd_category.text = detailData.hashtag2
-                map_3rd_category.text = detailData.hashtag3
-                map_address.text = detailData.location
-                map_time.text = detailData.time
-                if (detailData.dayoff == "NULL"){
-                    map_dayoff.visibility = View.GONE
-                }
-                else {
-                    map_dayoff.text = detailData.dayoff
-                }
-                if (detailData.changeable == "NULL"){
-                    map_changeable.visibility = View.GONE
-                }
-                else {
-                    map_changeable.text = detailData.changeable
-                }
-                if (detailData.tel == "NULL"){
-                    map_tel.text = "없음"
-                }
-                else {
-                    map_tel.text = detailData.tel
-                }
-                if (detailData.activity == "NULL"){
-                    map_activity.text = "없음"
-                }
-                else {
-                    map_activity.text = detailData.activity
-                }
-                if (detailData.homepage == "NULL"){
-                    iv_homepage.setImageResource(R.drawable.ic_homepage_non)
-                }
-                else{
-                    iv_homepage.setOnClickListener {
-                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(detailData.homepage))
-                        startActivity(intent)
+                if(it.success){
+                    detailData = it.data.elementAt(0)
+                    if (detailData.profile == "NULL") {
+                        Glide.with(this).load(detailData.image1).into(map_main_img)
                     }
-                }
-                if (detailData.facebook == "NULL"){
-                    iv_facebook.setImageResource(R.drawable.ic_facebook_non)
-                }
-                else{
-                    iv_facebook.setOnClickListener{
-                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(detailData.facebook))
-                        startActivity(intent)
+                    else{
+                        Glide.with(this).load(detailData.profile).into(map_main_img)
                     }
-                }
-                if (detailData.instagram == "NULL"){
-                    iv_instagram.setImageResource(R.drawable.ic_insta_non)
-                }
-                else{
-                    iv_instagram.setOnClickListener {
-                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(detailData.instagram))
-                        startActivity(intent)
+                    map_bookstore_title.text = detailData.bookstoreName
+                    latitude = detailData.latitude
+                    longitude = detailData.longitude
+                    map_1st_category.text = detailData.hashtag1
+                    map_2nd_category.text = detailData.hashtag2
+                    map_3rd_category.text = detailData.hashtag3
+                    map_address.text = detailData.location
+                    map_time.text = detailData.time
+                    if (detailData.dayoff == "NULL"){
+                        map_dayoff.visibility = View.GONE
                     }
-                }
-                isChecked = detailData.checked
-                iv_bookmark.isSelected = detailData.checked == 1
-                //iv_bookmark.isSelected = isChecked != 0
-                Glide.with(this).load(detailData.image1).into(map_detail_img_1)
-                Glide.with(this).load(detailData.image2).into(map_detail_img_2)
-                map_detail.text = detailData.description
-                Log.d("data: ", detailData.profile)
+                    else {
+                        map_dayoff.text = detailData.dayoff
+                    }
+                    if (detailData.changeable == "NULL"){
+                        map_changeable.visibility = View.GONE
+                    }
+                    else {
+                        map_changeable.text = detailData.changeable
+                    }
+                    if (detailData.tel == "NULL"){
+                        map_tel.text = "없음"
+                    }
+                    else {
+                        map_tel.text = detailData.tel
+                    }
+                    if (detailData.activity == "NULL"){
+                        map_activity.text = "없음"
+                    }
+                    else {
+                        map_activity.text = detailData.activity
+                    }
+                    if (detailData.homepage == "NULL"){
+                        iv_homepage.setImageResource(R.drawable.ic_homepage_non)
+                    }
+                    else{
+                        iv_homepage.setOnClickListener {
+                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(detailData.homepage))
+                            startActivity(intent)
+                        }
+                    }
+                    if (detailData.facebook == "NULL"){
+                        iv_facebook.setImageResource(R.drawable.ic_facebook_non)
+                    }
+                    else{
+                        iv_facebook.setOnClickListener{
+                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(detailData.facebook))
+                            startActivity(intent)
+                        }
+                    }
+                    if (detailData.instagram == "NULL"){
+                        iv_instagram.setImageResource(R.drawable.ic_insta_non)
+                    }
+                    else{
+                        iv_instagram.setOnClickListener {
+                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(detailData.instagram))
+                            startActivity(intent)
+                        }
+                    }
+                    isChecked = detailData.checked
+                    if(detailData.checked == 1) iv_bookmark.isSelected = true
+                    else iv_bookmark.isSelected = false
+                    //iv_bookmark.isSelected = isChecked != 0
+                    Glide.with(this).load(detailData.image1).into(map_detail_img_1)
+                    Glide.with(this).load(detailData.image2).into(map_detail_img_2)
+                    map_detail.text = detailData.description
 
 //                // 카카오 지도 API 사용 (AVD로 실행할 때는 78~94 주석처리하기)
 //                val mapView = MapView(this)
@@ -144,6 +145,7 @@ class MapDetailActivity : AppCompatActivity() {
 //                marker.selectedMarkerType =
 //                    MapPOIItem.MarkerType.RedPin // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
 //                mapView.addPOIItem(marker)
+                } else Log.d("test", "error")
             }
         )
 

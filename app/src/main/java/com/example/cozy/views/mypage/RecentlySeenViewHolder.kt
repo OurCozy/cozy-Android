@@ -12,7 +12,7 @@ class RecentlySeenViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
     val tv_title = itemView.findViewById<TextView>(R.id.tv_title)
 
     fun bind(data: RecentlySeenData) {
-        Glide.with(itemView).load(data.img).into(iv_img)
-        tv_title.text = data.title
+        Glide.with(itemView).load(data.image1).into(iv_img)
+        tv_title.text = data.bookstoreName
     }
 }
