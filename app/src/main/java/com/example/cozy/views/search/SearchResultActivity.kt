@@ -23,13 +23,14 @@ class SearchResultActivity : AppCompatActivity() {
 
         rv_search_result.addItemDecoration(BottomItemDecoration(this, 15))
 
+        val keyword : String = intent.getStringExtra("DATA")
+        tv_search_keyword.text = keyword
+
         //검색 실행
         val header = mutableMapOf<String, String>()
         val sharedPref = getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
         header["Content-Type"] = "application/json"
         header["token"] = sharedPref.getString("token","token").toString()
-
-        val keyword : String = intent.getStringExtra("DATA")
 
         RequestToServer.service.requestSearch(keyword, header).customEnqueue(
             onError = { Log.d("test", "error")},

@@ -1,6 +1,8 @@
 package com.example.cozy.views.mypage
 
 data class RecentlySeenData(
-    val img : String,
-    val title : String
+    val bookstoreIdx : Int,
+    val bookstoreName: String,
+    val profile : String,
+    val image1 : String
 )

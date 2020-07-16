@@ -16,12 +16,12 @@ import com.bumptech.glide.Glide
 import com.example.cozy.R
 import com.example.cozy.network.RequestToServer
 import com.example.cozy.network.customEnqueue
+import com.example.cozy.views.map.MapData
 import com.example.cozy.views.search.SearchActivity
 import kotlinx.android.synthetic.main.fragment_mypage.*
 
 class MypageFragment : Fragment() {
     lateinit var adapter: RecentlySeenAdapter
-    var data = mutableListOf<RecentlySeenData>()
     val service = RequestToServer.service
 
     override fun onCreateView(
@@ -61,47 +61,38 @@ class MypageFragment : Fragment() {
             startActivity(intent)
         }
 
-        adapter = RecentlySeenAdapter(view.context)
-        rv_recently_seen.adapter = adapter
+        loadData()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
         loadData()
     }
 
     fun loadData() {
-        data.apply {
-            add(
-                RecentlySeenData(
-                    img = "https://images.unsplash.com/photo-1561851561-04ee3d324423?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
-                    title = "퇴근길 책 한잔"
-                )
-            )
-            add(
-                RecentlySeenData(
-                    img = "https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80",
-                    title = "지구불시착"
-                )
-            )
-            add(
-                RecentlySeenData(
-                    img = "https://images.unsplash.com/photo-1585066437544-6ca9b0e5bf1f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
-                    title = "안도서점"
-                )
-            )
-            add(
-                RecentlySeenData(
-                    img = "https://images.unsplash.com/photo-1571808161129-330529860c34?ixlib=rb-1.2.1&auto=format&fit=crop&w=969&q=80",
-                    title = "스토리지북앤필름"
-                )
-            )
-        }
+        val sharedPref = activity!!.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
+        val header = mutableMapOf<String, String?>()
+        header["Content-Type"] = "application/json"
+        header["token"] = sharedPref.getString("token", "token")
 
-        if(data.size != 0) {
-            tv_no_recently_seen_background.visibility = GONE
-            tv_no_recently_seen_text.visibility = GONE
-        } else {
-            tv_no_recently_seen_background.visibility = VISIBLE
-            tv_no_recently_seen_text.visibility = VISIBLE
-        }
-        adapter.data = data
-        adapter.notifyDataSetChanged()
+        RequestToServer.service.requestRecent(header).customEnqueue(
+            onError = {Log.d("test", "error")},
+            onSuccess = {
+                Log.d("test", "" + it.message)
+//                if(it.success) {
+//                    adapter = RecentlySeenAdapter(view!!.context, it.data.toMutableList())
+//                    rv_recently_seen.adapter = adapter
+//
+//                    tv_no_recently_seen_background.visibility = GONE
+//                    tv_no_recently_seen_text.visibility = GONE
+//
+//                    adapter.notifyDataSetChanged()
+//                } else {
+//                    tv_no_recently_seen_background.visibility = VISIBLE
+//                    tv_no_recently_seen_text.visibility = VISIBLE
+//                }
+            }
+        )
     }
 }

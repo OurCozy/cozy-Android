@@ -46,7 +46,7 @@ class InterestAdapter (private val context: Context, val data : MutableList<MapD
                         data.removeAt(position)
                         notifyItemRemoved(position)
                         notifyItemRangeChanged(position, data.size)
-                        onEmpty()
+                        if(data.size == 0) onEmpty()
                     }
                     else Log.d("RESPONSE", it.message)
                 }

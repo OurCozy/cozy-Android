@@ -61,15 +61,17 @@ class InterestFragment : Fragment() {
             onError = {Log.d("test", "error")},
             onSuccess = {
                 if(it.success) {
-                    interestAdapter = InterestAdapter(v.context, it.data.toMutableList(), { onEmpty() }) { BookstoreInfo ->
-                        val intent = Intent(activity, MapDetailActivity::class.java)
-                        intent.putExtra("bookIdx",BookstoreInfo.bookstoreIdx)
-                        startActivity(intent)
-                    }
-                    bookstore_interest.adapter = interestAdapter
-                    background.visibility = View.GONE
-                    tv_question.visibility = View.GONE
-                    cock.visibility = View.GONE
+                    if(it.message == "서점 리스트 조회 성공") {
+                        interestAdapter = InterestAdapter(v.context, it.data.toMutableList(), { onEmpty() }) { BookstoreInfo ->
+                            val intent = Intent(activity, MapDetailActivity::class.java)
+                            intent.putExtra("bookIdx",BookstoreInfo.bookstoreIdx)
+                            startActivity(intent)
+                        }
+                        bookstore_interest.adapter = interestAdapter
+                        background.visibility = View.GONE
+                        tv_question.visibility = View.GONE
+                        cock.visibility = View.GONE
+                    } else onEmpty()
                 } else onEmpty()
             }
         )
