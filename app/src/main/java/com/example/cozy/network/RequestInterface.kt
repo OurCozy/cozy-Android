@@ -59,7 +59,9 @@ interface RequestInterface {
 
     //내가 쓴 후기 조회
 
-    //최근 본 책방 조회
+    //최근 본 책방 조회 : https://github.com/OurCozy/cozy-server/wiki/2_4.-%EC%B5%9C%EA%B7%BC-%EB%B3%B8-%EC%B1%85%EB%B0%A9-%EC%A1%B0%ED%9A%8C%E2%9C%94
+    @GET("/main/recent")
+    fun requestRecent(@HeaderMap headers : Map<String, String?>) : Call<ResponseRecent>
 
     //키워드 검색 : https://github.com/OurCozy/cozy-server/wiki/3_1.-%EA%B2%80%EC%83%89-%ED%8E%98%EC%9D%B4%EC%A7%80
     @GET("/main/search/{keyword}")
