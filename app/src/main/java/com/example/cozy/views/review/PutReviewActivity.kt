@@ -22,6 +22,7 @@ import com.example.cozy.network.requestData.RequestUploadReview
 import com.kakao.auth.authorization.AuthorizationResult
 import kotlinx.android.synthetic.main.activity_put_review.*
 import okhttp3.MultipartBody
+import java.io.ByteArrayOutputStream
 
 class PutReviewActivity : AppCompatActivity() {
     val IMAGE_FROM_GALLERY = 0
@@ -68,6 +69,7 @@ class PutReviewActivity : AppCompatActivity() {
             startActivityForResult(Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI), IMAGE_FROM_GALLERY)
         }
 
+        Log.d("test", intent.getIntExtra("bookIdx", 2).toString())
         tv_next.setOnClickListener {
             if(isStarFilled && isTextFilled && isImgFilled) {
 
@@ -78,10 +80,14 @@ class PutReviewActivity : AppCompatActivity() {
                 header["Content-Type"] = "multipart/form-data"
                 header["token"] = sharedPref.getString("token", "token").toString()
 
+                val baos = ByteArrayOutputStream()
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+                val data = baos.toByteArray()
+                Log.d("test", ""+data)
                 RequestToServer.service.requestUploadReviewImage(
-                    intent.getIntExtra("bookIdx", 1),
+                    intent.getIntExtra("bookIdx", 2),
                     MultipartBody.Builder().setType(MultipartBody.FORM)
-                        .addFormDataPart("photo", selectedImg.toString()).build(),
+                        .addFormDataPart("photo", data.toString()).build(),
                     header
                 ).customEnqueue(
                     onError = {},

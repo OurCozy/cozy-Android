@@ -192,7 +192,9 @@ class MapDetailActivity : AppCompatActivity() {
             }
 
             btn_write_review.setOnClickListener {
-                startActivity(Intent(this, PutReviewActivity::class.java))
+                val intent = Intent(this, PutReviewActivity::class.java)
+                intent.putExtra("bookIdx", bookIdx)
+                startActivity(intent)
             }
 
             adapter = ReviewAdapter(this)
