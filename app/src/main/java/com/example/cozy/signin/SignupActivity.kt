@@ -7,6 +7,9 @@ import android.util.Log
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.example.cozy.R
+//import com.example.cozy.network.requestData.RequestSignup
+import com.example.cozy.network.RequestToServer
+import com.example.cozy.network.customEnqueue
 import com.example.cozy.network.*
 import com.example.cozy.textChangedListener
 import kotlinx.android.synthetic.main.activity_signup.*

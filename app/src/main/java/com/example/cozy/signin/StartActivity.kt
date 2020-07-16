@@ -26,5 +26,10 @@ class StartActivity : AppCompatActivity() {
             startActivity(Intent(this, SignupActivity::class.java))
         }
 
+        //카카오 로그인
+        btn_kakao_login.setOnClickListener {
+            startActivity(Intent(this, SigninActivity::class.java))
+        }
+
     }
 }

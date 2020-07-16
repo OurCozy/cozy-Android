@@ -12,7 +12,7 @@ import com.example.cozy.network.RequestToServer
 import com.example.cozy.network.customEnqueue
 import com.example.cozy.views.map.MapData
 
-class InterestAdapter (private val context: Context, val data : MutableList<MapData>, val onClick : (MapData) -> Unit) : RecyclerView.Adapter<InterestViewHolder>() {
+class InterestAdapter (private val context: Context, val data : MutableList<MapData>, val onEmpty: () -> Unit, val onClick : (MapData) -> Unit) : RecyclerView.Adapter<InterestViewHolder>() {
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InterestViewHolder {
@@ -46,6 +46,7 @@ class InterestAdapter (private val context: Context, val data : MutableList<MapD
                         data.removeAt(position)
                         notifyItemRemoved(position)
                         notifyItemRangeChanged(position, data.size)
+                        onEmpty()
                     }
                     else Log.d("RESPONSE", it.message)
                 }

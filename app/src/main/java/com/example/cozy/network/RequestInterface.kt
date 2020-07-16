@@ -1,5 +1,8 @@
 package com.example.cozy.network
 
+import com.example.cozy.network.requestData.RequestFindPW
+import com.example.cozy.network.requestData.RequestLogin
+import com.example.cozy.network.requestData.RequestSignup
 import com.example.cozy.network.responseData.*
 import retrofit2.Call
 import retrofit2.http.*
@@ -21,6 +24,11 @@ interface RequestInterface {
     // 이메일 중복 확인 : https://github.com/OurCozy/cozy-server/wiki/1_1.-%EC%9D%B4%EB%A9%94%EC%9D%BC-%EC%A4%91%EB%B3%B5-%ED%99%95%EC%9D%B8%E2%9C%94
     @POST("/user/checkemail")
     fun requestCheckEmail(@Body body: RequestCheckEmail) : Call<ResponseCheckEmail>
+
+    //비밀번호 찾기 : https://github.com/OurCozy/cozy-server/wiki/1_3.-%EB%B9%84%EB%B0%80%EB%B2%88%ED%98%B8-%EC%B0%BE%EA%B8%B0
+    @Headers("Content-Type:application/json")
+    @POST("/user/findpw")
+    fun requestFindPW(@Body body: RequestFindPW) : Call<ResponseFindPW>
 
     //책방 8개 추천 : https://github.com/OurCozy/cozy-server/wiki/2_1.-%EC%B1%85%EB%B0%A9-8%EA%B0%9C-%EC%B6%94%EC%B2%9C
     @GET("/main/recommendation")
@@ -61,5 +69,7 @@ interface RequestInterface {
 
     //최근 본 책방 조회
 
-    //키워드 검색
+    //키워드 검색 : https://github.com/OurCozy/cozy-server/wiki/3_1.-%EA%B2%80%EC%83%89-%ED%8E%98%EC%9D%B4%EC%A7%80
+    @GET("/main/search/{keyword}")
+    fun requestSearch(@Path(value="keyword", encoded = true) keyword : String, @HeaderMap headers : Map<String, String?>) : Call<ResponseMap>
 }

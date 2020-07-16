@@ -114,8 +114,8 @@
         android:background="#f8f9fa"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="@id/line_interest"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="NotSibling" />
 
     <TextView
@@ -128,9 +128,9 @@
         android:textFontWeight="900"
         android:textColor="@color/tagcolor"
         app:layout_constraintTop_toTopOf="@id/background"
-        app:layout_constraintLeft_toLeftOf="@id/background"
+        app:layout_constraintStart_toStartOf="@id/background"
         android:layout_marginTop="37dp"
-        android:layout_marginLeft="42dp"></TextView>
+        android:layout_marginLeft="42dp"/>
 
     <TextView
         android:id="@+id/cock"
