@@ -3,6 +3,7 @@ package com.example.cozy.network
 import com.example.cozy.network.requestData.RequestFindPW
 import com.example.cozy.network.requestData.RequestLogin
 import com.example.cozy.network.requestData.RequestSignup
+import com.example.cozy.network.requestData.RequestUploadReview
 import com.example.cozy.network.responseData.*
 import retrofit2.Call
 import retrofit2.http.*
@@ -58,6 +59,10 @@ interface RequestInterface {
     fun requestUserProfile() : Call<ResponseUserProfile>*/
 
     //내가 쓴 후기 조회
+    
+    //후기 업로드 : https://github.com/OurCozy/cozy-server/wiki/2_1.-%ED%9B%84%EA%B8%B0-%EC%9E%91%EC%84%B1%E2%9C%94
+    @POST("/main/detail/review")
+    fun requestUploadReview(@Body body: RequestUploadReview, @HeaderMap headers : Map<String, String?>) : Call<ResponseUploadReview>
 
     //최근 본 책방 조회 : https://github.com/OurCozy/cozy-server/wiki/2_4.-%EC%B5%9C%EA%B7%BC-%EB%B3%B8-%EC%B1%85%EB%B0%A9-%EC%A1%B0%ED%9A%8C%E2%9C%94
     @GET("/main/recent")

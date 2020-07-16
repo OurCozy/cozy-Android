@@ -15,6 +15,9 @@ import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import com.example.cozy.R
+import com.example.cozy.network.RequestToServer
+import com.example.cozy.network.customEnqueue
+import com.example.cozy.network.requestData.RequestUploadReview
 import com.kakao.auth.authorization.AuthorizationResult
 import kotlinx.android.synthetic.main.activity_put_review.*
 
@@ -23,6 +26,7 @@ class PutReviewActivity : AppCompatActivity() {
     var isStarFilled  = false
     var isTextFilled  = false
     var isImgFilled = false
+    var star = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,7 +66,25 @@ class PutReviewActivity : AppCompatActivity() {
 
         tv_next.setOnClickListener {
             if(isStarFilled && isTextFilled && isImgFilled) {
+
                 //서버 통신
+                val sharedPref = this.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
+                val header = mutableMapOf<String, String>()
+                header["Content-Type"] = "application/json"
+                header["token"] = sharedPref.getString("token", "token").toString()
+
+                RequestToServer.service.requestUploadReview(
+                    RequestUploadReview(
+                        bookstoreIdx = intent.getIntExtra("bookIdx", 1),
+                        content = et_review.text.toString(),
+                        stars = star
+                    ), header
+                ).customEnqueue(
+                    onError = {},
+                    onSuccess = {
+                        Log.d("test", it.message)
+                    }
+                )
                 Toast.makeText(this, "후기가 등록되었습니다!", Toast.LENGTH_LONG).show()
             } else Toast.makeText(this, "모든 항목을 입력해주세요!", Toast.LENGTH_LONG).show()
         }
@@ -85,6 +107,7 @@ class PutReviewActivity : AppCompatActivity() {
     fun onClick(v: View) {
         when(v.id) {
             R.id.star_1 -> {
+                star = 1
                 isStarFilled = true
                 if(isTextFilled && isImgFilled)
                     tv_next.setTextColor(resources.getColor(R.color.mainColor))
@@ -95,6 +118,7 @@ class PutReviewActivity : AppCompatActivity() {
                 star_5.setImageResource(R.drawable.ic_star)
             }
             R.id.star_2 -> {
+                star = 2
                 isStarFilled = true
                 if(isTextFilled && isImgFilled)
                     tv_next.setTextColor(resources.getColor(R.color.mainColor))
@@ -105,6 +129,7 @@ class PutReviewActivity : AppCompatActivity() {
                 star_5.setImageResource(R.drawable.ic_star)
             }
             R.id.star_3 -> {
+                star = 3
                 isStarFilled = true
                 if(isTextFilled && isImgFilled)
                     tv_next.setTextColor(resources.getColor(R.color.mainColor))
@@ -115,6 +140,7 @@ class PutReviewActivity : AppCompatActivity() {
                 star_5.setImageResource(R.drawable.ic_star)
             }
             R.id.star_4 -> {
+                star = 4
                 isStarFilled = true
                 if(isTextFilled && isImgFilled)
                     tv_next.setTextColor(resources.getColor(R.color.mainColor))
@@ -125,6 +151,7 @@ class PutReviewActivity : AppCompatActivity() {
                 star_5.setImageResource(R.drawable.ic_star)
             }
             R.id.star_5 -> {
+                star = 5
                 isStarFilled = true
                 if(isTextFilled && isImgFilled)
                     tv_next.setTextColor(resources.getColor(R.color.mainColor))
