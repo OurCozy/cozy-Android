@@ -63,6 +63,7 @@
     </View>
 
     <Button
+        android:id="@+id/btn_search"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="46dp"
         android:layout_height="wrap_content"
