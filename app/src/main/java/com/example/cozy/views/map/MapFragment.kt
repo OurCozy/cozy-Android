@@ -34,6 +34,12 @@ class MapFragment : Fragment() {
         // Inflate the layout for this fragment
         fragView = inflater.inflate(R.layout.fragment_map, container, false)
         showMapList(fragView, sectionIdx)
+
+        val sharedPref = activity!!.getSharedPreferences("pref", Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        editor.putInt("location", sectionIdx)
+        editor.apply()
+
         return fragView
     }
 
