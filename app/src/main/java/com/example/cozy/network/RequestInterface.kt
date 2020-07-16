@@ -4,6 +4,7 @@ import com.example.cozy.network.requestData.RequestFindPW
 import com.example.cozy.network.requestData.RequestLogin
 import com.example.cozy.network.requestData.RequestSignup
 import com.example.cozy.network.requestData.RequestUploadReview
+import com.example.cozy.network.requestData.*
 import com.example.cozy.network.responseData.*
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -18,6 +19,14 @@ interface RequestInterface {
     //로그인   : https://github.com/OurCozy/cozy-server/wiki/1_2.-%EB%A1%9C%EA%B7%B8%EC%9D%B8
     @POST("/user/signin")
     fun requestSignin(@Body body: RequestLogin) : Call<ResponseSignin>
+
+    //닉네임 중복 확인 : https://github.com/OurCozy/cozy-server/wiki/1_1.-%EB%8B%89%EB%84%A4%EC%9E%84-%EC%A4%91%EB%B3%B5-%ED%99%95%EC%9D%B8%E2%9C%94
+    @POST("/user/checknickname")
+    fun requestCheckNickname(@Body body: RequestCheckNickname) : Call<ResponseCheckNickname>
+
+    // 이메일 중복 확인 : https://github.com/OurCozy/cozy-server/wiki/1_1.-%EC%9D%B4%EB%A9%94%EC%9D%BC-%EC%A4%91%EB%B3%B5-%ED%99%95%EC%9D%B8%E2%9C%94
+    @POST("/user/checkemail")
+    fun requestCheckEmail(@Body body: RequestCheckEmail) : Call<ResponseCheckEmail>
 
     //비밀번호 찾기 : https://github.com/OurCozy/cozy-server/wiki/1_3.-%EB%B9%84%EB%B0%80%EB%B2%88%ED%98%B8-%EC%B0%BE%EA%B8%B0
     @Headers("Content-Type:application/json")
@@ -34,6 +43,13 @@ interface RequestInterface {
 
 
     //후기 작성
+
+    //2개 후기 보여주기
+    @GET("/main/detail/review2/{bookstoreIdx}")
+    fun requestTwoReview(@Path("bookstoreIdx") bookstoreIdx: Int, @HeaderMap headers: Map<String, String?>) : Call<ResponseTwoReview>
+    //모든 후기 보여주기
+    @GET("/main/detail/review/{bookstoreIdx}")
+    fun requestAllReview(@Path("bookstoreIdx") bookstoreIdx: Int, @HeaderMap headers: Map<String, String?>) : Call<ResponseAllReview>
 
     //지역별 조회 : https://github.com/OurCozy/cozy-server/wiki/2_2.-%EC%A7%80%EC%97%AD%EB%B3%84-%EC%A1%B0%ED%9A%8C
     @GET("/main/map/{sectionIdx}")

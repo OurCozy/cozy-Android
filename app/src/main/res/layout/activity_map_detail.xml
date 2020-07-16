@@ -447,6 +447,7 @@
                 app:layout_constraintStart_toStartOf="@id/start_guideline"
                 app:layout_constraintTop_toBottomOf="@id/rv_comments" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
