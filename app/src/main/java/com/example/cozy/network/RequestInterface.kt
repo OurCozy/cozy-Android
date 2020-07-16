@@ -14,6 +14,14 @@ interface RequestInterface {
     @POST("/user/signin")
     fun requestSignin(@Body body: RequestLogin) : Call<ResponseSignin>
 
+    //닉네임 중복 확인 : https://github.com/OurCozy/cozy-server/wiki/1_1.-%EB%8B%89%EB%84%A4%EC%9E%84-%EC%A4%91%EB%B3%B5-%ED%99%95%EC%9D%B8%E2%9C%94
+    @POST("/user/checknickname")
+    fun requestCheckNickname(@Body body: RequestCheckNickname) : Call<ResponseCheckNickname>
+
+    // 이메일 중복 확인 : https://github.com/OurCozy/cozy-server/wiki/1_1.-%EC%9D%B4%EB%A9%94%EC%9D%BC-%EC%A4%91%EB%B3%B5-%ED%99%95%EC%9D%B8%E2%9C%94
+    @POST("/user/checkemail")
+    fun requestCheckEmail(@Body body: RequestCheckEmail) : Call<ResponseCheckEmail>
+
     //책방 8개 추천 : https://github.com/OurCozy/cozy-server/wiki/2_1.-%EC%B1%85%EB%B0%A9-8%EA%B0%9C-%EC%B6%94%EC%B2%9C
     @GET("/main/recommendation")
     fun requestRecommendation(@HeaderMap headers: Map<String, String?>) : Call<ResponseRecommendList>

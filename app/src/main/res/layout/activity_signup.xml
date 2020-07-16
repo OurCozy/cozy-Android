@@ -64,6 +64,35 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
+    <Button
+        android:id="@+id/btn_nickname_overlap"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:background="@drawable/round"
+        android:text="중복확인"
+        android:textAlignment="center"
+        android:textColor="@color/mainColor"
+        android:layout_marginBottom="12dp"
+        android:layout_marginRight="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/signup_name"
+        app:layout_constraintEnd_toEndOf="@+id/signup_name"
+        app:layout_constraintTop_toTopOf="@+id/signup_name" />
+
+    <TextView
+        android:id="@+id/nickname_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="10sp"
+        android:textColor="#2ece6a"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:textFontWeight="500"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:includeFontPadding="false"
+        app:layout_constraintEnd_toEndOf="@id/signup_name"
+        app:layout_constraintTop_toBottomOf="@id/signup_name"/>
+
     <EditText
         android:id="@+id/signup_email"
         android:layout_width="0dp"
@@ -83,7 +112,7 @@
         app:layout_constraintTop_toBottomOf="@+id/signup_name" />
 
     <Button
-        android:id="@+id/btn_overlap"
+        android:id="@+id/btn_email_overlap"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:background="@drawable/round"
@@ -100,7 +129,7 @@
         android:id="@+id/email_msg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="*사용 가능한 이메일 입니다."
+        android:text=""
         android:textSize="10sp"
         android:textColor="#2ece6a"
         android:fontFamily="@font/notosans_fontfamily"
