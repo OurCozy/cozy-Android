@@ -4,6 +4,7 @@ import android.content.Context
 import android.text.Layout
 import android.text.SpannableString
 import android.text.style.AlignmentSpan
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.PopupMenu
@@ -25,6 +26,11 @@ class ReviewAdapter(private val context: Context, val data : MutableList<AllRevi
 
     override fun onBindViewHolder(holder: ReviewViewHolder, position: Int) {
         holder.bind(data[position])
+
+        val header = mutableMapOf<String, String?>()
+        val sharedPref = context!!.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
+        Log.d("닉네임", sharedPref.getString("nickname", "cozy"))
+
 
         holder.moreBtn.setOnClickListener {
             val popup = PopupMenu(context, holder.moreBtn)
