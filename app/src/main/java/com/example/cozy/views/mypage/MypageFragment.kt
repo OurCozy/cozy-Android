@@ -79,7 +79,7 @@ class MypageFragment : Fragment() {
         RequestToServer.service.requestRecent(header).customEnqueue(
             onError = {Log.d("test", "error")},
             onSuccess = {
-                Log.d("test", ""+it.success + " " + it.message)
+                Log.d("test", "" + it.message)
 //                if(it.success) {
 //                    adapter = RecentlySeenAdapter(view!!.context, it.data.toMutableList())
 //                    rv_recently_seen.adapter = adapter

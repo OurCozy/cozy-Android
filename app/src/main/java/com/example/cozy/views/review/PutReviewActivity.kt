@@ -3,6 +3,7 @@ package com.example.cozy.views.review
 import android.content.Context
 import android.content.Intent
 import android.database.Cursor
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +21,7 @@ import com.example.cozy.network.customEnqueue
 import com.example.cozy.network.requestData.RequestUploadReview
 import com.kakao.auth.authorization.AuthorizationResult
 import kotlinx.android.synthetic.main.activity_put_review.*
+import okhttp3.MultipartBody
 
 class PutReviewActivity : AppCompatActivity() {
     val IMAGE_FROM_GALLERY = 0
@@ -27,6 +29,8 @@ class PutReviewActivity : AppCompatActivity() {
     var isTextFilled  = false
     var isImgFilled = false
     var star = 0
+    lateinit var selectedImg : Uri
+    lateinit var bitmap : Bitmap
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,8 +74,23 @@ class PutReviewActivity : AppCompatActivity() {
                 //서버 통신
                 val sharedPref = this.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
                 val header = mutableMapOf<String, String>()
-                header["Content-Type"] = "application/json"
+
+                header["Content-Type"] = "multipart/form-data"
                 header["token"] = sharedPref.getString("token", "token").toString()
+
+                RequestToServer.service.requestUploadReviewImage(
+                    intent.getIntExtra("bookIdx", 1),
+                    MultipartBody.Builder().setType(MultipartBody.FORM)
+                        .addFormDataPart("photo", selectedImg.toString()).build(),
+                    header
+                ).customEnqueue(
+                    onError = {},
+                    onSuccess = {
+                        Log.d("test", it.data!!.photo)
+                    }
+                )
+
+                header["Content-Type"] = "application/json"
 
                 RequestToServer.service.requestUploadReview(
                     RequestUploadReview(
@@ -85,7 +104,9 @@ class PutReviewActivity : AppCompatActivity() {
                         Log.d("test", it.message)
                     }
                 )
+
                 Toast.makeText(this, "후기가 등록되었습니다!", Toast.LENGTH_LONG).show()
+                finish()
             } else Toast.makeText(this, "모든 항목을 입력해주세요!", Toast.LENGTH_LONG).show()
         }
     }
@@ -95,8 +116,9 @@ class PutReviewActivity : AppCompatActivity() {
 
         //갤러리에서 선택한 사진 화면에 출력
         if(requestCode==IMAGE_FROM_GALLERY && resultCode==RESULT_OK && data!=null) {
-            var selectedImg : Uri = data!!.data!!
-            var bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedImg)
+            selectedImg = data!!.data!!
+            bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedImg)
+            Log.d("Test", selectedImg.toString() +"   " + bitmap)
             upload_image.setImageBitmap(bitmap)
             isImgFilled = true
             if(isStarFilled && isTextFilled)

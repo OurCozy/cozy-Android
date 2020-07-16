@@ -5,6 +5,7 @@ import com.example.cozy.network.requestData.RequestLogin
 import com.example.cozy.network.requestData.RequestSignup
 import com.example.cozy.network.requestData.RequestUploadReview
 import com.example.cozy.network.responseData.*
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -63,6 +64,10 @@ interface RequestInterface {
     //후기 업로드 : https://github.com/OurCozy/cozy-server/wiki/2_1.-%ED%9B%84%EA%B8%B0-%EC%9E%91%EC%84%B1%E2%9C%94
     @POST("/main/detail/review")
     fun requestUploadReview(@Body body: RequestUploadReview, @HeaderMap headers : Map<String, String?>) : Call<ResponseUploadReview>
+
+    //후기 사진 업로드 : https://github.com/OurCozy/cozy-server/wiki/%ED%9B%84%EA%B8%B0-%EC%82%AC%EC%A7%84-%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8
+    @POST("/main/detail/review/{bookstoreIdx}")
+    fun requestUploadReviewImage(@Path("bookstoreIdx") bookstoreIdx : Int, @Body body: RequestBody, @HeaderMap headers : Map<String, String?>) : Call<ResponseUploadReviewImage>
 
     //최근 본 책방 조회 : https://github.com/OurCozy/cozy-server/wiki/2_4.-%EC%B5%9C%EA%B7%BC-%EB%B3%B8-%EC%B1%85%EB%B0%A9-%EC%A1%B0%ED%9A%8C%E2%9C%94
     @GET("/main/recent")
