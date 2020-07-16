@@ -55,7 +55,7 @@ class ReviewActivity : AppCompatActivity(){
                 Log.d("test", "성공")
                 if(it.success) {
                     Log.d("test", it.message)
-                    reviewAdapter = ReviewAdapter(this, it.data.toMutableList())
+                    reviewAdapter = ReviewAdapter(this, it.data.toMutableList(),{})
                     rv_review.adapter = reviewAdapter
                     rv_review.addItemDecoration(BottomItemDecoration(this, 35))//itemDecoration 여백주기
                     Log.d("test", "성공")
