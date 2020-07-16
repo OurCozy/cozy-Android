@@ -1,6 +1,5 @@
 package com.example.cozy.signin
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -173,7 +172,7 @@ class SignupActivity : AppCompatActivity() {
 
         //뒤로가기
         img_arrow_dark_signup.setOnClickListener {
-            startActivity(Intent(this, StartActivity::class.java))
+            finish()
         }
     }
 
