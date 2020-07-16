@@ -10,7 +10,9 @@ import com.example.cozy.R
 //import com.example.cozy.network.requestData.RequestSignup
 import com.example.cozy.network.RequestToServer
 import com.example.cozy.network.customEnqueue
-import com.example.cozy.network.*
+import com.example.cozy.network.requestData.RequestCheckEmail
+import com.example.cozy.network.requestData.RequestCheckNickname
+import com.example.cozy.network.requestData.RequestSignup
 import com.example.cozy.textChangedListener
 import kotlinx.android.synthetic.main.activity_signup.*
 import java.util.regex.Pattern

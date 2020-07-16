@@ -1,8 +1,6 @@
 package com.example.cozy.network
 
-import com.example.cozy.network.requestData.RequestFindPW
-import com.example.cozy.network.requestData.RequestLogin
-import com.example.cozy.network.requestData.RequestSignup
+import com.example.cozy.network.requestData.*
 import com.example.cozy.network.responseData.*
 import retrofit2.Call
 import retrofit2.http.*
@@ -40,6 +38,13 @@ interface RequestInterface {
 
 
     //후기 작성
+
+    //2개 후기 보여주기
+    @GET("/main/detail/review2/{bookstoreIdx}")
+    fun requestTwoReview(@Path("bookstoreIdx") bookstoreIdx: Int, @HeaderMap headers: Map<String, String?>) : Call<ResponseTwoReview>
+    //모든 후기 보여주기
+    @GET("/main/detail/review/{bookstoreIdx}")
+    fun requestAllReview(@Path("bookstoreIdx") bookstoreIdx: Int, @HeaderMap headers: Map<String, String?>) : Call<ResponseAllReview>
 
     //지역별 조회 : https://github.com/OurCozy/cozy-server/wiki/2_2.-%EC%A7%80%EC%97%AD%EB%B3%84-%EC%A1%B0%ED%9A%8C
     @GET("/main/map/{sectionIdx}")
