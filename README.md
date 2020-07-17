@@ -1,25 +1,26 @@
 <h1 align="center">COZY_Android</h1>
 <p align="center">
-	<img src="/img/cozy_logo.png" width="200"/><br>
-	바쁜 도심 속 휴식처,<br>공간과 경험을 파는 세상의 모든 독립서점
+    <img src="/img/cozy_logo.png" width="200"/><br>
+    바쁜 도심 속 휴식처,<br>공간과 경험을 파는 세상의 모든 독립서점
 </p>
 <br><br>
 
 # Contents
+* [Workflow](#Workflow)
 * 뷰
-	* [메인](#메인)
-	* [지도](#지도)
-	* [관심](#관심)
-	* [내정보](#내정보)
+    * [메인](#메인)
+    * [지도](#지도)
+    * [관심](#관심)
+    * [내정보](#내정보)
 * 프로젝트 구조
 * 라이브러리
 * 기본 기능
-	* [BottomNavigationView](#BottomNavigationView)
-	* [RecyclerView](#RecyclerView)
+    * [BottomNavigationView](#BottomNavigationView)
+    * [RecyclerView](#RecyclerView)
 * 주요 기능
-	* [애니메이션](#애니메이션)
-	* [카카오맵 API](#카카오맵)
-	* Bottom-sheet Dialog
+    * [애니메이션](#애니메이션)
+    * [카카오맵 API](#카카오맵)
+    * Bottom-sheet Dialog
     * [관심 책방 설정](#관심책방)
 * 그 외 기능
     * [로그인 및 회원가입](#로그인)
@@ -31,16 +32,24 @@
 
 <br>
 
+# Workflow
+
+<img src="/img/workflow.png" width="300"/><br>
+
+## SOPT 26기 App-Jam
+* 개발 기간 : 2020년 6월 28일 ~ 2020년 7월 18일
+
+
 # 뷰
 <h2 id="메인">메인 화면</h2>
 <p align="center">
-	<img src="/img/recommend.gif" width="300"/>
+    <img src="/img/recommend.gif" width="300"/>
 </p>
 
 앱을 실행하고 로그인 했을 때 처음 나오는 메인 화면으로 독립서점을 총 8개를 추천해 주는 화면이다. 처음 가입했을 때는 임의로 뽑아놓은 8개의 독립서점이 뜬다. 사용자가 관심있는 책방에는 북마크를 할 수 있는데 나중에 이 추천뷰에는 사용자들이 북마크를 많이 한 순서대로 뜨게 된다.
 
 <p align="center">
-	<img src="/img/recommend_blueprint.JPG" width="300"/>
+    <img src="/img/recommend_blueprint.JPG" width="300"/>
 </p>
 
 화면의 레이아웃은 전체 스크롤이 필요하여 NestedScrollView를 사용하였다. 전체 horizontal padding을 24dp로 주었다. width는 match_parent, height은 wrap_content를 사용하였고, NestedScrollView의 자식뷰는 일렬로 쭉 정렬되기 때문에 LinearLayout을 orientation을 vertical로 하여 사용하였다. 부모뷰에 horizontal padding을 줬기 때문에 width는 match_parent, height은 wrap_content를 사용하였다. 첫번째로는 logo와 serch아이콘이 들어가야하기 때문에 ConstraintLayout으로 chain을 spread_inside를 걸어줘서 사용하고 그 밑으로는 차례차례 TextView, RecyclerView를 넣었다. TextView는 width, height 둘 다 wrap_content를 주었고, RecyclerView는 width는 match_parent, height은 wrap_content를 사용하였다.
@@ -50,7 +59,7 @@
 [목차로 돌아가기](#Contents)<br>
 
 <p align="center">
-	<img src="/img/recommend_item_blueprint.JPG" width="300"/>
+    <img src="/img/recommend_item_blueprint.JPG" width="300"/>
 </p>
 
 메인 화면 Recyclerview의 itemview로 ConstraintLayout을 사용하였다. width는 match_parent, height은 값을  390dp로 고정하였다.
@@ -61,18 +70,18 @@
 
 <h2 id="지도">지도 화면</h2>
 <p align="center">
-	<img src="/img/map_constraintLayout.PNG" width="300"/>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<img src="/img/map_image.PNG" width="300"/>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<img src="/img/map_popup.PNG" width="260"/><br>
+    <img src="/img/map_constraintLayout.PNG" width="300"/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <img src="/img/map_image.PNG" width="300"/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <img src="/img/map_popup.PNG" width="260"/><br>
 </p>
 - 사용자가 지역별로 책방을 찾을 수 있는 화면이다. default값인 마포구를 클릭했을 때 아래에서 위로 지역을 클릭할 수 있는 팝업창이 뜬다. 다른 지역을 클릭하게 되면 그에 따른 책방들이 RecyclerView로 보여진다. MapItemDecoration 에서 리사이클러뷰 아래에 getItemOffsets 함수를 사용해서 여백을 주었다.<br>
 - 화면 레이아웃은 ConstraintLayout을 사용했다. 각 뷰 사이에 제약을 주면서 유기적으로 뷰가 움직일 수 있도록 만들었다. 양쪽에 guideline을 주어 여백을 따로 두지 않아도 되도록 만들었다.<br>
 
 [xml 보러가기](https://github.com/OurCozy/cozy-Android/blob/dev/app/src/main/res/layout/fragment_map.xml)
 
-[목차로 돌아가기](#Contents)<br><br>					  
+[목차로 돌아가기](#Contents)<br><br>                     
 
 ### 지도 상세 화면
 
@@ -105,9 +114,9 @@
 
 <h2 id="관심">관심 화면</h2>
 <p align="center">
-	<img src="/img/interest_none.PNG" width="300"/>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<img src="/img/interest.PNG" width="300"/>
+    <img src="/img/interest_none.PNG" width="300"/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <img src="/img/interest.PNG" width="300"/>
 </p>
 - 각 책방에 있는 해시태그를 클릭해서 관심 등록한 책방이 보인다. 최신순으로 책방이 나타나며 관심이 있는 책방이 없을 경우 이 왼쪽과 같은 뷰가 뜬다. 이때 fragment_interest_none.xml가 호출될 수 있도록 코드를 작성한다. 지도뷰와 마찬가지로 관심있는 책방을 RecyclerView로 보여진다. MapItemDecoration 에서 리사이클러뷰 아래에 getItemOffsets 함수를 사용해서 여백을 주었다.<br>
 - 화면 레이아웃은 ConstraintLayout을 사용했다. 각 뷰 사이에 제약을 주면서 유기적으로 뷰가 움직일 수 있도록 만들었다. 양쪽에 guideline을 주어 여백을 따로 두지 않아도 되도록 만들었다.<br>
@@ -118,27 +127,27 @@
 
 <h2 id="내정보">내 정보 화면</h2>
 <p align="center">
-	<img src="/img/mypage_no_recently_seen.png" width="300"/>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<img src="/img/mypage.png" width="300"/><br>
+    <img src="/img/mypage_no_recently_seen.png" width="300"/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <img src="/img/mypage.png" width="300"/><br>
 </p>
 
-사용자의 기본정보, 후기와 최근 책방 등을 볼 수 있는 화면이다. 왼쪽 화면은 사용자가 최근에 본 책방이 없을 때의 모습이고 오른쪽 화면은 최근에 본 책방을 RecyclerView로 보여준다. 아래의 코드와 같이 해당 데이터가 존재한다면 리사이클러뷰의 위에 위치한 TextView의 visibility를 Context.GONE 해주었다.
+사용자의 기본정보, 후기와 최근 책방 등을 볼 수 있는 화면이다. 왼쪽 화면은 사용자가 최근에 본 책방이 없을 때의 모습이고 오른쪽 화면은 최근에 본 책방을 RecyclerView로 보여준다. 아래의 코드와 같이 해당 데이터가 존재한다면 리사이클러뷰의 위에 위치한 TextView의 visibility를 View.GONE 해주었다.
 
 ```kotlin
-	if(data.size != 0) {
-	    tv_no_recently_seen_background.visibility = GONE
-	    tv_no_recently_seen_text.visibility = GONE
-	} else {
-		tv_no_recently_seen_background.visibility = VISIBLE
-		tv_no_recently_seen_text.visibility = VISIBLE
-	}
+    if(data.size != 0) {
+        tv_no_recently_seen_background.visibility = GONE
+        tv_no_recently_seen_text.visibility = GONE
+    } else {
+        tv_no_recently_seen_background.visibility = VISIBLE
+        tv_no_recently_seen_text.visibility = VISIBLE
+    }
 ```
 
 <br>
 
 <p align="center">
-	<img src="/img/mypage_blueprint.PNG" width="300"/><br>
+    <img src="/img/mypage_blueprint.PNG" width="300"/><br>
 </p>
 
 <br>
@@ -260,7 +269,7 @@ class InterestViewHolder(itemView: View, val onClick: (MapData) -> Unit) : Recyc
 
 \*액티비티 전환 애니메이션
 <p align="center">
-	<img src="/img/recommend_animation.gif" width="300"/><br>
+    <img src="/img/recommend_animation.gif" width="300"/><br>
 </p>
 
 추천 탭에서 더 자세히 보고 싶은 책방을 눌렀을 때 똑같이 공유되는 요소 들을 부드럽게 보여주는 shared element transition의 효과를 적용했다. 먼저 fragment_main에서 공유되는 모든뷰에 transitionName을 지정해 준다.
@@ -353,7 +362,7 @@ class InterestViewHolder(itemView: View, val onClick: (MapData) -> Unit) : Recyc
 * [카카오맵 실행하기](#kakaomap)
 
 <p align="center">
-	<img src="/img/kakao_map.png" width="300"/><br>
+    <img src="/img/kakao_map.png" width="300"/><br>
 </p>
 
 책방을 클릭했을 때 나오는 자세한 소개 뷰에서 카카오 API를 이용해 지도를 띄웠다. API를 사용하기 위해 [카카오 개발자 사이트](https://developers.kakao.com)에서 앱을 등록한 후, 필요한 라이브러리 파일을 추가하고 manifest에 아래와 같이 인터넷과 위치정보 접근을 허용시키고 발급받은 앱 키를 적어준다.
@@ -403,10 +412,10 @@ class InterestViewHolder(itemView: View, val onClick: (MapData) -> Unit) : Recyc
 ```
 
 <p id="kakaomap" align="center">
-	<img src="/img/open_map_no_app.gif" width="300"/><br>
-	카카오맵이 설치되어 있지 않을 때<br><br><br>
-	<img src="/img/open_map.gif" width="300"/><br><br>
-	카카오맵이 설치되어 있을 때
+    <img src="/img/open_map_no_app.gif" width="300"/><br>
+    카카오맵이 설치되어 있지 않을 때<br><br><br>
+    <img src="/img/open_map.gif" width="300"/><br><br>
+    카카오맵이 설치되어 있을 때
 </p>
 
 마지막으로 길찾기 버튼을 클릭했을 때 카카오맵이 실행되도록 구현했다. packageManager.getLaunchIntentForPackage()로 해당 앱이 이미 설치되었는지 확인 후, 설치되어 있다면 앱을 연 다음 서점이 있는 곳을 보여주도록했고 앱이 설치되어있지 않다면 구글플레이에서 앱을 다운받을 수 있는 링크로 이동하도록했다.
@@ -522,7 +531,7 @@ override fun onStart() {
 그리고 SeoulFragment에서 지역을 클릭했을 때 이 값에 따라서 이미지 색이 달라져야 하기 때문에 누른 sectionIdx 값을 sharedPreferenced에 저장한다. 
 이후 팝업을 내리고 다시 올려도 해당 지역 이미지 색이 달라질 수 있도록 한다.<br>
 <p align="center">
-	<img src="/img/" width="300"/><br>
+    <img src="/img/" width="300"/><br>
 </p>
 
 ``` kotlin
@@ -532,7 +541,7 @@ val pref = activity!!.getSharedPreferences("pref", Context.MODE_PRIVATE)
         val location = pref.getInt("location",1)
         selectedLocation(location)
 img_1.setOnClickListener{
-	//부모 프래그먼트 종료(부모 프래그먼트에서 BottomSheetDialogFragment 가져오기)
+    //부모 프래그먼트 종료(부모 프래그먼트에서 BottomSheetDialogFragment 가져오기)
             val popF = this.parentFragment as BottomSheetDialogFragment
             popF.dismiss()
             sectionIdx(1)
@@ -543,6 +552,8 @@ img_1.setOnClickListener{
 [코틀린 코드 보기](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/java/com/example/cozy/views/map/popup/SeoulFragment.kt)<br>
 
 <h2 id="관심책방">관심 책방 설정</h2>
+
+<img src="/img/bookmark.gif" width="300"/><br><br>
 
 리사이클러 뷰의 오른쪽에 위치한 책갈피 아이콘을 클릭하면 서버에 해당 서점의 관심 체크 여부를 PUT한다. 아이콘을 클릭할 때마다 활성화된 아이콘과 비활성화된 아이콘이 번갈아 나오도록 selector를 만들어주었다.
 
@@ -584,7 +595,7 @@ img_1.setOnClickListener{
 
 <h2 id="Collection">Kotlin Collection 활용</h2>
 
-서버 통신을 위한 헤더를 작성할 때 _mutableMapOf_\을 활용했다. Map에는 Content-Type과 token을 각각 넣어 통신 요청했다.
+서버 통신을 위한 헤더를 작성할 때 _mutableMapOf_ 을 활용했다. Map에는 Content-Type과 token을 각각 넣어 통신 요청했다.
 
 ```kotlin
     val sharedPref = activity.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
