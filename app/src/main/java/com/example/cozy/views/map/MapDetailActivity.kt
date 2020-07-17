@@ -220,6 +220,7 @@ class MapDetailActivity : AppCompatActivity() {
                 startActivity(intent)
             }
 
+        rec_comments.addItemDecoration(BottomItemDecoration(this, 35))//itemDecoration 여백주기
 
         }
 
@@ -241,7 +242,6 @@ class MapDetailActivity : AppCompatActivity() {
                     Log.d("test", it.message)
                     reviewAdapter = ReviewAdapter(this, it.data.toMutableList(),{})
                     rv_comments.adapter = reviewAdapter
-                    rv_comments.addItemDecoration(BottomItemDecoration(this, 35))//itemDecoration 여백주기
                     Log.d("test", "성공")
                 }
             }

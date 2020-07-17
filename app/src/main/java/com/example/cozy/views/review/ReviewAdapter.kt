@@ -1,6 +1,7 @@
 package com.example.cozy.views.review
 
 import android.content.Context
+import android.content.Intent
 import android.text.Layout
 import android.text.SpannableString
 import android.text.style.AlignmentSpan
@@ -64,7 +65,8 @@ class ReviewAdapter(private val context: Context, val data : MutableList<AllRevi
                             onError = {},
                             onSuccess = {
                                 if(it.success){
-
+//                                    val intent = Intent(activity, PutReviewActivity::class.java)
+//                                    intent.putExtra("bookIdx",AllReviewData.reviewIdx)
                                 }
 
                             }
