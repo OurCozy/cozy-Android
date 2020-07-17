@@ -26,7 +26,6 @@
 	* [관심 책방 설정](#관심책방)
 * 그 외 기능
 	* [로그인 및 회원가입](#로그인)
-	* [후기](#후기)
 	* [검색](#검색)
 * 확장함수
 * 소스파일
@@ -492,7 +491,7 @@ img_1.setOnClickListener{
             ed.apply()
         }
 ```
-[Kotlin 코드 보기](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/java/com/example/cozy/views/map/popup/SeoulFragment.kt)<br>
+[Kotlin 코드 보기](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/java/com/example/cozy/views/map/popup/SeoulFragment.kt)<br><br>
 [목차로 돌아가기](#Contents)<br>
 
  ## textChangedListener
@@ -574,7 +573,7 @@ img_1.setOnClickListener{
 
 <h2 id="로그인">로그인 및 회원가입</h2>
 <p align="center">
-	<img src="/img/.png" width="300"/>
+	<img src="/img/login.gif" width="300"/>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </p>
 로그인은 이메일과 비밀번호 둘 중 하나 입력하지 않으면 완료버튼이 활성화 되지 않는다. 완료를 클릭했을 때 서버와 통신해서 이메일이 등록되어 있지 않은 회원이면 등록되지 않는 회원이라고 뜨고 이메일과 비밀번호가 일치하지 않으면 비밀번호가 일치하지 않으면 textview에 일치하지 않는다는 문구가 뜬다. <br>
@@ -589,11 +588,11 @@ img_1.setOnClickListener{
 [목차로 돌아가기](#Contents)
 <br>
 
-## 후기
-
 ## 검색
-
-
-
-
-
+<p align="center">
+	<img src="/img/search.png" width="300"/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<img src="/img/search2.png" width="300"/>
+</p>
+각 뷰에 검색 아이콘을 클릭하면 검책뷰가 뜬다. 검색하고자 하는 키워드를 입력하거나 해시태그를 클릭하면 그에 관련되는 독립서점이 뷰에 나온다.<br><br>
+[목차로 돌아가기](#Contents)<br>
