@@ -123,7 +123,7 @@
 	<img src="/img/mypage.png" width="300"/><br>
 </p>
 
-사용자의 기본정보, 후기와 최근 책방 등을 볼 수 있는 화면이다. 왼쪽 화면은 사용자가 최근에 본 책방이 없을 때의 모습이고 오른쪽 화면은 최근에 본 책방을 RecyclerView로 보여준다. 아래의 코드와 같이 해당 데이터가 존재한다면 리사이클러뷰의 위에 위치한 TextView의 visibility를 Context.GONE 해주었다.
+사용자의 기본정보, 후기와 최근 책방 등을 볼 수 있는 화면이다. 왼쪽 화면은 사용자가 최근에 본 책방이 없을 때의 모습이고 오른쪽 화면은 최근에 본 책방을 RecyclerView로 보여준다. 아래의 코드와 같이 해당 데이터가 존재한다면 리사이클러뷰의 위에 위치한 TextView의 visibility를 View.GONE 해주었다.
 
 ```kotlin
 	if(data.size != 0) {
@@ -584,7 +584,7 @@ img_1.setOnClickListener{
 
 <h2 id="Collection">Kotlin Collection 활용</h2>
 
-서버 통신을 위한 헤더를 작성할 때 _mutableMapOf_\을 활용했다. Map에는 Content-Type과 token을 각각 넣어 통신 요청했다.
+서버 통신을 위한 헤더를 작성할 때 _mutableMapOf_ 을 활용했다. Map에는 Content-Type과 token을 각각 넣어 통신 요청했다.
 
 ```kotlin
     val sharedPref = activity.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
