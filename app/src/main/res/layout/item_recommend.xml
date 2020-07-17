@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintDimensionRatio="1:1.23"
-        android:src="@drawable/img_contents"
         app:srcCompat="@drawable/ic_launcher_background"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,8 +43,7 @@
         android:textSize="21sp"
         android:transitionName="share_text1"
         app:layout_constraintBottom_toTopOf="@+id/rec_text2"
-        app:layout_constraintStart_toStartOf="@+id/rec_img"
-        tools:text="다양한 독립서적과" />
+        app:layout_constraintStart_toStartOf="@+id/rec_img" />
 
     <TextView
         android:id="@+id/rec_text2"
@@ -60,8 +58,7 @@
         android:textSize="21sp"
         android:transitionName="share_text2"
         app:layout_constraintBottom_toTopOf="@+id/rec_name"
-        app:layout_constraintStart_toStartOf="@+id/rec_img"
-        tools:text="그림, 커피 한 잔 까지?" />
+        app:layout_constraintStart_toStartOf="@+id/rec_img" />
 
     <ImageView
         android:id="@+id/icon_address"
@@ -86,8 +83,7 @@
         android:textSize="12sp"
         android:transitionName="share_text3"
         app:layout_constraintBottom_toTopOf="@+id/rec_address"
-        app:layout_constraintStart_toEndOf="@+id/icon_address"
-        tools:text="지구불시착" />
+        app:layout_constraintStart_toEndOf="@+id/icon_address" />
 
     <TextView
         android:id="@+id/rec_address"
@@ -101,7 +97,6 @@
         android:textSize="9sp"
         android:transitionName="share_text4"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/rec_name"
-        tools:text="서울특별시 노원구 화랑로 464" />
+        app:layout_constraintStart_toStartOf="@+id/rec_name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
