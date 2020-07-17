@@ -30,7 +30,11 @@ class ReviewAdapter(private val context: Context, val data : MutableList<AllRevi
     override fun onBindViewHolder(holder: ReviewViewHolder, position: Int) {
         holder.bind(data[position])
 
-        val sharedPref = context!!.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
+        val sharedPref = context.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
+        val token = sharedPref.getString("token", "token")
+        val header = mutableMapOf<String, String?>()
+        header["Content-Type"] = "application/json"
+        header["token"] = token
         Log.d("이름 : ", data[position].nickname)
         if(sharedPref.getString("nickname", "cozy") != data[position].nickname){
             holder.moreBtn.visibility = View.GONE
@@ -61,14 +65,9 @@ class ReviewAdapter(private val context: Context, val data : MutableList<AllRevi
                     R.id.delete -> {
                         when(it.itemId) {
                             R.id.edit -> {
-                                Toast.makeText(context, "edit!", Toast.LENGTH_LONG).show()
+                               Toast.makeText(context, "edit!", Toast.LENGTH_LONG).show()
                             }
                             R.id.delete -> {
-                                val sharedPref = context.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
-                                val token = sharedPref.getString("token", "token")
-                                val header = mutableMapOf<String, String?>()
-                                header["Content-Type"] = "application/json"
-                                header["token"] = token
                                 RequestToServer.service.requestReviewDel(data[position].bookstoreIdx, header).customEnqueue(
                                     onError = {Log.d("RESPONSE", "error")},
                                     onSuccess = {

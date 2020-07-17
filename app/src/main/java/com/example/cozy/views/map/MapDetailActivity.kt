@@ -219,9 +219,13 @@ class MapDetailActivity : AppCompatActivity() {
                 startActivity(intent)
             }
 
-        showReview()
 
         }
+
+    override fun onResume() {
+        super.onResume()
+        showReview()
+    }
 
     fun showReview(){
         val sharedPref = getSharedPreferences("TOKEN", Context.MODE_PRIVATE)

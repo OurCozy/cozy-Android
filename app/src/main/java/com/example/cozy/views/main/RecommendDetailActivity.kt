@@ -219,8 +219,12 @@ class RecommendDetailActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        showReview()
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        showReview()
     }
 
 
