@@ -1,3 +1,4 @@
+
 <h1 align="center">COZY_Android</h1>
 <p align="center">
     <img src="/img/cozy_logo.png" width="200"/><br>
@@ -12,19 +13,20 @@
     * [지도](#지도)
     * [관심](#관심)
     * [내정보](#내정보)
-* 프로젝트 구조
-* 라이브러리
+* [프로젝트 구조](#구조)
+* [라이브러리](#라이브러리)
 * 기본 기능
-    * [BottomNavigationView](#BottomNavigationView)
-    * [RecyclerView](#RecyclerView)
+	* [BottomNavigationView](#BottomNavigationView)
+	* [RecyclerView](#RecyclerView)
 * 주요 기능
     * [애니메이션](#애니메이션)
     * [카카오맵 API](#카카오맵)
-    * Bottom-sheet Dialog
+    * [카카오 로그인](#카카오)
+    * [Bottom-sheet Dialog](#BottomSheetDialog)
+    * [textChangedListener](#textChangedListener)
     * [관심 책방 설정](#관심책방)
 * 그 외 기능
     * [로그인 및 회원가입](#로그인)
-    * [후기](#후기)
     * [검색](#검색)
 * 확장함수
     *[addOnPageChangeListener확장함수](#addOnPageChangeListener확장함수)
@@ -41,7 +43,7 @@
 * 개발 기간 : 2020년 6월 28일 ~ 2020년 7월 18일
 
 
-
+<br><br>
 # 뷰
 <h2 id="메인">메인 화면</h2>
 <p align="center">
@@ -72,11 +74,11 @@
 
 <h2 id="지도">지도 화면</h2>
 <p align="center">
-    <img src="/img/map_constraintLayout.PNG" width="300"/>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <img src="/img/map_image.PNG" width="300"/>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <img src="/img/map_popup.PNG" width="260"/><br>
+	<img src="/img/map_constraintLayout.PNG" width="200"/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<img src="/img/map_image.PNG" width="200"/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<img src="/img/map_popup.PNG" width="200"/><br>
 </p>
 - 사용자가 지역별로 책방을 찾을 수 있는 화면이다. default값인 마포구를 클릭했을 때 아래에서 위로 지역을 클릭할 수 있는 팝업창이 뜬다. 다른 지역을 클릭하게 되면 그에 따른 책방들이 RecyclerView로 보여진다. MapItemDecoration 에서 리사이클러뷰 아래에 getItemOffsets 함수를 사용해서 여백을 주었다.<br>
 - 화면 레이아웃은 ConstraintLayout을 사용했다. 각 뷰 사이에 제약을 주면서 유기적으로 뷰가 움직일 수 있도록 만들었다. 양쪽에 guideline을 주어 여백을 따로 두지 않아도 되도록 만들었다.<br>
@@ -161,8 +163,48 @@
 [목차로 돌아가기](#Contents)<br><br>
 
 <h1 id="구조">프로젝트 구조</h1>
+<br>
+<p align="center">
+	<img src="/img/project.PNG" width="600"/><br>
+</p>
+
 
 # 라이브러리
+
+``` kotlin
+    //리사이클러뷰
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    //material디자인 라이브러리
+    implementation "com.google.android.material:material:1.2.0-alpha05"
+    //이미지 로딩 라이브러리 : glide
+    implementation "com.github.bumptech.glide:glide:4.10.0"
+    kapt "com.github.bumptech.glide:compiler:4.10.0"
+    //동그란 이미지 커스텀 뷰 라이브러리 : https://github.com/hdodenhof/CircleImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+    //Retrofit 라이브러리 : https://github.com/square/retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.6.2'
+    implementation 'com.squareup.retrofit2:retrofit-mock:2.6.2'
+    //객체 시리얼라이즈를 위한 Gson 라이브러리 : https://github.com/google/gson
+    implementation 'com.google.code.gson:gson:2.8.6'
+    //Retrofit 에서 Gson 을 사용하기 위한 라이브러리
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
+    //디자인 라이브러리
+    implementation 'com.android.support:design:28.0.0'
+    //cardView 라이브러리
+    implementation "androidx.cardview:cardview:1.0.0"
+    //모서리 둥근 imageView 라이브러리 : https://github.com/vinc3m1/RoundedImageView
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+    //Glide 적용 가능한 모서리 둥근 imageView 라이브러리 : https://github.com/rishabh876/RoundedImageView?utm_source=android-arsenal.com&utm_medium=referral&utm_campaign=7549
+    implementation 'com.rishabhharit.roundedimageview:RoundedImageView:0.8.4'
+    //카카오 API
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation files('libs/libDaumMapAndroid.jar')
+    //bottom sheet 라이브러리
+    implementation 'com.google.android.material:material:1.2.0-alpha02'
+    // 카카오 로그인
+    implementation group: 'com.kakao.sdk', name: 'usermgmt', version: '1.29.0'
+
+```
 
 # 기본 기능
 
@@ -340,7 +382,7 @@ class InterestViewHolder(itemView: View, val onClick: (MapData) -> Unit) : Recyc
         android:transitionName="share_text4"
     ... />
 ```
-그리고 MainFragment에서 item을 클릭했을때 실행되는 코드에 공유되는 뷰가 여러개일 때 view와 transitionName을 각각 Pair라는 클래스에 담아 ActionOptionsCompat의 makeSceneTransitionAnimation(Activity, Pair<F, S> ... Pair<F, S>)를 통해 애니메이션을 생성하였다. 
+그리고 MainFragment에서 item을 클릭했을때 실행되는 코드에 공유되는 뷰가 여러개일 때 view와 transitionName을 각각 Pair라는 클래스에 담아 ActionOptionsCompat의 makeSceneTransitionAnimation(Activity, Pair<F, S> ... Pair<F, S>)를 통해 애니메이션을 생성하였다.
 
 ```kotlin
     *MainFragment
@@ -574,7 +616,7 @@ override fun onStart() {
 그리고 SeoulFragment에서 지역을 클릭했을 때 이 값에 따라서 이미지 색이 달라져야 하기 때문에 누른 sectionIdx 값을 sharedPreferenced에 저장한다. 
 이후 팝업을 내리고 다시 올려도 해당 지역 이미지 색이 달라질 수 있도록 한다.<br>
 <p align="center">
-    <img src="/img/" width="300"/><br>
+	<img src="/img/bottomsheet.gif" width="300"/><br>
 </p>
 
 ``` kotlin
@@ -592,7 +634,113 @@ img_1.setOnClickListener{
             ed.apply()
         }
 ```
-[코틀린 코드 보기](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/java/com/example/cozy/views/map/popup/SeoulFragment.kt)<br>
+[Kotlin 코드 보기](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/java/com/example/cozy/views/map/popup/SeoulFragment.kt)<br><br>
+[목차로 돌아가기](#Contents)<br>
+
+ ## textChangedListener
+
+회원가입뷰에서 비밀번호 조건에 맞출 때, 비밀번호 일치 여부를 판단할 때 사용한다. 이 리스너는 텍스트를 입력할 때마다 리스너 이벤트가 작동한다. 비밀번호가 입력될 때마다 정규식을 통해서 판단하는데
+숫자, 문자, 영문이 다 들어가야 조건이 맞도록 한다.<br>
+ ``` kotlin
+  signup_pw.textChangedListener {
+            if(!Pattern.matches("^(?=.*\\d)(?=.*[~`!@#$%\\^&*()-])(?=.*[a-zA-Z]).{10,20}$", signup_pw.text.toString())){
+                pw_msg.text = "*영문, 숫자, 특수문자 포함 10~20자 입력해주세요."
+                password = false
+                signup_finish()
+            }
+ ```
+ <br>
+ 비밀번호 확인 부분에 비밀번호를 입력했을 때 텍스트 감지해서 일치 여부를 띄운다.<br>
+
+``` kotlin
+  signup_pw_checked.textChangedListener {
+            if (signup_pw.text.toString() == signup_pw_checked.text.toString()) {
+                pw_check_msg.text = "*비밀번호가 일치합니다."
+                pw_check_msg.setTextColor(ContextCompat.getColor(this, R.color.green))
+                passwordcheck = true
+                signup_finish()
+            }
+            else {
+                pw_check_msg.text = "*비밀번호가 일치하지 않습니다."
+                pw_check_msg.setTextColor(ContextCompat.getColor(this, R.color.mainColor))
+                passwordcheck = false
+                signup_finish()
+            }
+        }
+```
+
+[Kotlin 코드 보기](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/java/com/example/cozy/signin/SignupActivity.kt)<br><br>
+[목차로 돌아가기](#Contents)<br>
+
+<h2 id="관심책방">관심 책방 설정</h2>
+
+리사이클러 뷰의 오른쪽에 위치한 책갈피 아이콘을 클릭하면 서버에 해당 서점의 관심 체크 여부를 PUT한다. 아이콘을 클릭할 때마다 활성화된 아이콘과 비활성화된 아이콘이 번갈아 나오도록 selector를 만들어주었다.
+
+``` xml
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/ic_small_bookmark_selected"
+        android:state_selected="true"/>
+    <item android:drawable="@drawable/ic_small_bookmark"
+        android:state_selected="false"/>
+</selector>
+```
+
+리사이클러뷰의 북마크 아이콘을 클릭했을 때 해당 서점의 자세한 정보를 보여주는 화면으로 이동하지 않고 북마크 표시만 변경되도록 Adapter의 onBindViewHolder에서 해당 아이콘에 다음과 같이 클릭 리스너를 지정했다.
+
+``` kotlin
+    override fun onBindViewHolder(holder: InterestViewHolder, position: Int) {
+        holder.bind(data[position])
+
+        holder.bookmark.setOnClickListener {
+            // 서버에 관심 책방 등록/해제 요청
+            RequestToServer.service.requestBookmarkUpdate(data[position].bookstoreIdx, header).customEnqueue(
+                onError = { /*에러 처리*/ },
+                onSuccess = {
+                    if(it.success) {
+                        // 관심 책방 해제 성공하면 리사이클러 뷰에서 해당 아이템 제거
+                        data.removeAt(position)
+                        notifyItemRemoved(position)
+                        notifyItemRangeChanged(position, data.size)
+                    }
+                }
+            )
+        }
+    }
+```
+
+[kotlin 코드 보러가기]
+
+[목차로 돌아가기](#Contents)
+
+# 그 외 기능
+
+<h2 id="로그인">로그인 및 회원가입</h2>
+<p align="center">
+	<img src="/img/login.gif" width="300"/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</p>
+로그인은 이메일과 비밀번호 둘 중 하나 입력하지 않으면 완료버튼이 활성화 되지 않는다. 완료를 클릭했을 때 서버와 통신해서 이메일이 등록되어 있지 않은 회원이면 등록되지 않는 회원이라고 뜨고 이메일과 비밀번호가 일치하지 않으면 비밀번호가 일치하지 않으면 textview에 일치하지 않는다는 문구가 뜬다. <br><br>
+
+<p align="center">
+	<img src="/img/signup1.png" width="300"/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<img src="/img/signup2.png" width="300"/>
+</p>
+닉네임, 이메일 중복을 서버와 통신하여 확인할 수 있으며 비밀번호 일치 여부를 판단해서 모든 조건을 갖추게 되면 완료 버튼이 활성화된다. 이 버튼을 누르게 되면 회원가입이 된다. <br><br>
+
+[목차로 돌아가기](#Contents)
+<br>
+
+## 검색
+<p align="center">
+	<img src="/img/search.png" width="300"/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<img src="/img/search2.png" width="300"/>
+</p>
+각 뷰에 검색 아이콘을 클릭하면 검책뷰가 뜬다. 검색하고자 하는 키워드를 입력하거나 해시태그를 클릭하면 그에 관련되는 독립서점이 뷰에 나온다.<br><br>
+
+[목차로 돌아가기](#Contents)
+<br>
 
 <h2 id="관심책방">관심 책방 설정</h2>
 
