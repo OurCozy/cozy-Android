@@ -441,6 +441,7 @@
                 android:textColor="@color/textColor"
                 android:textSize="14sp"
                 android:fontFamily="@font/notosans_fontfamily"
+                android:textFontWeight="700"
                 android:paddingVertical="3dp"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="@+id/end_guideline"

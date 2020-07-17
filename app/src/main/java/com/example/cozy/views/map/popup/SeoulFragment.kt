@@ -83,7 +83,7 @@ class SeoulFragment(private val sectionIdx : (Int) -> Unit) : Fragment(){
         }
     }
 
-
+    //선택된 지역 표시하기
     fun selectedLocation(lc : Int){
         when(lc){
             1 -> {
