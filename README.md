@@ -400,7 +400,7 @@ class InterestViewHolder(itemView: View, val onClick: (MapData) -> Unit) : Recyc
     startActivity(intent,option.toBundle())
 ```
 
-[Kotlin 코드 보러가기]
+[Kotlin 코드 보러가기](https://github.com/OurCozy/cozy-Android/blob/dev/app/src/main/java/com/example/cozy/views/main/MainFragment.kt)
 
 [목차로 돌아가기](#Contents)
 
@@ -578,7 +578,7 @@ MainActivity에서 onSelected를 구현해 주었다.
 }
 ```
 
-[Kotlin 코드 보러가기]
+[Kotlin 코드 보러가기](https://github.com/OurCozy/cozy-Android/blob/dev/app/src/main/java/com/example/cozy/OnpageChangeListener.kt)
 
 [목차로 돌아가기](#Contents)
 
