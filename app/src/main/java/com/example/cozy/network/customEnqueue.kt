@@ -17,9 +17,11 @@ fun<ResponseType> Call<ResponseType>.customEnqueue(
         }
 
         override fun onResponse(call: Call<ResponseType>, response: Response<ResponseType>) {
+            Log.d("response", response.toString())
             response.body()?.let {
                 onSuccess(it)
             } ?: onError()
         }
+
     })
 }

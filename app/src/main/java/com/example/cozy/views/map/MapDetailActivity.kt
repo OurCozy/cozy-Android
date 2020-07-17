@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import com.bumptech.glide.Glide
@@ -14,23 +15,34 @@ import com.example.cozy.BottomItemDecoration
 import com.example.cozy.R
 import com.example.cozy.network.RequestToServer
 import com.example.cozy.network.customEnqueue
+import com.example.cozy.network.responseData.AllReviewData
 import com.example.cozy.network.responseData.BookstoreDetailData
+
 import com.example.cozy.tokenHeader
 import com.example.cozy.views.review.PutReviewActivity
+import com.example.cozy.views.review.ReviewActivity
 import com.example.cozy.views.review.ReviewAdapter
-import com.example.cozy.views.review.ReviewData
 import kotlinx.android.synthetic.main.activity_map_detail.*
+import kotlinx.android.synthetic.main.activity_map_detail.btn_write_review
+import kotlinx.android.synthetic.main.activity_map_detail.iv_bookmark
+import kotlinx.android.synthetic.main.activity_map_detail.tv_more
+import kotlinx.android.synthetic.main.activity_recommend_detail.*
+import kotlinx.android.synthetic.main.activity_review.*
+import net.daum.android.map.MapView
+import net.daum.mf.map.api.MapPOIItem
+import net.daum.mf.map.api.MapPoint
 import kotlin.properties.Delegates
 
 class MapDetailActivity : AppCompatActivity() {
-    lateinit var adapter: ReviewAdapter
+
     val service = RequestToServer.service
-    var data = mutableListOf<ReviewData>()
     lateinit var detailData : BookstoreDetailData
     var bookIdx by Delegates.notNull<Int>()
     var latitude by Delegates.notNull<Double>()
     var longitude by Delegates.notNull<Double>()
     var kakaoPackageName : String = "net.daum.android.map"
+    lateinit var reviewAdapter: ReviewAdapter
+    var data = mutableListOf<AllReviewData>()
 
     //관심책방 여부 저장 변수 TODO:서버에서 가져온 정보 여기에 저장
     var isChecked : Int = 0
@@ -39,8 +51,9 @@ class MapDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map_detail)
 
-        if (intent.hasExtra("bookIdx"))
+        if (intent.hasExtra("bookIdx")) {
             bookIdx = intent.getIntExtra("bookIdx",0)
+        }
 
         val sharedPref = this.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
         val header = mutableMapOf<String, String>()
@@ -126,24 +139,23 @@ class MapDetailActivity : AppCompatActivity() {
                     Glide.with(this).load(detailData.image2).into(map_detail_img_2)
                     map_detail.text = detailData.description
 
-//                // 카카오 지도 API 사용 (AVD로 실행할 때는 78~94 주석처리하기)
-//                val mapView = MapView(this)
-//                val mapViewContainer = view_map as ViewGroup
-//                mapViewContainer.addView(mapView)
-//                // 서점 위치 위도&경도로 표시
-//                val MARKER_POINT = MapPoint.mapPointWithGeoCoord(latitude, longitude)
-//                mapView.setMapCenterPoint(MARKER_POINT, true)
-//                // 지도 레벨 변경
-//                mapView.setZoomLevel(3, true)
-//                // 지도 위에 마커 표시
-//                val marker = MapPOIItem()
-//                marker.itemName = "Default Marker"
-//                marker.tag = 0
-//                marker.mapPoint = MARKER_POINT
-//                marker.markerType = MapPOIItem.MarkerType.BluePin // 기본으로 제공하는 BluePin 마커 모양.
-//                marker.selectedMarkerType =
-//                    MapPOIItem.MarkerType.RedPin // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
-//                mapView.addPOIItem(marker)
+//                    // 카카오 지도 API 사용 (AVD로 실행할 때는 78~94 주석처리하기)
+//                    val mapView = net.daum.mf.map.api.MapView(this)
+//                    val mapViewContainer = view_map as ViewGroup
+//                    mapViewContainer.addView(mapView)
+//                    // 서점 위치 위도&경도로 표시
+//                    val MARKER_POINT = MapPoint.mapPointWithGeoCoord(latitude, longitude)
+//                    mapView.setMapCenterPoint(MARKER_POINT, true)
+//                    // 지도 레벨 변경
+//                    mapView.setZoomLevel(3, true)
+//                    // 지도 위에 마커 표시
+//                    val marker = MapPOIItem()
+//                    marker.itemName = "Default Marker"
+//                    marker.tag = 0
+//                    marker.mapPoint = MARKER_POINT
+//                    marker.markerType = MapPOIItem.MarkerType.BluePin // 기본으로 제공하는 BluePin 마커 모양.
+//                    marker.selectedMarkerType = MapPOIItem.MarkerType.RedPin // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
+//                    mapView.addPOIItem(marker)
                 } else Log.d("test", "error")
             }
         )
@@ -177,81 +189,55 @@ class MapDetailActivity : AppCompatActivity() {
                 header["token"] = sharedPref.getString("token", "token")*/
 
 
-                //관심책방이면 체크해제
-                if(isChecked == 0) {
-                    //서버에 해당 정보 전달
-                    //TODO: 서버에서 받은 bookstoreIdx 전달
-                    service.requestBookmarkUpdate(1, tokenHeader(this)).customEnqueue(
-                        onError = { Log.d("response", "error")},
-                        onSuccess = {
-                            if(it.success) {
-                                Log.d("response", it.message)
-                                //색칠 안된 북마크로 이미지 변경
-                                //bookmarkImg.setImageResource(R.drawable.ic_bookmark)
-                                bookmarkImg.isSelected = false
-                                isChecked = 0
-                            } else {
-                                Log.d("response", it.message)
-                                Toast.makeText(this, "관심책방 해제에 실패했습니다.", Toast.LENGTH_SHORT).show()
-                            }
-                        }
-                    )
-                } else {
-                    //서버에 해당 정보 전달
-                    //TODO: 서버에서 받은 bookstoreIdx 전달
-                    service.requestBookmarkUpdate(1, header).customEnqueue(
-                        onError = { Log.d("response", "error")},
-                        onSuccess = {
-                            if(it.success) {
-                                Log.d("response", it.message)
-                                //색칠된 북마크로 이미지 변경
-                                //bookmarkImg.setImageResource(R.drawable.ic_bookmark_selected)
-                                bookmarkImg.isSelected = true
-                                isChecked = 1
-                            } else {
-                                Log.d("response", it.message)
-                                Toast.makeText(this, "관심책방 등록에 실패했습니다.", Toast.LENGTH_SHORT).show()
-                            }
+                service.requestBookmarkUpdate(bookIdx, header).customEnqueue(
+                    onError = { Log.d("response", "error")},
+                    onSuccess = {
+                        if(it.success) {
+                            Log.d("response", it.message)
+                            //북마크 이미지 변경
+                            //bookmarkImg.setImageResource(R.drawable.ic_bookmark)
+                            bookmarkImg.isSelected = !bookmarkImg.isSelected
+                        } else {
+                            Log.d("response", it.message)
+                            Toast.makeText(this, "관심책방 등록/해제에 실패했습니다.", Toast.LENGTH_SHORT).show()
                         }
                     )
                 }
             }
 
             btn_write_review.setOnClickListener {
-                startActivity(Intent(this, PutReviewActivity::class.java))
+                val intent = Intent(this, PutReviewActivity::class.java)
+                intent.putExtra("bookIdx", bookIdx)
+                startActivity(intent)
             }
 
-            adapter = ReviewAdapter(this)
-            rv_comments.adapter = adapter
-            loadData()
+            tv_more.setOnClickListener {
+                startActivity(Intent(this, ReviewActivity::class.java))
+            }
+
+        showReview()
+
         }
 
-    fun loadData() {
-        data.apply{
-            add(
-                ReviewData(
-                    userImg = "https://images.unsplash.com/photo-1593575391244-2f16fcf4cbf8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80",
-                    userName = "코지마안마의자",
-                    numOfStars = 5,
-                    writtenDate = "2020년 7월 7일 15:35작성",
-                    review = "안도북스는 제가 자주 가는 서점입니다. 안도북스의 분위기를 좋아하고, 책방 속의 작은 소품들과 따뜻한 조명이 퇴근후의 저를 위로하는 것 같아서 자주 방문하는 곳이에요. 퇴근하고 바로 달려가기 조금 빠듯한 시간이지만 자주 찾는 책방입니다. ",
-                    addedImage = "https://images.unsplash.com/photo-1561851561-04ee3d324423?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
-                )
-            )
-            add(
-                ReviewData(
-                    userImg = "https://images.unsplash.com/photo-1593575391244-2f16fcf4cbf8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80",
-                    userName = "꼬북칩냠냠",
-                    numOfStars = 4,
-                    writtenDate = "2020년 7월 7일 15:35작성",
-                    review = "안도북스에 가면 기분이 좋아져요 정형화 되지 않은 책 배열도 그렇고 서점이라기보단 친구집에 놀러간 느낌이 들어요. 책을 읽기 좋은 따뜻한 분위기를 만들어주는 것도 너무 좋고! 비오는날 스툴에 앉아서 창밖을 바라보며 책을 읽어보고싶네요. 비오는날은 좋아하지 않지만 안도북스에서는 괜찮을것 같아요.",
-                    addedImage = "https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
-                )
-            )
-        }
-        adapter.data = data
-        rv_comments.addItemDecoration(BottomItemDecoration(this, 35))
-        adapter.notifyDataSetChanged()
+    fun showReview(){
+        val sharedPref = getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
+        val header = mutableMapOf<String, String?>()
+        header["Content-Type"] = "application/json"
+        header["token"] = sharedPref.getString("token", "token")
+        service.requestTwoReview(20, header).customEnqueue(
+            onError = {Toast.makeText(this,"올바르지 않은 요청입니다.",Toast.LENGTH_SHORT)},
+            onSuccess = {
+                Log.d("test", "성공")
+                if(it.success) {
+                    Log.d("test", it.message)
+                    reviewAdapter = ReviewAdapter(this, it.data.toMutableList())
+                    rv_comments.adapter = reviewAdapter
+                    rv_comments.addItemDecoration(BottomItemDecoration(this, 35))//itemDecoration 여백주기
+                    Log.d("test", "성공")
+                }
+            }
+        )
+
     }
 
     // 실행할 앱이 설치되어 있는지 확인

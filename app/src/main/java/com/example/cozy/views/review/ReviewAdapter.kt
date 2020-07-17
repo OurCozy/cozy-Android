@@ -10,9 +10,10 @@ import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cozy.R
+import com.example.cozy.network.responseData.AllReviewData
 
-class ReviewAdapter(private val context: Context) : RecyclerView.Adapter<ReviewViewHolder>() {
-    var data = mutableListOf<ReviewData>()
+class ReviewAdapter(private val context: Context, val data : MutableList<AllReviewData>) : RecyclerView.Adapter<ReviewViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReviewViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_map_comment, parent, false)
         return ReviewViewHolder(view)

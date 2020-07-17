@@ -3,7 +3,11 @@ package com.example.cozy.views.review
 import android.R.attr.path
 import android.content.Context
 import android.content.Intent
+import android.database.Cursor
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.Editable
@@ -18,13 +22,16 @@ import com.example.cozy.network.RequestToServer
 import com.example.cozy.network.customEnqueue
 import com.kakao.auth.StringSet
 import com.kakao.auth.StringSet.file
+import com.example.cozy.network.requestData.RequestUploadReview
+import com.kakao.auth.authorization.AuthorizationResult
 import kotlinx.android.synthetic.main.activity_put_review.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.*
 import kotlin.properties.Delegates
-
+import okhttp3.MultipartBody
+import java.io.ByteArrayOutputStream
 
 class PutReviewActivity : AppCompatActivity() {
     val IMAGE_FROM_GALLERY = 0
@@ -34,6 +41,8 @@ class PutReviewActivity : AppCompatActivity() {
     lateinit var selectedImg : Uri
     val requestTosever = RequestToServer
     var bookIdx by Delegates.notNull<Int>()
+    var star = 0
+    lateinit var bitmap : Bitmap
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +54,7 @@ class PutReviewActivity : AppCompatActivity() {
         }
 
         iv_close.setOnClickListener {
-//            finish()
+            finish()
         }
 
         star_1.setOnClickListener{ onClick(it) }
@@ -78,6 +87,7 @@ class PutReviewActivity : AppCompatActivity() {
 
         tv_next.setOnClickListener {
             if(isStarFilled && isTextFilled && isImgFilled) {
+
                 //서버 통신
                 val c = contentResolver.query(Uri.parse(selectedImg.toString()), null, null, null, null)
                 c!!.moveToNext()
@@ -110,7 +120,20 @@ class PutReviewActivity : AppCompatActivity() {
                         Log.d("IOException >> ", e.toString())
                     }
                 }
+                RequestToServer.service.requestUploadReview(
+                    RequestUploadReview(
+                        bookstoreIdx = intent.getIntExtra("bookIdx", 1),
+                        content = et_review.text.toString(),
+                        stars = star
+                    ), header
+                ).customEnqueue(
+                    onError = {},
+                    onSuccess = {
+                        Log.d("test", it.message)
+                    }
+                )
                 Toast.makeText(this, "후기가 등록되었습니다!", Toast.LENGTH_LONG).show()
+                finish()
             } else Toast.makeText(this, "모든 항목을 입력해주세요!", Toast.LENGTH_LONG).show()
         }
     }
@@ -121,7 +144,8 @@ class PutReviewActivity : AppCompatActivity() {
         //갤러리에서 선택한 사진 화면에 출력
         if(requestCode==IMAGE_FROM_GALLERY && resultCode==RESULT_OK && data!=null) {
             selectedImg = data!!.data!!
-            var bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedImg)
+            bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedImg)
+            Log.d("Test", selectedImg.toString() +"   " + bitmap)
             upload_image.setImageBitmap(bitmap)
             isImgFilled = true
             if(isStarFilled && isTextFilled)
@@ -132,6 +156,7 @@ class PutReviewActivity : AppCompatActivity() {
     fun onClick(v: View) {
         when(v.id) {
             R.id.star_1 -> {
+                star = 1
                 isStarFilled = true
                 if(isTextFilled && isImgFilled)
                     tv_next.setTextColor(resources.getColor(R.color.mainColor))
@@ -142,6 +167,7 @@ class PutReviewActivity : AppCompatActivity() {
                 star_5.setImageResource(R.drawable.ic_star)
             }
             R.id.star_2 -> {
+                star = 2
                 isStarFilled = true
                 if(isTextFilled && isImgFilled)
                     tv_next.setTextColor(resources.getColor(R.color.mainColor))
@@ -152,6 +178,7 @@ class PutReviewActivity : AppCompatActivity() {
                 star_5.setImageResource(R.drawable.ic_star)
             }
             R.id.star_3 -> {
+                star = 3
                 isStarFilled = true
                 if(isTextFilled && isImgFilled)
                     tv_next.setTextColor(resources.getColor(R.color.mainColor))
@@ -162,6 +189,7 @@ class PutReviewActivity : AppCompatActivity() {
                 star_5.setImageResource(R.drawable.ic_star)
             }
             R.id.star_4 -> {
+                star = 4
                 isStarFilled = true
                 if(isTextFilled && isImgFilled)
                     tv_next.setTextColor(resources.getColor(R.color.mainColor))
@@ -172,6 +200,7 @@ class PutReviewActivity : AppCompatActivity() {
                 star_5.setImageResource(R.drawable.ic_star)
             }
             R.id.star_5 -> {
+                star = 5
                 isStarFilled = true
                 if(isTextFilled && isImgFilled)
                     tv_next.setTextColor(resources.getColor(R.color.mainColor))

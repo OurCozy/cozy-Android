@@ -35,6 +35,7 @@
         <activity android:name=".signin.SigninActivity" android:theme="@style/TransparentTheme"/>
         <activity android:name=".views.main.RecommendDetailActivity" />
         <activity android:name=".views.map.MapDetailActivity" />
+        <activity android:name=".views.review.ReviewActivity"/>
         <activity
             android:name=".views.main.RecommendDetailActivity"
             tools:ignore="DuplicateActivity" />

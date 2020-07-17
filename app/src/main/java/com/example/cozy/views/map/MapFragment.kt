@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.example.cozy.BottomItemDecoration
@@ -17,6 +18,7 @@ import com.example.cozy.network.RequestToServer.service
 import com.example.cozy.network.customEnqueue
 import com.example.cozy.views.map.popup.PopupFragment
 import com.example.cozy.views.map.popup.SeoulFragment
+import com.example.cozy.views.search.SearchActivity
 import kotlinx.android.synthetic.main.fragment_map.*
 import kotlin.properties.Delegates
 
@@ -34,6 +36,12 @@ class MapFragment : Fragment() {
         // Inflate the layout for this fragment
         fragView = inflater.inflate(R.layout.fragment_map, container, false)
         showMapList(fragView, sectionIdx)
+
+        val sharedPref = activity!!.getSharedPreferences("pref", Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        editor.putInt("location", sectionIdx)
+        editor.apply()
+
         return fragView
     }
 
@@ -47,6 +55,12 @@ class MapFragment : Fragment() {
         location.setOnClickListener{
             val bottomsheet = PopupFragment(sectionIdx)
             getFragmentManager()?.let { it1 -> bottomsheet.show(it1, bottomsheet.tag) }
+        }
+
+        //검색창 열기
+        btn_search.setOnClickListener {
+            val intent = Intent(activity, SearchActivity::class.java)
+            startActivity(intent)
         }
 
         bookstore.addItemDecoration(BottomItemDecoration(this.context!!, 15)) //itemDecoration 여백주기

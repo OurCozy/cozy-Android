@@ -3,8 +3,11 @@ package com.example.cozy.network
 import com.example.cozy.network.requestData.RequestFindPW
 import com.example.cozy.network.requestData.RequestLogin
 import com.example.cozy.network.requestData.RequestSignup
+import com.example.cozy.network.requestData.RequestUploadReview
+import com.example.cozy.network.requestData.*
 import com.example.cozy.network.responseData.*
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -45,6 +48,13 @@ interface RequestInterface {
     @POST("/main/detail/review/{bookstoreIdx}")
     fun requestReveiw(@Path("bookstoreIdx") bookstoreIdx: Int, @Part photo : MultipartBody.Part, @HeaderMap headers: Map<String, String?>) : Call<ReponseReviewData>
 
+    //2개 후기 보여주기
+    @GET("/main/detail/review2/{bookstoreIdx}")
+    fun requestTwoReview(@Path("bookstoreIdx") bookstoreIdx: Int, @HeaderMap headers: Map<String, String?>) : Call<ResponseTwoReview>
+    //모든 후기 보여주기
+    @GET("/main/detail/review/{bookstoreIdx}")
+    fun requestAllReview(@Path("bookstoreIdx") bookstoreIdx: Int, @HeaderMap headers: Map<String, String?>) : Call<ResponseAllReview>
+
     //지역별 조회 : https://github.com/OurCozy/cozy-server/wiki/2_2.-%EC%A7%80%EC%97%AD%EB%B3%84-%EC%A1%B0%ED%9A%8C
     @GET("/main/map/{sectionIdx}")
     fun requestMap(@Path("sectionIdx") sectionIdx: Int, @HeaderMap headers: Map<String, String?>) : Call<ResponseMap>
@@ -70,6 +80,14 @@ interface RequestInterface {
     fun requestUserProfile() : Call<ResponseUserProfile>*/
 
     //내가 쓴 후기 조회
+
+    //후기 업로드 : https://github.com/OurCozy/cozy-server/wiki/2_1.-%ED%9B%84%EA%B8%B0-%EC%9E%91%EC%84%B1%E2%9C%94
+    @POST("/main/detail/review")
+    fun requestUploadReview(@Body body: RequestUploadReview, @HeaderMap headers : Map<String, String?>) : Call<ResponseUploadReview>
+
+    //후기 사진 업로드 : https://github.com/OurCozy/cozy-server/wiki/%ED%9B%84%EA%B8%B0-%EC%82%AC%EC%A7%84-%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8
+    @POST("/main/detail/review/{bookstoreIdx}")
+    fun requestUploadReviewImage(@Path("bookstoreIdx") bookstoreIdx : Int, @Body body: RequestBody, @HeaderMap headers : Map<String, String?>) : Call<ResponseUploadReviewImage>
 
     //최근 본 책방 조회 : https://github.com/OurCozy/cozy-server/wiki/2_4.-%EC%B5%9C%EA%B7%BC-%EB%B3%B8-%EC%B1%85%EB%B0%A9-%EC%A1%B0%ED%9A%8C%E2%9C%94
     @GET("/main/recent")
