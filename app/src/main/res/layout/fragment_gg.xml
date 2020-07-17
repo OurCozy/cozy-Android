@@ -18,7 +18,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="60dp"
         android:gravity="center_horizontal"
-        android:fontFamily="@font/notosans_cjkkr_bold"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:textFontWeight="900"
         android:includeFontPadding="false">
     </TextView>
 
@@ -42,7 +43,8 @@
         android:text="돌아가기"
         android:textSize="14sp"
         android:textColor="#282828"
-        android:fontFamily="@font/notosans_cjkkr_medium"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:textFontWeight="500"
         android:gravity="center_horizontal"
         app:layout_constraintBottom_toBottomOf="@id/orange_btn"
         app:layout_constraintEnd_toEndOf="@+id/orange_btn"

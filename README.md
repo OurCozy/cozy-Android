@@ -19,6 +19,7 @@
 * 주요 기능
 	* 애니메이션
 	* [카카오맵 API](#카카오맵)
+	* Bottom-sheet Dialog
 * 확장함수
 * 소스파일
 
@@ -250,3 +251,58 @@
 [Kotlin 코드 보러가기](https://github.com/OurCozy/cozy-Android/blob/dev/app/src/main/java/com/example/cozy/views/map/MapDetailActivity.kt)
 
 [목차로 돌아가기](#Contents)
+
+## Bottom-Sheet Dialog
+
+지도 텍스트를 클릭했을 때 아래에서 위로 뜨는 팝업을 만들었다. bottomsheet를 띄우기 위해서 필요한 라이브러리 파일을 추가하고 이에 맞는 xml을 만들었다. tablayout을 사용해서 
+서울 경기를 나누었고 swipe을 위해서 viewpager를 만들었다. [xml 보러가기](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/res/layout/fragment_popup.xml) <br>
+viewpager 안에는 [fragment_seoul.xml](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/res/layout/fragment_seoul.xml) 
+과 [fragment_gg.xml](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/res/layout/fragment_gg.xml) 를 띄운다.<br><br>
+
+Mapfragment에 PopupFragment bottomsheet를 띄우기 위해서 getFragmentManager()로 객체를 가져와 프래그먼트를 사용할 수 있게 한다. sectionIdx는 어떤 구를 클릭했는지 값을 받아오기 위해 매개변수로 지정해놨다.
+
+``` kotlin
+location.setOnClickListener{
+            val bottomsheet = PopupFragment(sectionIdx)
+            getFragmentManager()?.let { it1 -> bottomsheet.show(it1, bottomsheet.tag) }
+        }
+```
+<br>
+
+PopupFragment에 또 다른 fragment를 띄우기 위해서  SeoulFragment와 GgFragment인 자식프래그먼트를 가지고 온다. 계속해서 sectionIdx 값을 가져온다.<br>
+
+``` kotlin
+override fun onStart() {
+        super.onStart()
+
+        popup_viewPager.adapter = PopupViewPagerAdapter(childFragmentManager,sectionIdx)
+        popup_viewPager.offscreenPageLimit = 2
+
+        tab_layout.setupWithViewPager(popup_viewPager)
+
+    }
+```
+<br><br>
+각 지역 버튼을 누를 때 부모 프래그먼트의 BottomSheetDialogFragment를 종료하고 sectionIdx에 값을 넣는다. 
+그리고 SeoulFragment에서 지역을 클릭했을 때 이 값에 따라서 이미지 색이 달라져야 하기 때문에 누른 sectionIdx 값을 sharedPreferenced에 저장한다. 
+이후 팝업을 내리고 다시 올려도 해당 지역 이미지 색이 달라질 수 있도록 한다.<br>
+<p align="center">
+	<img src="/img/" width="300"/><br>
+</p>
+
+``` kotlin
+//이미지 변경을 위한 선택된 데이터 저장
+val pref = activity!!.getSharedPreferences("pref", Context.MODE_PRIVATE)
+        val ed = pref.edit()
+        val location = pref.getInt("location",1)
+        selectedLocation(location)
+img_1.setOnClickListener{
+	//부모 프래그먼트 종료(부모 프래그먼트에서 BottomSheetDialogFragment 가져오기)
+            val popF = this.parentFragment as BottomSheetDialogFragment
+            popF.dismiss()
+            sectionIdx(1)
+            ed.putInt("location", 1)
+            ed.apply()
+        }
+```
+[코틀린 코드 보기](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/java/com/example/cozy/views/map/popup/SeoulFragment.kt)<br>

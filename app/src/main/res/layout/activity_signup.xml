@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="23dp"
         android:layout_marginTop="31dp"
-        android:font="@font/notosans_cjkkr_bold"
+        android:font="@font/notosans_fontfamily"
         android:includeFontPadding="false"
         android:text="회원가입"
         android:textColor="@color/black"

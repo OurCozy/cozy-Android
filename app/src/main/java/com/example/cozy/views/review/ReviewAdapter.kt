@@ -60,29 +60,30 @@ class ReviewAdapter(private val context: Context, val data : MutableList<AllRevi
             popup.setOnMenuItemClickListener {
                 when(it.itemId) {
                     R.id.edit -> {
-                        Toast.makeText(context, "edit!", Toast.LENGTH_LONG).show()
-                    }
-                    R.id.delete -> {
-                        when(it.itemId) {
-                            R.id.edit -> {
-                               Toast.makeText(context, "edit!", Toast.LENGTH_LONG).show()
-                            }
-                            R.id.delete -> {
-                                RequestToServer.service.requestReviewDel(data[position].reviewIdx, header).customEnqueue(
-                                    onError = {Log.d("RESPONSE", "error")},
-                                    onSuccess = {
-                                        if(it.success) {
-                                            Log.d("RESPONSE", it.message)
-                                            data.removeAt(position)
-                                            notifyItemRemoved(position)
-                                            notifyItemRangeChanged(position, data.size)
-                                            if (data.size == 0) onEmpty()
-                                        }
-                                    }
-                                )
+                        RequestToServer.service.requestReviewModi(data[position].reviewIdx, header).customEnqueue(
+                            onError = {},
+                            onSuccess = {
+                                if(it.success){
+
+                                }
+
                             }
 
-                        }
+                        )
+                    }
+                    R.id.delete -> {
+                        RequestToServer.service.requestReviewDel(data[position].reviewIdx, header).customEnqueue(
+                            onError = {Log.d("RESPONSE", "error")},
+                            onSuccess = {
+                                if(it.success) {
+                                    Log.d("RESPONSE", it.message)
+                                    data.removeAt(position)
+                                    notifyItemRemoved(position)
+                                    notifyItemRangeChanged(position, data.size)
+                                    if (data.size == 0) onEmpty()
+                                }
+                            }
+                        )
                     }
                 }
                 true
