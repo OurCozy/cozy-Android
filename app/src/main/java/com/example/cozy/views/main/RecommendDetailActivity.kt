@@ -208,11 +208,15 @@ class RecommendDetailActivity : AppCompatActivity() {
         }
 
         btn_write_review.setOnClickListener {
-            startActivity(Intent(this, PutReviewActivity::class.java))
+            val intent = Intent(this, PutReviewActivity::class.java)
+            intent.putExtra("bookIdx", bookIdx)
+            startActivity(intent)
         }
 
         tv_more.setOnClickListener {
-            startActivity(Intent(this, ReviewActivity::class.java))
+            val intent = Intent(this, ReviewActivity::class.java)
+            intent.putExtra("bookIdx", bookIdx)
+            startActivity(intent)
         }
 
         showReview()

@@ -49,7 +49,7 @@ class ReviewActivity : AppCompatActivity(){
         val header = mutableMapOf<String, String?>()
         header["Content-Type"] = "application/json"
         header["token"] = sharedPref.getString("token", "token")
-        requestToserver.service.requestAllReview(20, header).customEnqueue(
+        requestToserver.service.requestAllReview(bookIdx, header).customEnqueue(
             onError = {Toast.makeText(this,"올바르지 않은 요청입니다.",Toast.LENGTH_SHORT)},
             onSuccess = {
                 Log.d("test", "성공")

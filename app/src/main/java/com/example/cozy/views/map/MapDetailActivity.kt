@@ -214,7 +214,9 @@ class MapDetailActivity : AppCompatActivity() {
             }
 
             tv_more.setOnClickListener {
-                startActivity(Intent(this, ReviewActivity::class.java))
+                val intent = Intent(this, ReviewActivity::class.java)
+                intent.putExtra("bookIdx", bookIdx)
+                startActivity(intent)
             }
 
         showReview()

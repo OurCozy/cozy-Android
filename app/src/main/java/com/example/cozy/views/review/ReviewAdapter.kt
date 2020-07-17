@@ -31,7 +31,8 @@ class ReviewAdapter(private val context: Context, val data : MutableList<AllRevi
         holder.bind(data[position])
 
         val sharedPref = context!!.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
-        if(sharedPref.getString("nickname", "cozy") != holder.nickname.toString()){
+        Log.d("이름 : ", data[position].nickname)
+        if(sharedPref.getString("nickname", "cozy") != data[position].nickname){
             holder.moreBtn.visibility = View.GONE
         }
 
