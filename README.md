@@ -165,7 +165,7 @@
 <h1 id="구조">프로젝트 구조</h1>
 <br>
 <p align="center">
-	<img src="/img/project.PNG" width="600"/><br>
+	<img src="/img/project.PNG" width="300"/><br>
 </p>
 
 
