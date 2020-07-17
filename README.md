@@ -29,7 +29,7 @@
     * [로그인 및 회원가입](#로그인)
     * [검색](#검색)
 * 확장함수
-    *[addOnPageChangeListener 확장함수](#확장)
+    * [addOnPageChangeListener 확장함수](#확장)
     * [Kotlin Collection 활용](#Collection)
 * 소스파일
 
@@ -535,11 +535,11 @@ class SigninActivity : Activity() {
 }
 ```
 
-[kotlin 코드 보러가기]
+[kotlin 코드 보러가기](https://github.com/OurCozy/cozy-Android/blob/dev/app/src/main/java/com/example/cozy/signin/SigninActivity.kt)
 
-[KakaoSdkProvider]
+[KakaoSdkProvider](https://github.com/OurCozy/cozy-Android/blob/dev/app/src/main/java/com/example/cozy/signin/KakaoSdkProvider.kt)
 
-[KakaoSdkAdapter]
+[KakaoSdkAdapter](https://github.com/OurCozy/cozy-Android/blob/dev/app/src/main/java/com/example/cozy/signin/KakaoSdkAdapter.kt)
 
 reference: [카카오 개발자 가이드](https://developers.kakao.com/docs/latest/ko/kakaologin/android)
 
@@ -638,7 +638,7 @@ img_1.setOnClickListener{
 [Kotlin 코드 보기](https://github.com/OurCozy/cozy-Android/blob/dev/app/src/main/java/com/example/cozy/views/map/popup/SeoulFragment.kt)<br><br>
 [목차로 돌아가기](#Contents)<br>
 
- ## textChangedListener
+## textChangedListener
 
 회원가입뷰에서 비밀번호 조건에 맞출 때, 비밀번호 일치 여부를 판단할 때 사용한다. 이 리스너는 텍스트를 입력할 때마다 리스너 이벤트가 작동한다. 비밀번호가 입력될 때마다 정규식을 통해서 판단하는데
 숫자, 문자, 영문이 다 들어가야 조건이 맞도록 한다.<br>
@@ -675,6 +675,10 @@ img_1.setOnClickListener{
 
 <h2 id="관심책방">관심 책방 설정</h2>
 
+<p align="center">
+    <img src="/img/bookmark.gif" width="300"/><br>
+</p>
+
 리사이클러 뷰의 오른쪽에 위치한 책갈피 아이콘을 클릭하면 서버에 해당 서점의 관심 체크 여부를 PUT한다. 아이콘을 클릭할 때마다 활성화된 아이콘과 비활성화된 아이콘이 번갈아 나오도록 selector를 만들어주었다.
 
 ``` xml
@@ -709,7 +713,7 @@ img_1.setOnClickListener{
     }
 ```
 
-[kotlin 코드 보러가기]
+[kotlin 코드 보러가기](https://github.com/OurCozy/cozy-Android/blob/dev/app/src/main/java/com/example/cozy/views/interest/InterestAdapter.kt)
 
 [목차로 돌아가기](#Contents)
 
@@ -742,48 +746,6 @@ img_1.setOnClickListener{
 
 [목차로 돌아가기](#Contents)
 <br>
-
-<h2 id="관심책방">관심 책방 설정</h2>
-
-<img src="/img/bookmark.gif" width="300"/><br><br>
-
-리사이클러 뷰의 오른쪽에 위치한 책갈피 아이콘을 클릭하면 서버에 해당 서점의 관심 체크 여부를 PUT한다. 아이콘을 클릭할 때마다 활성화된 아이콘과 비활성화된 아이콘이 번갈아 나오도록 selector를 만들어주었다.
-
-``` xml
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/ic_small_bookmark_selected"
-        android:state_selected="true"/>
-    <item android:drawable="@drawable/ic_small_bookmark"
-        android:state_selected="false"/>
-</selector>
-```
-
-리사이클러뷰의 북마크 아이콘을 클릭했을 때 해당 서점의 자세한 정보를 보여주는 화면으로 이동하지 않고 북마크 표시만 변경되도록 Adapter의 onBindViewHolder에서 해당 아이콘에 다음과 같이 클릭 리스너를 지정했다.
-
-``` kotlin
-    override fun onBindViewHolder(holder: InterestViewHolder, position: Int) {
-        holder.bind(data[position])
-
-        holder.bookmark.setOnClickListener {
-            // 서버에 관심 책방 등록/해제 요청
-            RequestToServer.service.requestBookmarkUpdate(data[position].bookstoreIdx, header).customEnqueue(
-                onError = { /*에러 처리*/ },
-                onSuccess = {
-                    if(it.success) {
-                        // 관심 책방 해제 성공하면 리사이클러 뷰에서 해당 아이템 제거
-                        data.removeAt(position)
-                        notifyItemRemoved(position)
-                        notifyItemRangeChanged(position, data.size)
-                    }
-                }
-            )
-        }
-    }
-```
-
-[kotlin 코드 보러가기]
-
-[목차로 돌아가기](#Contents)
 
 <h2 id="Collection">Kotlin Collection 활용</h2>
 
@@ -832,8 +794,10 @@ data class MapData(
 )
 ```
 
-[mutableMapOf 사용한 코드 있는 Kotlin 코드 보러가기]
+[mutableMapOf 사용한 코드 있는 Kotlin 코드 보러가기](https://github.com/OurCozy/cozy-Android/blob/dev/app/src/main/java/com/example/cozy/views/interest/InterestFragment.kt)
 
-[List 사용한 data class 코드 보러가기]
+[List 사용한 ResponseMap 보러가기](https://github.com/OurCozy/cozy-Android/blob/dev/app/src/main/java/com/example/cozy/network/responseData/ResponseMap.kt)
+
+[List 사용한 MapData 보러가기](https://github.com/OurCozy/cozy-Android/blob/dev/app/src/main/java/com/example/cozy/views/map/MapData.kt)
 
 [목차로 돌아가기](#Contents)
