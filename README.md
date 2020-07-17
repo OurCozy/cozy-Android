@@ -1,48 +1,59 @@
 
 <h1 align="center">COZY_Android</h1>
 <p align="center">
-	<img src="/img/cozy_logo.png" width="200"/><br>
-	바쁜 도심 속 휴식처,<br>공간과 경험을 파는 세상의 모든 독립서점
+    <img src="/img/cozy_logo.png" width="200"/><br>
+    바쁜 도심 속 휴식처,<br>공간과 경험을 파는 세상의 모든 독립서점
 </p>
 <br><br>
 
 # Contents
+* [Workflow](#Workflow)
 * 뷰
-	* [메인](#메인)
-	* [지도](#지도)
-	* [관심](#관심)
-	* [내정보](#내정보)
+    * [메인](#메인)
+    * [지도](#지도)
+    * [관심](#관심)
+    * [내정보](#내정보)
 * [프로젝트 구조](#구조)
 * [라이브러리](#라이브러리)
 * 기본 기능
 	* [BottomNavigationView](#BottomNavigationView)
 	* [RecyclerView](#RecyclerView)
 * 주요 기능
-	* 애니메이션
-	* [카카오맵 API](#카카오맵)
-	* [카카오 로그인](#카카오)
-	* [Bottom-sheet Dialog](#BottomSheetDialog)
-	* [textChangedListener](#textChangedListener)
-	* [관심 책방 설정](#관심책방)
+    * [애니메이션](#애니메이션)
+    * [카카오맵 API](#카카오맵)
+    * [카카오 로그인](#카카오)
+    * [Bottom-sheet Dialog](#BottomSheetDialog)
+    * [textChangedListener](#textChangedListener)
+    * [관심 책방 설정](#관심책방)
 * 그 외 기능
-	* [로그인 및 회원가입](#로그인)
-	* [후기](#후기)
-	* [검색](#검색)
+    * [로그인 및 회원가입](#로그인)
+    * [검색](#검색)
 * 확장함수
+    *[addOnPageChangeListener 확장함수](#확장)
+    * [Kotlin Collection 활용](#Collection)
 * 소스파일
 
 <br>
 
+# Workflow
+
+<img src="/img/workflow.png"/><br>
+
+## SOPT 26기 App-Jam
+* 개발 기간 : 2020년 6월 28일 ~ 2020년 7월 18일
+
+
+<br><br>
 # 뷰
 <h2 id="메인">메인 화면</h2>
 <p align="center">
-	<img src="/img/recommend.gif" width="300"/>
+    <img src="/img/recommend.gif" width="300"/>
 </p>
 
 앱을 실행하고 로그인 했을 때 처음 나오는 메인 화면으로 독립서점을 총 8개를 추천해 주는 화면이다. 처음 가입했을 때는 임의로 뽑아놓은 8개의 독립서점이 뜬다. 사용자가 관심있는 책방에는 북마크를 할 수 있는데 나중에 이 추천뷰에는 사용자들이 북마크를 많이 한 순서대로 뜨게 된다.
 
 <p align="center">
-	<img src="/img/recommend_blueprint.JPG" width="300"/>
+    <img src="/img/recommend_blueprint.JPG" width="300"/>
 </p>
 
 화면의 레이아웃은 전체 스크롤이 필요하여 NestedScrollView를 사용하였다. 전체 horizontal padding을 24dp로 주었다. width는 match_parent, height은 wrap_content를 사용하였고, NestedScrollView의 자식뷰는 일렬로 쭉 정렬되기 때문에 LinearLayout을 orientation을 vertical로 하여 사용하였다. 부모뷰에 horizontal padding을 줬기 때문에 width는 match_parent, height은 wrap_content를 사용하였다. 첫번째로는 logo와 serch아이콘이 들어가야하기 때문에 ConstraintLayout으로 chain을 spread_inside를 걸어줘서 사용하고 그 밑으로는 차례차례 TextView, RecyclerView를 넣었다. TextView는 width, height 둘 다 wrap_content를 주었고, RecyclerView는 width는 match_parent, height은 wrap_content를 사용하였다.
@@ -52,7 +63,7 @@
 [목차로 돌아가기](#Contents)<br>
 
 <p align="center">
-	<img src="/img/recommend_item_blueprint.JPG" width="300"/>
+    <img src="/img/recommend_item_blueprint.JPG" width="300"/>
 </p>
 
 메인 화면 Recyclerview의 itemview로 ConstraintLayout을 사용하였다. width는 match_parent, height은 값을  390dp로 고정하였다.
@@ -74,7 +85,7 @@
 
 [xml 보러가기](https://github.com/OurCozy/cozy-Android/blob/dev/app/src/main/res/layout/fragment_map.xml)
 
-[목차로 돌아가기](#Contents)<br><br>					  
+[목차로 돌아가기](#Contents)<br><br>
 
 ### 지도 상세 화면
 
@@ -107,9 +118,9 @@
 
 <h2 id="관심">관심 화면</h2>
 <p align="center">
-	<img src="/img/interest_none.PNG" width="300"/>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<img src="/img/interest.PNG" width="300"/>
+    <img src="/img/interest_none.PNG" width="300"/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <img src="/img/interest.PNG" width="300"/>
 </p>
 - 각 책방에 있는 해시태그를 클릭해서 관심 등록한 책방이 보인다. 최신순으로 책방이 나타나며 관심이 있는 책방이 없을 경우 이 왼쪽과 같은 뷰가 뜬다. 이때 fragment_interest_none.xml가 호출될 수 있도록 코드를 작성한다. 지도뷰와 마찬가지로 관심있는 책방을 RecyclerView로 보여진다. MapItemDecoration 에서 리사이클러뷰 아래에 getItemOffsets 함수를 사용해서 여백을 주었다.<br>
 - 화면 레이아웃은 ConstraintLayout을 사용했다. 각 뷰 사이에 제약을 주면서 유기적으로 뷰가 움직일 수 있도록 만들었다. 양쪽에 guideline을 주어 여백을 따로 두지 않아도 되도록 만들었다.<br>
@@ -120,27 +131,27 @@
 
 <h2 id="내정보">내 정보 화면</h2>
 <p align="center">
-	<img src="/img/mypage_no_recently_seen.png" width="300"/>
+	<img src="/img/mypage_no_recently_seen.jpg" width="300"/>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<img src="/img/mypage.png" width="300"/><br>
+	<img src="/img/mypage.jpg" width="300"/><br>
 </p>
 
-사용자의 기본정보, 후기와 최근 책방 등을 볼 수 있는 화면이다. 왼쪽 화면은 사용자가 최근에 본 책방이 없을 때의 모습이고 오른쪽 화면은 최근에 본 책방을 RecyclerView로 보여준다. 아래의 코드와 같이 해당 데이터가 존재한다면 리사이클러뷰의 위에 위치한 TextView의 visibility를 Context.GONE 해주었다.
+사용자의 기본정보, 후기와 최근 책방 등을 볼 수 있는 화면이다. 왼쪽 화면은 사용자가 최근에 본 책방이 없을 때의 모습이고 오른쪽 화면은 최근에 본 책방을 RecyclerView로 보여준다. 아래의 코드와 같이 해당 데이터가 존재한다면 리사이클러뷰의 위에 위치한 TextView의 visibility를 View.GONE 해주었다.
 
 ```kotlin
-	if(data.size != 0) {
-	    tv_no_recently_seen_background.visibility = GONE
-	    tv_no_recently_seen_text.visibility = GONE
-	} else {
-		tv_no_recently_seen_background.visibility = VISIBLE
-		tv_no_recently_seen_text.visibility = VISIBLE
-	}
+    if(data.size != 0) {
+        tv_no_recently_seen_background.visibility = GONE
+        tv_no_recently_seen_text.visibility = GONE
+    } else {
+        tv_no_recently_seen_background.visibility = VISIBLE
+        tv_no_recently_seen_text.visibility = VISIBLE
+    }
 ```
 
 <br>
 
 <p align="center">
-	<img src="/img/mypage_blueprint.PNG" width="300"/><br>
+    <img src="/img/mypage_blueprint.JPG" width="300"/><br>
 </p>
 
 <br>
@@ -154,7 +165,7 @@
 <h1 id="구조">프로젝트 구조</h1>
 <br>
 <p align="center">
-	<img src="/img/project.PNG" width="300"/><br>
+	<img src="/img/project.PNG" width="600"/><br>
 </p>
 
 
@@ -192,8 +203,8 @@
     implementation 'com.google.android.material:material:1.2.0-alpha02'
     // 카카오 로그인
     implementation group: 'com.kakao.sdk', name: 'usermgmt', version: '1.29.0'
-    
-```    
+
+```
 
 # 기본 기능
 
@@ -296,10 +307,102 @@ class InterestViewHolder(itemView: View, val onClick: (MapData) -> Unit) : Recyc
 
 [목차로 돌아가기](#Contents)
 
-
 # 주요 기능
 
 ## 애니메이션
+
+\*액티비티 전환 애니메이션
+<p align="center">
+    <img src="/img/recommend_animation.gif" width="300"/><br>
+</p>
+
+추천 탭에서 더 자세히 보고 싶은 책방을 눌렀을 때 똑같이 공유되는 요소 들을 부드럽게 보여주는 shared element transition의 효과를 적용했다. 먼저 fragment_main에서 공유되는 모든뷰에 transitionName을 지정해 준다.
+
+```xml
+    *fragment_main.xml의 item_recommend.xml
+    <com.makeramen.roundedimageview.RoundedImageView
+        ...
+        android:transitionName="share_img1"
+        ... />
+    <com.makeramen.roundedimageview.RoundedImageView
+        ...
+        android:transitionName="share_img2"
+        ... />
+    <TextView
+        ...
+        android:transitionName="share_text1"
+        ... />
+    <TextView
+        ...
+        android:transitionName="share_text2"
+        ... />
+    <ImageView
+        ...
+        android:transitionName="share_icon"
+        ... />
+    <TextView
+        ...
+        android:transitionName="share_text3"
+        ... />
+    <TextView
+        ...
+        android:transitionName="share_text4"
+    ... />
+```
+그리고 그 item을 눌렀을때 실행되는 RecommendDetailActivity의 activity_recommend_detail.xml에서도 fragment_main에서 똑같이 공유되는 뷰에만 transitionName을 **동일하게** 지정해 준다.
+
+```xml
+    *activity_recommend_detail.xml
+    <ImageView
+        ...
+        android:transitionName="share_img1"
+        ... />
+    <ImageView
+        ...
+        android:transitionName="share_img2"
+        ... />
+    <TextView
+        ...
+        android:transitionName="share_text1"
+        ... />
+    <TextView
+        ...
+        android:transitionName="share_text2"
+        ... />
+    <ImageView
+        ...
+        android:transitionName="share_icon"
+        ... />
+    <TextView
+        ...
+        android:transitionName="share_text3"
+        ... />
+    <TextView
+        ...
+        android:transitionName="share_text4"
+    ... />
+```
+그리고 MainFragment에서 item을 클릭했을때 실행되는 코드에 공유되는 뷰가 여러개일 때 view와 transitionName을 각각 Pair라는 클래스에 담아 ActionOptionsCompat의 makeSceneTransitionAnimation(Activity, Pair<F, S> ... Pair<F, S>)를 통해 애니메이션을 생성하였다.
+
+```kotlin
+    *MainFragment
+    var intent = Intent(activity as MainActivity,RecommendDetailActivity::class.java)
+    // shared element transition
+    intent.putExtra("bookIdx",RecommendListData.bookstoreIdx)
+    val imageViewPair1 = Pair.create<View, String>(View.rec_img, "share_img1")
+    val imageViewPair2 = Pair.create<View, String>(View.rec_gradation, "share_img2")
+    val textViewPair1 = Pair.create<View, String>(View.rec_text1, "share_text1")
+    val textViewPair2 = Pair.create<View, String>(View.rec_text2, "share_text2")
+    val imageViewPair3 = Pair.create<View, String>(View.icon_address, "share_icon")
+    val textViewPair3 = Pair.create<View, String>(View.rec_name, "share_text3")
+    val textViewPair4 = Pair.create<View, String>(View.rec_address, "share_text4")
+    var option : ActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity as MainActivity, imageViewPair1, imageViewPair2, textViewPair1, textViewPair2, imageViewPair3, textViewPair3, textViewPair4 )
+    startActivity(intent,option.toBundle())
+```
+
+[Kotlin 코드 보러가기]
+
+[목차로 돌아가기](#Contents)
 
 ## 카카오맵
 
@@ -307,7 +410,7 @@ class InterestViewHolder(itemView: View, val onClick: (MapData) -> Unit) : Recyc
 * [카카오맵 실행하기](#kakaomap)
 
 <p align="center">
-	<img src="/img/kakao_map.png" width="300"/><br>
+    <img src="/img/kakao_map.png" width="300"/><br>
 </p>
 
 책방을 클릭했을 때 나오는 자세한 소개 뷰에서 카카오 API를 이용해 지도를 띄웠다. API를 사용하기 위해 [카카오 개발자 사이트](https://developers.kakao.com)에서 앱을 등록한 후, 필요한 라이브러리 파일을 추가하고 manifest에 아래와 같이 인터넷과 위치정보 접근을 허용시키고 발급받은 앱 키를 적어준다.
@@ -337,7 +440,7 @@ class InterestViewHolder(itemView: View, val onClick: (MapData) -> Unit) : Recyc
         mapViewContainer.addView(mapView)
 
         // 서점 위치 위도&경도로 표시
-        val MARKER_POINT = MapPoint.mapPointWithGeoCoord(37.5602333, 126.9225536)
+        val MARKER_POINT = MapPoint.mapPointWithGeoCoord(/*위도*/, /*경도*/)
         mapView.setMapCenterPoint(MARKER_POINT, true)
 
         // 지도 레벨 변경
@@ -357,10 +460,10 @@ class InterestViewHolder(itemView: View, val onClick: (MapData) -> Unit) : Recyc
 ```
 
 <p id="kakaomap" align="center">
-	<img src="/img/open_map_no_app.gif" width="300"/><br>
-	카카오맵이 설치되어 있지 않을 때<br><br><br>
-	<img src="/img/open_map.gif" width="300"/><br><br>
-	카카오맵이 설치되어 있을 때
+    <img src="/img/open_map_no_app.gif" width="300"/><br>
+    카카오맵이 설치되어 있지 않을 때<br><br><br>
+    <img src="/img/open_map.gif" width="300"/><br><br>
+    카카오맵이 설치되어 있을 때
 </p>
 
 마지막으로 길찾기 버튼을 클릭했을 때 카카오맵이 실행되도록 구현했다. packageManager.getLaunchIntentForPackage()로 해당 앱이 이미 설치되었는지 확인 후, 설치되어 있다면 앱을 연 다음 서점이 있는 곳을 보여주도록했고 앱이 설치되어있지 않다면 구글플레이에서 앱을 다운받을 수 있는 링크로 이동하도록했다.
@@ -397,6 +500,9 @@ class InterestViewHolder(itemView: View, val onClick: (MapData) -> Unit) : Recyc
 [목차로 돌아가기](#Contents)
 
 <h2 id="카카오">카카오 로그인</h2>
+<p align = "center">
+    <img src="/img/kakao_signin.gif" width="300"/><br>
+</p>
 
 ```kotlin
 class SigninActivity : Activity() {
@@ -439,11 +545,48 @@ reference: [카카오 개발자 가이드](https://developers.kakao.com/docs/lat
 
 [목차로 돌아가기](#Contents)
 
-## BottomSheetDialog
+<h2 id="확장">addOnPageChangeListener 확장함수</h2>
 
-지도 텍스트를 클릭했을 때 아래에서 위로 뜨는 팝업을 만들었다. bottomsheet를 띄우기 위해서 필요한 라이브러리 파일을 추가하고 이에 맞는 xml을 만들었다. tablayout을 사용해서 
+ViewPager의 addOnPageChangeListener를 확장함수로 구현하였다. onPageScrollStateChanged와 onPageScrolled는 따로 사용을 하지 않아서 Unit으로 해주고 onPageSelected만 onSelected(position)를 만들어줬다.
+
+``` kotlin
+    *OnPageChangeListener.kt
+    fun ViewPager.OnPageChangeListener(onSelected: (Int) -> Unit){
+    this.addOnPageChangeListener(object: ViewPager.OnPageChangeListener{
+        override fun onPageScrollStateChanged(state: Int) = Unit
+
+        override fun onPageScrolled(
+            position: Int,
+            positionOffset: Float,
+            positionOffsetPixels: Int
+        ) = Unit
+
+        override fun onPageSelected(position: Int) {
+            onSelected(position)
+        }
+    })
+}
+```
+
+MainActivity에서 onSelected를 구현해 주었다.
+
+``` kotlin
+    *MainActivity.kt
+    viewPager.OnPageChangeListener {
+            navigation.menu.getItem(it).isChecked = true
+        }
+}
+```
+
+[Kotlin 코드 보러가기]
+
+[목차로 돌아가기](#Contents)
+
+## Bottom-Sheet Dialog
+
+지도 텍스트를 클릭했을 때 아래에서 위로 뜨는 팝업을 만들었다. bottomsheet를 띄우기 위해서 필요한 라이브러리 파일을 추가하고 이에 맞는 xml을 만들었다. tablayout을 사용해서
 서울 경기를 나누었고 swipe을 위해서 viewpager를 만들었다. [xml 보러가기](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/res/layout/fragment_popup.xml) <br>
-viewpager 안에는 [fragment_seoul.xml](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/res/layout/fragment_seoul.xml) 
+viewpager 안에는 [fragment_seoul.xml](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/res/layout/fragment_seoul.xml)
 과 [fragment_gg.xml](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/res/layout/fragment_gg.xml) 를 띄운다.<br><br>
 
 Mapfragment에 PopupFragment bottomsheet를 띄우기 위해서 getFragmentManager()로 객체를 가져와 프래그먼트를 사용할 수 있게 한다. sectionIdx는 어떤 구를 클릭했는지 값을 받아오기 위해 매개변수로 지정해놨다.
@@ -470,11 +613,11 @@ override fun onStart() {
     }
 ```
 <br><br>
-각 지역 버튼을 누를 때 부모 프래그먼트의 BottomSheetDialogFragment를 종료하고 sectionIdx에 값을 넣는다. 
-그리고 SeoulFragment에서 지역을 클릭했을 때 이 값에 따라서 이미지 색이 달라져야 하기 때문에 누른 sectionIdx 값을 sharedPreferenced에 저장한다. 
+각 지역 버튼을 누를 때 부모 프래그먼트의 BottomSheetDialogFragment를 종료하고 sectionIdx에 값을 넣는다.
+그리고 SeoulFragment에서 지역을 클릭했을 때 이 값에 따라서 이미지 색이 달라져야 하기 때문에 누른 sectionIdx 값을 sharedPreferenced에 저장한다.
 이후 팝업을 내리고 다시 올려도 해당 지역 이미지 색이 달라질 수 있도록 한다.<br>
 <p align="center">
-	<img src="/img/" width="300"/><br>
+	<img src="/img/bottomsheet.gif" width="300"/><br>
 </p>
 
 ``` kotlin
@@ -484,7 +627,7 @@ val pref = activity!!.getSharedPreferences("pref", Context.MODE_PRIVATE)
         val location = pref.getInt("location",1)
         selectedLocation(location)
 img_1.setOnClickListener{
-	//부모 프래그먼트 종료(부모 프래그먼트에서 BottomSheetDialogFragment 가져오기)
+    //부모 프래그먼트 종료(부모 프래그먼트에서 BottomSheetDialogFragment 가져오기)
             val popF = this.parentFragment as BottomSheetDialogFragment
             popF.dismiss()
             sectionIdx(1)
@@ -492,11 +635,11 @@ img_1.setOnClickListener{
             ed.apply()
         }
 ```
-[Kotlin 코드 보기](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/java/com/example/cozy/views/map/popup/SeoulFragment.kt)<br>
+[Kotlin 코드 보기](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/java/com/example/cozy/views/map/popup/SeoulFragment.kt)<br><br>
 [목차로 돌아가기](#Contents)<br>
 
  ## textChangedListener
- 
+
 회원가입뷰에서 비밀번호 조건에 맞출 때, 비밀번호 일치 여부를 판단할 때 사용한다. 이 리스너는 텍스트를 입력할 때마다 리스너 이벤트가 작동한다. 비밀번호가 입력될 때마다 정규식을 통해서 판단하는데
 숫자, 문자, 영문이 다 들어가야 조건이 맞도록 한다.<br>
  ``` kotlin
@@ -509,7 +652,7 @@ img_1.setOnClickListener{
  ```
  <br>
  비밀번호 확인 부분에 비밀번호를 입력했을 때 텍스트 감지해서 일치 여부를 띄운다.<br>
- 
+
 ``` kotlin
   signup_pw_checked.textChangedListener {
             if (signup_pw.text.toString() == signup_pw_checked.text.toString()) {
@@ -527,7 +670,7 @@ img_1.setOnClickListener{
         }
 ```
 
-[Kotlin 코드 보기](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/java/com/example/cozy/signin/SignupActivity.kt)<br>
+[Kotlin 코드 보기](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/java/com/example/cozy/signin/SignupActivity.kt)<br><br>
 [목차로 돌아가기](#Contents)<br>
 
 <h2 id="관심책방">관심 책방 설정</h2>
@@ -574,24 +717,123 @@ img_1.setOnClickListener{
 
 <h2 id="로그인">로그인 및 회원가입</h2>
 <p align="center">
-	<img src="/img/.png" width="300"/>
+	<img src="/img/login.gif" width="300"/>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </p>
-로그인은 이메일과 비밀번호 둘 중 하나 입력하지 않으면 완료버튼이 활성화 되지 않는다. 완료를 클릭했을 때 서버와 통신해서 이메일이 등록되어 있지 않은 회원이면 등록되지 않는 회원이라고 뜨고 이메일과 비밀번호가 일치하지 않으면 비밀번호가 일치하지 않으면 textview에 일치하지 않는다는 문구가 뜬다. <br>
+로그인은 이메일과 비밀번호 둘 중 하나 입력하지 않으면 완료버튼이 활성화 되지 않는다. 완료를 클릭했을 때 서버와 통신해서 이메일이 등록되어 있지 않은 회원이면 등록되지 않는 회원이라고 뜨고 이메일과 비밀번호가 일치하지 않으면 비밀번호가 일치하지 않으면 textview에 일치하지 않는다는 문구가 뜬다. <br><br>
 
 <p align="center">
-	<img src="/img/.png" width="300"/>
+	<img src="/img/signup1.png" width="300"/>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<img src="/img/signup2.png" width="300"/>
 </p>
-닉네임, 이메일 중복을 서버와 통신하여 확인할 수 있으며 비밀번호 일치 여부를 판단해서 모든 조건을 갖추게 되면 완료 버튼이 활성화된다. 이 버튼을 누르게 되면 회원가입이 된다. <br> 
+닉네임, 이메일 중복을 서버와 통신하여 확인할 수 있으며 비밀번호 일치 여부를 판단해서 모든 조건을 갖추게 되면 완료 버튼이 활성화된다. 이 버튼을 누르게 되면 회원가입이 된다. <br><br>
+
+[목차로 돌아가기](#Contents)
+<br>
+
+## 검색
+<p align="center">
+	<img src="/img/search.png" width="300"/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<img src="/img/search2.png" width="300"/>
+</p>
+각 뷰에 검색 아이콘을 클릭하면 검책뷰가 뜬다. 검색하고자 하는 키워드를 입력하거나 해시태그를 클릭하면 그에 관련되는 독립서점이 뷰에 나온다.<br><br>
+
+[목차로 돌아가기](#Contents)
+<br>
+
+<h2 id="관심책방">관심 책방 설정</h2>
+
+<img src="/img/bookmark.gif" width="300"/><br><br>
+
+리사이클러 뷰의 오른쪽에 위치한 책갈피 아이콘을 클릭하면 서버에 해당 서점의 관심 체크 여부를 PUT한다. 아이콘을 클릭할 때마다 활성화된 아이콘과 비활성화된 아이콘이 번갈아 나오도록 selector를 만들어주었다.
+
+``` xml
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/ic_small_bookmark_selected"
+        android:state_selected="true"/>
+    <item android:drawable="@drawable/ic_small_bookmark"
+        android:state_selected="false"/>
+</selector>
+```
+
+리사이클러뷰의 북마크 아이콘을 클릭했을 때 해당 서점의 자세한 정보를 보여주는 화면으로 이동하지 않고 북마크 표시만 변경되도록 Adapter의 onBindViewHolder에서 해당 아이콘에 다음과 같이 클릭 리스너를 지정했다.
+
+``` kotlin
+    override fun onBindViewHolder(holder: InterestViewHolder, position: Int) {
+        holder.bind(data[position])
+
+        holder.bookmark.setOnClickListener {
+            // 서버에 관심 책방 등록/해제 요청
+            RequestToServer.service.requestBookmarkUpdate(data[position].bookstoreIdx, header).customEnqueue(
+                onError = { /*에러 처리*/ },
+                onSuccess = {
+                    if(it.success) {
+                        // 관심 책방 해제 성공하면 리사이클러 뷰에서 해당 아이템 제거
+                        data.removeAt(position)
+                        notifyItemRemoved(position)
+                        notifyItemRangeChanged(position, data.size)
+                    }
+                }
+            )
+        }
+    }
+```
+
+[kotlin 코드 보러가기]
 
 [목차로 돌아가기](#Contents)
 
-## 후기
+<h2 id="Collection">Kotlin Collection 활용</h2>
 
-## 검색
+서버 통신을 위한 헤더를 작성할 때 _mutableMapOf_ 을 활용했다. Map에는 Content-Type과 token을 각각 넣어 통신 요청했다.
 
+```kotlin
+    val sharedPref = activity.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
+    val header = mutableMapOf<String, String?>()
+    header["Content-Type"] = "application/json"
+    header["token"] = sharedPref.getString("token", "token")
+```
 
+또 아래와 같이 서버로부터 반환값을 받기 위해 data를 List로 받았다.
 
+```
+// 서버 반환 형식
+{
+    "status": 200,
+    "success": true,
+    "message": "서점 리스트 조회 성공",
+    "data": [
+        {
+            "bookstoreIdx": 1,
+            "bookstoreName": "Piece",
+            ...
+        },
+        {
+            ...
+        }
+    ]
+}
+```
 
+```kotlin
+data class ResponseMap (
+    val status : Int,
+    val success : Boolean,
+    val message : String,
+    val data : List<MapData>
+)
 
+data class MapData(
+    val sectionIdx : Int,
+    val bookstoreIdx : Int,
+    ...
+)
+```
+
+[mutableMapOf 사용한 코드 있는 Kotlin 코드 보러가기]
+
+[List 사용한 data class 코드 보러가기]
+
+[목차로 돌아가기](#Contents)

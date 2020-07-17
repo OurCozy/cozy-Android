@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.cozy.R
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kotlinx.android.synthetic.main.fragment_gg.*
 
 class GgFragment : Fragment(){
 
@@ -14,6 +16,15 @@ class GgFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_seoul, container, false)
+        return inflater.inflate(R.layout.fragment_gg, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        orange_btn.setOnClickListener{
+            val popF = this.parentFragment as BottomSheetDialogFragment
+            popF.dismiss()
+        }
     }
 }

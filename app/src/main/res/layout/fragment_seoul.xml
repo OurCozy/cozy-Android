@@ -1,6 +1,290 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_behavior="com.google.android.material.BottomSheet">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="23dp">
+
+    </androidx.constraintlayout.widget.Guideline>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="23dp">
+
+    </androidx.constraintlayout.widget.Guideline>
+
+
+    <ImageView
+        android:id="@+id/img_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="29dp"
+        android:src="@drawable/img_map_square"
+        app:layout_constraintEnd_toStartOf="@+id/img_2"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="parent"></ImageView>
+
+    <ImageView
+        android:id="@+id/img_1_orange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_map_square_orange"
+        app:layout_constraintEnd_toEndOf="@+id/img_1"
+        app:layout_constraintStart_toStartOf="@+id/img_1"
+        app:layout_constraintTop_toTopOf="@+id/img_1"
+        app:layout_constraintBottom_toBottomOf="@id/img_1"></ImageView>
+
+    <TextView
+        android:id="@+id/mapo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="마포구"
+        android:textSize="13sp"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:includeFontPadding="false"
+        android:fontWeight="700"
+        android:textColor="#a3a3a3"
+        app:layout_constraintStart_toStartOf="@id/img_1"
+        app:layout_constraintEnd_toEndOf="@id/img_1"
+        app:layout_constraintTop_toTopOf="@id/img_1"
+        app:layout_constraintBottom_toBottomOf="@id/img_1"/>
+
+    <ImageView
+        android:id="@+id/img_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="29dp"
+        android:src="@drawable/img_map_square"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintStart_toEndOf="@+id/img_1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/img_2_orange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_map_square_orange"
+        app:layout_constraintEnd_toEndOf="@id/img_2"
+        app:layout_constraintStart_toStartOf="@+id/img_2"
+        app:layout_constraintTop_toTopOf="@id/img_2"
+        app:layout_constraintBottom_toBottomOf="@id/img_2"/>
+
+    <TextView
+        android:id="@+id/yongsan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="용산구"
+        android:textSize="13sp"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:includeFontPadding="false"
+        android:fontWeight="700"
+        android:textColor="#a3a3a3"
+        app:layout_constraintStart_toStartOf="@id/img_2"
+        app:layout_constraintEnd_toEndOf="@id/img_2"
+        app:layout_constraintTop_toTopOf="@id/img_2"
+        app:layout_constraintBottom_toBottomOf="@id/img_2"/>
+
+
+    <ImageView
+        android:id="@+id/img_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="29dp"
+        android:src="@drawable/img_map_square"
+        app:layout_constraintEnd_toStartOf="@id/img_4"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/img_1" />
+
+    <ImageView
+        android:id="@+id/img_3_orange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_map_square_orange"
+        app:layout_constraintEnd_toEndOf="@id/img_3"
+        app:layout_constraintStart_toStartOf="@+id/img_3"
+        app:layout_constraintTop_toTopOf="@id/img_3"
+        app:layout_constraintBottom_toBottomOf="@id/img_3" />
+
+    <TextView
+        android:id="@+id/gwanak"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="관악구/영등포구"
+        android:textSize="13sp"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:includeFontPadding="false"
+        android:fontWeight="700"
+        android:textColor="#a3a3a3"
+        app:layout_constraintStart_toStartOf="@id/img_3"
+        app:layout_constraintEnd_toEndOf="@id/img_3"
+        app:layout_constraintTop_toTopOf="@id/img_3"
+        app:layout_constraintBottom_toBottomOf="@id/img_3"/>
+
+    <ImageView
+    android:id="@+id/img_4"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="30dp"
+    android:layout_marginTop="29dp"
+    android:src="@drawable/img_map_square"
+    app:layout_constraintEnd_toEndOf="@id/guideline2"
+    app:layout_constraintStart_toEndOf="@id/img_3"
+    app:layout_constraintTop_toBottomOf="@+id/img_2" />
+
+    <ImageView
+        android:id="@+id/img_4_orange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_map_square_orange"
+        app:layout_constraintEnd_toEndOf="@id/img_4"
+        app:layout_constraintStart_toStartOf="@+id/img_4"
+        app:layout_constraintTop_toTopOf="@id/img_4"
+        app:layout_constraintBottom_toBottomOf="@id/img_4" />
+
+    <TextView
+        android:id="@+id/gwangjin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="광진구/동대문구"
+        android:textSize="13sp"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:includeFontPadding="false"
+        android:fontWeight="700"
+        android:textColor="#a3a3a3"
+        app:layout_constraintStart_toStartOf="@id/img_4"
+        app:layout_constraintEnd_toEndOf="@id/img_4"
+        app:layout_constraintTop_toTopOf="@id/img_4"
+        app:layout_constraintBottom_toBottomOf="@id/img_4"/>
+
+
+    <ImageView
+        android:id="@+id/img_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="29dp"
+        android:src="@drawable/img_map_square"
+        app:layout_constraintEnd_toStartOf="@id/img_6"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/img_3" />
+
+    <ImageView
+        android:id="@+id/img_5_orange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_map_square_orange"
+        app:layout_constraintEnd_toEndOf="@id/img_5"
+        app:layout_constraintStart_toStartOf="@+id/img_5"
+        app:layout_constraintTop_toTopOf="@id/img_5"
+        app:layout_constraintBottom_toBottomOf="@id/img_5"/>
+
+    <TextView
+        android:id="@+id/kangnam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="강남구/서초구"
+        android:textSize="13sp"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:includeFontPadding="false"
+        android:fontWeight="700"
+        android:textColor="#a3a3a3"
+        app:layout_constraintStart_toStartOf="@id/img_5"
+        app:layout_constraintEnd_toEndOf="@id/img_5"
+        app:layout_constraintTop_toTopOf="@id/img_5"
+        app:layout_constraintBottom_toBottomOf="@id/img_5"/>
+
+
+    <ImageView
+        android:id="@+id/img_6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="29dp"
+        android:src="@drawable/img_map_square"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintStart_toEndOf="@id/img_5"
+        app:layout_constraintTop_toBottomOf="@+id/img_4" />
+
+    <ImageView
+        android:id="@+id/img_6_orange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_map_square_orange"
+        app:layout_constraintEnd_toEndOf="@id/img_6"
+        app:layout_constraintStart_toStartOf="@+id/img_6"
+        app:layout_constraintTop_toTopOf="@id/img_6"
+        app:layout_constraintBottom_toBottomOf="@id/img_6" />
+
+    <TextView
+        android:id="@+id/jongro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="서대문구/종로구"
+        android:textSize="13sp"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:includeFontPadding="false"
+        android:fontWeight="700"
+        android:textColor="#a3a3a3"
+        app:layout_constraintStart_toStartOf="@id/img_6"
+        app:layout_constraintEnd_toEndOf="@id/img_6"
+        app:layout_constraintTop_toTopOf="@id/img_6"
+        app:layout_constraintBottom_toBottomOf="@id/img_6"/>
+
+
+    <!--<GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:orientation="horizontal"
+        android:paddingBottom="48dp"
+        android:paddingTop="29dp"
+        android:rowCount="3"
+        android:alignmentMode="alignBounds"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_map_square"></ImageView>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_map_square"></ImageView>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_map_square"></ImageView>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_map_square"></ImageView>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_map_square"></ImageView>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_map_square"></ImageView>
+
+    </GridLayout>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

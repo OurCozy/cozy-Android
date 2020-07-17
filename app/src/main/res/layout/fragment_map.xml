@@ -10,8 +10,7 @@
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-  >
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -33,7 +32,7 @@
         android:text="마포구"
         android:fontFamily="@font/notosans_fontfamily"
         android:textFontWeight="900"
-        android:textColor="@color/textColor"
+        android:textColor="@color/black"
         android:textSize="25sp"
         android:includeFontPadding="false"
         app:layout_constraintStart_toStartOf="@id/guideline"
@@ -63,8 +62,8 @@
 
     </View>
 
-
     <Button
+        android:id="@+id/btn_search"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="46dp"
         android:layout_height="wrap_content"
@@ -103,11 +102,11 @@
 
 
     <TextView
-        android:id="@+id/text2"
+        android:id="@+id/write_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:text="마포구의 독립서점 27곳"
+        android:text="마포구"
         android:fontFamily="@font/notosans_fontfamily"
         android:textFontWeight="900"
         android:textColor="@color/textColor"
@@ -116,6 +115,51 @@
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@id/line_map">
     </TextView>
+
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="의 독립서점 "
+        android:fontFamily="@font/notosans_fontfamily"
+        android:textFontWeight="900"
+        android:textColor="@color/textColor"
+        android:textSize="20sp"
+        android:includeFontPadding="false"
+        app:layout_constraintStart_toEndOf="@+id/write_location"
+        app:layout_constraintTop_toBottomOf="@id/line_map">
+    </TextView>
+
+    <TextView
+        android:id="@+id/store_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="27"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:textFontWeight="900"
+        android:textColor="@color/textColor"
+        android:textSize="20sp"
+        android:includeFontPadding="false"
+        app:layout_constraintStart_toEndOf="@+id/text2"
+        app:layout_constraintTop_toBottomOf="@id/line_map">
+    </TextView>
+
+    <TextView
+        android:id="@+id/text3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:includeFontPadding="false"
+        android:text="곳"
+        android:textColor="@color/textColor"
+        android:textFontWeight="900"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/store_count"
+        app:layout_constraintTop_toBottomOf="@id/line_map"></TextView>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/bookstore"
@@ -127,12 +171,13 @@
         android:clipToPadding="false"
         android:orientation="vertical"
         android:overScrollMode="never"
+        android:paddingBottom="27dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text2"
-        tools:listitem="@layout/item_map">
+        tools:listitem="@layout/item_bookstore_list">
 
     </androidx.recyclerview.widget.RecyclerView>
 

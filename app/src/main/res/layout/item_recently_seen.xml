@@ -22,6 +22,8 @@
         android:text="퇴근길 책 한잔"
         android:textSize="12sp"
         android:textColor="#707070"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:textFontWeight="500"
         android:layout_marginTop="6dp"
         app:layout_constraintStart_toStartOf="@+id/rounded_iv_img"
         app:layout_constraintTop_toBottomOf="@+id/rounded_iv_img"/>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:foregroundGravity="center"
+        android:src="@drawable/img_logo_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/cozy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="cozy"
+        android:fontFamily="@font/gilroy_light"
+        android:textColor="#373737"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="24dp"></androidx.constraintlayout.widget.Guideline>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="24dp">
+
+    </androidx.constraintlayout.widget.Guideline>
+
+    <ImageView
+        android:id="@+id/btn_kakao_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/btn_kakao_login"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_facebook_login"
+        app:layout_constraintEnd_toStartOf="@+id/btn_facebook_login"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/btn_facebook_login" />
+
+    <ImageView
+        android:id="@+id/btn_facebook_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/btn_facebook_login"
+        app:layout_constraintEnd_toStartOf="@+id/btn_naver_login"
+        app:layout_constraintTop_toBottomOf="@id/cozy"
+        android:layout_marginTop="130dp"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_kakao_login" />
+
+    <ImageView
+        android:id="@+id/btn_naver_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/btn_naver_login"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_facebook_login"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_facebook_login"
+        app:layout_constraintTop_toTopOf="@+id/btn_facebook_login" />
+
+    <TextView
+        android:id="@+id/email_login"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="37dp"
+        android:background="@drawable/round"
+        android:font="@font/notosans_fontfamily"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="이메일로 로그인하기"
+        android:textColor="@color/black"
+        android:textFontWeight="700"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/btn_facebook_login" />
+
+    <TextView
+        android:id="@+id/signup"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:background="@drawable/round"
+        android:font="@font/notosans_fontfamily"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="회원가입"
+        android:textColor="@color/black"
+        android:layout_marginTop="14dp"
+        android:textFontWeight="700"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/email_login" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,13 +25,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/img_logo"
-                    app:layout_constraintEnd_toStartOf="@id/serch"
+                    app:layout_constraintEnd_toStartOf="@id/search"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageButton
-                    android:id="@+id/serch"
+                    android:id="@+id/search"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#00FFFFFF"
@@ -43,13 +43,12 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/name"
+                android:id="@+id/nickname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="35dp"
                 android:fontFamily="@font/notosans_fontfamily"
                 android:includeFontPadding="false"
-                android:text="다돌코님,"
                 android:textColor="@color/recommend"
                 android:textFontWeight="900"
                 android:textSize="25sp" />

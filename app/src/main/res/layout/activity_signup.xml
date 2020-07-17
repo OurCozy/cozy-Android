@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/img_arrow_dark_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="27dp"
+        android:src="@drawable/ic_left_arrow_dark"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/finish_signup_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="26dp"
+        android:font="@font/notosans_fontfamily"
+        android:includeFontPadding="false"
+        android:text="완료"
+        android:enabled="false"
+        android:textColor="@color/button_selector"
+        android:textFontWeight="700"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_arrow_dark_signup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/img_arrow_dark_signup" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="31dp"
+        android:font="@font/notosans_fontfamily"
+        android:includeFontPadding="false"
+        android:text="회원가입"
+        android:textColor="@color/black"
+        android:textFontWeight="900"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_arrow_dark_signup" />
+
+    <EditText
+        android:id="@+id/signup_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="23dp"
+        android:layout_marginRight="23dp"
+        android:layout_marginTop="43dp"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:hint="닉네임"
+        android:includeFontPadding="false"
+        android:inputType="textPersonName"
+        android:textColorHint="#d1d1d1"
+        android:textFontWeight="700"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <Button
+        android:id="@+id/btn_nickname_overlap"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:background="@drawable/round"
+        android:text="중복확인"
+        android:textAlignment="center"
+        android:textColor="@color/mainColor"
+        android:layout_marginBottom="12dp"
+        android:layout_marginRight="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/signup_name"
+        app:layout_constraintEnd_toEndOf="@+id/signup_name"
+        app:layout_constraintTop_toTopOf="@+id/signup_name" />
+
+    <TextView
+        android:id="@+id/nickname_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="10sp"
+        android:textColor="#2ece6a"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:textFontWeight="500"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:includeFontPadding="false"
+        app:layout_constraintEnd_toEndOf="@id/signup_name"
+        app:layout_constraintTop_toBottomOf="@id/signup_name"/>
+
+    <EditText
+        android:id="@+id/signup_email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="23dp"
+        android:layout_marginRight="23dp"
+        android:layout_marginTop="40dp"
+        android:inputType="textEmailAddress"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:hint="cozy1234@cozy.com"
+        android:includeFontPadding="false"
+        android:textColorHint="#d1d1d1"
+        android:textFontWeight="700"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_name" />
+
+    <Button
+        android:id="@+id/btn_email_overlap"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:background="@drawable/round"
+        android:text="중복확인"
+        android:textAlignment="center"
+        android:textColor="@color/mainColor"
+        android:layout_marginBottom="12dp"
+        android:layout_marginRight="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/signup_email"
+        app:layout_constraintEnd_toEndOf="@+id/signup_email"
+        app:layout_constraintTop_toTopOf="@+id/signup_email" />
+
+    <TextView
+        android:id="@+id/email_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="10sp"
+        android:textColor="#2ece6a"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:textFontWeight="500"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:includeFontPadding="false"
+        app:layout_constraintEnd_toEndOf="@id/signup_email"
+        app:layout_constraintTop_toBottomOf="@id/signup_email"/>
+
+    <EditText
+        android:id="@+id/signup_pw"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="23dp"
+        android:layout_marginRight="23dp"
+        android:layout_marginTop="40dp"
+        android:inputType="textPassword"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:hint="비밀번호(영문,숫자,특수문자 포함 10~20자)"
+        android:includeFontPadding="false"
+        android:textColorHint="#d1d1d1"
+        android:textFontWeight="700"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_email" />
+
+    <TextView
+        android:id="@+id/pw_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*영문, 숫자, 특수문자 포함 10~20자 입력해주세요."
+        android:textSize="10sp"
+        android:textColor="@color/mainColor"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:textFontWeight="500"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:includeFontPadding="false"
+        app:layout_constraintStart_toStartOf="@id/signup_pw"
+        app:layout_constraintTop_toBottomOf="@id/signup_pw"/>
+
+    <EditText
+        android:id="@+id/signup_pw_checked"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="23dp"
+        android:layout_marginRight="23dp"
+        android:layout_marginTop="40dp"
+        android:inputType="textPassword"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:hint="비밀번호 확인"
+        android:includeFontPadding="false"
+        android:textColorHint="#d1d1d1"
+        android:textFontWeight="700"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_pw" />
+
+    <TextView
+        android:id="@+id/pw_check_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10sp"
+        android:textColor="@color/mainColor"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:textFontWeight="500"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:includeFontPadding="false"
+        app:layout_constraintEnd_toEndOf="@id/signup_pw_checked"
+        app:layout_constraintTop_toBottomOf="@id/signup_pw_checked"/>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
