@@ -29,7 +29,7 @@
     * [로그인 및 회원가입](#로그인)
     * [검색](#검색)
 * 확장함수
-    *[addOnPageChangeListener확장함수](#addOnPageChangeListener확장함수)
+    *[addOnPageChangeListener 확장함수](#확장)
     * [Kotlin Collection 활용](#Collection)
 * 소스파일
 
@@ -151,7 +151,7 @@
 <br>
 
 <p align="center">
-    <img src="/img/mypage_blueprint.PNG" width="300"/><br>
+    <img src="/img/mypage_blueprint.JPG" width="300"/><br>
 </p>
 
 <br>
@@ -500,8 +500,9 @@ class InterestViewHolder(itemView: View, val onClick: (MapData) -> Unit) : Recyc
 [목차로 돌아가기](#Contents)
 
 <h2 id="카카오">카카오 로그인</h2>
-
-<img src="/img/kakao_signin.gif" width="300"/><br><br>
+<p align = "center">
+    <img src="/img/kakao_signin.gif" width="300"/><br>
+</p>
 
 ```kotlin
 class SigninActivity : Activity() {
@@ -544,7 +545,7 @@ reference: [카카오 개발자 가이드](https://developers.kakao.com/docs/lat
 
 [목차로 돌아가기](#Contents)
 
-## addOnPageChangeListener확장함수
+<h2 id="확장">addOnPageChangeListener 확장함수</h2>
 
 ViewPager의 addOnPageChangeListener를 확장함수로 구현하였다. onPageScrollStateChanged와 onPageScrolled는 따로 사용을 하지 않아서 Unit으로 해주고 onPageSelected만 onSelected(position)를 만들어줬다.
 

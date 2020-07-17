@@ -102,7 +102,7 @@
         android:background="@drawable/img_category_area"
         android:fontFamily="@font/notosans_fontfamily"
         android:textFontWeight="700"
-        android:text="고양이"
+        android:text="맥주"
         android:textAlignment="center"
         android:textColor="@color/textColor"
         android:textSize="12sp"
