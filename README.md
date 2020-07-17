@@ -1,3 +1,4 @@
+
 <h1 align="center">COZY_Android</h1>
 <p align="center">
 	<img src="/img/cozy_logo.png" width="200"/><br>
@@ -19,6 +20,12 @@
 * 주요 기능
 	* 애니메이션
 	* [카카오맵 API](#카카오맵)
+	* Bottom-sheet Dialog
+	* textChangedListener
+* 그 외 기능
+	* 로그인 및 회원가입
+	* 후기
+	* 검색
 * 확장함수
 * 소스파일
 
@@ -54,11 +61,11 @@
 
 <h2 id="지도">지도 화면</h2>
 <p align="center">
-	<img src="/img/map_constraintLayout.PNG" width="300"/>
+	<img src="/img/map_constraintLayout.PNG" width="200"/>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<img src="/img/map_image.PNG" width="300"/>
+	<img src="/img/map_image.PNG" width="200"/>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<img src="/img/map_popup.PNG" width="260"/><br>
+	<img src="/img/map_popup.PNG" width="200"/><br>
 </p>
 - 사용자가 지역별로 책방을 찾을 수 있는 화면이다. default값인 마포구를 클릭했을 때 아래에서 위로 지역을 클릭할 수 있는 팝업창이 뜬다. 다른 지역을 클릭하게 되면 그에 따른 책방들이 RecyclerView로 보여진다. MapItemDecoration 에서 리사이클러뷰 아래에 getItemOffsets 함수를 사용해서 여백을 주었다.<br>
 - 화면 레이아웃은 ConstraintLayout을 사용했다. 각 뷰 사이에 제약을 주면서 유기적으로 뷰가 움직일 수 있도록 만들었다. 양쪽에 guideline을 주어 여백을 따로 두지 않아도 되도록 만들었다.<br>
@@ -250,3 +257,113 @@
 [Kotlin 코드 보러가기](https://github.com/OurCozy/cozy-Android/blob/dev/app/src/main/java/com/example/cozy/views/map/MapDetailActivity.kt)
 
 [목차로 돌아가기](#Contents)
+
+## Bottom-Sheet Dialog
+
+지도 텍스트를 클릭했을 때 아래에서 위로 뜨는 팝업을 만들었다. bottomsheet를 띄우기 위해서 필요한 라이브러리 파일을 추가하고 이에 맞는 xml을 만들었다. tablayout을 사용해서 
+서울 경기를 나누었고 swipe을 위해서 viewpager를 만들었다. [xml 보러가기](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/res/layout/fragment_popup.xml) <br>
+viewpager 안에는 [fragment_seoul.xml](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/res/layout/fragment_seoul.xml) 
+과 [fragment_gg.xml](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/res/layout/fragment_gg.xml) 를 띄운다.<br><br>
+
+Mapfragment에 PopupFragment bottomsheet를 띄우기 위해서 getFragmentManager()로 객체를 가져와 프래그먼트를 사용할 수 있게 한다. sectionIdx는 어떤 구를 클릭했는지 값을 받아오기 위해 매개변수로 지정해놨다.
+
+``` kotlin
+location.setOnClickListener{
+            val bottomsheet = PopupFragment(sectionIdx)
+            getFragmentManager()?.let { it1 -> bottomsheet.show(it1, bottomsheet.tag) }
+        }
+```
+<br>
+
+PopupFragment에 또 다른 fragment를 띄우기 위해서  SeoulFragment와 GgFragment인 자식프래그먼트를 가지고 온다. 계속해서 sectionIdx 값을 가져온다.<br>
+
+``` kotlin
+override fun onStart() {
+        super.onStart()
+
+        popup_viewPager.adapter = PopupViewPagerAdapter(childFragmentManager,sectionIdx)
+        popup_viewPager.offscreenPageLimit = 2
+
+        tab_layout.setupWithViewPager(popup_viewPager)
+
+    }
+```
+<br><br>
+각 지역 버튼을 누를 때 부모 프래그먼트의 BottomSheetDialogFragment를 종료하고 sectionIdx에 값을 넣는다. 
+그리고 SeoulFragment에서 지역을 클릭했을 때 이 값에 따라서 이미지 색이 달라져야 하기 때문에 누른 sectionIdx 값을 sharedPreferenced에 저장한다. 
+이후 팝업을 내리고 다시 올려도 해당 지역 이미지 색이 달라질 수 있도록 한다.<br>
+<p align="center">
+	<img src="/img/" width="300"/><br>
+</p>
+
+``` kotlin
+//이미지 변경을 위한 선택된 데이터 저장
+val pref = activity!!.getSharedPreferences("pref", Context.MODE_PRIVATE)
+        val ed = pref.edit()
+        val location = pref.getInt("location",1)
+        selectedLocation(location)
+img_1.setOnClickListener{
+	//부모 프래그먼트 종료(부모 프래그먼트에서 BottomSheetDialogFragment 가져오기)
+            val popF = this.parentFragment as BottomSheetDialogFragment
+            popF.dismiss()
+            sectionIdx(1)
+            ed.putInt("location", 1)
+            ed.apply()
+        }
+```
+[코틀린 코드 보기](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/java/com/example/cozy/views/map/popup/SeoulFragment.kt)<br>
+
+ ## textChangedListener
+ 
+회원가입뷰에서 비밀번호 조건에 맞출 때, 비밀번호 일치 여부를 판단할 때 사용한다. 이 리스너는 텍스트를 입력할 때마다 리스너 이벤트가 작동한다. 비밀번호가 입력될 때마다 정규식을 통해서 판단하는데
+숫자, 문자, 영문이 다 들어가야 조건이 맞도록 한다.<br>
+ ``` kotlin
+  signup_pw.textChangedListener {
+            if(!Pattern.matches("^(?=.*\\d)(?=.*[~`!@#$%\\^&*()-])(?=.*[a-zA-Z]).{10,20}$", signup_pw.text.toString())){
+                pw_msg.text = "*영문, 숫자, 특수문자 포함 10~20자 입력해주세요."
+                password = false
+                signup_finish()
+            }
+ ```
+ <br>
+ 비밀번호 확인 부분에 비밀번호를 입력했을 때 텍스트 감지해서 일치 여부를 띄운다.<br>
+ 
+``` kotlin
+  signup_pw_checked.textChangedListener {
+            if (signup_pw.text.toString() == signup_pw_checked.text.toString()) {
+                pw_check_msg.text = "*비밀번호가 일치합니다."
+                pw_check_msg.setTextColor(ContextCompat.getColor(this, R.color.green))
+                passwordcheck = true
+                signup_finish()
+            }
+            else {
+                pw_check_msg.text = "*비밀번호가 일치하지 않습니다."
+                pw_check_msg.setTextColor(ContextCompat.getColor(this, R.color.mainColor))
+                passwordcheck = false
+                signup_finish()
+            }
+        }
+```
+
+[코틀린 코드 보기](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/java/com/example/cozy/signin/SignupActivity.kt)
+
+# 그 외 기능
+
+## 로그인 및 회원가입
+<p align="center">
+	<img src="/img/.png" width="300"/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</p>
+로그인은 이메일과 비밀번호 둘 중 하나 입력하지 않으면 완료버튼이 활성화 되지 않는다. 완료를 클릭했을 때 서버와 통신해서 이메일이 등록되어 있지 않은 회원이면 등록되지 않는 회원이라고 뜨고 이메일과 비밀번호가 일치하지 않으면 비밀번호가 일치하지 않으면 textview에 일치하지 않는다는 문구가 뜬다. <br>
+
+<p align="center">
+	<img src="/img/.png" width="300"/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</p>
+닉네임, 이메일 중복을 서버와 통신하여 확인할 수 있으며 비밀번호 일치 여부를 판단해서 모든 조건을 갖추게 되면 완료 버튼이 활성화된다. 이 버튼을 누르게 되면 회원가입이 된다. <br> 
+
+
+
+
+
+
