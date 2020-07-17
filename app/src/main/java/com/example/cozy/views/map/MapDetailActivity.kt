@@ -2,6 +2,8 @@ package com.example.cozy.views.map
 
 import android.content.Context
 import android.content.Intent
+import android.location.Address
+import android.location.Geocoder
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -31,6 +33,7 @@ import kotlinx.android.synthetic.main.activity_review.*
 import net.daum.android.map.MapView
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
+import java.io.IOException
 import kotlin.properties.Delegates
 
 class MapDetailActivity : AppCompatActivity() {
@@ -43,6 +46,7 @@ class MapDetailActivity : AppCompatActivity() {
     var kakaoPackageName : String = "net.daum.android.map"
     lateinit var reviewAdapter: ReviewAdapter
     var data = mutableListOf<AllReviewData>()
+    val geocoder = Geocoder(this)
 
     //관심책방 여부 저장 변수 TODO:서버에서 가져온 정보 여기에 저장
     var isChecked : Int = 0
@@ -74,8 +78,6 @@ class MapDetailActivity : AppCompatActivity() {
                         Glide.with(this).load(detailData.profile).into(map_main_img)
                     }
                     map_bookstore_title.text = detailData.bookstoreName
-                    latitude = detailData.latitude
-                    longitude = detailData.longitude
                     map_1st_category.text = detailData.hashtag1
                     map_2nd_category.text = detailData.hashtag2
                     map_3rd_category.text = detailData.hashtag3
@@ -134,10 +136,20 @@ class MapDetailActivity : AppCompatActivity() {
                     }
                     isChecked = detailData.checked
                     iv_bookmark.isSelected = detailData.checked == 1
-                    //iv_bookmark.isSelected = isChecked != 0
                     Glide.with(this).load(detailData.image1).into(map_detail_img_1)
                     Glide.with(this).load(detailData.image2).into(map_detail_img_2)
                     map_detail.text = detailData.description
+
+                    var list : List<Address>
+                    var address : String = detailData.location
+                    try {
+                        list = geocoder.getFromLocationName(address,2); // 읽을 개수
+                        latitude = list.get(0).latitude
+                        longitude = list.get(0).longitude
+                    } catch (e : IOException) {
+                        e.printStackTrace();
+                        Log.e("test","입출력 오류 - 서버에서 주소변환시 에러발생");
+                    }
 
                     // 카카오 지도 API 사용 (AVD로 실행할 때는 78~94 주석처리하기)
                     val mapView = net.daum.mf.map.api.MapView(this)
@@ -150,7 +162,7 @@ class MapDetailActivity : AppCompatActivity() {
                     mapView.setZoomLevel(3, true)
                     // 지도 위에 마커 표시
                     val marker = MapPOIItem()
-                    marker.itemName = "Default Marker"
+                    marker.itemName = detailData.bookstoreName
                     marker.tag = 0
                     marker.mapPoint = MARKER_POINT
                     marker.markerType = MapPOIItem.MarkerType.BluePin // 기본으로 제공하는 BluePin 마커 모양.

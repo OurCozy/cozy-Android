@@ -37,7 +37,9 @@ class SearchResultActivity : AppCompatActivity() {
                 Log.d("test", it.message)
                 if (it.success) {
                     val adapter = MapAdapter(this, it.data.toMutableList()) {MapData->
-                        startActivity(Intent(this, MapDetailActivity::class.java))
+                        val intent = Intent(this, MapDetailActivity::class.java)
+                        intent.putExtra("bookIdx",MapData.bookstoreIdx)
+                        startActivity(intent)
                     }
                     rv_search_result.adapter = adapter
                 }

@@ -13,12 +13,8 @@ class StartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_startpage)
 
-        val activityFinish = {
-            finish()
-        }
-
         email_login.setOnClickListener {
-            startActivity(Intent(this, EmailLoginActivity()::class.java))
+            startActivity(Intent(this, EmailLoginActivity::class.java))
         }
 
         signup.setOnClickListener {

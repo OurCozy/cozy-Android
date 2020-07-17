@@ -14,7 +14,7 @@ import com.example.cozy.network.customEnqueue
 import com.example.cozy.textChangedListener
 import kotlinx.android.synthetic.main.activity_email_login.*
 
-class EmailLoginActivity() : AppCompatActivity() {
+class EmailLoginActivity: AppCompatActivity() {
 
     val requestTosever = RequestToServer
     var isemail  = false

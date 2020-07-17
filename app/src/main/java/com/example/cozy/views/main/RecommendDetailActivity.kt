@@ -3,14 +3,16 @@ package com.example.cozy.views.main
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.location.Address
+import android.location.Geocoder
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.cozy.BottomItemDecoration
 import com.example.cozy.R
@@ -19,14 +21,16 @@ import com.example.cozy.network.customEnqueue
 import com.example.cozy.network.responseData.AllReviewData
 import com.example.cozy.network.responseData.BookstoreDetailData
 import com.example.cozy.tokenHeader
-import com.example.cozy.views.review.ReviewAdapter
 import com.example.cozy.views.review.PutReviewActivity
 import com.example.cozy.views.review.ReviewActivity
+import com.example.cozy.views.review.ReviewAdapter
 import kotlinx.android.synthetic.main.activity_recommend_detail.*
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
+import java.io.IOException
 import kotlin.properties.Delegates
+
 
 class RecommendDetailActivity : AppCompatActivity() {
 
@@ -39,6 +43,8 @@ class RecommendDetailActivity : AppCompatActivity() {
     var kakaoPackageName : String = "net.daum.android.map"
     lateinit var reviewAdapter: ReviewAdapter
     var data = mutableListOf<AllReviewData>()
+    val geocoder = Geocoder(this)
+
 
     //관심책방 여부 저장 변수 TODO:서버에서 가져온 정보 여기에 저장
     var isChecked : Int = 0
@@ -64,8 +70,6 @@ class RecommendDetailActivity : AppCompatActivity() {
                 rec_name.text = detailData.bookstoreName
                 rec_address.text = detailData.location
                 tv_bookstore_title.text = detailData.bookstoreName
-                latitude = detailData.latitude
-                longitude = detailData.longitude
                 tv_1st_category.text = detailData.hashtag1
                 tv_2nd_category.text = detailData.hashtag2
                 tv_3rd_category.text = detailData.hashtag3
@@ -122,6 +126,18 @@ class RecommendDetailActivity : AppCompatActivity() {
                         startActivity(intent)
                     }
                 }
+
+                var list : List<Address>
+                var address : String = detailData.location
+                try {
+                    list = geocoder.getFromLocationName(address,2); // 읽을 개수
+                    latitude = list.get(0).latitude
+                    longitude = list.get(0).longitude
+                } catch (e : IOException) {
+                    e.printStackTrace();
+                    Log.e("test","입출력 오류 - 서버에서 주소변환시 에러발생");
+                }
+
                 Glide.with(this).load(detailData.image1).into(iv_detail_img_1)
                 Glide.with(this).load(detailData.image2).into(iv_detail_img_2)
                 Glide.with(this).load(detailData.image3).into(iv_detail_img_3)
@@ -141,7 +157,7 @@ class RecommendDetailActivity : AppCompatActivity() {
                 mapView.setZoomLevel(3, true)
                 // 지도 위에 마커 표시
                 val marker = MapPOIItem()
-                marker.itemName = "Default Marker"
+                marker.itemName = detailData.bookstoreName
                 marker.tag = 0
                 marker.mapPoint = MARKER_POINT
                 marker.markerType = MapPOIItem.MarkerType.BluePin // 기본으로 제공하는 BluePin 마커 모양.
