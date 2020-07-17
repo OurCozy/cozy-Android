@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide
 import com.example.cozy.R
 import com.example.cozy.network.RequestToServer
 import com.example.cozy.network.customEnqueue
+import com.example.cozy.network.responseData.RecentlySeenData
 import com.example.cozy.views.search.SearchActivity
 import kotlinx.android.synthetic.main.fragment_mypage.*
 import okhttp3.MediaType
@@ -29,6 +30,7 @@ class MypageFragment : Fragment() {
     lateinit var adapter: RecentlySeenAdapter
     val service = RequestToServer.service
     lateinit var selectedImg : Uri
+    var data = mutableListOf<RecentlySeenData>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -70,6 +72,9 @@ class MypageFragment : Fragment() {
         rounded_iv_profile.setOnClickListener{
             startActivityForResult(Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI), IMAGE_FROM_GALLERY)
         }
+
+        adapter = RecentlySeenAdapter(view.context)
+        rv_recently_seen.adapter = adapter
 
         loadData()
     }
@@ -114,18 +119,43 @@ class MypageFragment : Fragment() {
     }
 
     fun loadData() {
-        val sharedPref = context!!.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
-        val token = sharedPref.getString("token", "token")
+        data.apply {
+            add(
+                RecentlySeenData(
+                    bookstoreName = "Piece",
+                    image1 = "https://sopt-server-gain.s3.ap-northeast-2.amazonaws.com/1594260881260.jpg"
+                )
+            )
+            add(
+                RecentlySeenData(
+                    bookstoreName = "서아책방",
+                    image1 = "https://sopt-server-gain.s3.ap-northeast-2.amazonaws.com/1594262189420.jpg"
+                )
+            )
+            add(
+                RecentlySeenData(
+                    bookstoreName = "가가77페이지",
+                    image1 = "https://sopt-server-gain.s3.ap-northeast-2.amazonaws.com/1594262327987.png"
+                )
+            )
+            add(
+                RecentlySeenData(
+                    bookstoreName = "지구불시착",
+                    image1 = "https://sopt-server-gain.s3.ap-northeast-2.amazonaws.com/1594262285974.png"
+                )
+            )
+            add(
+                RecentlySeenData(
+                    bookstoreName = "아크앤북",
+                    image1 = "https://sopt-server-gain.s3.ap-northeast-2.amazonaws.com/1594262587468.png"
+                )
+            )
+        }
 
-        val header = mutableMapOf<String, String?>()
-        header["Content-Type"] = "application/json"
-        header["token"] = token
+        tv_no_recently_seen_background.visibility = View.GONE
+        tv_no_recently_seen_text.visibility = View.GONE
 
-        service.requestRecent(header).customEnqueue(
-            onError = {},
-            onSuccess = {
-                Log.d("response", "status: " + it.status + ", message: " + it.message)
-            }
-        )
+        adapter.data = data
+        adapter.notifyDataSetChanged()
     }
 }
