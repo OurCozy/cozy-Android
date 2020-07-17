@@ -21,11 +21,11 @@
 	* 애니메이션
 	* [카카오맵 API](#카카오맵)
 	* [카카오 로그인](#카카오)
-	* Bottom-sheet Dialog
-	* textChangedListener
+	* Bottom-sheet Dialog(#BottomSheetDialog)
+	* textChangedListener(#textChangedListener)
 	* [관심 책방 설정](#관심책방)
 * 그 외 기능
-	* 로그인 및 회원가입
+	* 로그인 및 회원가입(#로그인 및 회원가입)
 	* 후기
 	* 검색
 * 확장함수
@@ -399,7 +399,7 @@ reference: [카카오 개발자 가이드](https://developers.kakao.com/docs/lat
 
 [목차로 돌아가기](#Contents)
 
-## Bottom-Sheet Dialog
+## BottomSheetDialog
 
 지도 텍스트를 클릭했을 때 아래에서 위로 뜨는 팝업을 만들었다. bottomsheet를 띄우기 위해서 필요한 라이브러리 파일을 추가하고 이에 맞는 xml을 만들었다. tablayout을 사용해서 
 서울 경기를 나누었고 swipe을 위해서 viewpager를 만들었다. [xml 보러가기](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/res/layout/fragment_popup.xml) <br>
@@ -452,7 +452,8 @@ img_1.setOnClickListener{
             ed.apply()
         }
 ```
-[코틀린 코드 보기](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/java/com/example/cozy/views/map/popup/SeoulFragment.kt)<br>
+[Kotlin 코드 보기](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/java/com/example/cozy/views/map/popup/SeoulFragment.kt)<br>
+[목차로 돌아가기](#Contents)<br>
 
  ## textChangedListener
  
@@ -486,7 +487,8 @@ img_1.setOnClickListener{
         }
 ```
 
-[코틀린 코드 보기](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/java/com/example/cozy/signin/SignupActivity.kt)
+[Kotlin 코드 보기](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/java/com/example/cozy/signin/SignupActivity.kt)
+[목차로 돌아가기](#Contents)<br>
 
 <h2 id="관심책방">관심 책방 설정</h2>
 
@@ -543,6 +545,7 @@ img_1.setOnClickListener{
 </p>
 닉네임, 이메일 중복을 서버와 통신하여 확인할 수 있으며 비밀번호 일치 여부를 판단해서 모든 조건을 갖추게 되면 완료 버튼이 활성화된다. 이 버튼을 누르게 되면 회원가입이 된다. <br> 
 
+[목차로 돌아가기](#Contents)
 
 
 
