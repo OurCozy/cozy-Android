@@ -400,7 +400,7 @@ class InterestViewHolder(itemView: View, val onClick: (MapData) -> Unit) : Recyc
     startActivity(intent,option.toBundle())
 ```
 
-[Kotlin 코드 보러가기]
+[Kotlin 코드 보러가기](https://github.com/OurCozy/cozy-Android/blob/dev/app/src/main/java/com/example/cozy/views/main/MainFragment.kt)
 
 [목차로 돌아가기](#Contents)
 
@@ -578,16 +578,16 @@ MainActivity에서 onSelected를 구현해 주었다.
 }
 ```
 
-[Kotlin 코드 보러가기]
+[Kotlin 코드 보러가기](https://github.com/OurCozy/cozy-Android/blob/dev/app/src/main/java/com/example/cozy/OnpageChangeListener.kt)
 
 [목차로 돌아가기](#Contents)
 
 ## Bottom-Sheet Dialog
 
 지도 텍스트를 클릭했을 때 아래에서 위로 뜨는 팝업을 만들었다. bottomsheet를 띄우기 위해서 필요한 라이브러리 파일을 추가하고 이에 맞는 xml을 만들었다. tablayout을 사용해서
-서울 경기를 나누었고 swipe을 위해서 viewpager를 만들었다. [xml 보러가기](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/res/layout/fragment_popup.xml) <br>
-viewpager 안에는 [fragment_seoul.xml](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/res/layout/fragment_seoul.xml)
-과 [fragment_gg.xml](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/res/layout/fragment_gg.xml) 를 띄운다.<br><br>
+서울 경기를 나누었고 swipe을 위해서 viewpager를 만들었다. [xml 보러가기](https://github.com/OurCozy/cozy-Android/blob/dev/app/src/main/res/layout/fragment_popup.xml) <br>
+viewpager 안에는 [fragment_seoul.xml](https://github.com/OurCozy/cozy-Android/blob/dev/app/src/main/res/layout/fragment_seoul.xml)
+과 [fragment_gg.xml](https://github.com/OurCozy/cozy-Android/blob/dev/app/src/main/res/layout/fragment_gg.xml) 를 띄운다.<br><br>
 
 Mapfragment에 PopupFragment bottomsheet를 띄우기 위해서 getFragmentManager()로 객체를 가져와 프래그먼트를 사용할 수 있게 한다. sectionIdx는 어떤 구를 클릭했는지 값을 받아오기 위해 매개변수로 지정해놨다.
 
@@ -635,7 +635,7 @@ img_1.setOnClickListener{
             ed.apply()
         }
 ```
-[Kotlin 코드 보기](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/java/com/example/cozy/views/map/popup/SeoulFragment.kt)<br><br>
+[Kotlin 코드 보기](https://github.com/OurCozy/cozy-Android/blob/dev/app/src/main/java/com/example/cozy/views/map/popup/SeoulFragment.kt)<br><br>
 [목차로 돌아가기](#Contents)<br>
 
  ## textChangedListener
@@ -670,7 +670,7 @@ img_1.setOnClickListener{
         }
 ```
 
-[Kotlin 코드 보기](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/java/com/example/cozy/signin/SignupActivity.kt)<br><br>
+[Kotlin 코드 보기](https://github.com/OurCozy/cozy-Android/blob/dev/app/src/main/java/com/example/cozy/signin/SignupActivity.kt)<br><br>
 [목차로 돌아가기](#Contents)<br>
 
 <h2 id="관심책방">관심 책방 설정</h2>
