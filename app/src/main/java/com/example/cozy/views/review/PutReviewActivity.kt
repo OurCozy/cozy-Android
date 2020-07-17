@@ -1,11 +1,9 @@
 package com.example.cozy.views.review
 
+import android.R.attr.path
 import android.content.Context
 import android.content.Intent
-import android.database.Cursor
-import android.graphics.BitmapFactory
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.Editable
@@ -14,22 +12,40 @@ import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.cozy.R
-import com.kakao.auth.authorization.AuthorizationResult
+import com.example.cozy.network.RequestToServer
+import com.example.cozy.network.customEnqueue
+import com.kakao.auth.StringSet
+import com.kakao.auth.StringSet.file
 import kotlinx.android.synthetic.main.activity_put_review.*
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import java.io.*
+import kotlin.properties.Delegates
+
 
 class PutReviewActivity : AppCompatActivity() {
     val IMAGE_FROM_GALLERY = 0
     var isStarFilled  = false
     var isTextFilled  = false
     var isImgFilled = false
+    lateinit var selectedImg : Uri
+    val requestTosever = RequestToServer
+    var bookIdx by Delegates.notNull<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_put_review)
 
+        if (intent.hasExtra("bookIdx")) {
+            bookIdx = intent.getIntExtra("bookIdx",0)
+            Log.d("bookIdx", bookIdx.toString())
+        }
+
         iv_close.setOnClickListener {
-            finish()
+//            finish()
         }
 
         star_1.setOnClickListener{ onClick(it) }
@@ -63,6 +79,37 @@ class PutReviewActivity : AppCompatActivity() {
         tv_next.setOnClickListener {
             if(isStarFilled && isTextFilled && isImgFilled) {
                 //서버 통신
+                val c = contentResolver.query(Uri.parse(selectedImg.toString()), null, null, null, null)
+                c!!.moveToNext()
+                val absolutePath = c!!.getString(c!!.getColumnIndex(MediaStore.MediaColumns.DATA))
+                Log.d("경로 확인 >> " , "$selectedImg  /  $absolutePath")
+                if (path != null) {
+                    val file = File(absolutePath)
+                    try{
+                        val rqFile = RequestBody.create(MediaType.parse("image/*"), file)
+                        var photo : MultipartBody.Part = MultipartBody.Part.createFormData("photo", file.getName(), rqFile)
+
+                        val sharedPref = this.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
+                        val header = mutableMapOf<String, String?>()
+                        header["token"] = sharedPref.getString("token", "token")
+                        requestTosever.service.requestReveiw(bookIdx,photo,header).customEnqueue(
+                            onError = {Log.d("error >>>> ", "외않되")},
+                            onSuccess = {
+                                if (it.success){
+                                Log.d("성공했다", it.message + " / " + it.data.photo)
+                                }else{
+                                    Log.d("status >>>> ", it.status.toString())
+                                }
+                            }
+                        )
+                    }catch (e : FileNotFoundException) {
+                        e.printStackTrace();
+                        Log.d("FileNotFoundException:", e.toString())
+                    } catch (e : IOException) {
+                        e.printStackTrace();
+                        Log.d("IOException >> ", e.toString())
+                    }
+                }
                 Toast.makeText(this, "후기가 등록되었습니다!", Toast.LENGTH_LONG).show()
             } else Toast.makeText(this, "모든 항목을 입력해주세요!", Toast.LENGTH_LONG).show()
         }
@@ -73,7 +120,7 @@ class PutReviewActivity : AppCompatActivity() {
 
         //갤러리에서 선택한 사진 화면에 출력
         if(requestCode==IMAGE_FROM_GALLERY && resultCode==RESULT_OK && data!=null) {
-            var selectedImg : Uri = data!!.data!!
+            selectedImg = data!!.data!!
             var bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedImg)
             upload_image.setImageBitmap(bitmap)
             isImgFilled = true

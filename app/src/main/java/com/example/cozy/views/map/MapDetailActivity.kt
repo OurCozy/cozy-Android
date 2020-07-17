@@ -120,8 +120,7 @@ class MapDetailActivity : AppCompatActivity() {
                         }
                     }
                     isChecked = detailData.checked
-                    if(detailData.checked == 1) iv_bookmark.isSelected = true
-                    else iv_bookmark.isSelected = false
+                    iv_bookmark.isSelected = detailData.checked == 1
                     //iv_bookmark.isSelected = isChecked != 0
                     Glide.with(this).load(detailData.image1).into(map_detail_img_1)
                     Glide.with(this).load(detailData.image2).into(map_detail_img_2)

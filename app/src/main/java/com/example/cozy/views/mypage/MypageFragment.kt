@@ -74,24 +74,23 @@ class MypageFragment : Fragment() {
         val sharedPref = activity!!.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
         val header = mutableMapOf<String, String?>()
         header["Content-Type"] = "application/json"
-        header["token"] = sharedPref.getString("token", "token")
+        header["token"] = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4Ijo5LCJpYXQiOjE1OTQ4ODA0MjksImV4cCI6MTU5NDkxNjQyOSwiaXNzIjoib3VyLXNvcHQifQ.cFVvGMG51emgmQ8lCiiUQgzSejC9R0ozDUQfQwrxTWc"
 
         RequestToServer.service.requestRecent(header).customEnqueue(
-            onError = {Log.d("test", "error")},
+            onError = {Log.d("test1", "error")},
             onSuccess = {
-                Log.d("test", ""+it.success + " " + it.message)
-//                if(it.success) {
-//                    adapter = RecentlySeenAdapter(view!!.context, it.data.toMutableList())
-//                    rv_recently_seen.adapter = adapter
-//
-//                    tv_no_recently_seen_background.visibility = GONE
-//                    tv_no_recently_seen_text.visibility = GONE
-//
-//                    adapter.notifyDataSetChanged()
-//                } else {
-//                    tv_no_recently_seen_background.visibility = VISIBLE
-//                    tv_no_recently_seen_text.visibility = VISIBLE
-//                }
+                if(it.success) {
+                    adapter = RecentlySeenAdapter(view!!.context, it.data.toMutableList())
+                    rv_recently_seen.adapter = adapter
+
+                    tv_no_recently_seen_background.visibility = GONE
+                    tv_no_recently_seen_text.visibility = GONE
+
+                    adapter.notifyDataSetChanged()
+                } else {
+                    tv_no_recently_seen_background.visibility = VISIBLE
+                    tv_no_recently_seen_text.visibility = VISIBLE
+                }
             }
         )
     }

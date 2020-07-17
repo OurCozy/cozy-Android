@@ -5,6 +5,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:required="true"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:required="true"/>
 
     <application
         android:name=".signin.KakaoSdkProvider"
@@ -15,7 +17,8 @@
         android:roundIcon="@mipmap/ic_logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        android:requestLegacyExternalStorage="true">
         <activity android:name=".signin.SearchPwdActivity"></activity>
         <activity android:name=".views.search.SearchResultActivity"/>
         <activity android:name=".signin.SignupActivity" />
@@ -39,7 +42,6 @@
             android:name=".views.map.MapDetailActivity"
             tools:ignore="DuplicateActivity" />
         <activity android:name=".MainActivity">
-
         </activity>
 
         <meta-data

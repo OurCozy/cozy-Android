@@ -4,6 +4,7 @@ import com.example.cozy.network.requestData.RequestFindPW
 import com.example.cozy.network.requestData.RequestLogin
 import com.example.cozy.network.requestData.RequestSignup
 import com.example.cozy.network.responseData.*
+import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -40,6 +41,9 @@ interface RequestInterface {
 
 
     //후기 작성
+    @Multipart
+    @POST("/main/detail/review/{bookstoreIdx}")
+    fun requestReveiw(@Path("bookstoreIdx") bookstoreIdx: Int, @Part photo : MultipartBody.Part, @HeaderMap headers: Map<String, String?>) : Call<ReponseReviewData>
 
     //지역별 조회 : https://github.com/OurCozy/cozy-server/wiki/2_2.-%EC%A7%80%EC%97%AD%EB%B3%84-%EC%A1%B0%ED%9A%8C
     @GET("/main/map/{sectionIdx}")
