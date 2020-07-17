@@ -21,11 +21,11 @@
 	* 애니메이션
 	* [카카오맵 API](#카카오맵)
 	* [카카오 로그인](#카카오)
-	* Bottom-sheet Dialog(#BottomSheetDialog)
-	* textChangedListener(#textChangedListener)
+	* [Bottom-sheet Dialog](#BottomSheetDialog)
+	* [textChangedListener](#textChangedListener)
 	* [관심 책방 설정](#관심책방)
 * 그 외 기능
-	* 로그인 및 회원가입(#로그인 및 회원가입)
+	* [로그인 및 회원가입](#로그인 및 회원가입)
 	* 후기
 	* 검색
 * 확장함수
