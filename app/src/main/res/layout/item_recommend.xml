@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    android:background="@drawable/shodow"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/rec_img"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:1.23"
+        android:src="@drawable/img_contents"
+        app:srcCompat="@drawable/ic_launcher_background"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:riv_corner_radius="10dp"
+        android:transitionName="share_img1"
+        tools:ignore="VectorDrawableCompat" />
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/rec_gradation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/img_main_content_gradation"
+        android:transitionName="share_img2"
+        app:layout_constraintBottom_toBottomOf="@+id/rec_img"
+        app:riv_corner_radius="10dp"
+        app:layout_constraintStart_toStartOf="@+id/rec_img" />
+
+    <TextView
+        android:id="@+id/rec_text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="22dp"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:includeFontPadding="false"
+        android:textColor="@color/white"
+        android:textFontWeight="900"
+        android:textSize="21sp"
+        android:transitionName="share_text1"
+        app:layout_constraintBottom_toTopOf="@+id/rec_text2"
+        app:layout_constraintStart_toStartOf="@+id/rec_img"
+        tools:text="다양한 독립서적과" />
+
+    <TextView
+        android:id="@+id/rec_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="22dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:includeFontPadding="false"
+        android:textColor="@color/white"
+        android:textFontWeight="900"
+        android:textSize="21sp"
+        android:transitionName="share_text2"
+        app:layout_constraintBottom_toTopOf="@+id/rec_name"
+        app:layout_constraintStart_toStartOf="@+id/rec_img"
+        tools:text="그림, 커피 한 잔 까지?" />
+
+    <ImageView
+        android:id="@+id/icon_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="22dp"
+        android:layout_marginBottom="1dp"
+        android:src="@drawable/ic_content_address"
+        android:transitionName="share_icon"
+        app:layout_constraintBottom_toTopOf="@+id/rec_address"
+        app:layout_constraintStart_toStartOf="@+id/rec_img" />
+
+    <TextView
+        android:id="@+id/rec_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:includeFontPadding="false"
+        android:textColor="@color/white"
+        android:textFontWeight="500"
+        android:textSize="12sp"
+        android:transitionName="share_text3"
+        app:layout_constraintBottom_toTopOf="@+id/rec_address"
+        app:layout_constraintStart_toEndOf="@+id/icon_address"
+        tools:text="지구불시착" />
+
+    <TextView
+        android:id="@+id/rec_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:includeFontPadding="false"
+        android:textColor="@color/white"
+        android:textFontWeight="300"
+        android:textSize="9sp"
+        android:transitionName="share_text4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/rec_name"
+        tools:text="서울특별시 노원구 화랑로 464" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

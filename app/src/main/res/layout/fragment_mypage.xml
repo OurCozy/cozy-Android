@@ -8,7 +8,8 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:overScrollMode="never">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -21,10 +22,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="23dp"
                 android:layout_marginTop="51dp"
+                android:fontFamily="@font/notosans_fontfamily"
+                android:includeFontPadding="false"
                 android:text="마이페이지"
                 android:textColor="@color/textColor"
+                android:textFontWeight="900"
                 android:textSize="24sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,10 +54,11 @@
                 android:id="@+id/rounded_iv_profile"
                 android:layout_width="77dp"
                 android:layout_height="77dp"
-                android:src="@drawable/pedestrian_emoji"
+                android:layout_marginTop="39dp"
+                android:src="@color/white"
                 app:civ_border_color="@color/gray"
                 app:civ_border_width="1dp"
-                android:layout_marginTop="27dp"
+                app:layout_constraintEnd_toEndOf="@+id/guideline_end"
                 app:layout_constraintStart_toStartOf="@+id/tv_title"
                 app:layout_constraintTop_toBottomOf="@+id/iv_line" />
 
@@ -62,23 +66,29 @@
                 android:id="@+id/tv_user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/notosans_fontfamily"
+                android:includeFontPadding="false"
                 android:text="꼬딱지"
                 android:textColor="@color/textColor"
+                android:textFontWeight="900"
                 android:textSize="17sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/rounded_iv_profile"
-                app:layout_constraintTop_toTopOf="@+id/rounded_iv_profile" />
+                app:layout_constraintEnd_toEndOf="@+id/rounded_iv_profile"
+                app:layout_constraintStart_toStartOf="@+id/rounded_iv_profile"
+                app:layout_constraintTop_toBottomOf="@+id/rounded_iv_profile" />
 
             <TextView
                 android:id="@+id/tv_user_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
+                android:fontFamily="@font/notosans_fontfamily"
+                android:includeFontPadding="false"
                 android:text="ggoddakgee@cozy.com"
                 android:textColor="#a3a3a3"
+                android:textFontWeight="500"
                 android:textSize="11sp"
+                app:layout_constraintEnd_toEndOf="@+id/tv_user_name"
                 app:layout_constraintStart_toStartOf="@id/tv_user_name"
                 app:layout_constraintTop_toBottomOf="@id/tv_user_name" />
 
@@ -86,30 +96,83 @@
                 android:id="@+id/iv_settings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
                 android:src="@drawable/ic_setting"
-                app:layout_constraintEnd_toEndOf="@+id/iv_search"
-                app:layout_constraintTop_toTopOf="@+id/rounded_iv_profile" />
+                app:layout_constraintBottom_toBottomOf="@+id/tv_user_name"
+                app:layout_constraintStart_toEndOf="@+id/tv_user_name"
+                app:layout_constraintTop_toTopOf="@+id/tv_user_name" />
+
+            <ImageButton
+                android:id="@+id/ib_event"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:src="@drawable/ic_event"
+                android:layout_marginTop="47dp"
+                app:layout_constraintEnd_toStartOf="@+id/ib_notice"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@id/icon_start"
+                app:layout_constraintTop_toBottomOf="@+id/tv_user_email"
+                tools:layout_editor_absoluteY="285dp" />
+
+            <ImageButton
+                android:id="@+id/ib_notice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:src="@drawable/ic_notice"
+                app:layout_constraintBottom_toBottomOf="@+id/ib_event"
+                app:layout_constraintEnd_toStartOf="@+id/ib_question"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/ib_event"
+                app:layout_constraintTop_toTopOf="@+id/ib_event" />
+
+            <ImageButton
+                android:id="@+id/ib_question"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:src="@drawable/ic_question"
+                app:layout_constraintBottom_toBottomOf="@+id/ib_notice"
+                app:layout_constraintEnd_toEndOf="@+id/icon_end"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/ib_notice"
+                app:layout_constraintTop_toTopOf="@+id/ib_notice" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/icon_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="40dp"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/icon_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="40dp"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/view_review"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="26dp"
                 android:orientation="horizontal"
                 android:paddingVertical="12dp"
+                android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rounded_iv_profile">
+                app:layout_constraintTop_toBottomOf="@+id/ib_event">
 
                 <TextView
                     android:id="@+id/tv_review"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="23dp"
+                    android:fontFamily="@font/notosans_fontfamily"
+                    android:includeFontPadding="false"
                     android:text="내가 쓴 후기"
                     android:textColor="@color/textColor"
+                    android:textFontWeight="900"
                     android:textSize="19sp"
-                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/iv_review_arrow"
                     app:layout_constraintHorizontal_chainStyle="packed"
@@ -120,8 +183,8 @@
                     android:id="@+id/iv_review_arrow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="1dp"
-                    android:src="@drawable/ic_right_arrow_small"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/small_arrow"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_review"
                     app:layout_constraintEnd_toStartOf="@+id/tv_review"
                     app:layout_constraintStart_toEndOf="@+id/tv_review"
@@ -134,10 +197,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="23dp"
                 android:layout_marginTop="12dp"
+                android:fontFamily="@font/notosans_fontfamily"
+                android:includeFontPadding="false"
                 android:text="최근 본 책방"
                 android:textColor="@color/textColor"
+                android:textFontWeight="900"
                 android:textSize="19sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view_review" />
 
@@ -146,12 +211,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
-                android:paddingTop="15dp"
-                android:paddingBottom="20dp"
-                android:paddingRight="23dp"
                 android:clipToPadding="false"
                 android:orientation="horizontal"
                 android:overScrollMode="never"
+                android:paddingTop="15dp"
+                android:paddingRight="23dp"
+                android:paddingBottom="20dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_recently_seen"
@@ -161,42 +226,47 @@
                 android:layout_width="120dp"
                 android:layout_height="0dp"
                 android:background="@drawable/gradiation"
-                app:layout_constraintTop_toTopOf="@id/rv_recently_seen"
+                app:layout_constraintBottom_toBottomOf="@id/rv_recently_seen"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="@id/rv_recently_seen"/>
+                app:layout_constraintTop_toTopOf="@id/rv_recently_seen" />
 
             <TextView
                 android:id="@+id/tv_no_recently_seen_background"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#f6f6f6"
                 android:layout_marginTop="18dp"
+                android:background="#f6f6f6"
                 android:paddingVertical="55dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_recently_seen"/>
+                app:layout_constraintTop_toBottomOf="@id/tv_recently_seen" />
+
             <TextView
                 android:id="@+id/tv_no_recently_seen_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="최근 본 책방이 없어요!"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="#707070"
                 android:layout_marginTop="18dp"
+                android:fontFamily="@font/notosans_fontfamily"
+                android:includeFontPadding="false"
                 android:paddingVertical="55dp"
-                app:layout_constraintStart_toStartOf="@id/guideline_start"
+                android:text="최근 본 책방이 없어요!"
+                android:textColor="@color/tagcolor"
+                android:textFontWeight="900"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="@+id/guideline_end"
-                app:layout_constraintTop_toBottomOf="@id/tv_recently_seen"/>
+                app:layout_constraintStart_toStartOf="@id/guideline_start"
+                app:layout_constraintTop_toBottomOf="@id/tv_recently_seen" />
 
             <TextView
                 android:id="@+id/tv_notice_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="181dp"
+                android:fontFamily="@font/notosans_fontfamily"
+                android:includeFontPadding="false"
                 android:text="Notice"
                 android:textColor="@color/textColor"
+                android:textFontWeight="900"
                 android:textSize="19sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/tv_recently_seen"
                 app:layout_constraintTop_toBottomOf="@id/tv_recently_seen" />
 
@@ -214,13 +284,17 @@
                     android:id="@+id/tv_notice"
                     android:layout_width="178dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="23dp"
+                    android:layout_marginLeft="32dp"
+                    android:fontFamily="@font/notosans_fontfamily"
+                    android:includeFontPadding="false"
                     android:text="공지사항"
                     android:textColor="@color/textColor"
+                    android:textFontWeight="500"
                     android:textSize="13sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_goneMarginLeft="9dp" />
 
                 <ImageView
                     android:id="@+id/iv_notice_arrow"
@@ -236,7 +310,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_end="23dp"/>
+                    app:layout_constraintGuide_end="23dp" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -244,10 +318,11 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
+                android:layout_marginLeft="9dp"
                 android:background="@color/gray"
-                app:layout_constraintTop_toBottomOf="@id/view_notice"
                 app:layout_constraintEnd_toEndOf="@+id/guideline_end"
-                app:layout_constraintStart_toStartOf="@id/guideline_start" />
+                app:layout_constraintStart_toStartOf="@id/guideline_start"
+                app:layout_constraintTop_toBottomOf="@id/view_notice" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/view_event"
@@ -262,9 +337,12 @@
                     android:id="@+id/tv_event"
                     android:layout_width="178dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="23dp"
+                    android:layout_marginLeft="32dp"
+                    android:fontFamily="@font/notosans_fontfamily"
+                    android:includeFontPadding="false"
                     android:text="이벤트"
                     android:textColor="@color/textColor"
+                    android:textFontWeight="500"
                     android:textSize="13sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -284,7 +362,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_end="23dp"/>
+                    app:layout_constraintGuide_end="23dp" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.Guideline
@@ -292,13 +370,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_end="388dp" />
+                app:layout_constraintGuide_begin="23dp" />
+
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline_end"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_end="23dp"/>
+                app:layout_constraintGuide_end="23dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

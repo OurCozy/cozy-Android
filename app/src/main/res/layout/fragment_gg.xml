@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+    <TextView
+        android:id="@+id/id_gg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="아직 준비중이에요!\n잠시만 기다려주세요!"
+        android:textSize="17sp"
+        android:textColor="#282828"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="60dp"
+        android:gravity="center_horizontal"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:textFontWeight="900"
+        android:includeFontPadding="false">
+    </TextView>
+
+    <ImageView
+        android:id="@+id/orange_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_orangebtn2074"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginRight="23dp"
+        android:layout_marginBottom="26dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/id_gg"
+        />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="돌아가기"
+        android:textSize="14sp"
+        android:textColor="#282828"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:textFontWeight="500"
+        android:gravity="center_horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/orange_btn"
+        app:layout_constraintEnd_toEndOf="@+id/orange_btn"
+        app:layout_constraintStart_toStartOf="@id/orange_btn"
+        app:layout_constraintTop_toTopOf="@id/orange_btn" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

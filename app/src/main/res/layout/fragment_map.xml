@@ -1,18 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:descendantFocusability="blocksDescendants"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:overScrollMode="never"
     tools:context=".views.map.MapFragment">
 
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+    </LinearLayout>
+
     <TextView
+        android:id="@+id/location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="map fragment"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="28dp"
+        android:text="마포구"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:textFontWeight="900"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:includeFontPadding="false"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="@id/linearLayout" />
+
+    <Button
+        android:id="@+id/button"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginLeft="3dp"
+        android:background="@drawable/ic_down_arrow"
+        app:layout_constraintBottom_toBottomOf="@+id/location"
+        app:layout_constraintStart_toEndOf="@+id/location"
+        app:layout_constraintTop_toTopOf="@+id/location" />
+
+    <View
+        android:id="@+id/orange_line"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="#fc6338"
+        android:layout_marginTop="7dp"
+        app:layout_constraintLeft_toLeftOf="@+id/location"
+        app:layout_constraintRight_toRightOf="@id/location"
+        app:layout_constraintTop_toBottomOf="@id/location">
+
+    </View>
+
+    <Button
+        android:id="@+id/btn_search"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="46dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="172dp"
+        android:layout_marginRight="7dp"
+        android:background="@drawable/ic_search"
+        app:layout_constraintBottom_toBottomOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintLeft_toRightOf="@+id/button"
+        app:layout_constraintTop_toTopOf="@+id/button" />
+
+    <View
+        android:id="@+id/line_map"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintTop_toBottomOf="@+id/location"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:layout_marginTop="27dp"
+        android:background="#d1d1d1"
+    />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="24dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="24dp" />
+
+
+    <TextView
+        android:id="@+id/write_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="마포구"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:textFontWeight="900"
+        android:textColor="@color/textColor"
+        android:textSize="20sp"
+        android:includeFontPadding="false"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/line_map">
+    </TextView>
+
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="의 독립서점 "
+        android:fontFamily="@font/notosans_fontfamily"
+        android:textFontWeight="900"
+        android:textColor="@color/textColor"
+        android:textSize="20sp"
+        android:includeFontPadding="false"
+        app:layout_constraintStart_toEndOf="@+id/write_location"
+        app:layout_constraintTop_toBottomOf="@id/line_map">
+    </TextView>
+
+    <TextView
+        android:id="@+id/store_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="27"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:textFontWeight="900"
+        android:textColor="@color/textColor"
+        android:textSize="20sp"
+        android:includeFontPadding="false"
+        app:layout_constraintStart_toEndOf="@+id/text2"
+        app:layout_constraintTop_toBottomOf="@id/line_map">
+    </TextView>
+
+    <TextView
+        android:id="@+id/text3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/notosans_fontfamily"
+        android:includeFontPadding="false"
+        android:text="곳"
+        android:textColor="@color/textColor"
+        android:textFontWeight="900"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/store_count"
+        app:layout_constraintTop_toBottomOf="@id/line_map"></TextView>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/bookstore"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="20dp"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:overScrollMode="never"
+        android:paddingBottom="27dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text2"
+        tools:listitem="@layout/item_bookstore_list">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

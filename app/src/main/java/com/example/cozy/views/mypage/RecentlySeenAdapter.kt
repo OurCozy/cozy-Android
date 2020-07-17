@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cozy.R
+import com.example.cozy.network.responseData.RecentlySeenData
 
 class RecentlySeenAdapter(private val context: Context): RecyclerView.Adapter<RecentlySeenViewHolder>() {
     var data = mutableListOf<RecentlySeenData>()

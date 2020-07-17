@@ -1,29 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.cozy">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:required="true"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:required="true"/>
 
     <application
+        android:name=".signin.KakaoSdkProvider"
         android:allowBackup="true"
         android:icon="@mipmap/ic_logo"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_logo_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".views.map.MapDetailActivity"></activity>
-        <activity android:name=".MainActivity">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        android:requestLegacyExternalStorage="true">
+        <activity android:name=".signin.SearchPwdActivity"></activity>
+        <activity android:name=".views.search.SearchResultActivity"/>
+        <activity android:name=".signin.SignupActivity" />
+        <activity android:name=".signin.EmailLoginActivity" />
+        <activity android:name=".signin.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".views.review.PutReviewActivity" />
+        <activity android:name=".views.search.SearchActivity" />
+        <activity android:name=".signin.SigninActivity" android:theme="@style/TransparentTheme"/>
+        <activity android:name=".views.main.RecommendDetailActivity" />
+        <activity android:name=".views.map.MapDetailActivity" />
+        <activity android:name=".views.review.ReviewActivity"/>
+        <activity
+            android:name=".views.main.RecommendDetailActivity"
+            tools:ignore="DuplicateActivity" />
+        <activity
+            android:name=".views.map.MapDetailActivity"
+            tools:ignore="DuplicateActivity" />
+        <activity android:name=".MainActivity">
+        </activity>
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
-            android:value="6c79d2e138c75f9666611dd1d82534c6" />
+            android:value="@string/native_app_key" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
     </application>
 
 </manifest>
