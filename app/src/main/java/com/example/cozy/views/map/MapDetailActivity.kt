@@ -201,8 +201,8 @@ class MapDetailActivity : AppCompatActivity() {
                             Log.d("response", it.message)
                             Toast.makeText(this, "관심책방 등록/해제에 실패했습니다.", Toast.LENGTH_SHORT).show()
                         }
-                    )
                 }
+                )
             }
 
             btn_write_review.setOnClickListener {

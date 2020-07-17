@@ -127,15 +127,16 @@
 
             <TextView
                 android:id="@+id/map_address"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:textColor="@color/textColor"
-                android:textSize="12sp"
-                android:includeFontPadding="false"
                 android:fontFamily="@font/notosans_fontfamily"
+                android:includeFontPadding="false"
+                android:textColor="@color/textColor"
                 android:textFontWeight="500"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_address_icon"
+                app:layout_constraintEnd_toStartOf="@+id/end_guideline"
                 app:layout_constraintStart_toEndOf="@id/iv_address_icon"
                 app:layout_constraintTop_toTopOf="@+id/iv_address_icon" />
 
@@ -150,14 +151,15 @@
 
             <TextView
                 android:id="@+id/map_time"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:includeFontPadding="false"
                 android:fontFamily="@font/notosans_fontfamily"
-                android:textFontWeight="500"
+                android:includeFontPadding="false"
                 android:textColor="@color/textColor"
+                android:textFontWeight="500"
                 android:textSize="12sp"
+                app:layout_constraintEnd_toStartOf="@+id/end_guideline"
                 app:layout_constraintStart_toEndOf="@id/iv_time_icon"
                 app:layout_constraintTop_toTopOf="@+id/iv_time_icon" />
 

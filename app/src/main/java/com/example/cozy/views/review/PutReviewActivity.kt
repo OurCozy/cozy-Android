@@ -3,11 +3,8 @@ package com.example.cozy.views.review
 import android.R.attr.path
 import android.content.Context
 import android.content.Intent
-import android.database.Cursor
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.Editable
@@ -20,18 +17,14 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.cozy.R
 import com.example.cozy.network.RequestToServer
 import com.example.cozy.network.customEnqueue
-import com.kakao.auth.StringSet
-import com.kakao.auth.StringSet.file
 import com.example.cozy.network.requestData.RequestUploadReview
-import com.kakao.auth.authorization.AuthorizationResult
+import com.example.cozy.tokenHeader
 import kotlinx.android.synthetic.main.activity_put_review.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.*
 import kotlin.properties.Delegates
-import okhttp3.MultipartBody
-import java.io.ByteArrayOutputStream
 
 class PutReviewActivity : AppCompatActivity() {
     val IMAGE_FROM_GALLERY = 0
@@ -95,20 +88,19 @@ class PutReviewActivity : AppCompatActivity() {
                 Log.d("경로 확인 >> " , "$selectedImg  /  $absolutePath")
                 if (path != null) {
                     val file = File(absolutePath)
+                    val sharedPref = this.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
+                    val header = mutableMapOf<String, String?>()
+                    header["token"] = sharedPref.getString("token", "token")
                     try{
-                        val rqFile = RequestBody.create(MediaType.parse("image/*"), file)
+                        val rqFile = RequestBody.create(MediaType.parse("image/jpeg"), file)
                         var photo : MultipartBody.Part = MultipartBody.Part.createFormData("photo", file.getName(), rqFile)
-
-                        val sharedPref = this.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
-                        val header = mutableMapOf<String, String?>()
-                        header["token"] = sharedPref.getString("token", "token")
                         requestTosever.service.requestReveiw(bookIdx,photo,header).customEnqueue(
                             onError = {Log.d("error >>>> ", "외않되")},
                             onSuccess = {
                                 if (it.success){
-                                Log.d("성공했다", it.message + " / " + it.data.photo)
+                                Log.d("성공했다", it.message + " / ")
                                 }else{
-                                    Log.d("status >>>> ", it.status.toString())
+                                    Log.d("status >>>> ", it.success.toString() + " / " + it.status.toString() + " / " + it.message)
                                 }
                             }
                         )
@@ -119,19 +111,19 @@ class PutReviewActivity : AppCompatActivity() {
                         e.printStackTrace();
                         Log.d("IOException >> ", e.toString())
                     }
+                    RequestToServer.service.requestUploadReview(
+                        RequestUploadReview(
+                            bookstoreIdx = intent.getIntExtra("bookIdx", 1),
+                            content = et_review.text.toString(),
+                            stars = star
+                        ), tokenHeader(this)
+                    ).customEnqueue(
+                        onError = {},
+                        onSuccess = {
+                            Log.d("test", it.message)
+                        }
+                    )
                 }
-                RequestToServer.service.requestUploadReview(
-                    RequestUploadReview(
-                        bookstoreIdx = intent.getIntExtra("bookIdx", 1),
-                        content = et_review.text.toString(),
-                        stars = star
-                    ), header
-                ).customEnqueue(
-                    onError = {},
-                    onSuccess = {
-                        Log.d("test", it.message)
-                    }
-                )
                 Toast.makeText(this, "후기가 등록되었습니다!", Toast.LENGTH_LONG).show()
                 finish()
             } else Toast.makeText(this, "모든 항목을 입력해주세요!", Toast.LENGTH_LONG).show()
@@ -150,6 +142,7 @@ class PutReviewActivity : AppCompatActivity() {
             isImgFilled = true
             if(isStarFilled && isTextFilled)
                 tv_next.setTextColor(resources.getColor(R.color.mainColor))
+            Log.d("이미지", selectedImg.toString())
         } else return
     }
 
