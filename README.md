@@ -1,3 +1,4 @@
+
 <h1 align="center">COZY_Android</h1>
 <p align="center">
 	<img src="/img/cozy_logo.png" width="200"/><br>
@@ -11,15 +12,22 @@
 	* [지도](#지도)
 	* [관심](#관심)
 	* [내정보](#내정보)
-* 프로젝트 구조
-* 라이브러리
+* [프로젝트 구조](#구조)
+* [라이브러리](#라이브러리)
 * 기본 기능
-	* BottomNavigationView
-	* RecyclerView
+	* [BottomNavigationView](#BottomNavigationView)
+	* [RecyclerView](#RecyclerView)
 * 주요 기능
 	* 애니메이션
 	* [카카오맵 API](#카카오맵)
-	* Bottom-sheet Dialog
+	* [카카오 로그인](#카카오)
+	* [Bottom-sheet Dialog](#BottomSheetDialog)
+	* [textChangedListener](#textChangedListener)
+	* [관심 책방 설정](#관심책방)
+* 그 외 기능
+	* [로그인 및 회원가입](#로그인)
+	* [후기](#후기)
+	* [검색](#검색)
 * 확장함수
 * 소스파일
 
@@ -55,11 +63,11 @@
 
 <h2 id="지도">지도 화면</h2>
 <p align="center">
-	<img src="/img/map_constraintLayout.PNG" width="300"/>
+	<img src="/img/map_constraintLayout.PNG" width="200"/>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<img src="/img/map_image.PNG" width="300"/>
+	<img src="/img/map_image.PNG" width="200"/>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<img src="/img/map_popup.PNG" width="260"/><br>
+	<img src="/img/map_popup.PNG" width="200"/><br>
 </p>
 - 사용자가 지역별로 책방을 찾을 수 있는 화면이다. default값인 마포구를 클릭했을 때 아래에서 위로 지역을 클릭할 수 있는 팝업창이 뜬다. 다른 지역을 클릭하게 되면 그에 따른 책방들이 RecyclerView로 보여진다. MapItemDecoration 에서 리사이클러뷰 아래에 getItemOffsets 함수를 사용해서 여백을 주었다.<br>
 - 화면 레이아웃은 ConstraintLayout을 사용했다. 각 뷰 사이에 제약을 주면서 유기적으로 뷰가 움직일 수 있도록 만들었다. 양쪽에 guideline을 주어 여백을 따로 두지 않아도 되도록 만들었다.<br>
@@ -144,14 +152,150 @@
 [목차로 돌아가기](#Contents)<br><br>
 
 <h1 id="구조">프로젝트 구조</h1>
+<br>
+<p align="center">
+	<img src="/img/project.PNG" width="600"/><br>
+</p>
+
 
 # 라이브러리
 
+``` kotlin
+    //리사이클러뷰
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    //material디자인 라이브러리
+    implementation "com.google.android.material:material:1.2.0-alpha05"
+    //이미지 로딩 라이브러리 : glide
+    implementation "com.github.bumptech.glide:glide:4.10.0"
+    kapt "com.github.bumptech.glide:compiler:4.10.0"
+    //동그란 이미지 커스텀 뷰 라이브러리 : https://github.com/hdodenhof/CircleImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+    //Retrofit 라이브러리 : https://github.com/square/retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.6.2'
+    implementation 'com.squareup.retrofit2:retrofit-mock:2.6.2'
+    //객체 시리얼라이즈를 위한 Gson 라이브러리 : https://github.com/google/gson
+    implementation 'com.google.code.gson:gson:2.8.6'
+    //Retrofit 에서 Gson 을 사용하기 위한 라이브러리
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
+    //디자인 라이브러리
+    implementation 'com.android.support:design:28.0.0'
+    //cardView 라이브러리
+    implementation "androidx.cardview:cardview:1.0.0"
+    //모서리 둥근 imageView 라이브러리 : https://github.com/vinc3m1/RoundedImageView
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+    //Glide 적용 가능한 모서리 둥근 imageView 라이브러리 : https://github.com/rishabh876/RoundedImageView?utm_source=android-arsenal.com&utm_medium=referral&utm_campaign=7549
+    implementation 'com.rishabhharit.roundedimageview:RoundedImageView:0.8.4'
+    //카카오 API
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation files('libs/libDaumMapAndroid.jar')
+    //bottom sheet 라이브러리
+    implementation 'com.google.android.material:material:1.2.0-alpha02'
+    // 카카오 로그인
+    implementation group: 'com.kakao.sdk', name: 'usermgmt', version: '1.29.0'
+    
+```    
+
 # 기본 기능
 
-## BottomNavagationView
+## BottomNavigationView
+
+화면 하단에 있는 4개의 탭을 만들기 위해 BottomNavigationView를 사용했다. 먼저 menu 태그로 각 item을 선언한 menu.xml을 다음과 같이 만들었다.
+
+```xml
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_main"
+        android:title="메인"
+        android:icon="@drawable/ic_tab_main_selected" />
+    <item
+        ... />
+</menu>
+```
+
+그 다음 BottomNavigation의 menu에 menu.xml를 적용해 4개의 탭 아이콘을 보여주고 labelVisibilityMode를 unlabeld로 지정해 title을 제외한 icon만 나오도록했다. 또한, bottom_selector로 state_selected의 상태에 따라 아이콘 색이 달라지게 구현했다.
+
+```xml
+<com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigation"
+        app:menu="@menu/menu"
+        app:itemIconTint="@color/bottom_selector"
+        app:itemIconSize="50dp"
+        app:itemTextColor="@color/bottom_selector"
+        app:labelVisibilityMode="unlabeled"
+        ... >
+</com.google.android.material.bottomnavigation.BottomNavigationView>
+```
+
+또한 선택된 탭에 따라 ViewPager의 화면이 변경될 수 있도록 다음과 같이 리스너를 정의해 선택된 탭에 따라 ViewPager의 어뎁터에 정의해둔 화면이 보여질 수 있도록 구현했다.
+
+```kotlin
+    navigation.setOnNavigationItemSelectedListener {
+        when(it.itemId) {
+            R.id.menu_main -> viewPager.currentItem = 0
+            R.id.menu_map -> viewPager.currentItem = 1
+            R.id.menu_interest -> viewPager.currentItem = 2
+            R.id.menu_mypage -> viewPager.currentItem = 3
+        }
+        true
+    }
+```
+
+[목차로 돌아가기](#Contents)
 
 ## RecyclerView
+
+리사이클러 뷰를 띄울 때는 서버에서 받아온 데이터를 받아왔다. 다음 코드와 같이 서버 통신에 성공하면 리사이클러 뷰의 어뎁터에 서버에서 받아온 데이터를 it.data.toMutableList()로 전달한다.
+
+```kotlin
+    RequestToServer.service.requestInterest(header).customEnqueue(
+            onError = { /*에러 처리*/ },
+            onSuccess = {
+                if(it.success) {
+                    //서버 통신 성공
+                    //리사이클러 뷰에 받아온 데이터 전달
+                    //뷰를 클릭했을 때 해당 서점 정보를 띄우는 MapDetailActivity를 실행하는 onClick(BookstoreInfo) 정의
+                    interestAdapter = InterestAdapter(v.context, it.data.toMutableList()) { BookstoreInfo ->
+                        val intent = Intent(activity, MapDetailActivity::class.java)
+                        intent.putExtra("bookIdx",BookstoreInfo.bookstoreIdx)
+                        startActivity(intent)
+                    }
+                    bookstore_interest.adapter = interestAdapter
+                }
+            }
+        )
+```
+
+다음으로 어뎁터에서 onClick 함수를 다음과 같이 받는다.
+
+```kotlin
+class InterestAdapter (private val context: Context, val data : MutableList<MapData>, val onClick : (MapData) -> Unit) : RecyclerView.Adapter<InterestViewHolder>() {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InterestViewHolder { ... }
+
+    override fun getItemCount(): Int { ... }
+
+    override fun onBindViewHolder(holder: InterestViewHolder, position: Int) { ... }
+}
+```
+
+마지막으로 다음과 같이 뷰홀더에서 onClick 함수를 매개변수로 받고 리사이클러뷰의 아이템인 itemView의 setOnClickListener에서 onClick을 실행하면 Fragment에서 정의해준 함수의 body가 실행되어 새 액티비티가 실행된다.
+
+```kotlin
+class InterestViewHolder(itemView: View, val onClick: (MapData) -> Unit) : RecyclerView.ViewHolder(itemView) {
+    ...
+
+    fun bind(data: MapData){
+        ...
+
+        itemView.setOnClickListener {
+            onClick(data)
+        }
+    }
+}
+```
+
+[목차로 돌아가기](#Contents)
+
 
 # 주요 기능
 
@@ -252,7 +396,50 @@
 
 [목차로 돌아가기](#Contents)
 
-## Bottom-Sheet Dialog
+<h2 id="카카오">카카오 로그인</h2>
+
+```kotlin
+class SigninActivity : Activity() {
+
+    val session = object : ISessionCallback {
+        override fun onSessionOpenFailed(exception: KakaoException?) { ... }
+
+        override fun onSessionOpened() {
+            UserManagement.getInstance().me(object : MeV2ResponseCallback() {
+
+                override fun onFailure(errorResult: ErrorResult?) { ... }
+
+                override fun onSessionClosed(errorResult: ErrorResult?) { ... }
+
+                //카카오 로그인 성공
+                override fun onSuccess(result: MeV2Response?) {
+                    //메인 화면으로 이동
+                    openActivity()
+                }
+            })
+        }
+    }
+
+    fun openActivity() {
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
+    }
+
+    ...
+}
+```
+
+[kotlin 코드 보러가기]
+
+[KakaoSdkProvider]
+
+[KakaoSdkAdapter]
+
+reference: [카카오 개발자 가이드](https://developers.kakao.com/docs/latest/ko/kakaologin/android)
+
+[목차로 돌아가기](#Contents)
+
+## BottomSheetDialog
 
 지도 텍스트를 클릭했을 때 아래에서 위로 뜨는 팝업을 만들었다. bottomsheet를 띄우기 위해서 필요한 라이브러리 파일을 추가하고 이에 맞는 xml을 만들었다. tablayout을 사용해서 
 서울 경기를 나누었고 swipe을 위해서 viewpager를 만들었다. [xml 보러가기](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/res/layout/fragment_popup.xml) <br>
@@ -287,7 +474,7 @@ override fun onStart() {
 그리고 SeoulFragment에서 지역을 클릭했을 때 이 값에 따라서 이미지 색이 달라져야 하기 때문에 누른 sectionIdx 값을 sharedPreferenced에 저장한다. 
 이후 팝업을 내리고 다시 올려도 해당 지역 이미지 색이 달라질 수 있도록 한다.<br>
 <p align="center">
-	<img src="/img/" width="300"/><br>
+	<img src="/img/bottomsheet.gif" width="300"/><br>
 </p>
 
 ``` kotlin
@@ -305,4 +492,108 @@ img_1.setOnClickListener{
             ed.apply()
         }
 ```
-[코틀린 코드 보기](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/java/com/example/cozy/views/map/popup/SeoulFragment.kt)<br>
+[Kotlin 코드 보기](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/java/com/example/cozy/views/map/popup/SeoulFragment.kt)<br>
+[목차로 돌아가기](#Contents)<br>
+
+ ## textChangedListener
+ 
+회원가입뷰에서 비밀번호 조건에 맞출 때, 비밀번호 일치 여부를 판단할 때 사용한다. 이 리스너는 텍스트를 입력할 때마다 리스너 이벤트가 작동한다. 비밀번호가 입력될 때마다 정규식을 통해서 판단하는데
+숫자, 문자, 영문이 다 들어가야 조건이 맞도록 한다.<br>
+ ``` kotlin
+  signup_pw.textChangedListener {
+            if(!Pattern.matches("^(?=.*\\d)(?=.*[~`!@#$%\\^&*()-])(?=.*[a-zA-Z]).{10,20}$", signup_pw.text.toString())){
+                pw_msg.text = "*영문, 숫자, 특수문자 포함 10~20자 입력해주세요."
+                password = false
+                signup_finish()
+            }
+ ```
+ <br>
+ 비밀번호 확인 부분에 비밀번호를 입력했을 때 텍스트 감지해서 일치 여부를 띄운다.<br>
+ 
+``` kotlin
+  signup_pw_checked.textChangedListener {
+            if (signup_pw.text.toString() == signup_pw_checked.text.toString()) {
+                pw_check_msg.text = "*비밀번호가 일치합니다."
+                pw_check_msg.setTextColor(ContextCompat.getColor(this, R.color.green))
+                passwordcheck = true
+                signup_finish()
+            }
+            else {
+                pw_check_msg.text = "*비밀번호가 일치하지 않습니다."
+                pw_check_msg.setTextColor(ContextCompat.getColor(this, R.color.mainColor))
+                passwordcheck = false
+                signup_finish()
+            }
+        }
+```
+
+[Kotlin 코드 보기](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/java/com/example/cozy/signin/SignupActivity.kt)<br><br>
+[목차로 돌아가기](#Contents)<br>
+
+<h2 id="관심책방">관심 책방 설정</h2>
+
+리사이클러 뷰의 오른쪽에 위치한 책갈피 아이콘을 클릭하면 서버에 해당 서점의 관심 체크 여부를 PUT한다. 아이콘을 클릭할 때마다 활성화된 아이콘과 비활성화된 아이콘이 번갈아 나오도록 selector를 만들어주었다.
+
+``` xml
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/ic_small_bookmark_selected"
+        android:state_selected="true"/>
+    <item android:drawable="@drawable/ic_small_bookmark"
+        android:state_selected="false"/>
+</selector>
+```
+
+리사이클러뷰의 북마크 아이콘을 클릭했을 때 해당 서점의 자세한 정보를 보여주는 화면으로 이동하지 않고 북마크 표시만 변경되도록 Adapter의 onBindViewHolder에서 해당 아이콘에 다음과 같이 클릭 리스너를 지정했다.
+
+``` kotlin
+    override fun onBindViewHolder(holder: InterestViewHolder, position: Int) {
+        holder.bind(data[position])
+
+        holder.bookmark.setOnClickListener {
+            // 서버에 관심 책방 등록/해제 요청
+            RequestToServer.service.requestBookmarkUpdate(data[position].bookstoreIdx, header).customEnqueue(
+                onError = { /*에러 처리*/ },
+                onSuccess = {
+                    if(it.success) {
+                        // 관심 책방 해제 성공하면 리사이클러 뷰에서 해당 아이템 제거
+                        data.removeAt(position)
+                        notifyItemRemoved(position)
+                        notifyItemRangeChanged(position, data.size)
+                    }
+                }
+            )
+        }
+    }
+```
+
+[kotlin 코드 보러가기]
+
+[목차로 돌아가기](#Contents)
+
+# 그 외 기능
+
+<h2 id="로그인">로그인 및 회원가입</h2>
+<p align="center">
+	<img src="/img/.png" width="300"/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</p>
+로그인은 이메일과 비밀번호 둘 중 하나 입력하지 않으면 완료버튼이 활성화 되지 않는다. 완료를 클릭했을 때 서버와 통신해서 이메일이 등록되어 있지 않은 회원이면 등록되지 않는 회원이라고 뜨고 이메일과 비밀번호가 일치하지 않으면 비밀번호가 일치하지 않으면 textview에 일치하지 않는다는 문구가 뜬다. <br>
+
+<p align="center">
+	<img src="/img/signup1.png" width="300"/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<img src="/img/signup2.png" width="300"/>
+</p>
+닉네임, 이메일 중복을 서버와 통신하여 확인할 수 있으며 비밀번호 일치 여부를 판단해서 모든 조건을 갖추게 되면 완료 버튼이 활성화된다. 이 버튼을 누르게 되면 회원가입이 된다. <br><br>
+
+[목차로 돌아가기](#Contents)
+<br>
+
+## 후기
+
+## 검색
+
+
+
+
+
