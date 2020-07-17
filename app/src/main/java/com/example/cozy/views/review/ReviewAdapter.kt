@@ -68,7 +68,7 @@ class ReviewAdapter(private val context: Context, val data : MutableList<AllRevi
                                Toast.makeText(context, "edit!", Toast.LENGTH_LONG).show()
                             }
                             R.id.delete -> {
-                                RequestToServer.service.requestReviewDel(data[position].bookstoreIdx, header).customEnqueue(
+                                RequestToServer.service.requestReviewDel(data[position].reviewIdx, header).customEnqueue(
                                     onError = {Log.d("RESPONSE", "error")},
                                     onSuccess = {
                                         if(it.success) {

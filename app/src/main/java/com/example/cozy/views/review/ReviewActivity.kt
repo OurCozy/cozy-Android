@@ -36,6 +36,7 @@ class ReviewActivity : AppCompatActivity(){
             bookIdx = intent.getIntExtra("bookIdx",0)
         }
 
+
         showReview()
 
         /*tv_backicon.setOnClickListener {

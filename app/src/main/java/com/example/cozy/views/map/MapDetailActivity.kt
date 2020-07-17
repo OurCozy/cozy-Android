@@ -56,6 +56,7 @@ class MapDetailActivity : AppCompatActivity() {
         }
 
 
+
         val sharedPref = this.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
         val header = mutableMapOf<String, String>()
         header["Content-Type"] = "application/json"

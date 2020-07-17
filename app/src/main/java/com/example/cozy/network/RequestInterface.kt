@@ -51,7 +51,7 @@ interface RequestInterface {
     @GET("/main/detail/review/{bookstoreIdx}")
     fun requestAllReview(@Path("bookstoreIdx") bookstoreIdx: Int, @HeaderMap headers: Map<String, String?>) : Call<ResponseAllReview>
     //후기 삭제
-    @DELETE("/main//delete/review/{reviewIdx}")
+    @DELETE("/main/delete/review/{reviewIdx}")
     fun requestReviewDel(@Path("reviewIdx") reviewIdx: Int, @HeaderMap headers: Map<String, String?>) : Call<ResponseReviewDel>
     //후기 수정 클릭
     @GET("/main/update/review/{reviewIdx}")
