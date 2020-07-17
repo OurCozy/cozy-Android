@@ -108,46 +108,48 @@
         app:layout_constraintEnd_toEndOf="@+id/password"
         app:layout_constraintTop_toBottomOf="@+id/password" />
 
-    <TextView
-        android:id="@+id/id_search"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="110dp"
-        android:fontFamily="@font/notosans_fontfamily"
-        android:includeFontPadding="false"
-        android:text="아이디 찾기"
-        android:textColor="#707070"
-        android:textFontWeight="500"
-        android:textSize="11sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
-        app:layout_constraintStart_toStartOf="@+id/password"
-        app:layout_constraintTop_toTopOf="@+id/view" />
-
-    <View
-        android:id="@+id/view"
-        android:layout_width="0.7dp"
-        android:layout_height="18dp"
-        android:layout_marginTop="200dp"
-        android:background="#707070"
-        android:foregroundGravity="center"
-        app:layout_constraintStart_toEndOf="@+id/id_search"
-        app:layout_constraintEnd_toStartOf="@id/pw_search"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
-
-    <TextView
-        android:id="@+id/pw_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="100dp"
-        android:fontFamily="@font/notosans_fontfamily"
-        android:includeFontPadding="false"
-        android:text="비밀번호 찾기"
-        android:textColor="#707070"
-        android:textFontWeight="500"
-        android:textSize="11sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
+        android:layout_marginTop="220dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="@+id/password"
-        app:layout_constraintTop_toTopOf="@+id/view" />
+        app:layout_constraintStart_toStartOf="@+id/password"
+        app:layout_constraintTop_toBottomOf="@+id/password">
+
+        <TextView
+            android:id="@+id/id_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="110dp"
+            android:fontFamily="@font/notosans_fontfamily"
+            android:includeFontPadding="false"
+            android:text="아이디 찾기"
+            android:textColor="#707070"
+            android:textFontWeight="500"
+            android:textSize="11sp" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0.7dp"
+            android:layout_height="18dp"
+            android:background="#707070"
+            android:layout_marginHorizontal="11dp"
+            android:foregroundGravity="center" />
+
+        <TextView
+            android:id="@+id/pw_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="100dp"
+            android:fontFamily="@font/notosans_fontfamily"
+            android:includeFontPadding="false"
+            android:text="비밀번호 찾기"
+            android:textColor="#707070"
+            android:textFontWeight="500"
+            android:textSize="11sp" />
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

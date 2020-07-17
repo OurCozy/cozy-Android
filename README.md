@@ -21,6 +21,7 @@
 	* [카카오맵 API](#카카오맵)
 	* Bottom-sheet Dialog
 * 확장함수
+    *[addOnPageChangeListener확장함수](#addOnPageChangeListener확장함수)
 * 소스파일
 
 <br>
@@ -246,6 +247,10 @@
     startActivity(intent,option.toBundle())
 ```
 
+[Kotlin 코드 보러가기]
+
+[목차로 돌아가기](#Contents)
+
 ## 카카오맵
 
 * 프레그먼트에 카카오맵 띄우기
@@ -338,6 +343,43 @@
 [프레그먼트에 카카오맵 띄우기](#카카오맵)
 
 [Kotlin 코드 보러가기](https://github.com/OurCozy/cozy-Android/blob/dev/app/src/main/java/com/example/cozy/views/map/MapDetailActivity.kt)
+
+[목차로 돌아가기](#Contents)
+
+## addOnPageChangeListener확장함수
+
+ViewPager의 addOnPageChangeListener를 확장함수로 구현하였다. onPageScrollStateChanged와 onPageScrolled는 따로 사용을 하지 않아서 Unit으로 해주고 onPageSelected만 onSelected(position)를 만들어줬다.
+
+``` kotlin
+    *OnPageChangeListener.kt
+    fun ViewPager.OnPageChangeListener(onSelected: (Int) -> Unit){
+    this.addOnPageChangeListener(object: ViewPager.OnPageChangeListener{
+        override fun onPageScrollStateChanged(state: Int) = Unit
+
+        override fun onPageScrolled(
+            position: Int,
+            positionOffset: Float,
+            positionOffsetPixels: Int
+        ) = Unit
+
+        override fun onPageSelected(position: Int) {
+            onSelected(position)
+        }
+    })
+}
+```
+
+MainActivity에서 onSelected를 구현해 주었다.
+
+``` kotlin
+    *MainActivity.kt
+    viewPager.OnPageChangeListener {
+            navigation.menu.getItem(it).isChecked = true
+        }
+}
+```
+
+[Kotlin 코드 보러가기]
 
 [목차로 돌아가기](#Contents)
 
