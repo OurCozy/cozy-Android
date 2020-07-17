@@ -54,10 +54,17 @@ interface RequestInterface {
     //모든 후기 보여주기
     @GET("/main/detail/review/{bookstoreIdx}")
     fun requestAllReview(@Path("bookstoreIdx") bookstoreIdx: Int, @HeaderMap headers: Map<String, String?>) : Call<ResponseAllReview>
+    //후기 삭제
+    @DELETE("/main/delete/review/{reviewIdx}")
+    fun requestReviewDel(@Path("reviewIdx") reviewIdx: Int, @HeaderMap headers: Map<String, String?>) : Call<ResponseReviewDel>
+    //후기 수정 클릭
+    @GET("/main/update/review/{reviewIdx}")
+    fun requestReviewModi(@Path("reviewIdx") reviewIdx: Int, @HeaderMap headers: Map<String, String?>) : Call<ResponseReviewModi>
 
     //지역별 조회 : https://github.com/OurCozy/cozy-server/wiki/2_2.-%EC%A7%80%EC%97%AD%EB%B3%84-%EC%A1%B0%ED%9A%8C
     @GET("/main/map/{sectionIdx}")
     fun requestMap(@Path("sectionIdx") sectionIdx: Int, @HeaderMap headers: Map<String, String?>) : Call<ResponseMap>
+
 
     //관심 책방 조회 : https://github.com/OurCozy/cozy-server/wiki/2_3.-%EA%B4%80%EC%8B%AC%EC%B1%85%EB%B0%A9-%EC%A1%B0%ED%9A%8C
     @GET("/main/interest")

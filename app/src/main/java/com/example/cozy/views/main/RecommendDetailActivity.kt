@@ -208,17 +208,21 @@ class RecommendDetailActivity : AppCompatActivity() {
         }
 
         btn_write_review.setOnClickListener {
-            var intent = Intent(this,PutReviewActivity::class.java)
-            intent.putExtra("bookIdx",bookIdx)
+            val intent = Intent(this, PutReviewActivity::class.java)
+            intent.putExtra("bookIdx", bookIdx)
             startActivity(intent)
         }
 
         tv_more.setOnClickListener {
-            startActivity(Intent(this, ReviewActivity::class.java))
+            val intent = Intent(this, ReviewActivity::class.java)
+            intent.putExtra("bookIdx", bookIdx)
+            startActivity(intent)
         }
+    }
 
+    override fun onResume() {
+        super.onResume()
         showReview()
-
     }
 
 
@@ -233,7 +237,7 @@ class RecommendDetailActivity : AppCompatActivity() {
                 Log.d("test", "성공")
                 if(it.success) {
                     Log.d("test", it.message)
-                    reviewAdapter = ReviewAdapter(this, it.data.toMutableList())
+                    reviewAdapter = ReviewAdapter(this, it.data.toMutableList(),{})
                     rec_comments.adapter = reviewAdapter
                     rec_comments.addItemDecoration(BottomItemDecoration(this, 35))//itemDecoration 여백주기
                     Log.d("test", "성공")

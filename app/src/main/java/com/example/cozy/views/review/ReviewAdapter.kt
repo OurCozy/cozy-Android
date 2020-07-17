@@ -4,15 +4,19 @@ import android.content.Context
 import android.text.Layout
 import android.text.SpannableString
 import android.text.style.AlignmentSpan
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cozy.R
+import com.example.cozy.network.RequestToServer
+import com.example.cozy.network.customEnqueue
 import com.example.cozy.network.responseData.AllReviewData
 
-class ReviewAdapter(private val context: Context, val data : MutableList<AllReviewData>) : RecyclerView.Adapter<ReviewViewHolder>() {
+class ReviewAdapter(private val context: Context, val data : MutableList<AllReviewData>,val onEmpty: () -> Unit) : RecyclerView.Adapter<ReviewViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReviewViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_map_comment, parent, false)
@@ -25,6 +29,17 @@ class ReviewAdapter(private val context: Context, val data : MutableList<AllRevi
 
     override fun onBindViewHolder(holder: ReviewViewHolder, position: Int) {
         holder.bind(data[position])
+
+        val sharedPref = context.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
+        val token = sharedPref.getString("token", "token")
+        val header = mutableMapOf<String, String?>()
+        header["Content-Type"] = "application/json"
+        header["token"] = token
+        Log.d("이름 : ", data[position].nickname)
+        if(sharedPref.getString("nickname", "cozy") != data[position].nickname){
+            holder.moreBtn.visibility = View.GONE
+        }
+
 
         holder.moreBtn.setOnClickListener {
             val popup = PopupMenu(context, holder.moreBtn)
@@ -48,7 +63,26 @@ class ReviewAdapter(private val context: Context, val data : MutableList<AllRevi
                         Toast.makeText(context, "edit!", Toast.LENGTH_LONG).show()
                     }
                     R.id.delete -> {
-                        Toast.makeText(context, "delete!", Toast.LENGTH_LONG).show()
+                        when(it.itemId) {
+                            R.id.edit -> {
+                               Toast.makeText(context, "edit!", Toast.LENGTH_LONG).show()
+                            }
+                            R.id.delete -> {
+                                RequestToServer.service.requestReviewDel(data[position].reviewIdx, header).customEnqueue(
+                                    onError = {Log.d("RESPONSE", "error")},
+                                    onSuccess = {
+                                        if(it.success) {
+                                            Log.d("RESPONSE", it.message)
+                                            data.removeAt(position)
+                                            notifyItemRemoved(position)
+                                            notifyItemRangeChanged(position, data.size)
+                                            if (data.size == 0) onEmpty()
+                                        }
+                                    }
+                                )
+                            }
+
+                        }
                     }
                 }
                 true

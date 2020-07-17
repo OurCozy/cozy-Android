@@ -201,7 +201,7 @@ class MapDetailActivity : AppCompatActivity() {
                             Log.d("response", it.message)
                             Toast.makeText(this, "관심책방 등록/해제에 실패했습니다.", Toast.LENGTH_SHORT).show()
                         }
-                }
+                    }
                 )
             }
 
@@ -212,25 +212,29 @@ class MapDetailActivity : AppCompatActivity() {
             }
 
             tv_more.setOnClickListener {
-                startActivity(Intent(this, ReviewActivity::class.java))
+                val intent = Intent(this, ReviewActivity::class.java)
+                intent.putExtra("bookIdx", bookIdx)
+                startActivity(intent)
             }
-
-        showReview()
-
         }
+
+    override fun onResume() {
+        super.onResume()
+        showReview()
+    }
 
     fun showReview(){
         val sharedPref = getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
         val header = mutableMapOf<String, String?>()
         header["Content-Type"] = "application/json"
         header["token"] = sharedPref.getString("token", "token")
-        service.requestTwoReview(20, header).customEnqueue(
+        service.requestTwoReview(bookIdx, header).customEnqueue(
             onError = {Toast.makeText(this,"올바르지 않은 요청입니다.",Toast.LENGTH_SHORT)},
             onSuccess = {
                 Log.d("test", "성공")
                 if(it.success) {
                     Log.d("test", it.message)
-                    reviewAdapter = ReviewAdapter(this, it.data.toMutableList())
+                    reviewAdapter = ReviewAdapter(this, it.data.toMutableList(),{})
                     rv_comments.adapter = reviewAdapter
                     rv_comments.addItemDecoration(BottomItemDecoration(this, 35))//itemDecoration 여백주기
                     Log.d("test", "성공")

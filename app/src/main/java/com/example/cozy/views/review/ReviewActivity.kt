@@ -36,6 +36,7 @@ class ReviewActivity : AppCompatActivity(){
             bookIdx = intent.getIntExtra("bookIdx",0)
         }
 
+
         showReview()
 
         /*tv_backicon.setOnClickListener {
@@ -49,13 +50,13 @@ class ReviewActivity : AppCompatActivity(){
         val header = mutableMapOf<String, String?>()
         header["Content-Type"] = "application/json"
         header["token"] = sharedPref.getString("token", "token")
-        requestToserver.service.requestAllReview(20, header).customEnqueue(
+        requestToserver.service.requestAllReview(bookIdx, header).customEnqueue(
             onError = {Toast.makeText(this,"올바르지 않은 요청입니다.",Toast.LENGTH_SHORT)},
             onSuccess = {
                 Log.d("test", "성공")
                 if(it.success) {
                     Log.d("test", it.message)
-                    reviewAdapter = ReviewAdapter(this, it.data.toMutableList())
+                    reviewAdapter = ReviewAdapter(this, it.data.toMutableList(),{})
                     rv_review.adapter = reviewAdapter
                     rv_review.addItemDecoration(BottomItemDecoration(this, 35))//itemDecoration 여백주기
                     Log.d("test", "성공")
