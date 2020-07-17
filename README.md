@@ -26,6 +26,7 @@
     * [후기](#후기)
     * [검색](#검색)
 * 확장함수
+* [Kotlin Collection 활용](#Collection)
 * 소스파일
 
 <br>
@@ -257,7 +258,7 @@ class InterestViewHolder(itemView: View, val onClick: (MapData) -> Unit) : Recyc
 
 ## 애니메이션
 
-*액티비티 전환 애니메이션
+\*액티비티 전환 애니메이션
 <p align="center">
 	<img src="/img/recommend_animation.gif" width="300"/><br>
 </p>
@@ -443,6 +444,8 @@ class InterestViewHolder(itemView: View, val onClick: (MapData) -> Unit) : Recyc
 
 <h2 id="카카오">카카오 로그인</h2>
 
+<img src="/img/kakao_signin.gif" width="300"/><br><br>
+
 ```kotlin
 class SigninActivity : Activity() {
 
@@ -576,5 +579,58 @@ img_1.setOnClickListener{
 ```
 
 [kotlin 코드 보러가기]
+
+[목차로 돌아가기](#Contents)
+
+<h2 id="Collection">Kotlin Collection 활용</h2>
+
+서버 통신을 위한 헤더를 작성할 때 _mutableMapOf_\을 활용했다. Map에는 Content-Type과 token을 각각 넣어 통신 요청했다.
+
+```kotlin
+    val sharedPref = activity.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
+    val header = mutableMapOf<String, String?>()
+    header["Content-Type"] = "application/json"
+    header["token"] = sharedPref.getString("token", "token")
+```
+
+또 아래와 같이 서버로부터 반환값을 받기 위해 data를 List로 받았다.
+
+```
+// 서버 반환 형식
+{
+    "status": 200,
+    "success": true,
+    "message": "서점 리스트 조회 성공",
+    "data": [
+        {
+            "bookstoreIdx": 1,
+            "bookstoreName": "Piece",
+            ...
+        },
+        {
+            ...
+        }
+    ]
+}
+```
+
+```kotlin
+data class ResponseMap (
+    val status : Int,
+    val success : Boolean,
+    val message : String,
+    val data : List<MapData>
+)
+
+data class MapData(
+    val sectionIdx : Int,
+    val bookstoreIdx : Int,
+    ...
+)
+```
+
+[mutableMapOf 사용한 코드 있는 Kotlin 코드 보러가기]
+
+[List 사용한 data class 코드 보러가기]
 
 [목차로 돌아가기](#Contents)
