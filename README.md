@@ -12,8 +12,8 @@
 	* [지도](#지도)
 	* [관심](#관심)
 	* [내정보](#내정보)
-* 프로젝트 구조
-* 라이브러리
+* [프로젝트 구조](#구조)
+* [라이브러리](#라이브러리)
 * 기본 기능
 	* [BottomNavigationView](#BottomNavigationView)
 	* [RecyclerView](#RecyclerView)
@@ -25,9 +25,9 @@
 	* [textChangedListener](#textChangedListener)
 	* [관심 책방 설정](#관심책방)
 * 그 외 기능
-	* [로그인 및 회원가입](#로그인 및 회원가입)
-	* 후기
-	* 검색
+	* [로그인 및 회원가입](#로그인)
+	* [후기](#후기)
+	* [검색](#검색)
 * 확장함수
 * 소스파일
 
@@ -152,8 +152,48 @@
 [목차로 돌아가기](#Contents)<br><br>
 
 <h1 id="구조">프로젝트 구조</h1>
+<br>
+<p align="center">
+	<img src="/img/project.PNG" width="300"/><br>
+</p>
+
 
 # 라이브러리
+
+``` kotlin
+    //리사이클러뷰
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    //material디자인 라이브러리
+    implementation "com.google.android.material:material:1.2.0-alpha05"
+    //이미지 로딩 라이브러리 : glide
+    implementation "com.github.bumptech.glide:glide:4.10.0"
+    kapt "com.github.bumptech.glide:compiler:4.10.0"
+    //동그란 이미지 커스텀 뷰 라이브러리 : https://github.com/hdodenhof/CircleImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+    //Retrofit 라이브러리 : https://github.com/square/retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.6.2'
+    implementation 'com.squareup.retrofit2:retrofit-mock:2.6.2'
+    //객체 시리얼라이즈를 위한 Gson 라이브러리 : https://github.com/google/gson
+    implementation 'com.google.code.gson:gson:2.8.6'
+    //Retrofit 에서 Gson 을 사용하기 위한 라이브러리
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
+    //디자인 라이브러리
+    implementation 'com.android.support:design:28.0.0'
+    //cardView 라이브러리
+    implementation "androidx.cardview:cardview:1.0.0"
+    //모서리 둥근 imageView 라이브러리 : https://github.com/vinc3m1/RoundedImageView
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+    //Glide 적용 가능한 모서리 둥근 imageView 라이브러리 : https://github.com/rishabh876/RoundedImageView?utm_source=android-arsenal.com&utm_medium=referral&utm_campaign=7549
+    implementation 'com.rishabhharit.roundedimageview:RoundedImageView:0.8.4'
+    //카카오 API
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation files('libs/libDaumMapAndroid.jar')
+    //bottom sheet 라이브러리
+    implementation 'com.google.android.material:material:1.2.0-alpha02'
+    // 카카오 로그인
+    implementation group: 'com.kakao.sdk', name: 'usermgmt', version: '1.29.0'
+    
+```    
 
 # 기본 기능
 
@@ -487,7 +527,7 @@ img_1.setOnClickListener{
         }
 ```
 
-[Kotlin 코드 보기](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/java/com/example/cozy/signin/SignupActivity.kt)
+[Kotlin 코드 보기](https://github.com/OurCozy/cozy-Android/blob/brchNY/app/src/main/java/com/example/cozy/signin/SignupActivity.kt)<br>
 [목차로 돌아가기](#Contents)<br>
 
 <h2 id="관심책방">관심 책방 설정</h2>
@@ -532,7 +572,7 @@ img_1.setOnClickListener{
 
 # 그 외 기능
 
-## 로그인 및 회원가입
+<h2 id="로그인">로그인 및 회원가입</h2>
 <p align="center">
 	<img src="/img/.png" width="300"/>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -546,6 +586,10 @@ img_1.setOnClickListener{
 닉네임, 이메일 중복을 서버와 통신하여 확인할 수 있으며 비밀번호 일치 여부를 판단해서 모든 조건을 갖추게 되면 완료 버튼이 활성화된다. 이 버튼을 누르게 되면 회원가입이 된다. <br> 
 
 [목차로 돌아가기](#Contents)
+
+## 후기
+
+## 검색
 
 
 
