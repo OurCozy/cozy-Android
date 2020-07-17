@@ -10,8 +10,6 @@ import kotlinx.android.synthetic.main.fragment_popup.*
 
 class PopupFragment(private val sectionIdx : (Int) -> Unit) : BottomSheetDialogFragment(){
 
-    val popup = this
-
     override fun onStart() {
         super.onStart()
 

@@ -52,12 +52,6 @@ class RecommendDetailActivity : AppCompatActivity() {
             bookIdx = intent.getIntExtra("bookIdx",0)
         }
 
-        /*
-        val sharedPref = this.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
-        val header = mutableMapOf<String, String>()
-        header["Content-Type"] = "application/json"
-        header["token"] = sharedPref.getString("token","token").toString()*/
-
         //서점 정보 불러오고
         //서점 위치 지도로 보여주기
         service.requestBookstore(bookIdx, tokenHeader(this)).customEnqueue(

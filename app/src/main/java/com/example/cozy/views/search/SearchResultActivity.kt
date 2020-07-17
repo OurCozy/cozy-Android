@@ -13,7 +13,6 @@ import com.example.cozy.network.customEnqueue
 import com.example.cozy.views.map.MapAdapter
 import com.example.cozy.views.map.MapDetailActivity
 import kotlinx.android.synthetic.main.activity_search_result.*
-import kotlinx.android.synthetic.main.fragment_interest.*
 
 class SearchResultActivity : AppCompatActivity() {
 

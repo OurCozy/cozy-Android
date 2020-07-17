@@ -17,7 +17,6 @@ import com.example.cozy.views.search.SearchActivity
 import kotlinx.android.synthetic.main.fragment_interest.*
 import kotlinx.android.synthetic.main.fragment_interest.background
 import kotlinx.android.synthetic.main.fragment_interest.view.*
-import kotlinx.android.synthetic.main.fragment_interest_none.*
 
 class InterestFragment : Fragment() {
     val service = RequestToServer.service

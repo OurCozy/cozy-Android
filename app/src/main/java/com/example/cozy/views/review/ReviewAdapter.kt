@@ -1,7 +1,6 @@
 package com.example.cozy.views.review
 
 import android.content.Context
-import android.content.Intent
 import android.text.Layout
 import android.text.SpannableString
 import android.text.style.AlignmentSpan
@@ -10,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cozy.R
 import com.example.cozy.network.RequestToServer
@@ -65,8 +63,6 @@ class ReviewAdapter(private val context: Context, val data : MutableList<AllRevi
                             onError = {},
                             onSuccess = {
                                 if(it.success){
-//                                    val intent = Intent(activity, PutReviewActivity::class.java)
-//                                    intent.putExtra("bookIdx",AllReviewData.reviewIdx)
                                 }
 
                             }

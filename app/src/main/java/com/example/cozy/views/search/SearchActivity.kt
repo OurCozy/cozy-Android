@@ -1,24 +1,14 @@
 package com.example.cozy.views.search
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import com.example.cozy.R
-import com.example.cozy.network.RequestToServer
-import com.example.cozy.network.customEnqueue
-import com.example.cozy.network.responseData.ResponseMap
-import com.example.cozy.views.map.MapAdapter
-import com.example.cozy.views.map.MapData
-import com.example.cozy.views.map.MapDetailActivity
 import kotlinx.android.synthetic.main.activity_search.*
-import kotlinx.android.synthetic.main.activity_search_result.*
-import java.net.URLEncoder
 
 class SearchActivity : AppCompatActivity() {
 

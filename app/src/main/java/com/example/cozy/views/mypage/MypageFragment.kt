@@ -1,8 +1,11 @@
 package com.example.cozy.views.mypage
 
+import android.app.Activity.RESULT_OK
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,10 +19,16 @@ import com.example.cozy.network.RequestToServer
 import com.example.cozy.network.customEnqueue
 import com.example.cozy.views.search.SearchActivity
 import kotlinx.android.synthetic.main.fragment_mypage.*
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import java.io.File
 
 class MypageFragment : Fragment() {
+    val IMAGE_FROM_GALLERY = 0
     lateinit var adapter: RecentlySeenAdapter
     val service = RequestToServer.service
+    lateinit var selectedImg : Uri
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,6 +67,10 @@ class MypageFragment : Fragment() {
             startActivity(intent)
         }
 
+        rounded_iv_profile.setOnClickListener{
+            startActivityForResult(Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI), IMAGE_FROM_GALLERY)
+        }
+
         loadData()
     }
 
@@ -65,6 +78,39 @@ class MypageFragment : Fragment() {
         super.onResume()
 
         loadData()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        //갤러리에서 선택한 사진 화면에 출력
+        if(requestCode==IMAGE_FROM_GALLERY && resultCode==RESULT_OK && data!=null) {
+
+            selectedImg = data!!.data!!
+            val bitmap = MediaStore.Images.Media.getBitmap(context!!.contentResolver, selectedImg)
+            Log.d("Test", selectedImg.toString() +"   " + bitmap)
+            rounded_iv_profile.setImageBitmap(bitmap)
+            val c = context!!.contentResolver.query(Uri.parse(selectedImg.toString()), null, null, null, null)
+            c!!.moveToNext()
+            val absolutePath = c!!.getString(c!!.getColumnIndex(MediaStore.MediaColumns.DATA))
+            val file = File(absolutePath)
+            val header = mutableMapOf<String, String?>()
+            val sharedPref = context!!.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
+            header["token"] = sharedPref.getString("token", "token")
+            val rqFile = RequestBody.create(MediaType.parse("image/jpeg"), file)
+            var photo : MultipartBody.Part = MultipartBody.Part.createFormData("profile", file.getName(), rqFile)
+            service.requestUserProfile(photo,header).customEnqueue(
+                onError = {Log.d("error >>>> ", "외않되")},
+                onSuccess = {
+                    if (it.success){
+                        Log.d("성공했다", it.message + " / ")
+                    }else{
+                        Log.d("status >>>> ", it.success.toString() + " / " + it.status.toString() + " / " + it.message)
+                    }
+                }
+            )
+            Log.d("이미지", selectedImg.toString())
+        } else return
     }
 
     fun loadData() {

@@ -17,7 +17,7 @@
 	* BottomNavigationView
 	* RecyclerView
 * 주요 기능
-	* 애니메이션
+	* [애니메이션](#애니메이션)
 	* [카카오맵 API](#카카오맵)
 	* Bottom-sheet Dialog
 * 확장함수
@@ -156,6 +156,95 @@
 # 주요 기능
 
 ## 애니메이션
+
+*액티비티 전환 애니메이션
+<p align="center">
+	<img src="/img/recommend_animation.gif" width="300"/><br>
+</p>
+
+추천 탭에서 더 자세히 보고 싶은 책방을 눌렀을 때 똑같이 공유되는 요소 들을 부드럽게 보여주는 shared element transition의 효과를 적용했다. 먼저 fragment_main에서 공유되는 모든뷰에 transitionName을 지정해 준다.
+
+```xml
+    *fragment_main.xml의 item_recommend.xml
+    <com.makeramen.roundedimageview.RoundedImageView
+        ...
+        android:transitionName="share_img1"
+        ... />
+    <com.makeramen.roundedimageview.RoundedImageView
+        ...
+        android:transitionName="share_img2"
+        ... />
+    <TextView
+        ...
+        android:transitionName="share_text1"
+        ... />
+    <TextView
+        ...
+        android:transitionName="share_text2"
+        ... />
+    <ImageView
+        ...
+        android:transitionName="share_icon"
+        ... />
+    <TextView
+        ...
+        android:transitionName="share_text3"
+        ... />
+    <TextView
+        ...
+        android:transitionName="share_text4"
+    ... />
+```
+그리고 그 item을 눌렀을때 실행되는 RecommendDetailActivity의 activity_recommend_detail.xml에서도 fragment_main에서 똑같이 공유되는 뷰에만 transitionName을 **동일하게** 지정해 준다.
+
+```xml
+    *activity_recommend_detail.xml
+    <ImageView
+        ...
+        android:transitionName="share_img1"
+        ... />
+    <ImageView
+        ...
+        android:transitionName="share_img2"
+        ... />
+    <TextView
+        ...
+        android:transitionName="share_text1"
+        ... />
+    <TextView
+        ...
+        android:transitionName="share_text2"
+        ... />
+    <ImageView
+        ...
+        android:transitionName="share_icon"
+        ... />
+    <TextView
+        ...
+        android:transitionName="share_text3"
+        ... />
+    <TextView
+        ...
+        android:transitionName="share_text4"
+    ... />
+```
+그리고 MainFragment에서 item을 클릭했을때 실행되는 코드에 공유되는 뷰가 여러개일 때 view와 transitionName을 각각 Pair라는 클래스에 담아 ActionOptionsCompat의 makeSceneTransitionAnimation(Activity, Pair<F, S> ... Pair<F, S>)를 통해 애니메이션을 생성하였다. 
+
+```kotlin
+    *MainFragment
+    var intent = Intent(activity as MainActivity,RecommendDetailActivity::class.java)
+    // shared element transition
+    intent.putExtra("bookIdx",RecommendListData.bookstoreIdx)
+    val imageViewPair1 = Pair.create<View, String>(View.rec_img, "share_img1")
+    val imageViewPair2 = Pair.create<View, String>(View.rec_gradation, "share_img2")
+    val textViewPair1 = Pair.create<View, String>(View.rec_text1, "share_text1")
+    val textViewPair2 = Pair.create<View, String>(View.rec_text2, "share_text2")
+    val imageViewPair3 = Pair.create<View, String>(View.icon_address, "share_icon")
+    val textViewPair3 = Pair.create<View, String>(View.rec_name, "share_text3")
+    val textViewPair4 = Pair.create<View, String>(View.rec_address, "share_text4")
+    var option : ActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity as MainActivity, imageViewPair1, imageViewPair2, textViewPair1, textViewPair2, imageViewPair3, textViewPair3, textViewPair4 )
+    startActivity(intent,option.toBundle())
+```
 
 ## 카카오맵
 

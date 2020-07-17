@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cozy.R
 import com.example.cozy.network.responseData.RecentlySeenData
-import com.example.cozy.views.map.MapData
 
 class RecentlySeenAdapter(private val context: Context, val data : MutableList<RecentlySeenData>): RecyclerView.Adapter<RecentlySeenViewHolder>() {
 

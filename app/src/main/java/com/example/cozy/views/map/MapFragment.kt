@@ -3,24 +3,18 @@ package com.example.cozy.views.map
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import com.example.cozy.BottomItemDecoration
 import com.example.cozy.R
 import com.example.cozy.network.RequestToServer
-import com.example.cozy.network.RequestToServer.service
 import com.example.cozy.network.customEnqueue
 import com.example.cozy.views.map.popup.PopupFragment
-import com.example.cozy.views.map.popup.SeoulFragment
 import com.example.cozy.views.search.SearchActivity
 import kotlinx.android.synthetic.main.fragment_map.*
-import kotlin.properties.Delegates
 
 class MapFragment : Fragment() {
     val service = RequestToServer.service
@@ -63,7 +57,7 @@ class MapFragment : Fragment() {
             startActivity(intent)
         }
 
-        bookstore.addItemDecoration(BottomItemDecoration(this.context!!, 15)) //itemDecoration 여백주기
+        bookstore.addItemDecoration(BottomItemDecoration(this.context!!, 15))
     }
 
     override fun onResume() {

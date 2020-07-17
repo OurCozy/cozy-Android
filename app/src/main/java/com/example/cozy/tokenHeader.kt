@@ -2,8 +2,6 @@ package com.example.cozy
 
 import android.app.Activity
 import android.content.Context
-import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 
 fun tokenHeader(activity : Activity) : Map<String, String?>{
     val sharedPref = activity.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)

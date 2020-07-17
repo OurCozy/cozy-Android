@@ -46,7 +46,7 @@ interface RequestInterface {
     //후기 작성
     @Multipart
     @POST("/main/detail/review/{bookstoreIdx}")
-    fun requestReveiw(@Path("bookstoreIdx") bookstoreIdx: Int, @Part photo : MultipartBody.Part, @HeaderMap headers: Map<String, String?>) : Call<ReponseReviewData>
+    fun requestReveiw(@Path("bookstoreIdx") bookstoreIdx: Int, @Part photo : MultipartBody.Part, @HeaderMap headers: Map<String, String?>) : Call<ResponseReviewData>
 
     //2개 후기 보여주기
     @GET("/main/detail/review2/{bookstoreIdx}")
@@ -79,12 +79,9 @@ interface RequestInterface {
     fun requestUserInfo(@HeaderMap headers: Map<String, String?>) : Call<ResponseUserProfile>
 
     //프로필 업데이트 : https://github.com/OurCozy/cozy-server/wiki/2_4.-%ED%94%84%EB%A1%9C%ED%95%84-%EC%82%AC%EC%A7%84-%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8
-    /*@Headers(
-        "Content-Type:multipart/form-data",
-        "token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjozLCJpYXQiOjE1OTQ0MjQ1MDUsImV4cCI6MTU5NDQyODEwNSwiaXNzIjoib3VyLXNvcHQifQ.KTbARvJZAxXvXEUdkAIKiBJs6Wxbc5P7N7fEtXPqjvg"
-    )
+    @Multipart
     @POST("/user/profile")
-    fun requestUserProfile() : Call<ResponseUserProfile>*/
+    fun requestUserProfile(@Part photo : MultipartBody.Part, @HeaderMap headers: Map<String, String?>) : Call<ResponseUserProfile>
 
     //내가 쓴 후기 조회
 

@@ -1,6 +1,5 @@
 package com.example.cozy.signin
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -19,7 +18,7 @@ class StartActivity : AppCompatActivity() {
         }
 
         email_login.setOnClickListener {
-            startActivity(Intent(this, EmailLoginActivity::class.java))
+            startActivity(Intent(this, EmailLoginActivity()::class.java))
         }
 
         signup.setOnClickListener {

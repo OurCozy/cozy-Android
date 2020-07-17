@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:descendantFocusability="blocksDescendants"
         android:clipToPadding="false"
         android:paddingBottom="14dp"
         android:overScrollMode="never">

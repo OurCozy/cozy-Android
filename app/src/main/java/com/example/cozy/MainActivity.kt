@@ -23,19 +23,9 @@ class MainActivity : AppCompatActivity() {
         viewPager.adapter = ViewPagerAdapter(supportFragmentManager)
         viewPager.offscreenPageLimit = 2
 
-        viewPager.addOnPageChangeListener(object: ViewPager.OnPageChangeListener {
-            override fun onPageScrollStateChanged(state: Int) { }
-
-            override fun onPageScrolled(
-                position: Int,
-                positionOffset: Float,
-                positionOffsetPixels: Int
-            ) { }
-
-            override fun onPageSelected(position: Int) {
-                navigation.menu.getItem(position).isChecked = true
-            }
-        })
+        viewPager.OnPageChangeListener {
+            navigation.menu.getItem(it).isChecked = true
+        }
 
         navigation.setOnNavigationItemSelectedListener {
             when(it.itemId) {

@@ -17,8 +17,6 @@ import kotlinx.android.synthetic.main.activity_signin_kakao.*
 
 class SigninActivity : Activity() {
 
-    private var callback: SessionCallback = SessionCallback()
-
     val session = object : ISessionCallback {
         override fun onSessionOpenFailed(exception: KakaoException?) {
             Log.e("Log", "Session Call back :: onSessionOpenFailed: ${exception?.message}")
