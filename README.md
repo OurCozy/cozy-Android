@@ -118,9 +118,9 @@
 
 <h2 id="내정보">내 정보 화면</h2>
 <p align="center">
-	<img src="/img/mypage_no_recently_seen.png" width="300"/>
+	<img src="/img/mypage_no_recently_seen.jpg" width="300"/>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<img src="/img/mypage.png" width="300"/><br>
+	<img src="/img/mypage.jpg" width="300"/><br>
 </p>
 
 사용자의 기본정보, 후기와 최근 책방 등을 볼 수 있는 화면이다. 왼쪽 화면은 사용자가 최근에 본 책방이 없을 때의 모습이고 오른쪽 화면은 최근에 본 책방을 RecyclerView로 보여준다. 아래의 코드와 같이 해당 데이터가 존재한다면 리사이클러뷰의 위에 위치한 TextView의 visibility를 Context.GONE 해주었다.

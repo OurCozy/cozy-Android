@@ -105,10 +105,10 @@ class MypageFragment : Fragment() {
             val rqFile = RequestBody.create(MediaType.parse("image/jpeg"), file)
             var photo : MultipartBody.Part = MultipartBody.Part.createFormData("profile", file.getName(), rqFile)
             service.requestUserProfile(photo,header).customEnqueue(
-                onError = {Log.d("error >>>> ", "외않되")},
+                onError = {Log.d("error >>>> ", "통신에러")},
                 onSuccess = {
                     if (it.success){
-                        Log.d("성공했다", it.message + " / ")
+                        Log.d("성공", it.message + " / ")
                     }else{
                         Log.d("status >>>> ", it.success.toString() + " / " + it.status.toString() + " / " + it.message)
                     }
