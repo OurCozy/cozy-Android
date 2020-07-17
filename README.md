@@ -34,10 +34,11 @@
 
 # Workflow
 
-<img src="/img/workflow.png" width="300"/><br>
+<img src="/img/workflow.png"/><br>
 
 ## SOPT 26기 App-Jam
 * 개발 기간 : 2020년 6월 28일 ~ 2020년 7월 18일
+
 
 
 # 뷰
