@@ -43,8 +43,6 @@ class RecommendDetailActivity : AppCompatActivity() {
     var kakaoPackageName : String = "net.daum.android.map"
     lateinit var reviewAdapter: ReviewAdapter
     var data = mutableListOf<AllReviewData>()
-    val geocoder = Geocoder(this)
-
 
     //관심책방 여부 저장 변수 TODO:서버에서 가져온 정보 여기에 저장
     var isChecked : Int = 0
@@ -53,6 +51,8 @@ class RecommendDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recommend_detail)
+
+        val geocoder = Geocoder(this)
 
         if (intent.hasExtra("bookIdx")) {
             bookIdx = intent.getIntExtra("bookIdx",0)
